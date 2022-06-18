@@ -1,4 +1,4 @@
-<p align="center"><img src="public/repository-images/logotipo.png" width="250" height="250"></p>
+<p align="center"><img src="public/repository-images/logo.png" width="250" height="250"></p>
 
 # NewModern Loja Virtual
 
