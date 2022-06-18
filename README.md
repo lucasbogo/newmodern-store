@@ -1,4 +1,4 @@
-<p align="center"><img src="public/repository-images/logotipo.png" width="250" height="250"></p>
+<p align="center"><img src="public/repository-images/logo.png" width="250" height="250"></p>
 
 # NewModern Loja Virtual
 
@@ -11,12 +11,12 @@ Loja Virtual desenvolvida como trabalho obrigatório para a disciplina de **Proj
 -  **PHP 8.1.6**
 -  **Composer version 2.3.5** 
 -  **LARAVEL 9.12.2**
--  **Bootstrap** *precisa de refatoração*
+-  **Bootstrap** 
 -  **MySQL 8.0.29**
 -  **IDE VSCode**
 -  **Banco de dados tratado com o padrão Factory** 
 -  **Padrão MVC**
--  **API PayPal**
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 <p align="center"><img src="public/repository-images/phplogo.png" width="200" height="200"></p>
 
