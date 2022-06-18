@@ -1,4 +1,4 @@
-<p align="center"><img src="public/assets/images/logotipo.png" width="250" height="250"></p>
+<p align="center"><img src="public/repository-images/logotipo.png" width="250" height="250"></p>
 
 # NewModern Loja Virtual
 
@@ -18,7 +18,7 @@ Loja Virtual desenvolvida como trabalho obrigatório para a disciplina de **Proj
 -  **Padrão MVC**
 -  **API PayPal**
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
-<p align="center"><img src="public/assets/images/phplogo.png" width="200" height="200"></p>
+<p align="center"><img src="public/repository-images/phplogo.png" width="200" height="200"></p>
 
 ## PHP 8.1.6
 
@@ -60,7 +60,7 @@ php-fpm8.1 -v
 sudo apt install php8.1-common php8.1-mysql php8.1-xml php8.1-xmlrpc php8.1-curl php8.1-gd php8.1-imagick php8.1-cli php8.1-dev php8.1-imap php8.1-mbstring php8.1-opcache php8.1-soap php8.1-zip php8.1-redis php8.1-intl -y
 ```
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
-<p align="center"><img src="public/assets/images/composerlogo.png" width="250" height="250"></p>
+<p align="center"><img src="public/repository-images/composerlogo.png" width="250" height="250"></p>
 
 ## Composer
 
