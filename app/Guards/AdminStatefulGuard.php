@@ -2,7 +2,7 @@
 
 namespace Illuminate\Contracts\Auth;
 
-interface StatefulGuard extends Guard
+interface AdminStatefulGuard extends Guard
 {
     /**
      * Attempt to authenticate a user using the given credentials.
