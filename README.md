@@ -18,7 +18,7 @@ Loja Virtual desenvolvida como trabalho obrigatório para a disciplina de **Proj
 -  **Padrão MVC**
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
-<p align="center"><img src="public/repository-images/phplogo.png" width="200" height="200"></p>
+<p align="center"><img src="public/repository-images/phplogo.png" width="250" height="200"></p>
 
 ## PHP 8.1.6
 
