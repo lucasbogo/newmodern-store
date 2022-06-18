@@ -6,13 +6,15 @@
 
 Loja Virtual desenvolvida como trabalho obrigatório para a disciplina de **Projeto Integrador I** do curso de **Tecnologia em Ánalise e Desenvolvimento de Sistemas**.
 
-#### Ferramentas utilizadas:
+#### Ferramentas:
 
 -  **PHP 8.1.6**
 -  **Composer version 2.3.5** 
--  **LARAVEL 9.12.2**
+-  **Laravel 9.12.2**
+-  **Laravel Jetstream 2.8**
 -  **Bootstrap** 
 -  **MySQL 8.0.29**
+-  **Mailtrap.io**
 -  **IDE VSCode**
 -  **Banco de dados tratado com o padrão Factory** 
 -  **Padrão MVC**
