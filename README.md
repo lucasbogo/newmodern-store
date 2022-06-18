@@ -18,7 +18,7 @@ Loja Virtual desenvolvida como trabalho obrigatório para a disciplina de **Proj
 -  **Padrão MVC**
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
-<p align="center"><img src="public/repository-images/phplogo.png" width="400" height="200"></p>
+<p align="center"><img src="public/repository-images/phplogo.png" width="250" height="200"></p>
 
 ## PHP 8.1.6
 
@@ -144,7 +144,7 @@ Iniciando o servidor de desenvolvimento Laravel: http://127.0.0.1:8000
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
-<p align="center"><img src="public/repository-images/jetstream.png" width="250" height="250"></p>
+<p align="center"><img src="public/repository-images/jetstream.png" width="400" height="250"></p>
 
 
 ## Jetstream 2.8
