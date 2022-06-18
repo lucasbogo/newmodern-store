@@ -124,11 +124,11 @@ laravel
 ```
 #### Para criar e instalar um projeto usando Laravel:
 ```
-laravel new lojavirtual-app
+laravel new newmodern-store
 ```
 #### Criar projeto Laravel utilizando Composer
 ```
-composer create-project laravel/laravel lojavirtual-app
+composer create-project laravel/newmodern-store
 ```
 
 #### Para iniciar o servidor de desenvolvimento do Laravel, insira os comandos:
