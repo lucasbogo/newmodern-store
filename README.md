@@ -143,4 +143,48 @@ Iniciando o servidor de desenvolvimento Laravel: http://127.0.0.1:8000
 ``` 
 
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+<p align="center"><img src="public/repository-images/jetstream.png" width="250" height="250"></p>
+
+
+## Jetstream 2.8
+  
+#### Sobre:
+
+Laravel Jetstream é um kit inicial de aplicativos para Laravel com um design bonito e fornece o ponto de partida perfeito para o seu próximo aplicativo Laravel. Jetstream fornece a implementação para login, registro, verificação de e-mail, autenticação de dois fatores, gerenciamento de sessão, API via Laravel Sanctum e recursos opcionais de gerenciamento de equipe.
+
+Jetstream é projetado usando Tailwind CSS e oferece sua escolha de andaimes Livewire ou Inertia.
+
+### Instalação:
+
+#### Entrar no diretorio do projeto:
+
+```
+cd newmodern-store
+```
+
+#### Instalar Jetstream com Livewire :
+
+```
+php artisan jetstream:install livewire
+```
+
+#### Finalizar a instalação :
+
+```
+npm install && npm run dev
+```
+
+#### Migrar para o BD :
+
+```
+php artisan migrate
+```
+
+
+
+ 
+
+
+
 
