@@ -72,7 +72,7 @@ Composer é uma ferramenta de gerenciamento de dependências em PHP. Essa ferram
 
 ### Instalação:
 
-#### Atulizar Gerenciador de Pacotes
+#### Atualizar Gerenciador de Pacotes
 ```
 sudo apt update
 ```
