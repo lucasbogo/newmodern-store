@@ -153,7 +153,7 @@ Iniciando o servidor de desenvolvimento Laravel: http://127.0.0.1:8000
   
 #### Sobre:
 
-Laravel Jetstream é um kit inicial de aplicativos para Laravel com um design bonito e fornece o ponto de partida perfeito para o seu próximo aplicativo Laravel. Jetstream fornece a implementação para login, registro, verificação de e-mail, autenticação de dois fatores, gerenciamento de sessão, API via Laravel Sanctum e recursos opcionais de gerenciamento de equipe.
+Laravel Jetstream é um kit inicial de aplicativos para Laravel. Jetstream fornece a implementação para login, registro, verificação de e-mail, autenticação de dois fatores, gerenciamento de sessão, API via Laravel Sanctum e recursos opcionais de gerenciamento de equipe.
 
 Jetstream é projetado usando Tailwind CSS e oferece sua escolha de andaimes Livewire ou Inertia.
 
