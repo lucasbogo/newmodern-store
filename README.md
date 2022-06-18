@@ -144,7 +144,7 @@ Iniciando o servidor de desenvolvimento Laravel: http://127.0.0.1:8000
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
-<p align="center"><img src="public/repository-images/jetstream.png" width="400" height="250"></p>
+<p align="center"><img src="public/repository-images/jetstream.png" width="400" height="200"></p>
 
 
 ## Jetstream 2.8
