@@ -17,7 +17,14 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
+    // Route for default user
     public const HOME = '/dashboard';
+
+    // Route for default admin
+    public static function redirectTo($guard)
+    {
+        return $guard.'/dashboard';
+    }
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

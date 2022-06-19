@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +18,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+// Rotas autenticação do mantenedor
+Route::group(['prefix'=> 'admin', 'middleware'=>['admin.admin']], function() {
+    Route::get('/login', [AdminController::class, 'loginForm']);
+    Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
+        
+    
+});
+
+Route::middleware(['auth:sanctum, admin', 'verified'])->get('/admin/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+// Default jetstream route for User authentication. I will not alter it.
 Route::middleware([
-    'auth:sanctum',
+'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
+
+
+
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
