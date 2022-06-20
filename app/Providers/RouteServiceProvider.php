@@ -21,6 +21,8 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/dashboard';
 
     // Route for default admin
+    // Quando o sistema verifica que o usuario logado é mantenedor,
+    // Redireciona-se, então, para /admin/dashboard
     public static function redirectTo($guard)
     {
         return $guard.'/dashboard';

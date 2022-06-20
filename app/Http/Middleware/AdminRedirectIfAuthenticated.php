@@ -1,5 +1,10 @@
 <?php
 
+/* Ao criar novo middleware, é necessário declarar a mesma no Kernel.php
+ * Por exemplo: 'admin' => \App\Http\Middleware\AdminRedirectIfAuthenticated::class,  
+ */
+
+
 namespace App\Http\Middleware;
 
 use App\Providers\RouteServiceProvider;

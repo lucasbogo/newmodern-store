@@ -23,6 +23,7 @@ class RedirectIfAuthenticated
 
         // This checks if the person login in is an user or an admin
         // Then redirects accordingly
+        // Redireciona-se, então, para /admin/dashboard se for mantenedor
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 return redirect($guard.'/dashboard');
