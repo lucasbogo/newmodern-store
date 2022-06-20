@@ -27,10 +27,19 @@ Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function() {
     
 });
 
+// Autenticação Mantenedor
 Route::middleware(['auth:sanctum, admin', 'verified'])->get('/admin/dashboard', function () {
+    return view('admin.index');
+})->name('dashboard');
+
+
+// Autenticação Usuário
+Route::middleware(['auth:sanctum, web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+
+/*
 // Default jetstream route for User authentication. I will not alter it.
 Route::middleware([
 'auth:sanctum',
@@ -42,5 +51,6 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
-    })->name('dashboard');
+    })->name('dashboard'); 
 });
+*/
