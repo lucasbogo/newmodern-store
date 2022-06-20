@@ -2,24 +2,21 @@
 
 namespace App\Providers;
 
+use Illuminate\Contracts\Auth\StatefulGuard;
+use App\Actions\Fortify\AttemptToAuthenticate;
+use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
+use App\Http\Controllers\AdminController;
+
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
-use App\Http\Controllers\AdminController;
 use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
-//use Laravel\Fortify\Actions\AttemptToAuthenticate; DEFAULT
-//use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable; DEFAULT
-use App\Actions\Fortify\AttemptToAuthenticate; 
-use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
-
 use Laravel\Fortify\Fortify;
-
+use Illuminate\Support\Facades\Auth;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -30,16 +27,11 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Load all the controllers to authenticate classes
-        $this->app->when([AdminController::class, AttemptToAuthenticate::class, 
-            RedirectIfTwoFactorAuthenticatable::class])
-            // Load needs to use interface guards
+        $this->app->when([AdminController::class, AttemptToAuthenticate::class, RedirectIfTwoFactorAuthenticatable::class])
             ->needs(StatefulGuard::class)
-            // give function that return authenticate admin guard
-            ->give(function(){
+            ->give(function () {
                 return Auth::guard('admin');
             });
-
     }
 
     /**
@@ -55,9 +47,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
         RateLimiter::for('login', function (Request $request) {
-            $email = (string) $request->email;
-
-            return Limit::perMinute(5)->by($email.$request->ip());
+            return Limit::perMinute(5)->by($request->email . $request->ip());
         });
 
         RateLimiter::for('two-factor', function (Request $request) {

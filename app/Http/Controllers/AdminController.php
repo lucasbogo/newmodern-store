@@ -1,21 +1,16 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Routing\Pipeline;
-//use Laravel\Fortify\Actions\AttemptToAuthenticate; DEAFAULT
 use App\Actions\Fortify\AttemptToAuthenticate;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
-//use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable; DEFAULT
 use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
-//use Laravel\Fortify\Contracts\LoginResponse;
-// Trocar login response defalut pelo login response alterado para redirecinamento do mantenedor */
-use App\Http\Responses\LoginResponse; 
+use App\Http\Responses\LoginResponse;
 use Laravel\Fortify\Contracts\LoginViewResponse;
 use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Features;
@@ -40,13 +35,11 @@ class AdminController extends Controller
     public function __construct(StatefulGuard $guard)
     {
         $this->guard = $guard;
+         
     }
 
-
-    public function loginForm()
-    {
-        return view('auth.login', ['guard' => 'admin']);
-
+    public function loginForm(){
+    	return view('auth.login', ['guard' => 'admin']);
     }
 
     /**

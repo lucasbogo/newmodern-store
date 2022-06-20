@@ -4,8 +4,8 @@ namespace App\Actions\Fortify;
 
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-use Laravel\Fortify\Events\TwoFactorAuthenticationChallenged;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\LoginRateLimiter;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -50,16 +50,6 @@ class RedirectIfTwoFactorAuthenticatable
     {
         $user = $this->validateCredentials($request);
 
-        if (Fortify::confirmsTwoFactorAuthentication()) {
-            if (optional($user)->two_factor_secret &&
-                ! is_null(optional($user)->two_factor_confirmed_at) &&
-                in_array(TwoFactorAuthenticatable::class, class_uses_recursive($user))) {
-                return $this->twoFactorChallengeResponse($request, $user);
-            } else {
-                return $next($request);
-            }
-        }
-
         if (optional($user)->two_factor_secret &&
             in_array(TwoFactorAuthenticatable::class, class_uses_recursive($user))) {
             return $this->twoFactorChallengeResponse($request, $user);
@@ -89,7 +79,7 @@ class RedirectIfTwoFactorAuthenticatable
         $model = $this->guard->getProvider()->getModel();
 
         return tap($model::where(Fortify::username(), $request->{Fortify::username()})->first(), function ($user) use ($request) {
-            if (! $user || ! $this->guard->getProvider()->validateCredentials($user, ['password' => $request->password])) {
+            if (! $user || ! Hash::check($request->password, $user->password)) {
                 $this->fireFailedEvent($request, $user);
 
                 $this->throwFailedAuthenticationException($request);
@@ -142,8 +132,6 @@ class RedirectIfTwoFactorAuthenticatable
             'login.id' => $user->getKey(),
             'login.remember' => $request->filled('remember'),
         ]);
-
-        TwoFactorAuthenticationChallenged::dispatch($user);
 
         return $request->wantsJson()
                     ? response()->json(['two_factor' => true])

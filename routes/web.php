@@ -14,32 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-// Rotas autenticação do mantenedor
-Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function() {
-    Route::get('/login', [AdminController::class, 'loginForm']);
-    Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
-        
-    
-});
-
-// Autenticação Mantenedor
-Route::middleware(['auth:sanctum, admin', 'verified'])->get('/admin/dashboard', function () {
-    return view('admin.index');
-})->name('dashboard');
-
-
-// Autenticação Usuário
-Route::middleware(['auth:sanctum, web', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-
 /*
+
+
+
+
 // Default jetstream route for User authentication. I will not alter it.
 Route::middleware([
 'auth:sanctum',
@@ -54,3 +33,25 @@ Route::middleware([
     })->name('dashboard'); 
 });
 */
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function () {
+    Route::get('/login', [AdminController::class, 'loginForm']);
+    Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
+});
+
+
+
+
+Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+
+
+Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
