@@ -1,9 +1,5 @@
 <?php
 
-/* Ao criar novo middleware, é necessário declarar a mesma no Kernel.php
- * Por exemplo: 'admin' => \App\Http\Middleware\AdminRedirectIfAuthenticated::class,  
- */
-
 namespace App\Http\Middleware;
 
 use App\Providers\RouteServiceProvider;
@@ -17,9 +13,9 @@ class AdminRedirectIfAuthenticated
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @param  string|null  ...$guards
-     * @return mixed
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
@@ -34,4 +30,3 @@ class AdminRedirectIfAuthenticated
         return $next($request);
     }
 }
-    
