@@ -14,31 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function () {
-    Route::get('/login', [AdminController::class, 'loginForm']);
-    Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
-});
-
-
-
-
-Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-
-
-Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,6 +23,7 @@ Route::get('/', function () {
 Route::middleware('admin:admin')->group(function () {
     Route::get('admin/login', [AdminController::class, 'loginForm']);
     Route::post('admin/login', [AdminController::class, 'store'])->name('admin.login');
+  
 });
 
 
@@ -57,6 +34,8 @@ Route::middleware(['auth:sanctum,admin', config('jetstream.auth_session'), 'veri
     })->name('dashboard')->middleware('auth:admin');
 });
  
+// Rota para logout do mantenedor
+Route::get('/admin/logout',[AdminController::class, 'destroy'])->name('admin.logout');
 
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'
