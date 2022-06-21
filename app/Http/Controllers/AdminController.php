@@ -40,9 +40,9 @@ class AdminController extends Controller
        
     }
 
-
+    // Chamar a página admin_login na pasta Auth
     public function loginForm(){
-        return view('auth.login',['guard' => 'admin']);
+        return view('auth.admin_login',['guard' => 'admin']);
     }
 
     /**
