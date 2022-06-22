@@ -1,7 +1,9 @@
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
       <!-- sidebar-->
-      <section class="sidebar">
+      <section class="sidebar" style="height: 307px; overflow: hidden; width: auto;">	
+		
+        <div class="user-profile">
 
           <div class="user-profile">
               <div class="ulogo">

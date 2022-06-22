@@ -35,7 +35,7 @@ Theme Primary Color
 .dark-skin{
 &.theme-primary{ 
     .bg-gradient-primary{@extend .bg-gradient-primary-dark}
-    .art-bg{@extend .bg-gradient-primary-dark}
+    .art-bg{}
     &.fixed {        
         .main-header {
             @extend .bg-dark-body
