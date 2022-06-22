@@ -15,7 +15,7 @@ Loja Virtual desenvolvida como trabalho obrigatório para a disciplina de **Proj
 -  **Bootstrap** 
 -  **MySQL 8.0.29**
 -  **Mailtrap.io**
--  **IDE VSCode**
+-  **VSCode**
 -  **Banco de dados tratado com o padrão Factory** 
 -  **Padrão MVC**
 
