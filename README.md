@@ -17,6 +17,7 @@ Loja Virtual desenvolvida como trabalho obrigatório para a disciplina de **Proj
 -  **CSS**
 -  **SCSS**
 -  **JavaScript** 
+-  **JQuery**
 -  **MySQL 8.0.29**
 -  **Mailtrap.io**
 -  **VSCode**
