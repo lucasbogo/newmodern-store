@@ -48,16 +48,23 @@ Route::get('/admin/logout',[AdminController::class, 'destroy'])->name('admin.log
 // Rota para manter perfil mantenedor
 Route::get('/admin/profile',[AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
 
- // Rota para entrar em editar perfil mantenedor
+// Rota para entrar em editar perfil mantenedor
 Route::get('/admin/profile/edit',[AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
 
 // Rota que aceita os dados anexados no corpo da mensagem de requisição para armazenamento [POST admin.edit.profile]
 Route::post('/admin/profile/store',[AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
 
+// Rota para mudar senha mantenedor
+Route::get('/admin/change/password',[AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
+
+// Rota que aceita as mudanças senha mantenedor
+Route::post('/update/change/password',[AdminProfileController::class, 'AdminUpdateChangePassword'])->name('update.change.password');
 
 
-// ROTA multi-auth USER. Pacote do Laravel chamando JETSTREAM, que serve p/:
-// login, registration, email verification, two-factor authentication, session management,
+
+
+/* ROTA multi-auth USER. Pacote do Laravel chamando JETSTREAM, que serve p/:
+ * login, registration, email verification, two-factor authentication, session management, */
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {

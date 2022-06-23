@@ -127,15 +127,25 @@
                                 ? url('upload/admin_images/' . $editData->profile_photo_path)
                                 : url('upload/no-image.png') }}" alt="">
                         </a>
+
+                        <!--  MENU DROPDOWN -->
                         <ul class="dropdown-menu animated flipInX">
                             <li class="user-body">
+
+                                <!-- LINK PERFIL -->
                                 <a class="dropdown-item" href="{{ route('admin.profile') }}"><i
                                         class="ti-user text-muted mr-2"></i>
                                     Profile</a>
-                                <a class="dropdown-item" href="#"><i class="ti-wallet text-muted mr-2"></i> My
-                                    Wallet</a>
+
+                                <!-- LINK MUDAR SENHA -->     
+                                <a class="dropdown-item" href="{{ route('admin.change.password') }}"><i class="ti-wallet text-muted mr-2"></i>
+                                    Change Password</a>
+
+                                 <!-- LINK ... -->   
                                 <a class="dropdown-item" href="#"><i class="ti-settings text-muted mr-2"></i>
                                     Settings</a>
+                                
+                                <!-- LINK LOGOUT -->    
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('admin.logout') }}"><i
                                         class="ti-lock text-muted mr-2"></i>
