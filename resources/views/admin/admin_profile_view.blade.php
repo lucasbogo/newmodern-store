@@ -11,12 +11,12 @@
                         <!-- Add the bg color to the header using any of the bg-* classes -->
                         <div class="widget-user-header bg-black"
                             style="background: url('../images/gallery/full/10.jpg') center center;">
-                            <h3 class="widget-user-username">Admin Name {{ $adminData->name }}</h3>
+                            <h3 class="widget-user-username">{{ $adminData->name }}</h3>
 
                             <a href="{{ route('admin.profile.edit') }}" style="float: right;" class="btn btn-rounded btn-primary mb-5">
                                 Edit Profile</a>
 
-                            <h6 class="widget-user-desc">Admin Email {{ $adminData->email }}</h6>
+                            <h6 class="widget-user-desc">{{ $adminData->email }}</h6>
                         </div>
                         <div class="widget-user-image">
 
@@ -26,7 +26,7 @@
                                      OR (:)loads default images located in /public/upload -->
                             <img class="rounded-circle"
                                 src="{{ !empty($adminData->profile_photo_path)
-                                    ? url('upload/admin_images' . $adminData->profile_photo_path)
+                                    ? url('upload/admin_images/' . $adminData->profile_photo_path)
                                     : url('upload/no-image.png') }}"
                                 alt="User Avatar">
                         </div>

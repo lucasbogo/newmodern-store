@@ -22,13 +22,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// ROTA(s) autenticação admin [LOGIN PAGE]
 Route::middleware('admin:admin')->group(function () {
     Route::get('admin/login', [AdminController::class, 'loginForm']);
     Route::post('admin/login', [AdminController::class, 'store'])->name('admin.login');
   
 });
 
-
+// ROTA multi-auth ADMIN. Pacote do Laravel chamando Jetstream, que serve p/:
+// login, registration, email verification, two-factor authentication, session management,
 Route::middleware(['auth:sanctum,admin', config('jetstream.auth_session'), 'verified'
 ])->group(function () {
     Route::get('/admin/dashboard', function () {
@@ -38,7 +40,7 @@ Route::middleware(['auth:sanctum,admin', config('jetstream.auth_session'), 'veri
 
 
 
-/***  Todas as rotas mantenedor profile ***/
+/*** TODAS AS ROTAS MANTENEDOR PROFILE ***/
  
 // Rota para logout do mantenedor
 Route::get('/admin/logout',[AdminController::class, 'destroy'])->name('admin.logout');
@@ -49,9 +51,13 @@ Route::get('/admin/profile',[AdminProfileController::class, 'AdminProfile'])->na
  // Rota para entrar em editar perfil mantenedor
 Route::get('/admin/profile/edit',[AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
 
+// Rota que aceita os dados anexados no corpo da mensagem de requisição para armazenamento [POST admin.edit.profile]
+Route::post('/admin/profile/store',[AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
 
 
 
+// ROTA multi-auth USER. Pacote do Laravel chamando JETSTREAM, que serve p/:
+// login, registration, email verification, two-factor authentication, session management,
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {

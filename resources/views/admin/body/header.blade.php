@@ -3,7 +3,7 @@
     <header class="main-header">
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top pl-30">
-            <!-- Sidebar toggle button-->
+            <!-- Sidebar toggle button-->   
             <div>
                 <ul class="nav">
                     <li class="btn-group nav-item">
@@ -113,11 +113,19 @@
                         </ul>
                     </li>
 
+                    <!-- CONDIÇÂO para pegar admin image No BD -->
+                    @php
+                    $editData = DB::table('admins')->first();
+                    @endphp
+
+
                     <!-- User Account-->
                     <li class="dropdown user user-menu">
                         <a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0"
                             data-toggle="dropdown" title="User">
-                            <img src="{{ asset('backend/images/avatar/1.jpg') }}" alt="">
+                            <img src="{{ !empty($editData->profile_photo_path)
+                                ? url('upload/admin_images/' . $editData->profile_photo_path)
+                                : url('upload/no-image.png') }}" alt="">
                         </a>
                         <ul class="dropdown-menu animated flipInX">
                             <li class="user-body">
