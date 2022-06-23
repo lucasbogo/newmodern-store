@@ -46,7 +46,14 @@ class AdminProfileController extends Controller
         }
         // Salvar dado no BD
         $data->save();
+
+        // Mensagens toaster
+        $notification = array(
+            'message' => 'Admin Profile Updated Successfully',
+            'alert-type' => 'success'
+        );
+
         // Retornar para pagina
-        return redirect()->route('admin.profile');
+        return redirect()->route('admin.profile')->with($notification);
     }
 }
