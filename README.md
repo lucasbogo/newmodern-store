@@ -13,8 +13,8 @@ Loja Virtual desenvolvida como trabalho obrigatório para a disciplina de **Proj
 -  **Laravel 9.12.2**
 -  **Laravel Jetstream 2.8**
 -  **Bootstrap**
--  **HTML**
--  **CSS**
+-  **HTML 5**
+-  **CSS 3**
 -  **SCSS**
 -  **JavaScript** 
 -  **JQuery**
