@@ -110,7 +110,7 @@
                             <li><a href="#">Headphones</a></li>
                           </ul>
                         </div>
-                        <div class="dropdown-banner-holder"> <a href="#"><img alt="" src="assets/images/banners/banner-side.png" /></a> </div>
+                        <div class="dropdown-banner-holder"> <a href="#"><img alt="" src="{{ asset('frontend/assets/images/banners/banner-side.png') }}" /></a> </div>
                       </div>
                       <!-- /.row --> 
                     </li>
