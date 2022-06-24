@@ -22,12 +22,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// ROTA(s) autenticação admin [LOGIN PAGE]
+
+
+// ROTAS AUTENTICAÇÃO ADMIN [LOGIN PAGE] JETSTREAM
 Route::middleware('admin:admin')->group(function () {
     Route::get('admin/login', [AdminController::class, 'loginForm']);
     Route::post('admin/login', [AdminController::class, 'store'])->name('admin.login');
   
 });
+
 
 // ROTA multi-auth ADMIN. Pacote do Laravel chamando Jetstream, que serve p/:
 // login, registration, email verification, two-factor authentication, session management,
@@ -40,7 +43,9 @@ Route::middleware(['auth:sanctum,admin', config('jetstream.auth_session'), 'veri
 
 
 
-/*** TODAS AS ROTAS MANTENEDOR PROFILE ***/
+
+
+/*** TODAS AS ROTAS MANTENEDOR ***/
  
 // Rota para logout do mantenedor
 Route::get('/admin/logout',[AdminController::class, 'destroy'])->name('admin.logout');
@@ -63,8 +68,15 @@ Route::post('/update/change/password',[AdminProfileController::class, 'AdminUpda
 
 
 
-/* ROTA multi-auth USER. Pacote do Laravel chamando JETSTREAM, que serve p/:
- * login, registration, email verification, two-factor authentication, session management, */
+
+/*** TODAS AS ROTAS USUARIO ***/
+
+
+
+
+
+// ROTA multi-auth USER. Pacote do Laravel chamando JETSTREAM, que serve p/:
+// login, registration, email verification, two-factor authentication, session management, 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
