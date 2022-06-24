@@ -23,10 +23,10 @@
                         <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
                     </div>
 
-                    <!-- IMPORTANTE: form de login usuario-->
+                    <!-- IMPORTANTE: formulario de LOGIN usuario-->
 
                     <!--isset($guard) pega o 'guard' admin + /login (admin/login)
-                            caso contrário, pega o login comum | serve como Multi Auth admin - user-->
+                                    caso contrário, pega o login comum | serve como Multi Auth admin - user-->
                     <form method="POST" action="{{ isset($guard) ? url($guard . '/login') : route('login') }}">
                         @csrf
 
@@ -60,32 +60,38 @@
                 <div class="col-md-6 col-sm-6 create-new-account">
                     <h4 class="checkout-subtitle">Create a new account</h4>
                     <p class="text title-tag-line">Create your new account.</p>
-                    <form class="register-form outer-top-xs" role="form">
-                        <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail2">Email Address <span>*</span></label>
-                            <input type="email" class="form-control unicase-form-control text-input"
-                                id="exampleInputEmail2">
-                        </div>
+
+
+                    <!-- IMPORTANTE: formulario de REGISTRO usuario-->
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+
                         <div class="form-group">
                             <label class="info-title" for="exampleInputEmail1">Name <span>*</span></label>
-                            <input type="email" class="form-control unicase-form-control text-input"
-                                id="exampleInputEmail1">
+                            <input type="text" id="name" name="name" class="form-control unicase-form-control text-input">
                         </div>
+
+                        <div class="form-group">
+                            <label class="info-title" for="exampleInputEmail2">Email Address <span>*</span></label>
+                            <input type="email" id="email" name="email" class="form-control unicase-form-control text-input">
+                        </div>
+
                         <div class="form-group">
                             <label class="info-title" for="exampleInputEmail1">Phone Number <span>*</span></label>
-                            <input type="email" class="form-control unicase-form-control text-input"
-                                id="exampleInputEmail1">
+                            <input type="text" id="phone" name="phone" class="form-control unicase-form-control text-input">
                         </div>
+
                         <div class="form-group">
                             <label class="info-title" for="exampleInputEmail1">Password <span>*</span></label>
-                            <input type="email" class="form-control unicase-form-control text-input"
-                                id="exampleInputEmail1">
+                            <input type="password" id="password" name="password" class="form-control unicase-form-control text-input">
                         </div>
+
                         <div class="form-group">
                             <label class="info-title" for="exampleInputEmail1">Confirm Password <span>*</span></label>
-                            <input type="email" class="form-control unicase-form-control text-input"
+                            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control unicase-form-control text-input"
                                 id="exampleInputEmail1">
                         </div>
+
                         <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
                     </form>
 
