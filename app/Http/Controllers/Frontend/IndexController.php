@@ -39,4 +39,31 @@ class IndexController extends Controller
         // Após a autenticação, retornar para página perfil. | compact retorna dados em array...
         return view('frontend.profile.user_profile', compact('user'));
     }
+
+
+    // Método para atualizar e guardar o dados usuario ao editar perfil - Mesma lógica do Admin.
+    public function UserProfileStore(Request $request)
+    {
+        $data = User::find(Auth::user()->id);
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
+
+        if ($request->file('profile_photo_path')) {
+            $file = $request->file('profile_photo_path');
+            @unlink(public_path('upload/user_images/' .$data->profile_photo_path));
+            $filename = date('Ymdhi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/user_images'), $filename);
+            $data['profile_photo_path'] = $filename;
+        }
+        $data->save();
+
+        $notification = array(
+            'message' => 'User Profile Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('dashboard')->with($notification);
+    }
+    
 }

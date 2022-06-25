@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-md-2"><br><br>
                     <img class="card-img-top" style="border-radius: 50%"
-                        src="{{ !empty($editData->profile_photo_path)
-                            ? url('upload/admin_images/' . $editData->profile_photo_path)
+                        src="{{ !empty($user->profile_photo_path)
+                            ? url('upload/user_images/' . $user->profile_photo_path)
                             : url('upload/no-image.png') }}"
                         style=" width: 100px; height: 100px;"><br><br>
                     <!-- bootstrap class list-group e list-group-flush -->

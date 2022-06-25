@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,8 +75,10 @@ Route::middleware([
     'auth:sanctum', config('jetstream.auth_session'), 'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
-    });
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        return view('dashboard', compact('user'));
+    })->name('dashboard');
 });
 
 /*** O CONTROLLER USUARIO ESTÁ LOCALIZADO EM: Http/Controllers/frontend/indexController ***/
@@ -87,3 +91,6 @@ Route::get('/user/logout', [IndexController::class, 'UserLogout'])->name('user.l
 
 // Rota Usuario [LOGOUT] - rota para logout do usuario
 Route::get('/user/profile', [IndexController::class, 'UserProfile'])->name('user.profile');
+
+// Rota Usuario [PROFILE - PERFIL] - rota para a página perfil do usuario - Store, em inglês, é guardar/manter
+Route::post('/user/profile/store', [IndexController::class, 'UserProfileStore'])->name('user.profile.store');
