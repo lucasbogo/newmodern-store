@@ -77,5 +77,13 @@ Route::middleware([
     });
 });
 
+/*** O CONTROLLER USUARIO ESTÁ LOCALIZADO EM: Http/Controllers/frontend/indexController ***/
+
 // Rota Usuario [HOME] - primeira página, serve tanto para visitante como usuário
 Route::get('/', [IndexController::class, 'index']);
+
+// Rota Usuario [LOGOUT] - rota para logout do usuario
+Route::get('/user/logout', [IndexController::class, 'UserLogout'])->name('user.logout');
+
+// Rota Usuario [LOGOUT] - rota para logout do usuario
+Route::get('/user/profile', [IndexController::class, 'UserProfile'])->name('user.profile');
