@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\User;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -68,7 +69,7 @@ Route::post('/update/change/password', [AdminProfileController::class, 'AdminUpd
 
 
 /*** TODAS AS ROTAS USUARIO ***/
-
+/*
 // ROTA MULTI-AUTH USER. *JETSTREAM*
 // login, registration, email verification, two-factor authentication, session management 
 Route::middleware([
@@ -80,6 +81,14 @@ Route::middleware([
         return view('dashboard', compact('user'));
     })->name('dashboard');
 });
+*/
+
+// Tive que mudar a rota para conseguir exibir a imagem do usuario no dashboard- **GAMBIARRA**
+Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
+    $id = Auth::user()->id;
+    $user = User::find($id);
+    return view('dashboard', compact('user'));
+})->name('dashboard');
 
 /*** O CONTROLLER USUARIO ESTÁ LOCALIZADO EM: Http/Controllers/frontend/indexController ***/
 
@@ -89,8 +98,11 @@ Route::get('/', [IndexController::class, 'index']);
 // Rota Usuario [LOGOUT] - rota para logout do usuario
 Route::get('/user/logout', [IndexController::class, 'UserLogout'])->name('user.logout');
 
-// Rota Usuario [LOGOUT] - rota para logout do usuario
+// Rota Usuario [PROFILE - PERFIL] - rota para acessar a pagina perfil usuario
 Route::get('/user/profile', [IndexController::class, 'UserProfile'])->name('user.profile');
 
 // Rota Usuario [PROFILE - PERFIL] - rota para a página perfil do usuario - Store, em inglês, é guardar/manter
 Route::post('/user/profile/store', [IndexController::class, 'UserProfileStore'])->name('user.profile.store');
+
+// Rota Usuario [PASSWORD] - rota para acessar página mudar senha usuario
+Route::get('/user/change/password', [IndexController::class, 'UserChangePassword'])->name('change.password');
