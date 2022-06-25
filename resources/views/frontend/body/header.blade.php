@@ -10,7 +10,16 @@
                         <li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
                         <li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
                         <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
-                        <li><a href="#"><i class="icon fa fa-lock"></i>Login</a></li>
+
+                        <!-- Se o usuario estiver logado(auth), mostra o icone usuario e link para entrar no perfil -->
+                        @auth
+                        <li><a href="{{ route('login') }}"><i class="icon fa fa-user"></i>User Profile</a></li>
+                        
+                        <!-- Se usuário não estiver logado, mostra o icone lock(cadeado) e link para realizar login ou registro -->
+                        @else
+                        <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login/Register</a></li>
+
+                        @endauth
                     </ul>
                 </div>
                 <!-- /.cnt-account -->
@@ -54,7 +63,7 @@
 
                     <!-- ============================================================= LOGO ============================================================= -->
 
-                    <div class="logo"> <a href="home.html"> <img
+                    <div class="logo"> <a href="{{ url('/') }}"> <img
                                 src="{{ asset('frontend/assets/images/logo.png') }}" width="150px" height="150px"
                                 alt="logo"> </a> </div>
 
