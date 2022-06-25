@@ -1,4 +1,4 @@
-<!-- Extender main_master localizado em views/frontend (fragmentacao frontend) -->
+<!-- Extender main_master localizado em views/frontend (fragmentação frontend) -->
 @extends('frontend.main_master')
 @section('content')
     <div class="container">
@@ -18,15 +18,18 @@
                 <div class="col-md-6 col-sm-6 sign-in">
                     <h4 class="">Sign in</h4>
                     <p class="">Hello, Welcome to your account.</p>
-                    <div class="social-sign-in outer-top-xs">
-                        <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
-                        <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
-                    </div>
+
+                    <!-- LOGIN VIA REDES SOCIAIS
+                                            <div class="social-sign-in outer-top-xs">
+                                                <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
+                                                <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
+                                            </div>
+                                            -->
 
                     <!-- IMPORTANTE: formulario de LOGIN usuario-->
 
                     <!--isset($guard) pega o 'guard' admin + /login (admin/login)
-                                    caso contrário, pega o login comum | serve como Multi Auth admin - user-->
+                                                                                        caso contrário, pega o login comum | serve como Multi Auth admin - user-->
                     <form method="POST" action="{{ isset($guard) ? url($guard . '/login') : route('login') }}">
                         @csrf
 
@@ -66,40 +69,92 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
+                        <!-- NOME -->
                         <div class="form-group">
                             <label class="info-title" for="exampleInputEmail1">Name <span>*</span></label>
-                            <input type="text" id="name" name="name" class="form-control unicase-form-control text-input">
+                            <input type="text" id="name" name="name"
+                                class="form-control unicase-form-control text-input">
+
+                            <!-- mensagem erro PREENCHIMENTO OBRIGATÓRIO. Deixar RED -->
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
                         </div>
 
+                        <!-- EMAIL -->
                         <div class="form-group">
                             <label class="info-title" for="exampleInputEmail2">Email Address <span>*</span></label>
-                            <input type="email" id="email" name="email" class="form-control unicase-form-control text-input">
+                            <input type="email" id="email" name="email"
+                                class="form-control unicase-form-control text-input">
+
+                            <!-- toaster, mensagem PREENCHIMENTO OBRIGATÓRIO. Deixar RED -->
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
                         </div>
 
+                        <!-- TELEFONE -->
                         <div class="form-group">
                             <label class="info-title" for="exampleInputEmail1">Phone Number <span>*</span></label>
-                            <input type="text" id="phone" name="phone" class="form-control unicase-form-control text-input">
+                            <input type="text" id="phone" name="phone"
+                                class="form-control unicase-form-control text-input">
+
+                            <!-- toaster, mensagem erro PREENCHIMENTO OBRIGATÓRIO. Deixar RED -->
+                            @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
+                        <!-- SENHA -->
                         <div class="form-group">
                             <label class="info-title" for="exampleInputEmail1">Password <span>*</span></label>
-                            <input type="password" id="password" name="password" class="form-control unicase-form-control text-input">
+                            <input type="password" id="password" name="password"
+                                class="form-control unicase-form-control text-input">
+
+                            <!-- toaster, mensagem erro PREENCHIMENTO OBRIGATÓRIO. Deixar RED -->
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
+
+                        <!-- CONFIRMAÇÃO DE SENHA -->
                         <div class="form-group">
                             <label class="info-title" for="exampleInputEmail1">Confirm Password <span>*</span></label>
-                            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control unicase-form-control text-input"
-                                id="exampleInputEmail1">
+                            <input type="password" id="password_confirmation" name="password_confirmation"
+                                class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+
+                            <!-- toaster, mensagem erro PREENCHIMENTO OBRIGATÓRIO. Deixar RED -->
+                            @error('password_confirmation')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
+
+
 
                         <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
                     </form>
 
-
                 </div>
-                <!-- create a new account -->
-            </div><!-- /.row -->
-        </div><!-- /.sigin-in-->
+            </div>
 
-        @include('frontend.body.brands')
-    @endsection
+
+            <!--FINAL create a new account -->
+        </div><!-- /.row -->
+    </div><!-- FINAL sigin-in-->
+
+    <!-- INCLUSÃO DAS LOGOMARCAS -->
+    @include('frontend.body.brands')
+@endsection
