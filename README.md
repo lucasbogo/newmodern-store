@@ -20,6 +20,7 @@ Loja Virtual desenvolvida como trabalho obrigatório para a disciplina de **Proj
 -  **JQuery**
 -  **MySQL 8.0.29**
 -  **Mailtrap.io**
+-  **Laravel Intervention Package (trabalhar com imagens)**
 -  **VSCode**
 -  **Banco de dados tratado com o padrão Factory** 
 -  **Padrão MVC**
