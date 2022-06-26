@@ -199,7 +199,11 @@ php artisan migrate
 #### Sobre:
 o intervention.io lançou vários projetos de código aberto. Especialmente a biblioteca PHP para processamento de imagem Intervention Image é bem conhecida.
  
+#### instalar via Composer:
 
+```
+php composer.phar require intervention/image
+```
 
 
 
