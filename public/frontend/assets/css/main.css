@@ -1157,7 +1157,7 @@ a {
   display: inline-block;
 }
 .top-bar .cnt-block .list-inline > li > a .value {
-  color: rgba(255,255,255,0.8);
+  color: rgba(0, 0, 0, 0.884);
   margin: 2px 4px 2px 7px;
 }
 .top-bar .cnt-block .list-inline > li > a:hover,
@@ -1191,7 +1191,7 @@ a {
 /*===================================================================================*/
 /* Header
 /*===================================================================================*/
-header{background:#157ed2}
+header{background:#fdd922}
 
 .main-header {
   padding:5px 0px 12px 0px;
@@ -1278,11 +1278,11 @@ header{background:#157ed2}
   margin: 0px;
   padding: 12px 19px 12px;
   text-align: center;
-    background-color: #fdd922;
-    border: 1px solid #e0bc27;
+    background-color: #006cb4;;
+    border: 1px solid #ffffff;
 }
 .main-header .top-search-holder .search-area .search-button:after {
-  color: #333;
+  color: rgb(255, 255, 255);
   content: "\f002";
   font-family: fontawesome;
   font-size: 16px;

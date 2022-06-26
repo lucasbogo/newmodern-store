@@ -20,14 +20,15 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th> Brand  </th>
-                                                <th> Marca  </th>
+                                                <th> Brand </th>
+                                                <th> Marca </th>
                                                 <th> Imagem </th>
-                                                <th> Acão   </th>
+                                                <th> Acão </th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
+
                                             @foreach ($brands as $item)
                                                 <tr>
                                                     <td>{{ $item->brand_name_en }}</td>
@@ -58,7 +59,7 @@
                     <!-- /.col -->
 
 
-                    <!--   ------------ Add Brand Page -------- -->
+                    <!--  =============== Adiciona a página de Marcas ================ -->
 
 
                     <div class="col-4">

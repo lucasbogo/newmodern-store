@@ -64,7 +64,7 @@
                     <!-- ============================================================= LOGO ============================================================= -->
 
                     <div class="logo"> <a href="{{ url('/') }}"> <img
-                                src="{{ asset('frontend/assets/images/logo.png') }}" width="150px" height="150px"
+                                src="{{ asset('frontend/assets/images/logo-header.png') }}" width="150px" height="80px" 
                                 alt="logo"> </a> </div>
 
                     <!-- /.logo -->
