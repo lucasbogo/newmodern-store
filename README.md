@@ -202,7 +202,7 @@ o intervention.io lançou vários projetos de código aberto. Especialmente a bi
 #### instalar via Composer:
 
 ```
-php composer.phar require intervention/image
+composer require intervention/image
 ```
 
 
