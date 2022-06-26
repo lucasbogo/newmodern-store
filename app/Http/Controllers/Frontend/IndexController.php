@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class IndexController extends Controller
 {
@@ -51,13 +52,14 @@ class IndexController extends Controller
 
         if ($request->file('profile_photo_path')) {
             $file = $request->file('profile_photo_path');
-            @unlink(public_path('upload/user_images/' .$data->profile_photo_path));
+            @unlink(public_path('upload/user_images/' . $data->profile_photo_path));
             $filename = date('Ymdhi') . $file->getClientOriginalName();
             $file->move(public_path('upload/user_images'), $filename);
             $data['profile_photo_path'] = $filename;
         }
         $data->save();
 
+        //Toaster message
         $notification = array(
             'message' => 'User Profile Updated Successfully',
             'alert-type' => 'success'
@@ -65,5 +67,32 @@ class IndexController extends Controller
 
         return redirect()->route('dashboard')->with($notification);
     }
-    
+
+    // Método para atualizar senha usuario
+    public function UserChangePassword()
+    {
+
+        return view('frontend.profile.change_password');
+    }
+
+    // Método para atualizar e guardar a senha usuario ao mudar senha - Mesma lógica do Admin.
+    public function  UserPasswordUpdate(Request $request)
+    {
+        $validateData = $request->validate([
+            'oldpassword' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+
+        $hashedPassword = Auth::user()->password;
+
+        if (Hash::check($request->oldpassword, $hashedPassword)) {
+            $user = User::find(Auth::id());
+            $user->password = Hash::make($request->password);
+            $user->save();
+            Auth::logout();
+            return redirect()->route('user.logout');
+        } else {
+            return redirect()->back();
+        }
+    }
 }

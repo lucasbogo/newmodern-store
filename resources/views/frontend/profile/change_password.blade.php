@@ -1,5 +1,13 @@
 @extends('frontend.main_master')
 @section('content')
+    <!-- Query Builder -->
+    @php
+    $user = DB::table('users')
+        ->where('id', Auth::user()->id)
+        ->first();
+    @endphp<!-- /query builder -->
+
+
     <div class="body-content">
         <div class="container">
             <div class="row">
@@ -14,7 +22,8 @@
                         <!-- botão primário pequeno -->
                         <a href="{{ route('dashboard') }}" class="btn btn-primary btn-sm btn-block">Home</a>
                         <a href="{{ route('user.profile') }}" class="btn btn-primary btn-sm btn-block">Profile Update</a>
-                        <a href="{{ route('change.password') }}" class="btn btn-primary btn-sm btn-block">Change Password</a>
+                        <a href="{{ route('change.password') }}" class="btn btn-primary btn-sm btn-block">Change
+                            Password</a>
                         <a href="{{ route('user.logout') }}" class="btn btn-danger btn-sm btn-block">Logout</a>
 
                     </ul>
@@ -29,54 +38,46 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <h3 class="text-center"><span class="text-danger">Olá...</span><strong>
-                                {{ Auth::user()->name }}</strong>Você pode editar seu perfil aqui.</h3>
+                        <h3 class="text-center"><span class="text-danger">Mudar Senha</span><strong>
+                            </strong></h3>
 
                         <div class="card-body">
-                            <form method="post" action="{{ route('user.profile.store') }}" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('user.password.update') }}">
                                 @csrf
 
                                 <div class="form-group">
-                                    <label class="info-title" for="exampleInputemail1">Name <span>*</span></label>
-                                    <input type="text" id="name" name="name" value="{{ $user->name }}"
-                                        class="form-control unicase-form-control text-input">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="info-title" for="exampleInputemail1">Email <span>*</span></label>
-                                    <input type="email" id="email" name="email" value="{{ $user->email }}"
-                                        class="form-control unicase-form-control text-input">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="info-title" for="exampleInputemail1">Phone <span>*</span></label>
-                                    <input type="text" id="phone" name="phone" value="{{ $user->phone }}"
-                                        class="form-control unicase-form-control text-input">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="info-title" for="exampleInputemail1">Profile Picutre
+                                    <label class="info-title" for="exampleInputemail1">Current Password
                                         <span>*</span></label>
-                                    <input type="file" id="" name="profile_photo_path"
+                                    <input type="password" id="current_password" name="oldpassword"
+                                        class="form-control unicase-form-control text-input">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="info-title" for="exampleInputemail1">New Password <span>*</span></label>
+                                    <input type="password" id="password" name="password"
+                                        class="form-control unicase-form-control text-input">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="info-title" for="exampleInputemail1">Password Confirmation
+                                        <span>*</span></label>
+                                    <input type="password" id="password_confirmation" name="password_confirmation"
                                         class="form-control unicase-form-control text-input">
                                 </div>
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-danger">Update</button>
 
+                                </div><!-- /div button -->
                             </form><!-- end form method post -->
 
+                        </div><!-- /div class "card-body" -->
+                    </div><!-- /div class="card" -->
 
 
-                        </div><!-- /div button -->
+                </div><!-- /col -->
 
-                    </div><!-- /div class "card-body" -->
-                </div><!-- /div class="card" -->
-
-
-            </div><!-- /col -->
-
-        </div><!-- /row -->
-    </div><!-- /container -->
+            </div><!-- /row -->
+        </div><!-- /container -->
     </div><!-- /content -->
 @endsection
