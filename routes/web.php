@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\BrandController;
+
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
@@ -77,7 +79,6 @@ Route::middleware([
 });
 
 
-
 /*** O CONTROLLER USUARIO ESTÁ LOCALIZADO EM: Http/Controllers/frontend/indexController ***/
 
 // Rota Usuario [HOME] - primeira página, serve tanto para visitante como usuário
@@ -97,3 +98,11 @@ Route::get('/user/change/password', [IndexController::class, 'UserChangePassword
 
 // Rota Usuario [PASSWORD] - rota p/ guardar senha alterado pelo usuario
 Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdate'])->name('user.password.update');
+
+
+/*** TODAS AS ROTAS MARCAS DASHBOARD ADMINISTRADOR ***/
+Route::prefix('brand')->group(function(){
+    // Rota...
+    Route::get('/view', [BrandController::class, 'BrandView'])->name('all.brands');
+
+});
