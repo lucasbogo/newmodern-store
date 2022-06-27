@@ -197,7 +197,7 @@ php artisan migrate
 [documentação oficial](https://image.intervention.io/v2/introduction/installation)
 
 ### Sobre:
-o intervention.io lançou vários projetos de código aberto. Especialmente a biblioteca PHP para processamento de imagem Intervention Image é bem conhecida.
+ Biblioteca PHP para processamento de imagem.
 
 #### Entrar no projeto:
 
@@ -244,4 +244,9 @@ composer require intervention/image
 php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLaravelRecent"
 ```
 
+#### Caso ocorra o seguinte problema: ```GD Library extension not available with this PHP installation```
+
+```
+sudo apt-get install php8.1-gd
+```
  
