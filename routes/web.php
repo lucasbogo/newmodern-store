@@ -100,9 +100,15 @@ Route::get('/user/change/password', [IndexController::class, 'UserChangePassword
 Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdate'])->name('user.password.update');
 
 
+
+
 /*** TODAS AS ROTAS MARCAS DASHBOARD ADMINISTRADOR ***/
 Route::prefix('brand')->group(function(){
-    // Rota...
+
+    // Rota p/ visualizar a tabela de Marcas no Painel Admin.
     Route::get('/view', [BrandController::class, 'BrandView'])->name('all.brands');
+
+    // Rota p/ guardar informações Marcas no Painel Admin
+    Route::post('/store', [BrandController::class, 'BrandStore'])->name('brand.store');
 
 });

@@ -10,12 +10,17 @@ class BrandController extends Controller
 {
     public function BrandView()
     {
-        // Pegar os dados mais atuais da table marcas pela Model e atribuir à variável $brands
+        // Pegar os dados mais atuais da table brands(marcas) pela Model e atribuir à variável $brands
         $brands = Brand::latest()->get();
 
         // após isso, retornar visualização da pagina brand_view localizada em:
         // views/backend/brand/brand_view.blade.php e passar os dados atribuidos à
         // variável $brands pelo compact().
         return view('backend.brand.brand_view', compact('brands'));
+    }
+
+    public function BrandStore()
+    {
+        
     }
 }

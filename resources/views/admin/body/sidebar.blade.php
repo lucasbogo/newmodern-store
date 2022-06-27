@@ -1,3 +1,15 @@
+  <!-- a variável $prefix pega todas as rotas definidas em
+    Route::prefix('brand')->group(function(){
+  -->
+  <!-- a variável $route verifica qual usuario está usuando a rota atual
+    (current)
+  -->
+  @php
+      $prefix = Request::route()->getPrefix();
+      $route = Route::current()->getName();
+  @endphp
+
+
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
       <!-- sidebar-->
@@ -7,8 +19,8 @@
 
               <div class="user-profile">
                   <div class="ulogo">
-                      <a href="index.html">
-                          <!-- logo for regular state and mobile devices -->
+                      <a href="{{ url('admin/dashboard') }}">
+                          <!-- logo para stado regular e aprelhos mobile -->
                           <div class="d-flex align-items-center justify-content-center">
                               <img src="{{ asset('backend/images/logo/logo.png') }}" width="100px" heigh="200px"
                                   alt="">
@@ -17,17 +29,21 @@
                   </div>
               </div>
 
-              <!-- sidebar menu-->
+              <!-- MENU SIDEBAR-->
               <ul class="sidebar-menu" data-widget="tree">
 
-                  <li>
-                      <a href="index.html">
+                  <!-- Condição redirecionamento: quando a rota for igual a 'dashboard'
+                            então, a mesma será 'ativa'( terá cor mais clara), se não, ela será nula -->
+                  <li class="{{ $route == 'dashboard' ? 'active' : '' }}">
+                      <a href="{{ url('admin/dashboard') }}">
                           <i data-feather="pie-chart"></i>
                           <span>Dashboard</span>
                       </a>
                   </li>
 
-                  <li class="treeview">
+                  <!-- Condição redirecionamento: quando o prefixo for igual a 'brand, (marca)'
+                            então, a mesma será 'ativa' (terá cor mais clara), se não, ela será nula -->
+                  <li class="treeview {{ $prefix == '/brand' ? 'active' : '' }}">
                       <a href="#">
                           <i data-feather="message-circle"></i>
                           <span>Marcas</span>
@@ -36,7 +52,10 @@
                           </span>
                       </a>
                       <ul class="treeview-menu">
-                          <li><a href="{{ route('all.brands') }}"><i class="ti-more"></i>Todas as Marcas</a></li>
+                        <!-- Condição redirecionamento: quando o prefixo for igual a 'brand, (marca)'
+                            então, a mesma será 'ativa' (terá cor mais clara), se não, ela será nula -->
+                          <li class="{{ $route == 'all.brands' ? 'active' : '' }}"><a
+                                  href="{{ route('all.brands') }}"><i class="ti-more"></i>Todas as Marcas</a></li>
 
                       </ul>
                   </li>

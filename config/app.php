@@ -185,6 +185,8 @@ return [
         /*
          * Package Service Providers...
          */
+        // Image intervention.io
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -196,6 +198,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
+    
 
     ],
 
@@ -213,5 +216,9 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
+
+    'Image' => Intervention\Image\Facades\Image::class,
+
+    
 
 ];

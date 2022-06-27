@@ -73,12 +73,12 @@
                                 <div class="table-responsive">
 
 
-                                    <form method="post" action="#" enctype="multipart/form-data">
+                                    <form method="post" action="{{ route('brand.store') }}" enctype="multipart/form-data">
                                         @csrf
 
 
                                         <div class="form-group">
-                                            <h5>Brand Name English <span class="text-danger">*</span></h5>
+                                            <h5>Brand <span class="text-danger">*</span></h5>
                                             <div class="controls">
                                                 <input type="text" name="brand_name_en" class="form-control">
                                                 @error('brand_name_en')
@@ -89,7 +89,7 @@
 
 
                                         <div class="form-group">
-                                            <h5>Nome Marca Portugues <span class="text-danger">*</span></h5>
+                                            <h5> Marca  <span class="text-danger">*</span></h5>
                                             <div class="controls">
                                                 <input type="text" name="brand_name_pt" class="form-control">
                                                 @error('brand_name_pt')
