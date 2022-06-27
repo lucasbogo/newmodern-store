@@ -50,9 +50,9 @@ class AdminProfileController extends Controller
         // Salvar dado no BD
         $data->save();
 
-        // Mensagens toaster
+        // Mensagen toaster para mostrar barra verde com a mensaagem de sucesso
         $notification = array(
-            'message' => 'Admin Profile Updated Successfully',
+            'message' => 'Perfil Adminstrador Alterada com Sucesso',
             'alert-type' => 'success'
         );
 
@@ -81,14 +81,19 @@ class AdminProfileController extends Controller
 
         // verificar se a senha é compativel com a senha salva no BD | Hash::check é uma função nativa do Laravel */
         if (Hash::check($request->oldpassword, $hashedPassword)) {
+
             // Pega os dados admin (Senha) e armazena na variavél $admin
             $admin = Admin::find(1);
+
             // Acessa o campo 'password' no BD com a variável $admin e cria, então, uma senha HASH
             $admin->password = Hash::make($request->password);
+
             // Salvar dado
             $admin->save();
+
             // Após salvar dado, o mantendeor autenticado é redirecionado para logout
             Auth::logout();
+
             // Após logout, mantenedor é redirecionado para página logout
             return redirect()->route('admin.logout');
         }

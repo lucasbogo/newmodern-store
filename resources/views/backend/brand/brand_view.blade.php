@@ -36,9 +36,10 @@
                                                     <td><img src="{{ asset($item->brand_image) }}"
                                                             style="width: 70px; height: 40px;"> </td>
                                                     <td>
-                                                        <a href="#" class="btn btn-info" title="Edit Data"><i
+                                                       <!-- Editar e Excluir Marca(s) -->
+                                                        <a href="{{ route('brand.edit', $item->id) }}" class="btn btn-info" title="Editar Marca"><i
                                                                 class="fa fa-pencil"></i> </a>
-                                                        <a href="#" class="btn btn-danger" title="Delete Data"
+                                                        <a href="#" class="btn btn-danger" title="Deletar Marca"
                                                             id="delete">
                                                             <i class="fa fa-trash"></i></a>
                                                     </td>
@@ -73,29 +74,37 @@
                                 <div class="table-responsive">
 
 
-                                    <form method="post" action="{{ route('brand.store') }}" enctype="multipart/form-data">
+                                    <form method="post" action="{{ route('brand.store') }}"
+                                        enctype="multipart/form-data">
                                         @csrf
 
-
+                                        <!-- INPUT FIELD P/ MARCA EN -->
                                         <div class="form-group">
                                             <h5>Brand <span class="text-danger">*</span></h5>
                                             <div class="controls">
                                                 <input type="text" name="brand_name_en" class="form-control">
+
+                                                <!-- Mensagem de Erro -->
                                                 @error('brand_name_en')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
+                                                <!-- /Mensagem de Erro -->
                                             </div>
                                         </div>
 
-
+                                        <!-- INPUT FIELD P/ MARCA PTBR -->
                                         <div class="form-group">
-                                            <h5> Marca  <span class="text-danger">*</span></h5>
+                                            <h5> Marca <span class="text-danger">*</span></h5>
                                             <div class="controls">
                                                 <input type="text" name="brand_name_pt" class="form-control">
+
+                                                <!-- Mensagem de Erro -->
                                                 @error('brand_name_pt')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
+                                                <!-- /Mensagem de Erro -->
                                             </div>
+
                                         </div>
 
 
@@ -112,7 +121,8 @@
 
 
                                         <div class="text-xs-right">
-                                            <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">
+                                            <input type="submit" class="btn btn-rounded btn-success mb-5"
+                                                value="Adicionar Marca">
                                         </div>
                                     </form>
 
