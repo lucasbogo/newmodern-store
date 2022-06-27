@@ -237,5 +237,11 @@ composer require intervention/image
     ])->toArray(),
 
 ```
+<br>
+#### Publicar:
+
+```
+php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLaravelRecent"
+```
 
  
