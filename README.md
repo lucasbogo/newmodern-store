@@ -196,13 +196,36 @@ php artisan migrate
 ## Laravel Intervention Package
 [documentação oficial](https://image.intervention.io/v2/introduction/installation)
 
-#### Sobre:
+### Sobre:
 o intervention.io lançou vários projetos de código aberto. Especialmente a biblioteca PHP para processamento de imagem Intervention Image é bem conhecida.
+
+#### Entrar no projeto:
+
+```
+cd newmodern-store
+```
+
  
-#### instalar via Composer:
+#### Instalar via Composer:
 
 ```
 composer require intervention/image
+```
+
+#### Configurar: entrar em config/app.php e colar: ```Intervention\Image\ImageServiceProvider::class,```
+
+```
+ * Application Service Providers...
+         */
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
+        App\Providers\FortifyServiceProvider::class,
+        App\Providers\JetstreamServiceProvider::class,
+        // Image intervention.io
+        Intervention\Image\ImageServiceProvider::class,
 ```
 
 
