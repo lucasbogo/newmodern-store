@@ -224,7 +224,11 @@ composer require intervention/image
  Intervention\Image\ImageServiceProvider::class,
 ```
 
-- No mesmo arquivo (config/app.php) Adicione a facade deste pacote ao array $aliases. ```'Image' => Intervention\Image\Facades\Image::class```
+- No mesmo arquivo (config/app.php) Adicione a facade deste pacote ao array $aliases. 
+
+```
+'Image' => Intervention\Image\Facades\Image::class
+```
 
 ```
   'aliases' => Facade::defaultAliases()->merge([
