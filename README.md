@@ -212,21 +212,26 @@ cd newmodern-store
 composer require intervention/image
 ```
 
-#### Configurar: entrar em config/app.php e colar: ```Intervention\Image\ImageServiceProvider::class,```
+#### Configurar: 
+<br>
+- Entrar em config/app.php e colar: ```Intervention\Image\ImageServiceProvider::class,``` em Package Servie Providers
 
 ```
- * Application Service Providers...
-         */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-        App\Providers\FortifyServiceProvider::class,
-        App\Providers\JetstreamServiceProvider::class,
-        // Image intervention.io
-        Intervention\Image\ImageServiceProvider::class,
+/*
+ * Package Service Providers...
+ */
+ // Image intervention.io
+ Intervention\Image\ImageServiceProvider::class,
 ```
 
+- No mesmo arquivo (config/app.php) Adicione a facade deste pacote ao array $aliases. ```'Image' => Intervention\Image\Facades\Image::class```
 
+```
+  'aliases' => Facade::defaultAliases()->merge([
+        // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Image' => Intervention\Image\Facades\Image::class,
+    ])->toArray(),
 
+```
+
+ 
