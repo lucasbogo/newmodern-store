@@ -244,4 +244,9 @@ composer require intervention/image
 php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLaravelRecent"
 ```
 
+#### Caso ocorra o seguinte problema: ```GD Library extension not available with this PHP installation```
+
+```
+sudo apt-get install php8.1-gd
+```
  
