@@ -197,7 +197,7 @@ php artisan migrate
 [documentação oficial](https://image.intervention.io/v2/introduction/installation)
 
 ### Sobre:
-o intervention.io lançou vários projetos de código aberto. Especialmente a biblioteca PHP para processamento de imagem Intervention Image é bem conhecida.
+ Biblioteca PHP para processamento de imagem.
 
 #### Entrar no projeto:
 
