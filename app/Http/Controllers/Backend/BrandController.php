@@ -168,4 +168,28 @@ class BrandController extends Controller
         } //final else       
 
     }
+
+    // Método para Deletar Marca; como foi definido na rota, e nessário pegar o id da Marca. 
+    public function BrandDelete($id)
+    {
+        // Como ja explicado, é necessário pegar o id Marca pelo método findOrFail, pega ou 404 error
+        $brand = Brand::findOrFail($id);
+
+        // Acessar a table Brand(marcas) e a coluna brand_image
+        $image = $brand->brand_image;
+
+        // Após isso, desvincular image
+        unlink($image);
+
+        // Finalmente, deletar pela função delete().
+        Brand::findOrFail($id)->delete();
+
+        // Mostrar notificação (toaster message) de exclusão bem sucedida.
+        $notification = array(
+            'message' => 'Marca Deletada com Sucesso',
+            'alert-type' => 'success'
+        );
+        // Após exclusão, simplesmente retornar.
+        return redirect()->back()->with($notification);
+    }
 }

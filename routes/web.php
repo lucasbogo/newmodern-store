@@ -117,4 +117,7 @@ Route::prefix('brand')->group(function(){
     // Rota p/ guardar inforções EDITADAS Marcas no Painel Admin
     Route::post('/update', [BrandController::class, 'BrandUpdate'])->name('brand.update');
 
+      // Rota p/ deletar Marca
+      Route::get('/delete{id}', [BrandController::class, 'BrandDelete'])->name('brand.delete');
+
 });

@@ -36,11 +36,14 @@
                                                     <td><img src="{{ asset($item->brand_image) }}"
                                                             style="width: 70px; height: 40px;"> </td>
                                                     <td>
-                                                       <!-- Editar e Excluir Marca(s) -->
-                                                        <a href="{{ route('brand.edit', $item->id) }}" class="btn btn-info" title="Editar Marca"><i
+                                                        <!-- Editar Marca(s) -->
+                                                        <a href="{{ route('brand.edit', $item->id) }}"
+                                                            class="btn btn-info" title="Editar Marca"><i
                                                                 class="fa fa-pencil"></i> </a>
-                                                        <a href="#" class="btn btn-danger" title="Deletar Marca"
-                                                            id="delete">
+                                                                
+                                                        <!-- Editar Marca(s) -->    
+                                                        <a href="{{ route('brand.delete', $item->id) }}"
+                                                            class="btn btn-danger" title="Deletar Marca" id="delete">
                                                             <i class="fa fa-trash"></i></a>
                                                     </td>
 

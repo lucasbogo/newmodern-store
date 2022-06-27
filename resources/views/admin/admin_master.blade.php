@@ -59,14 +59,16 @@
     <script src="{{ asset('../assets/vendor_components/apexcharts-bundle/dist/apexcharts.js') }}"></script>
     <!-- JS tabela de Marcas -->
     <script src="{{ asset('../assets/vendor_components/datatable/datatables.min.js') }}"></script>
-	<script src="{{ asset('backend/js/pages/data-table.js') }}"></script>
+    <script src="{{ asset('backend/js/pages/data-table.js') }}"></script>
     <!-- Sunny Admin App -->
     <script src="{{ asset('backend/js/template.js') }}"></script>
     <script src="{{ asset('backend/js/pages/dashboard.js') }}"></script>
 
-    <!-- Script para mostrar as mensagens toaster para o admin. -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- CDN do sweet alert: mensagensde alerta,customizadas -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
+    <!-- TOASTER MESSAGE -->
     <script>
         @if (Session::has('message'))
             var type = "{{ Session::get('alert-type', 'info') }}"
@@ -90,6 +92,38 @@
 
             }
         @endif
+    </script>
+
+    <!-- Script para mostrar as mensagens toaster para o admin. -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <!-- código pronto encontrado em sweetAlert2 EDITAR P/ PTBR -->
+    <!-- ARRUMAR ISSO -->
+    <script type="text/javascript">
+        $(function() {
+            $(document).on('click', 'delete', function(e) {
+                e.preventDefault();
+                var link = $(this).attr("href");
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Deletado!',
+                            'Seu arquivo foe Deletado.',
+                            'successo'
+                        )
+                    }
+                })
+            })
+        })
     </script>
 
 
