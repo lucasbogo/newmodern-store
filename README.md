@@ -20,6 +20,7 @@ Loja Virtual desenvolvida como trabalho obrigatório para a disciplina de **Proj
 -  **JQuery**
 -  **MySQL 8.0.29**
 -  **Mailtrap.io**
+-  **Laravel Intervention Package (trabalhar com imagens)**
 -  **VSCode**
 -  **Banco de dados tratado com o padrão Factory** 
 -  **Padrão MVC**
@@ -190,10 +191,57 @@ npm install && npm run dev
 php artisan migrate
 ```
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 
+## Laravel Intervention Package
+[documentação oficial](https://image.intervention.io/v2/introduction/installation)
+
+### Sobre:
+o intervention.io lançou vários projetos de código aberto. Especialmente a biblioteca PHP para processamento de imagem Intervention Image é bem conhecida.
+
+#### Entrar no projeto:
+
+```
+cd newmodern-store
+```
 
  
+#### Instalar via Composer:
 
+```
+composer require intervention/image
+```
 
+#### Configurar: 
+<br>
+- Entrar em config/app.php e colar: ```Intervention\Image\ImageServiceProvider::class,``` em Package Servie Providers
 
+```
+/*
+ * Package Service Providers...
+ */
+ // Image intervention.io
+ Intervention\Image\ImageServiceProvider::class,
+```
 
+- No mesmo arquivo (config/app.php) Adicione a facade deste pacote ao array $aliases. 
+
+```
+'Image' => Intervention\Image\Facades\Image::class
+```
+
+```
+  'aliases' => Facade::defaultAliases()->merge([
+        // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Image' => Intervention\Image\Facades\Image::class,
+    ])->toArray(),
+
+```
+<br>
+#### Publicar:
+
+```
+php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLaravelRecent"
+```
+
+ 
