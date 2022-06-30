@@ -13,11 +13,11 @@
 
                         <!-- Se o usuario estiver logado(auth), mostra o icone usuario e link para entrar no perfil -->
                         @auth
-                        <li><a href="{{ route('login') }}"><i class="icon fa fa-user"></i>User Profile</a></li>
-                        
-                        <!-- Se usuário não estiver logado, mostra o icone lock(cadeado) e link para realizar login ou registro -->
+                            <li><a href="{{ route('login') }}"><i class="icon fa fa-user"></i>User Profile</a></li>
+
+                            <!-- Se usuário não estiver logado, mostra o icone lock(cadeado) e link para realizar login ou registro -->
                         @else
-                        <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login/Register</a></li>
+                            <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login/Register</a></li>
 
                         @endauth
                     </ul>
@@ -59,17 +59,18 @@
     <div class="main-header">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
+                <div class="col-xs-12 col-sm-12 col-md-3 logo">
 
                     <!-- ============================================================= LOGO ============================================================= -->
 
                     <div class="logo"> <a href="{{ url('/') }}"> <img
-                                src="{{ asset('frontend/assets/images/logo-header.png') }}" width="150px" height="80px" 
-                                alt="logo"> </a> </div>
+                                src="{{ asset('frontend/assets/images/logo-header-small.png') }}" alt="logo"> </a>
 
+                    </div>
                     <!-- /.logo -->
                     <!-- ============================================================= LOGO : END ============================================================= -->
                 </div>
+
                 <!-- /.logo-holder -->
 
                 <div class="col-xs-12 col-sm-12 col-md-7 top-search-holder">
@@ -84,13 +85,17 @@
                                         <ul class="dropdown-menu" role="menu">
                                             <li class="menu-header">Computer</li>
                                             <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Clothing</a></li>
+                                                    href="category.html">-
+                                                    Clothing</a></li>
                                             <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Electronics</a></li>
+                                                    href="category.html">-
+                                                    Electronics</a></li>
                                             <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Shoes</a></li>
+                                                    href="category.html">-
+                                                    Shoes</a></li>
                                             <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Watches</a></li>
+                                                    href="category.html">-
+                                                    Watches</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -114,7 +119,8 @@
                                 <div class="basket-item-count"><span class="count">2</span></div>
                                 <div class="total-price-basket"> <span class="lbl">cart -</span> <span
                                         class="total-price"> <span class="sign">$</span><span
-                                            class="value">600.00</span> </span> </div>
+                                            class="value">600.00</span>
+                                    </span> </div>
                             </div>
                         </a>
                         <ul class="dropdown-menu">
@@ -130,7 +136,8 @@
                                             <div class="price">$600.00</div>
                                         </div>
                                         <div class="col-xs-1 action"> <a href="#"><i
-                                                    class="fa fa-trash"></i></a> </div>
+                                                    class="fa fa-trash"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- /.cart-item -->
@@ -244,7 +251,8 @@
                                                     <div class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image">
                                                         <img class="img-responsive"
                                                             src="{{ asset('frontend/assets/images/banners/top-menu-banner.jpg') }}"
-                                                            alt=""> </div>
+                                                            alt="">
+                                                    </div>
                                                     <!-- /.yamm-content -->
                                                 </div>
                                             </div>

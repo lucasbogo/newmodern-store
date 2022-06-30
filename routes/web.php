@@ -1,10 +1,13 @@
 <?php
 
+/* IMPORTAR TODOS OS CONTROLLERS AQUI */
+
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
-
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Frontend\IndexController;
+
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
@@ -119,5 +122,25 @@ Route::prefix('brand')->group(function(){
 
       // Rota p/ deletar Marca
       Route::get('/delete{id}', [BrandController::class, 'BrandDelete'])->name('brand.delete');
+
+});
+
+/*** TODAS AS ROTAS CATEGORIAS DASHBOARD ADMINISTRADOR ***/
+Route::prefix('category')->group(function(){
+
+    // Rota p/ visualizar a tabela de Marcas no Painel Admin.
+    Route::get('/view', [CategoryController::class, 'CategoryView'])->name('all.category');
+
+    // Rota p/ guardar informações Marcas no Painel Admin
+    Route::post('/store', [CategoryController::class, 'CategoryStore'])->name('category.store');
+
+    // Rota p/ editar Marca
+    Route::get('/edit{id}', [CategoryController::class, 'CategoryEdit'])->name('category.edit');
+
+    // Rota p/ guardar inforções EDITADAS Marcas no Painel Admin
+    Route::post('/update', [CategoryController::class, 'CategoryUpdate'])->name('category.update');
+
+      // Rota p/ deletar Marca
+      Route::get('/delete{id}', [BrandController::class, 'CategoryDelete'])->name('category.delete');
 
 });

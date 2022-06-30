@@ -64,9 +64,10 @@
     <script src="{{ asset('backend/js/template.js') }}"></script>
     <script src="{{ asset('backend/js/pages/dashboard.js') }}"></script>
 
-    <!-- CDN do sweet alert: mensagensde alerta,customizadas -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
 
+    <!-- Script para mostrar as mensagens toaster para o admin. -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <!-- TOASTER MESSAGE -->
     <script>
@@ -94,30 +95,32 @@
         @endif
     </script>
 
-    <!-- Script para mostrar as mensagens toaster para o admin. -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+     <!-- CDN do sweet alert: mensagensde alerta,customizadas -->
+     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- código pronto encontrado em sweetAlert2 EDITAR P/ PTBR -->
-    <!-- ARRUMAR ISSO -->
+<!-- código pronto encontrado em sweetAlert2  -->
+    <!-- ARRUMAR ISSO: mensagem aparece, mas não exlui o objeto-->
+    <!--    
+
     <script type="text/javascript">
         $(function() {
-            $(document).on('click', 'delete', function(e) {
+            $(document).on('click', '#delete', function(e) {
                 e.preventDefault();
-                var link = $(this).attr("href");
+                var link = $(this).attr("$items");
 
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
+                    title: 'Voce tem certeza?',
+                    text: "Você não poderá desfazer isso!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonText: 'Sim, Exclua!'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         Swal.fire(
-                            'Deletado!',
-                            'Seu arquivo foe Deletado.',
+                            'Excluido!',
+                            'Seu arquivo foi Excluido.',
                             'successo'
                         )
                     }
@@ -125,8 +128,7 @@
             })
         })
     </script>
-
-
+-->
 </body>
 
 </html>

@@ -52,7 +52,7 @@
                           </span>
                       </a>
                       <ul class="treeview-menu">
-                        <!-- Condição redirecionamento: quando o prefixo for igual a 'brand, (marca)'
+                          <!-- Condição redirecionamento: quando o prefixo for igual a 'brand, (marca)'
                             então, a mesma será 'ativa' (terá cor mais clara), se não, ela será nula -->
                           <li class="{{ $route == 'all.brands' ? 'active' : '' }}"><a
                                   href="{{ route('all.brands') }}"><i class="ti-more"></i>Todas as Marcas</a></li>
@@ -60,17 +60,18 @@
                       </ul>
                   </li>
 
-                  <li class="treeview">
+                  <!-- chamar o prefixo categoria e deixa-la como ativa ao clickar, caso contrário, continua nulo (apagado) -->
+                  <li class="treeview {{ $prefix == '/category' ? 'active' : '' }}">
                       <a href="#">
-                          <i data-feather="mail"></i> <span>Mailbox</span>
+                          <i data-feather="mail"></i> <span>Categoria</span>
                           <span class="pull-right-container">
                               <i class="fa fa-angle-right pull-right"></i>
                           </span>
                       </a>
                       <ul class="treeview-menu">
-                          <li><a href="mailbox_inbox.html"><i class="ti-more"></i>Inbox</a></li>
-                          <li><a href="mailbox_compose.html"><i class="ti-more"></i>Compose</a></li>
-                          <li><a href="mailbox_read_mail.html"><i class="ti-more"></i>Read</a></li>
+                          <!-- Rota criada p/ acessar todas as categorias -->
+                          <li><a href="{{ route('all.categories') }}"><i class="ti-more"></i>Todas as Categorias</a></li>
+
                       </ul>
                   </li>
 

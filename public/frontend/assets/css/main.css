@@ -1118,7 +1118,7 @@ a {
 
 }
 .top-bar .cnt-account ul > li a {
-  color:rgba(255,255,255,0.8);
+  color:rgba(0,0,0,0.8);
   padding: 0px;
   font-weight: 400;
   -webkit-transition: all 0.2s linear 0s;
@@ -1163,7 +1163,7 @@ a {
 .top-bar .cnt-block .list-inline > li > a:hover,
 .top-bar .cnt-block .list-inline > li > a:focus {
   text-decoration: none;
-  color: #888888;
+  color: #000000;
 }
 .top-bar .cnt-block .list-inline > li .dropdown-menu {
   -webkit-border-radius: 0px;
@@ -1172,7 +1172,7 @@ a {
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;
-  border: 1px solid #e1e1e1;
+  border: 1px solid #000000;
   top: 125%;
   left: 5px;
 }
@@ -1305,7 +1305,7 @@ header{background:#fdd922}
 .top-cart-row .dropdown-cart .lnk-cart {
   padding: 0px;
       background: #006cb4;
-    border: 1px solid #24609c;
+    border: 1px solid #fff;
   border-radius: 3px;
   display: inline-block;
   color: #fff;
