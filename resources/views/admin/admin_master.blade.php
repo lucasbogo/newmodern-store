@@ -64,7 +64,7 @@
     <script src="{{ asset('backend/js/template.js') }}"></script>
     <script src="{{ asset('backend/js/pages/dashboard.js') }}"></script>
 
-   
+
 
     <!-- Script para mostrar as mensagens toaster para o admin. -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -95,18 +95,18 @@
         @endif
     </script>
 
-     <!-- CDN do sweet alert: mensagensde alerta,customizadas -->
-     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- CDN do sweet alert: mensagensde alerta,customizadas -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<!-- código pronto encontrado em sweetAlert2  -->
+    <!-- ========== SWEET ALERT ========= -->
     <!-- ARRUMAR ISSO: mensagem aparece, mas não exlui o objeto-->
-    <!--    
 
+    <!--
     <script type="text/javascript">
         $(function() {
             $(document).on('click', '#delete', function(e) {
                 e.preventDefault();
-                var link = $(this).attr("$items");
+                var link = $(this).attr("href");
 
                 Swal.fire({
                     title: 'Voce tem certeza?',
@@ -129,6 +129,7 @@
         })
     </script>
 -->
+
 </body>
 
 </html>

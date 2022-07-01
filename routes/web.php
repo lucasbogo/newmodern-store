@@ -106,6 +106,7 @@ Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdat
 
 
 /*** TODAS AS ROTAS MARCAS DASHBOARD ADMINISTRADOR ***/
+/*** prefix siginica que aparecerá o objeto na url antes da rota chamada: (brand/view ; brand/store; ...) */
 Route::prefix('brand')->group(function(){
 
     // Rota p/ visualizar a tabela de Marcas no Painel Admin.
@@ -128,19 +129,19 @@ Route::prefix('brand')->group(function(){
 /*** TODAS AS ROTAS CATEGORIAS DASHBOARD ADMINISTRADOR ***/
 Route::prefix('category')->group(function(){
 
-    // Rota p/ visualizar a tabela de Marcas no Painel Admin.
-    Route::get('/view', [CategoryController::class, 'CategoryView'])->name('all.category');
+    // Rota p/ visualizar a tabela de Categorias no Painel Admin.
+    Route::get('/view', [CategoryController::class, 'CategoryView'])->name('all.categories');
 
-    // Rota p/ guardar informações Marcas no Painel Admin
+    // Rota p/ guardar informações Categorias no Painel Admin
     Route::post('/store', [CategoryController::class, 'CategoryStore'])->name('category.store');
 
-    // Rota p/ editar Marca
+    // Rota p/ editar Categoria
     Route::get('/edit{id}', [CategoryController::class, 'CategoryEdit'])->name('category.edit');
 
-    // Rota p/ guardar inforções EDITADAS Marcas no Painel Admin
+    // Rota p/ guardar inforções EDITADAS Categoria no Painel Admin
     Route::post('/update', [CategoryController::class, 'CategoryUpdate'])->name('category.update');
 
-      // Rota p/ deletar Marca
-      Route::get('/delete{id}', [BrandController::class, 'CategoryDelete'])->name('category.delete');
+      // Rota p/ deletar Categoria
+      Route::get('/delete{id}', [CategoryController::class, 'CategoryDelete'])->name('category.delete');
 
 });

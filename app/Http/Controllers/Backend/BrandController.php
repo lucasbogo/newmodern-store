@@ -38,7 +38,7 @@ class BrandController extends Controller
             [
                 'brand_name_en.required' => 'Inserir Marca em Inglês',
                 'brand_name_pt.required' => 'Inserir Marca em Português',
-                'brand_image.required' => 'Foto da Marca é obirgatório',
+                'brand_image.required' => 'Foto da Marca é obrigatório',
             ]
         );
 
@@ -66,7 +66,7 @@ class BrandController extends Controller
 
         // Mensagen toaster para mostrar barra verde com a mensaagem de sucesso
         $notification = array(
-            'message' => 'Marca inserido com Sucesso',
+            'message' => 'Marca inserida com Sucesso',
             'alert-type' => 'success'
         );
 
@@ -152,7 +152,6 @@ class BrandController extends Controller
             'brand_slug_en' => strtolower(str_replace('', '-', $request->brand_name_en)),
             'brand_slug_pt' => strtolower(str_replace('', '-', $request->brand_name_pt)),
 
-            // Não esquecer de tirar update image...
             
         ]);
 
