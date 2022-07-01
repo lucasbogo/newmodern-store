@@ -35,17 +35,19 @@
                                             @foreach ($subcategories as $item)
                                                 <tr>
 
-                                                    <td>{{ $item->category_id }}</td>
+                                                    <!-- chamar aqui o método category, declarado na Models/SubCategory.php
+                                                        para mostrar o nome categoria dinamicamente na view subcategory -->
+                                                    <td>{{ $item['category']['category_name_en'] }}</td>
                                                     <td>{{ $item->subcategory_name_en }}</td>
                                                     <td>{{ $item->subcategory_name_pt }}</td>
 
                                                     <td>
-                                                        <!-- Editar Categoria(s) -->
+                                                        <!-- Editar Sub-Categoria(s) -->
                                                         <a href="{{ route('subcategory.edit', $item->id) }}"
                                                             class="btn btn-info" title="Editar Sub-Categoria"><i
                                                                 class="fa fa-pencil"></i> </a>
 
-                                                        <!-- Excluir Categoria(s) -->
+                                                        <!-- Excluir Sub-Categoria(s) -->
                                                         <a href="{{ route('subcategory.delete', $item->id) }}"
                                                             class="btn btn-danger" id="delete"
                                                             title="Excluir Sub-Categoria">
@@ -84,18 +86,23 @@
 
                                     <form method="post" action="{{ route('subcategory.store') }}">
                                         @csrf
-                                        
+
                                         <!-- FIELD p/ Categoria -->
                                         <div class="form-group">
                                             <h5>Selecionar Categoria <span class="text-danger">*</span></h5>
                                             <div class="controls">
                                                 <select name="category_id" class="form-control">
-                                                    <option value="" selected="" disabled="">Selecionar Categoria
+                                                    <option value="" selected="" disabled="">Selecionar
+                                                        Categoria
                                                     </option>
+
+                                                    <!-- Mostrar os dados da variável $categories na condição foreach (nome categoria em inglês) -->
                                                     @foreach ($categories as $category)
+                                                        <!-- P/ mostrar os dados, passa-se a coluna category e o id da mesma -->
                                                         <option value="{{ $category->id }}">
                                                             {{ $category->category_name_en }}</option>
                                                     @endforeach
+
                                                 </select>
                                                 @error('category_id')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -105,14 +112,10 @@
 
 
                                         <div class="form-group">
-                                            <h5>Selecionar Sub-Categoria <span class="text-danger">*</span></h5>
+                                            <h5>SubCategory <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <select name="subcategory_id" class="form-control">
-                                                    <option value="" selected="" disabled="">Selecionar Sub-Categoria
-                                                    </option>
-
-                                                </select>
-                                                @error('subcategory_id')
+                                                <input type="text" name="subcategory_name_en" class="form-control">
+                                                @error('subcategory_name_en')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -137,7 +140,7 @@
                                         <!-- Botão adicionar formato 'success' (verde) -->
                                         <div class="text-xs-right">
                                             <input type="submit" class="btn btn-rounded btn-success mb-5"
-                                                value="Adicionar Sub-Categoria">
+                                                value="Adicionar">
                                         </div>
                                     </form>
                                 </div>
