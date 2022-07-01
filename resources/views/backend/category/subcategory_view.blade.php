@@ -1,11 +1,11 @@
-<!-- COPIEI E COLEI A VIEW MARCA -->
+<!-- COPIEI E COLEI A VIEW CATEGORY -->
 
 @extends('admin.admin_master')
 @section('admin')
     <div class="content-wrapper" style="min-height: 326px;">
         <div class="container-full">
 
-            <!-- Main content -->
+            <!-- conteúdo principal -->
             <section class="content">
                 <div class="row">
 
@@ -13,8 +13,8 @@
 
                         <div class="box">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Categorias <span class="badge badge-pill badge-danger">
-                                        {{ count($categories) }} </span></h3>
+                                <h3 class="box-title">Sub-Categorias <span class="badge badge-pill badge-danger">
+                                        {{ count($subcategories) }} </span></h3>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -22,31 +22,33 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th> Ícone </th>
-                                                <th> Category </th>
+
                                                 <th> Categoria </th>
+                                                <th> Sub Category </th>
+                                                <th> Sub-Categoria </th>
                                                 <th> Acão </th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
 
-                                            @foreach ($categories as $item)
+                                            @foreach ($subcategories as $item)
                                                 <tr>
-                                                    <!-- i class será a classe para os fa-fa (ícones) -->
-                                                    <td><span><i class="{{ $item->category_icon }}"></i></span></td>
-                                                    <td>{{ $item->category_name_en }}</td>
-                                                    <td>{{ $item->category_name_pt }}</td>
+
+                                                    <td>{{ $item->category_id }}</td>
+                                                    <td>{{ $item->subcategory_name_en }}</td>
+                                                    <td>{{ $item->subcategory_name_pt }}</td>
 
                                                     <td>
                                                         <!-- Editar Categoria(s) -->
-                                                        <a href="{{ route('category.edit', $item->id) }}"
-                                                            class="btn btn-info" title="Editar Categoria"><i
+                                                        <a href="{{ route('subcategory.edit', $item->id) }}"
+                                                            class="btn btn-info" title="Editar Sub-Categoria"><i
                                                                 class="fa fa-pencil"></i> </a>
 
                                                         <!-- Excluir Categoria(s) -->
-                                                        <a href="{{ route('category.delete', $item->id) }}"
-                                                            class="btn btn-danger" id="delete" title="Excluir Categoria" >
+                                                        <a href="{{ route('subcategory.delete', $item->id) }}"
+                                                            class="btn btn-danger" id="delete"
+                                                            title="Excluir Sub-Categoria">
                                                             <i class="fa fa-trash"></i></a>
                                                     </td>
 
@@ -66,60 +68,64 @@
                     <!-- /.col -->
 
 
-                    <!--  =============== Adicionar Categorias ================ -->
+                    <!--  =============== Adicionar Sub-Categorias ================ -->
 
 
                     <div class="col-4">
 
                         <div class="box">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Adicionar Categoria</h3>
+                                <h3 class="box-title">Adicionar Sub-Categoria</h3>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
                                 <div class="table-responsive">
 
 
-                                    <form method="post" action="{{ route('category.store') }}">
+                                    <form method="post" action="{{ route('subcategory.store') }}">
                                         @csrf
-
-                                        <!-- INPUT FIELD P/ CATEGORIA EN -->
+                                        
+                                        <!-- FIELD p/ Categoria -->
                                         <div class="form-group">
-                                            <h5>Category<span class="text-danger">*</span></h5>
+                                            <h5>Selecionar Categoria <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="text" name="category_name_en" class="form-control">
-
-                                                <!-- Mensagem de Erro -->
-                                                @error('category_name_en')
+                                                <select name="category_id" class="form-control">
+                                                    <option value="" selected="" disabled="">Selecionar Categoria
+                                                    </option>
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{ $category->id }}">
+                                                            {{ $category->category_name_en }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('category_id')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
-                                                <!-- /Mensagem de Erro -->
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <h5>Selecionar Sub-Categoria <span class="text-danger">*</span></h5>
+                                            <div class="controls">
+                                                <select name="subcategory_id" class="form-control">
+                                                    <option value="" selected="" disabled="">Selecionar Sub-Categoria
+                                                    </option>
+
+                                                </select>
+                                                @error('subcategory_id')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <!-- INPUT FIELD P/ CATEGORIA PTBR -->
                                         <div class="form-group">
-                                            <h5>Categoria<span class="text-danger">*</span></h5>
+                                            <h5>Sub-Categoria<span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="text" name="category_name_pt" class="form-control">
+                                                <input type="text" name="subcategory_name_pt" class="form-control">
 
                                                 <!-- Mensagem de Erro -->
-                                                @error('category_name_pt')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                                <!-- /Mensagem de Erro -->
-                                            </div>
-
-                                        </div>
-
-                                        <!-- INPUT FIELD P/ CATEGORIA PTBR -->
-                                        <div class="form-group">
-                                            <h5>Ícone Categoria<span class="text-danger">*</span></h5>
-                                            <div class="controls">
-                                                <input type="text" name="category_icon" class="form-control">
-
-                                                <!-- Mensagem de Erro -->
-                                                @error('category_icon')
+                                                @error('subcategory_name_pt')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                                 <!-- /Mensagem de Erro -->
@@ -131,7 +137,7 @@
                                         <!-- Botão adicionar formato 'success' (verde) -->
                                         <div class="text-xs-right">
                                             <input type="submit" class="btn btn-rounded btn-success mb-5"
-                                                value="Adicionar Categoria">
+                                                value="Adicionar Sub-Categoria">
                                         </div>
                                     </form>
                                 </div>
