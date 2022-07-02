@@ -36,12 +36,13 @@
                                                 <tr>
 
                                                     <!-- chamar aqui o método category, declarado na Models/SubCategory.php
-                                                        para mostrar o nome categoria dinamicamente na view subcategory -->
+                                                                para mostrar o nome categoria dinamicamente na view subcategory -->
                                                     <td>{{ $item['category']['category_name_en'] }}</td>
                                                     <td>{{ $item->subcategory_name_en }}</td>
                                                     <td>{{ $item->subcategory_name_pt }}</td>
 
-                                                    <td>
+                                                    <!-- Alterar o tamanho da width acy conforme necessário -->    
+                                                    <td width="25%">
                                                         <!-- Editar Sub-Categoria(s) -->
                                                         <a href="{{ route('subcategory.edit', $item->id) }}"
                                                             class="btn btn-info" title="Editar Sub-Categoria"><i

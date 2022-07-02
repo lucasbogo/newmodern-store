@@ -109,7 +109,7 @@ Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdat
 
 /*** TODAS AS ROTAS MARCAS DASHBOARD ADMINISTRADOR ***/
 /*** prefix siginica que aparecerá o objeto na url antes da rota chamada: (brand/view ; brand/store; ...) */
-Route::prefix('brand')->group(function(){
+Route::prefix('brand')->group(function () {
 
     // Rota p/ visualizar a tabela de Marcas no Painel Admin.
     Route::get('/view', [BrandController::class, 'BrandView'])->name('all.brands');
@@ -123,13 +123,12 @@ Route::prefix('brand')->group(function(){
     // Rota p/ guardar inforções EDITADAS Marcas no Painel Admin
     Route::post('/update', [BrandController::class, 'BrandUpdate'])->name('brand.update');
 
-      // Rota p/ deletar Marca
-      Route::get('/delete{id}', [BrandController::class, 'BrandDelete'])->name('brand.delete');
-
+    // Rota p/ deletar Marca
+    Route::get('/delete{id}', [BrandController::class, 'BrandDelete'])->name('brand.delete');
 });
 
 /*** TODAS AS ROTAS CATEGORIAS DASHBOARD ADMINISTRADOR ***/
-Route::prefix('category')->group(function(){
+Route::prefix('category')->group(function () {
 
     // Rota p/ visualizar a tabela de Categorias no Painel Admin.
     Route::get('/view', [CategoryController::class, 'CategoryView'])->name('all.categories');
@@ -143,13 +142,12 @@ Route::prefix('category')->group(function(){
     // Rota p/ guardar inforções EDITADAS Categoria no Painel Admin
     Route::post('/update', [CategoryController::class, 'CategoryUpdate'])->name('category.update');
 
-      // Rota p/ deletar Categoria
-      Route::get('/delete{id}', [CategoryController::class, 'CategoryDelete'])->name('category.delete');
+    // Rota p/ deletar Categoria
+    Route::get('/delete{id}', [CategoryController::class, 'CategoryDelete'])->name('category.delete');
 
-});
 
-/*** TODAS AS ROTAS SUB-CATEGORIAS DASHBOARD ADMINISTRADOR ***/
-Route::prefix('subcategory')->group(function(){
+
+    /*** TODAS AS ROTAS SUB-CATEGORIAS DASHBOARD ADMINISTRADOR ***/
 
     // Rota p/ visualizar a tabela de SubCategorias no Painel Admin.
     Route::get('/sub/view', [SubCategoryController::class, 'SubCategoryView'])->name('all.subcategories');
@@ -165,5 +163,24 @@ Route::prefix('subcategory')->group(function(){
 
     // Rota p/ deletar SubCategoria
     Route::get('/sub/delete{id}', [SubCategoryController::class, 'SubCategoryDelete'])->name('subcategory.delete');
+
+
+
+    /*** TODAS AS ROTAS SUB-SUB-CATEGORIAS DASHBOARD ADMINISTRADOR ***/
+
+    // Rota p/ visualizar a tabela de SubCategorias no Painel Admin.
+    Route::get('/sub/sub/view', [SubSubCategoryController::class, 'SubSubCategoryView'])->name('all.subsubcategories');
+
+    // Rota p/ guardar informações SubCategorias no Painel Admin
+    Route::post('/sub/sub/store', [SubSubCategoryController::class, 'SubSubCategoryStore'])->name('subsubcategory.store');
+
+    // Rota p/ editar SubCategoria
+    Route::get('/sub/sub/edit{id}', [SubSubCategoryController::class, 'SubSubCategoryEdit'])->name('subsubcategory.edit');
+
+    // Rota p/ guardar inforções EDITADAS SubCategoria no Painel Admin
+    Route::post('/sub/sub/update', [SubSubCategoryController::class, 'SubSubCategoryUpdate'])->name('subsubcategory.update');
+
+    // Rota p/ deletar SubCategoria
+    Route::get('/sub/delete{id}', [SubSubCategoryController::class, 'SubCategoryDelete'])->name('subsubcategory.delete');
 
 });

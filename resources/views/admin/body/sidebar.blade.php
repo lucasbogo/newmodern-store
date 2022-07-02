@@ -60,7 +60,7 @@
                       </ul>
                   </li>
 
-                  <!-- chamar o prefixo categoria e deixa-la como ativa ao clickar, caso contrário, continua nulo (apagado) -->
+                  <!-- chamar o prefixo categoria e deixa-la como ativa ("iluminada") ao clickar, caso contrário, continua nulo ("apagado") -->
                   <li class="treeview {{ $prefix == '/category' ? 'active' : '' }} ">
                       <a href="#">
                           <i data-feather="mail"></i> <span>Categorias</span>
@@ -72,12 +72,19 @@
                           <!-- Rota criada p/ acessar todas as categorias -->
                           <li class="{{ $route == 'all.categories' ? 'active' : '' }}"><a
                                   href="{{ route('all.categories') }}"><i class="ti-more"></i>
-                                  Todas as Categorias</a>
-                          </li>                      
+                                  Categorias</a>
+                          </li>
+
                           <!-- Rota criada p/ acessar todas as subcategorias -->
                           <li class="{{ $route == 'all.subcategories' ? 'active' : '' }}"><a
                                   href="{{ route('all.subcategories') }}"><i class="ti-more"></i>
-                                  Todas as Sub-Categorias</a>
+                                  Sub-Categorias</a>
+                          </li>
+                          
+                          <!-- Rota criada p/ acessar todas as sub-subcategorias -->
+                          <li class="{{ $route == 'all.subsubcategories' ? 'active' : '' }}"><a
+                                  href="{{ route('all.subsubcategories') }}"><i class="ti-more"></i>
+                                  Sub-Sub-Categorias</a>
                           </li>
                       </ul>
                   </li>
