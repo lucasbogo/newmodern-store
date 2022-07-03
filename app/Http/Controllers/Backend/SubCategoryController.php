@@ -21,7 +21,7 @@ class SubCategoryController extends Controller
         $subcategories = SubCategory::latest()->get();
 
         // Retorna a view, localizada em resources/views/backend/category/subcategory_view.blade.php com os dados das variáveis sub e categories
-        return view('backend.category.subcategory_view', compact('subcategories', 'categories'));
+        return view('backend.subcategory.subcategory_view', compact('subcategories', 'categories'));
     }
 
     // Método p/ guardar dados categoria no BD - a rota deve ser POST no web.php
@@ -79,7 +79,7 @@ class SubCategoryController extends Controller
 
         // Após buscar a Id e atribuir-à variável $subcategory, retornar para página editar subcategorias;
         // Cria, também, um array com a marca selecionada pelo ID, essa é a função fo compact('brands'));
-        return view('backend.category.subcategory_edit', compact('subcategory', 'categories'));
+        return view('backend.subcategory.subcategory_edit', compact('subcategory', 'categories'));
     }
 
     // Método para guardar os dados editados da subcategoria, POST = (Request $request)

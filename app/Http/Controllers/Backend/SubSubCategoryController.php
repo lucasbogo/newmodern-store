@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\SubSubCategory;
 use App\Models\Category;
+use App\Models\SubSubCategory;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
 class SubSubCategoryController extends Controller
@@ -18,15 +19,26 @@ class SubSubCategoryController extends Controller
         $subsubcategories = SubSubCategory::latest()->get();
 
         // Retorna a view, localizada em resources/views/backend/category/subcategory_view.blade.php com os dados das variáveis sub e categories
-        return view('backend.category.subsubcategory_view', compact('subsubcategories', 'categories'));
+        return view('backend.subsubcategory.subsubcategory_view', compact('subsubcategories', 'categories'));
     }
+
+    // Função da rota p/ pegar url AJAX e definir as subcaterias inseridas em cada categoria (FOI PUNXS!!!) 
+    public function GetSubCategory($category_id)
+    {
+        $subcategory = SubCategory::where('category_id', $category_id)->orderBy('subcategory_name_en', 'ASC')->get();
+        return json_encode($subcategory);
+    }
+
+
+
 
     // Método p/ guardar dados categoria no BD - a rota deve ser POST no web.php
     public function SubSubCategoryStore(Request $request)
     {
         $request->validate(
             [
-                'category_id' => 'required',
+                'category_id' => 'required', // fk category
+                'subcategory_id' => 'required', // fk subbcategory 
                 'subsubcategory_name_en' => 'required',
                 'subsubcategory_name_pt' => 'required',
             ],
@@ -45,6 +57,7 @@ class SubSubCategoryController extends Controller
 
             // FK category   
             'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
             'subsubcategory_name_en' => $request->subsubcategory_name_en,
             'subsubcategory_name_pt' => $request->subsubcategory_name_pt,
 
@@ -70,26 +83,29 @@ class SubSubCategoryController extends Controller
         // Pegar os dados categoria ordenado em ordem crescente pelo nome em inglês
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
 
+        // Pegar os dados subcategoria ordenado em ordem crescente pelo nome em inglês
+        $subcategories = SubCategory::orderBy('subcategory_name_en', 'ASC')->get();
+
         // Buscar o Id e atribuir à variável $subcategory pelo find or fail, que:
         // recebe um id e retorna um único modelo. Se não existir nenhum modelo correspondente, ele gera um erro 404
-        $subsubcategory = SubSubCategory::findOrFail($id);
+        $subsubcategories = SubSubCategory::findOrFail($id);
 
         // Após buscar a Id e atribuir-à variável $subcategory, retornar para página editar subcategorias;
         // Cria, também, um array com a marca selecionada pelo ID, essa é a função fo compact('brands'));
-        return view('backend.category.subcategory_edit', compact('subsubcategory', 'categories'));
+        return view('backend.subsubcategory.subsubcategory_edit', compact('categories','subcategories','subsubcategories'));
     }
 
     // Método para guardar os dados editados da subcategoria, POST = (Request $request)
     public function SubSubCategoryUpdate(Request $request)
     {
-        // Pegar id e atribuir à variável $brand
+        // Pegar id e atribuir à variável $subbubcategory e enviar a request->id no hidden input field
         $subsubcategory_id = $request->id;
 
         // Atualizar dados no BD
         SubSubCategory::findOrFail($subsubcategory_id)->update([
 
-            // FK category   
-            'category_id' => $request->category_id,
+            'category_id' => $request->category_id, 
+            'subcategory_id' => $request->subcategory_id, 
             'subsubcategory_name_en' => $request->subsubcategory_name_en,
             'subsubcategory_name_pt' => $request->subsubcategory_name_pt,
 

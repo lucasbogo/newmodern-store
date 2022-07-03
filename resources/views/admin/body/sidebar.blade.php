@@ -22,7 +22,7 @@
                       <a href="{{ url('admin/dashboard') }}">
                           <!-- logo para stado regular e aprelhos mobile -->
                           <div class="d-flex align-items-center justify-content-center">
-                              <img src="{{ asset('backend/images/logo/logo.png') }}" width="100px" heigh="200px"
+                              <img src="{{ asset('backend/images/logo/logo.png') }}" width="150px" heigh="200px" 
                                   alt="">
                           </div>
                       </a>
@@ -80,7 +80,7 @@
                                   href="{{ route('all.subcategories') }}"><i class="ti-more"></i>
                                   Sub-Categorias</a>
                           </li>
-                          
+
                           <!-- Rota criada p/ acessar todas as sub-subcategorias -->
                           <li class="{{ $route == 'all.subsubcategories' ? 'active' : '' }}"><a
                                   href="{{ route('all.subsubcategories') }}"><i class="ti-more"></i>

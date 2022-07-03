@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\SubSubCategoryController;
 
 use App\Http\Controllers\Frontend\IndexController;
 
@@ -127,6 +128,8 @@ Route::prefix('brand')->group(function () {
     Route::get('/delete{id}', [BrandController::class, 'BrandDelete'])->name('brand.delete');
 });
 
+
+
 /*** TODAS AS ROTAS CATEGORIAS DASHBOARD ADMINISTRADOR ***/
 Route::prefix('category')->group(function () {
 
@@ -146,8 +149,8 @@ Route::prefix('category')->group(function () {
     Route::get('/delete{id}', [CategoryController::class, 'CategoryDelete'])->name('category.delete');
 
 
+/*** TODAS AS ROTAS SUB-CATEGORIAS DASHBOARD ADMINISTRADOR ***/
 
-    /*** TODAS AS ROTAS SUB-CATEGORIAS DASHBOARD ADMINISTRADOR ***/
 
     // Rota p/ visualizar a tabela de SubCategorias no Painel Admin.
     Route::get('/sub/view', [SubCategoryController::class, 'SubCategoryView'])->name('all.subcategories');
@@ -165,11 +168,14 @@ Route::prefix('category')->group(function () {
     Route::get('/sub/delete{id}', [SubCategoryController::class, 'SubCategoryDelete'])->name('subcategory.delete');
 
 
-
     /*** TODAS AS ROTAS SUB-SUB-CATEGORIAS DASHBOARD ADMINISTRADOR ***/
+
 
     // Rota p/ visualizar a tabela de SubCategorias no Painel Admin.
     Route::get('/sub/sub/view', [SubSubCategoryController::class, 'SubSubCategoryView'])->name('all.subsubcategories');
+
+    // URL definida no js em subsubcategory_view.blade.php: ROTA JS-AJAX p/ mostrar categoria com a subcategoria dinamicamente
+    Route::get('/subcategory/ajax/{category_id}', [SubSubCategoryController::class, 'GetSubCategory']);
 
     // Rota p/ guardar informações SubCategorias no Painel Admin
     Route::post('/sub/sub/store', [SubSubCategoryController::class, 'SubSubCategoryStore'])->name('subsubcategory.store');
@@ -181,6 +187,5 @@ Route::prefix('category')->group(function () {
     Route::post('/sub/sub/update', [SubSubCategoryController::class, 'SubSubCategoryUpdate'])->name('subsubcategory.update');
 
     // Rota p/ deletar SubCategoria
-    Route::get('/sub/delete{id}', [SubSubCategoryController::class, 'SubCategoryDelete'])->name('subsubcategory.delete');
-
+    Route::get('/sub/sub/delete{id}', [SubSubCategoryController::class, 'SubSubCategoryDelete'])->name('subsubcategory.delete');
 });

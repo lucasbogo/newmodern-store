@@ -59,12 +59,12 @@
     <div class="main-header">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-3 logo">
+                <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
 
                     <!-- ============================================================= LOGO ============================================================= -->
 
                     <div class="logo"> <a href="{{ url('/') }}"> <img
-                                src="{{ asset('frontend/assets/images/logo-header-small.png') }}" alt="logo"> </a>
+                                src="{{ asset('frontend/assets/images/logo-header-edit.png') }}" alt="logo"> </a>
 
                     </div>
                     <!-- /.logo -->
