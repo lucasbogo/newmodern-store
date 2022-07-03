@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="NewModern team" content="">
     <link rel="icon" href="{{ asset('backend/images/favicon.ico') }}">
 
     <title>NewModern Admin - Dashboard</title>
@@ -63,6 +63,8 @@
     <!-- Sunny Admin App -->
     <script src="{{ asset('backend/js/template.js') }}"></script>
     <script src="{{ asset('backend/js/pages/dashboard.js') }}"></script>
+    <!-- BootStrap p/ trababalhar com TAGS -->
+    <script src="{{ asset('../assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js')}}"></script>
 
 
 
@@ -96,15 +98,15 @@
     </script>
 
     <!-- CDN do sweet alert: mensagensde alerta,customizadas -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <!-- ========== SWEET ALERT ========= -->
     <!-- ARRUMAR ISSO: mensagem aparece, mas não exlui o objeto-->
 
-    <!--
+
     <script type="text/javascript">
         $(function() {
-            $(document).on('click', '#delete', function(e) {
+            $(document).on('click', '#delete',function(e) {
                 e.preventDefault();
                 var link = $(this).attr("href");
 
@@ -118,6 +120,7 @@
                     confirmButtonText: 'Sim, Exclua!'
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        window.location.href = link
                         Swal.fire(
                             'Excluido!',
                             'Seu arquivo foi Excluido.',

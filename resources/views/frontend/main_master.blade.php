@@ -6,9 +6,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="NewModern Team" content="">
     <meta name="keywords" content="MediaCenter, Template, eCommerce">
     <meta name="robots" content="all">
+    <link rel="icon" href="{{ asset('backend/images/favicon.ico') }}">
     <title>NewModern</title>
 
     <!-- Bootstrap Core CSS -->
@@ -44,17 +45,17 @@
 
     <!-- ============================================== HEADER ============================================== -->
 
-    @include('frontend.body.header')
+    @include('frontend.body.header') <!-- Chamar o HEADER. Assim todas as páginas terão mesmo conteúdo HEADER |**FRAGMENTAÇÃO** -->
 
     <!-- ============================================== HEADER : END ============================================== -->
 
-
+    <!-- yield('content') é onde fica o conteúdo (que muda de página p/ pagina) -->
 
     @yield('content')
 
     <!-- ============================================================= FOOTER ============================================================= -->
 
-    @include('frontend.body.footer')
+    @include('frontend.body.footer') <!-- Chamar o FOOTER. Assim todas as páginas terão mesmo conteúdo footer | **FRAGMENTAÇÃO** -->
 
     <!-- ============================================================= FOOTER : END============================================================= -->
 

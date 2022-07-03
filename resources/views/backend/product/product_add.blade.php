@@ -32,9 +32,9 @@ e compartilhei com a equipe.
 
                                             <!-- PRIMEIRO ROW -->
                                             <div class="row">
-                                                <div class="col-md-4">
 
-                                                    <!-- FIELD p/ Categoria -->
+                                                <!-- SELECT FIELD MARCA -->
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <h5>Selecionar Marca <span class="text-danger">*</span></h5>
                                                         <div class="controls">
@@ -55,12 +55,10 @@ e compartilhei com a equipe.
                                                             @enderror
                                                         </div>
                                                     </div>
-
                                                 </div> <!-- /col-md-4 -->
 
+                                                <!-- SELECT FIELD CATEGORIA -->
                                                 <div class="col-md-4">
-
-                                                    <!-- FIELD p/ Categoria -->
                                                     <div class="form-group">
                                                         <h5>Selecionar Categoria <span class="text-danger">*</span></h5>
                                                         <div class="controls">
@@ -71,9 +69,11 @@ e compartilhei com a equipe.
 
                                                                 <!-- Mostrar os dados da variável $categories na condição foreach (nome categoria em inglês) -->
                                                                 @foreach ($categories as $category)
-                                                                    <!--  CONDIÇÃO p/ mostrar os dados, passa-se a coluna category e o id da mesma:
-                                                                                              quando os IDs combinarem, a fk_id category com a id subcategory, então
-                                                                                              retorna os valores solicitados, caso contrário, retorna nulo -->
+
+                                                                    <!--CONDIÇÃO p/ mostrar os dados, passa-se a coluna category e o id da mesma:
+                                                                        quando os IDs combinarem, a fk_id category com a id subcategory, então
+                                                                        retorna os valores solicitados, caso contrário, retorna nulo 
+                                                                    -->
                                                                     <option value="{{ $category->id }}">
                                                                         {{ $category->category_name_en }}</option>
                                                                 @endforeach
@@ -84,12 +84,10 @@ e compartilhei com a equipe.
                                                             @enderror
                                                         </div>
                                                     </div>
-
                                                 </div> <!-- /col-md-4 -->
 
+                                                <!-- SELECT FIELD SUB CATEGORIA -->
                                                 <div class="col-md-4">
-
-                                                    <!-- FIELD p/ Categoria -->
                                                     <div class="form-group">
                                                         <h5>Selecionar Sub-Categoria <span class="text-danger">*</span></h5>
                                                         <div class="controls">
@@ -99,12 +97,12 @@ e compartilhei com a equipe.
                                                                     Categoria
                                                                 </option>
 
-                                                               <!-- AQUI FOI USADO JAVASCRIPT PARA SELECIONAR 
+                                                                <!--AQUI FOI USADO JAVASCRIPT PARA SELECIONAR
                                                                     NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
                                                                     AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
                                                                     APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
                                                                     DE ACORDO COM O RELACIONAMENTO BD
-                                                               -->
+                                                                -->
 
                                                             </select>
                                                             @error('subcategory_id')
@@ -112,18 +110,297 @@ e compartilhei com a equipe.
                                                             @enderror
                                                         </div>
                                                     </div>
-
                                                 </div> <!-- /col-md-4 -->
 
                                             </div><!-- /row -->
 
-                                            <div class="form-group">
-                                                <h5>Email Field <span class="text-danger">*</span></h5>
-                                                <div class="controls">
-                                                    <input type="email" name="email" class="form-control" required
-                                                        data-validation-required-message="This field is required">
+                                            <!-- SEGUNDO ROW -->
+                                            <div class="row">
+
+                                                <!-- SELECT FIELD SUB-SUB-CATEGORIA -->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5>Selecionar Sub-Sub-Categoria <span class="text-danger">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <select name="subsubcategory_id" class="form-control">
+                                                                <option value="" selected="" disabled="">
+                                                                    Selecionar Sub Sub Categoria
+                                                                </option>
+
+                                                                <!--AQUI FOI USADO JAVASCRIPT PARA SELECIONAR
+                                                                    NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
+                                                                    AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
+                                                                    APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
+                                                                    DE ACORDO COM O RELACIONAMENTO BD
+                                                                -->
+
+                                                            </select>
+                                                            @error('subsubcategory_id')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- /col-md-4 -->
+
+                                                <!-- INPUT FIELD NOME PRODUTO INGLÊS -->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5>Product Name (EN) <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="product_name_en"
+                                                                class="form-control">
+
+                                                            @error('product_id')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- /col-md-4 -->
+
+                                                <!-- INPUT FIELD NOME PRODUTO PORTUGUÊS -->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5>Nome Produto (PTBR) <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="product_name_pt"
+                                                                class="form-control">
+
+                                                            @error('product_id')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- /col-md-4 -->
+
+                                            </div><!-- /row -->
+
+                                            <!-- TERCEIRO ROW -->
+                                            <div class="row">
+
+                                                <!-- INPUT FIELD CÓDIGO DO PRODUTO-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5>Código <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="product_code" class="form-control">
+
+                                                            @error('product_code')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- /col-md-4 -->
+
+                                                <!-- INPUT FIELD QUANTIDADE PRODUTO-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5>Quantidade <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="product_qty" class="form-control">
+
+                                                            @error('product_qty')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+
+                                                </div> <!-- /col-md-4 -->
+
+                                                <!-- INPUT FIELD VALOR VENDA -->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5>Valor Venda <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="product_selling_price"
+                                                                class="form-control">
+
+                                                            @error('product_selling_price')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- /col-md-4 -->
+
+                                            </div><!-- /row -->
+
+
+                                            <!-- QUARTA ROW -->
+                                            <div class="row">
+
+                                                <!-- INPUT FIELD INSERIR VALOR DESCONTO-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5>Valor Desconto <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="product_discount_price"
+                                                                class="form-control">
+
+                                                            @error('product_discount_price')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
+
+                                                <!-- INPUT FILE THUMBNAIL (MINIATURA)-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+
+                                                        <h5>Thumbnail (miniatura) <span class="text-danger">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <input type="file" name="product_thumbnail"
+                                                                class="form-control">
+
+                                                            @error('product_thumbnail')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                 <!-- INPUT FILE IMAGENS MULTIPLAS-->
+                                                 <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5>Imagens <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <input type="file" name="multi_images[]"
+                                                                class="form-control">
+
+                                                            @error('multi_images')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- /col-md-4 -->
+                                               
+                                            </div><!-- /row -->
+
+
+                                            <!-- QUINTA ROW -->
+                                            <div class="row">
+
+                                                <!-- INSERIR COR INGLÊS-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5>Color <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="product_color_en"
+                                                                class="form-control" value="Black, Blue, Yellow, white"
+                                                                data-role="tagsinput">
+
+                                                            @error('product_color_en')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- INSERIR COR PORTUGUÊS-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5>Cor <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="product_color_pt"
+                                                                class="form-control" value="Amarelo, Azul, Branco, Preto"
+                                                                data-role="tagsinput">
+
+                                                            @error('product_color_pt')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- INSERIR TAGS INGLÊS -->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5>Tags (EN) <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="product_tags_en"
+                                                                class="form-control" value="English,Lorem, Ipsum, Amet"
+                                                                data-role="tagsinput">
+
+                                                            @error('product_tags_en')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- /col-md-4 -->
+
+                                            </div><!-- /row -->
+
+
+                                            <!-- SEXTA ROW -->
+                                            <div class="row">
+
+                                                <!-- INSERIR TAGS PORTUGUÊS-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5>Tags (PTBR) <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="product_tags_pt"
+                                                                class="form-control" value="Português,Lorem, Ipsum, Amet"
+                                                                data-role="tagsinput">
+
+                                                            @error('product_tags_pt')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                 <!-- TAMANHO PRODUTO INGLÊS -->
+                                                 <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5> Size <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="product_size_en"
+                                                                class="form-control"
+                                                                value="Small, Medium, Large, Extra-Large, XXL"
+                                                                data-role="tagsinput">
+
+                                                            @error('product_size_en')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- TAMANHO PRODUTO PORTUGUÊS -->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5> Tamanho <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <input type="text" name="product_size_pt"
+                                                                class="form-control"
+                                                                value="Pequeno, Médio, Grande, GG, GGG"
+                                                                data-role="tagsinput">
+
+                                                            @error('product_size_pt')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- /col-md-4 -->
+                                               
+                                            </div><!-- /row -->
+
 
 
                                             <div class="form-group">
