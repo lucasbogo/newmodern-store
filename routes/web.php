@@ -8,6 +8,8 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
+use App\Http\Controllers\Backend\ProductController;
+
 
 use App\Http\Controllers\Frontend\IndexController;
 
@@ -109,6 +111,7 @@ Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdat
 
 
 /*** TODAS AS ROTAS MARCAS DASHBOARD ADMINISTRADOR ***/
+
 /*** prefix siginica que aparecerá o objeto na url antes da rota chamada: (brand/view ; brand/store; ...) */
 Route::prefix('brand')->group(function () {
 
@@ -174,7 +177,7 @@ Route::prefix('category')->group(function () {
     // Rota p/ visualizar a tabela de SubCategorias no Painel Admin.
     Route::get('/sub/sub/view', [SubSubCategoryController::class, 'SubSubCategoryView'])->name('all.subsubcategories');
 
-    // URL definida no js em subsubcategory_view.blade.php: ROTA JS-AJAX p/ mostrar categoria com a subcategoria dinamicamente
+    // Rota para pegar a  URL definida no js em subsubcategory_view.blade.php: ROTA JS-AJAX p/ mostrar categoria com a subcategoria dinamicamente
     Route::get('/subcategory/ajax/{category_id}', [SubSubCategoryController::class, 'GetSubCategory']);
 
     // Rota p/ guardar informações SubCategorias no Painel Admin
@@ -189,3 +192,15 @@ Route::prefix('category')->group(function () {
     // Rota p/ deletar SubCategoria
     Route::get('/sub/sub/delete{id}', [SubSubCategoryController::class, 'SubSubCategoryDelete'])->name('subsubcategory.delete');
 });
+
+/*** TODAS AS ROTAS PRODUTOS DASHBOARD ADMINISTRADOR ***/
+
+/*** prefix siginica que aparecerá o objeto na url antes da rota chamada: (product/view ; product/store; ...) */
+Route::prefix('product')->group(function () {
+
+    // Rota p/ visualizar a tabela de Marcas no Painel Admin.
+    Route::get('/add', [ProductController::class, 'ProductAdd'])->name('add.products');
+
+   
+});
+

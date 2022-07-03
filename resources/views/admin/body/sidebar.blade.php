@@ -22,7 +22,7 @@
                       <a href="{{ url('admin/dashboard') }}">
                           <!-- logo para stado regular e aprelhos mobile -->
                           <div class="d-flex align-items-center justify-content-center">
-                              <img src="{{ asset('backend/images/logo/logo.png') }}" width="150px" heigh="200px" 
+                              <img src="{{ asset('backend/images/logo/logo.png') }}" width="150px" heigh="200px"
                                   alt="">
                           </div>
                       </a>
@@ -89,20 +89,21 @@
                       </ul>
                   </li>
 
-                  <li class="treeview">
+                  <li class="treeview {{ $prefix == '/product' ? 'active' : '' }}">">
                       <a href="#">
                           <i data-feather="file"></i>
-                          <span>Pages</span>
+                          <span>Produtos</span>
                           <span class="pull-right-container">
                               <i class="fa fa-angle-right pull-right"></i>
                           </span>
                       </a>
                       <ul class="treeview-menu">
-                          <li><a href="profile.html"><i class="ti-more"></i>Profile</a></li>
-                          <li><a href="invoice.html"><i class="ti-more"></i>Invoice</a></li>
-                          <li><a href="gallery.html"><i class="ti-more"></i>Gallery</a></li>
-                          <li><a href="faq.html"><i class="ti-more"></i>FAQs</a></li>
-                          <li><a href="timeline.html"><i class="ti-more"></i>Timeline</a></li>
+                          <!--chamar o prefixo Adicionar Produto e deixa-la como ativa ("iluminada") ao clickar, caso contrário, continua nulo ("apagado") -->
+                          <!-- Rota para Adicionar Produto: href="..." -->
+                          <li>class="{{ $route == 'add.product' ? 'active' : '' }}"><a
+                                  href="{{ route('add.product') }}"><i class="ti-more"></i>Adicionar Produtos</a>
+                          </li>
+                          <li><a href="invoice.html"><i class="ti-more"></i>Gerenciar Produtos</a></li>
                       </ul>
                   </li>
 
