@@ -199,7 +199,7 @@ Route::prefix('category')->group(function () {
 Route::prefix('product')->group(function () {
 
     // Rota p/ visualizar a tabela de Marcas no Painel Admin.
-    Route::get('/add', [ProductController::class, 'ProductAdd'])->name('add.products');
+    Route::get('/add', [ProductController::class, 'AddProduct'])->name('add.product');
 
    
 });

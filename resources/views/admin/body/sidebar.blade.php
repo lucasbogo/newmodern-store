@@ -89,7 +89,7 @@
                       </ul>
                   </li>
 
-                  <li class="treeview {{ $prefix == '/product' ? 'active' : '' }}">">
+                  <li class="treeview {{ $prefix == '/product' ? 'active' : '' }}">
                       <a href="#">
                           <i data-feather="file"></i>
                           <span>Produtos</span>
@@ -100,7 +100,7 @@
                       <ul class="treeview-menu">
                           <!--chamar o prefixo Adicionar Produto e deixa-la como ativa ("iluminada") ao clickar, caso contrário, continua nulo ("apagado") -->
                           <!-- Rota para Adicionar Produto: href="..." -->
-                          <li>class="{{ $route == 'add.product' ? 'active' : '' }}"><a
+                          <li class="{{ $route == 'add.product' ? 'active' : '' }}"><a
                                   href="{{ route('add.product') }}"><i class="ti-more"></i>Adicionar Produtos</a>
                           </li>
                           <li><a href="invoice.html"><i class="ti-more"></i>Gerenciar Produtos</a></li>
