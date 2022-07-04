@@ -14,6 +14,6 @@ class Category extends Model
         'category_name_pt',
         'category_slug_en',
         'category_slug_pt',
-        'category_icon',
+        
     ];
 }

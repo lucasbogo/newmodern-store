@@ -27,7 +27,7 @@ class CategoryController extends Controller
             [
                 'category_name_en' => 'required',
                 'category_name_pt' => 'required',
-                'category_icon' => 'required',
+                
 
             ],
 
@@ -35,7 +35,7 @@ class CategoryController extends Controller
             [
                 'category_name_en.required' => 'Inserir Categoria em Inglês',
                 'category_name_pt.required' => 'Inserir Categoria em Português',
-                'category_icon.required' => 'Ícone é obrigatório',
+                
             ]
         );
 
@@ -43,7 +43,7 @@ class CategoryController extends Controller
         Category::insert([
             'category_name_en' => $request->category_name_en,
             'category_name_pt' => $request->category_name_pt,
-            'category_icon' => $request->category_icon,
+            
 
             //Slug, strtolower converte string para minusculo, se tiver espaço, substitui com traço e mostra o nome da marca em inglês
             'category_slug_en' => strtolower(str_replace('', '-', $request->category_name_en)),

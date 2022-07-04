@@ -74,24 +74,9 @@
 
                                         </div>
 
-                                        <!-- INPUT FIELD P/ ÍCONE CATEGORIA -->
-                                        <div class="form-group">
-                                            <h5> Ícone <span class="text-danger">*</span></h5>
-                                            <div class="controls">
-                                                <input type="text" name="category_icon" class="form-control"
-                                                    value="{{ $category->category_icon }}">
-                                                <!-- Mostrar nome categoria dinamicamente -->
 
-                                                <!-- Mensagem de Erro -->
-                                                @error('category_icon')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                                <!-- /Mensagem de Erro -->
-                                            </div>
 
-                                        </div>
-
-                                        <!--SE QUISERMOS TRABALHAR COM IMAGEM AO INVÉS DE ÍCONE -->
+                                        <!--SE QUISERMOS TRABALHAR COM IMAGEM -->
                                         <!--
                                             <div class="form-group">
                                                 <h5>Imagem <span class="text-danger">*</span></h5>

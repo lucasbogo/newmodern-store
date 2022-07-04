@@ -9,7 +9,7 @@
     <meta name="NewModern Team" content="">
     <meta name="keywords" content="MediaCenter, Template, eCommerce">
     <meta name="robots" content="all">
-    <link rel="icon" href="{{ asset('backend/images/favicon.ico') }}">
+    <link rel="icon" href="{{ asset('backend/images/favicon-32x32.png') }}">
     <title>NewModern</title>
 
     <!-- Bootstrap Core CSS -->

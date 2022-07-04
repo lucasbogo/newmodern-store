@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="NewModern team" content="">
-    <link rel="icon" href="{{ asset('backend/images/favicon.ico') }}">
+    <link rel="icon" href="{{ asset('backend/images/favicon-32x32.png') }}">
 
     <title>NewModern Admin - Dashboard</title>
 

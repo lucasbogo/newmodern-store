@@ -14,7 +14,7 @@
                         <div class="box">
                             <div class="box-header with-border">
                                 <h3 class="box-title">Categorias <span class="badge badge-pill badge-danger">
-                                        {{ count($categories) }} </span></h3>
+                                        {{ count($categories) }} </span></h3> <!-- função para contar quantidade de categorias inseridas pelo admin -->
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -22,7 +22,7 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th> Ícone </th>
+
                                                 <th> Category </th>
                                                 <th> Categoria </th>
                                                 <th> Acão </th>
@@ -33,8 +33,7 @@
 
                                             @foreach ($categories as $item)
                                                 <tr>
-                                                    <!-- i class será a classe para os fa-fa (ícones) -->
-                                                    <td><span><i class="{{ $item->category_icon }}"></i></span></td>
+
                                                     <td>{{ $item->category_name_en }}</td>
                                                     <td>{{ $item->category_name_pt }}</td>
 
@@ -46,7 +45,7 @@
 
                                                         <!-- Excluir Categoria(s) -->
                                                         <a href="{{ route('category.delete', $item->id) }}"
-                                                            class="btn btn-danger" id="delete" title="Excluir Categoria" >
+                                                            class="btn btn-danger" id="delete" title="Excluir Categoria">
                                                             <i class="fa fa-trash"></i></a>
                                                     </td>
 
@@ -112,20 +111,6 @@
 
                                         </div>
 
-                                        <!-- INPUT FIELD P/ CATEGORIA PTBR -->
-                                        <div class="form-group">
-                                            <h5>Ícone Categoria<span class="text-danger">*</span></h5>
-                                            <div class="controls">
-                                                <input type="text" name="category_icon" class="form-control">
-
-                                                <!-- Mensagem de Erro -->
-                                                @error('category_icon')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                                <!-- /Mensagem de Erro -->
-                                            </div>
-
-                                        </div>
 
 
                                         <!-- Botão adicionar formato 'success' (verde) -->

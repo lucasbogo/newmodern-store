@@ -7,7 +7,6 @@ e compartilhei com a equipe.
 
 @extends('admin.admin_master')
 @section('admin')
-
     <!-- JQuery CDN p/ trabalhar com JS (mostrar nome subcategoria dinamicamente no select field) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -74,9 +73,9 @@ e compartilhei com a equipe.
                                                                 <!-- Mostrar os dados da variável $categories na condição foreach (nome categoria em inglês) -->
                                                                 @foreach ($categories as $category)
                                                                     <!--CONDIÇÃO p/ mostrar os dados, passa-se a coluna category e o id da mesma:
-                                                                        quando os IDs combinarem, a fk_id category com a id subcategory, então
-                                                                        retorna os valores solicitados, caso contrário, retorna nulo
-                                                                    -->
+                                                                                    quando os IDs combinarem, a fk_id category com a id subcategory, então
+                                                                                    retorna os valores solicitados, caso contrário, retorna nulo
+                                                                                -->
                                                                     <option value="{{ $category->id }}">
                                                                         {{ $category->category_name_en }}</option>
                                                                 @endforeach
@@ -101,11 +100,11 @@ e compartilhei com a equipe.
                                                                 </option>
 
                                                                 <!--AQUI FOI USADO JAVASCRIPT PARA SELECIONAR
-                                                                    NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
-                                                                    AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
-                                                                    APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
-                                                                    DE ACORDO COM O RELACIONAMENTO BD
-                                                                -->
+                                                                                NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
+                                                                                AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
+                                                                                APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
+                                                                                DE ACORDO COM O RELACIONAMENTO BD
+                                                                            -->
 
                                                             </select>
                                                             @error('subcategory_id')
@@ -132,11 +131,11 @@ e compartilhei com a equipe.
                                                                 </option>
 
                                                                 <!--AQUI FOI USADO JAVASCRIPT PARA SELECIONAR
-                                                                    NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
-                                                                    AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
-                                                                    APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
-                                                                    DE ACORDO COM O RELACIONAMENTO BD
-                                                                -->
+                                                                                NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
+                                                                                AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
+                                                                                APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
+                                                                                DE ACORDO COM O RELACIONAMENTO BD
+                                                                            -->
 
                                                             </select>
                                                             @error('subsubcategory_id')
@@ -251,6 +250,7 @@ e compartilhei com a equipe.
                                                 </div>
 
                                                 <!-- INPUT FILE THUMBNAIL (MINIATURA)-->
+                                                <!-- JS (onChange) utilizado para mostrar a img miniatura-->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
 
@@ -258,27 +258,38 @@ e compartilhei com a equipe.
                                                         </h5>
                                                         <div class="controls">
                                                             <input type="file" name="product_thumbnail"
-                                                                class="form-control">
+                                                                class="form-control" onChange="thumbnailURL(this)">
 
                                                             @error('product_thumbnail')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
 
+                                                            <!-- Mostrar Img Thumbanail pelo JS -->
+                                                            <img src="" id="thumbnail">
+
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <!-- INPUT FILE IMAGENS MULTIPLAS-->
+                                                <!-- INPUT FILE IMAGENS MULTIPLAS -->
+                                                <!--JS (onChange) utilizado para mostrar multiplas imagens
+                                                                O campo multiple="" serve para poder inserir multiplas fotos
+                                                            -->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <h5>Imagens <span class="text-danger">*</span></h5>
                                                         <div class="controls">
+
                                                             <input type="file" name="multi_images[]"
-                                                                class="form-control">
+                                                                class="form-control" multiple="" id="multiple_images">
 
                                                             @error('multi_images')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
+                                                            <div class="row" id="preview_multiple_images"></div>
+
+
+                                                            
 
                                                         </div>
                                                     </div>
@@ -286,6 +297,8 @@ e compartilhei com a equipe.
 
                                             </div><!-- /row -->
 
+                                            <br>
+                                            <br>
 
                                             <!-- QUINTA ROW -->
                                             <div class="row">
@@ -343,6 +356,8 @@ e compartilhei com a equipe.
 
                                             </div><!-- /row -->
 
+                                            <br>
+                                            <br>
 
                                             <!-- SEXTA ROW -->
                                             <div class="row">
@@ -398,7 +413,8 @@ e compartilhei com a equipe.
 
                                             </div><!-- /row -->
 
-
+                                            <br>
+                                            <br>
 
                                             <!-- SÉTIMO ROW -->
                                             <div class="row">
@@ -431,6 +447,9 @@ e compartilhei com a equipe.
                                                     </div>
                                                 </div> <!-- /col-md-6 -->
                                             </div><!-- /row -->
+
+                                            <br>
+                                            <br>
 
                                             <!-- OITAVO ROW -->
                                             <div class="row">
@@ -477,7 +496,7 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <fieldset>
                                                                 <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
-                                                                                 e aparecerá no campo específico no frontend cliente -->
+                                                                                             e aparecerá no campo específico no frontend cliente -->
                                                                 <input type="checkbox" id="checkbox_2"
                                                                     name="product_hot_deals" value="1">
                                                                 <label for="checkbox_2">Hot Deals</label>
@@ -498,7 +517,7 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <fieldset>
                                                                 <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
-                                                                                 e aparecerá no campo específico no frontend cliente -->
+                                                                                             e aparecerá no campo específico no frontend cliente -->
                                                                 <input type="checkbox" id="checkbox_4"
                                                                     name="product_special_offer" value="1">
                                                                 <label for="checkbox_4">Especial Offer</label>
@@ -535,50 +554,112 @@ e compartilhei com a equipe.
     </div>
     <!-- /.content-wrapper -->
 
-  <!-- Código JS para mostrar nome subcategoria dinamicamente -->
-  <script type="text/javascript">
-    $(document).ready(function() {
-        $('select[name="category_id"]').on('change', function() {
-            var category_id = $(this).val();
-            if (category_id) {
-                $.ajax({
-                    url: "{{ url('/category/subcategory/ajax') }}/" + category_id,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        var d = $('select[name="subcategory_id"]').empty();
-                        $.each(data, function(key, value) {
-                            $('select[name="subcategory_id"]').append(
-                                '<option value="' + value.id + '">' + value
-                                .subcategory_name_en + '</option>');
-                        });
-                    },
-                });
-            } else {
-                alert('danger');
-            }
-        });
+    <!-- Código JS para mostrar nome subcategoria dinamicamente -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('select[name="category_id"]').on('change', function() {
+                var category_id = $(this).val();
+                if (category_id) {
+                    $.ajax({
+                        url: "{{ url('/category/subcategory/ajax') }}/" + category_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $('select[name="subsubcategory_id"]').html(
+                                ''
+                            ); // ao mudar a categoria no selectview, o campo sub-sub-categoria torna-se nulo
+                            var d = $('select[name="subcategory_id"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="subcategory_id"]').append(
+                                    '<option value="' + value.id + '">' + value
+                                    .subcategory_name_en + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
 
-        // Código JS para mostrar nome sub-sub0categoria dinamicamente no select field ao selecionar a sub-categoria 
-        $('select[name="subcategory_id"]').on('change', function(){
-            var subcategory_id = $(this).val();
-            if(subcategory_id) {
-                $.ajax({
-                    url: "{{  url('/category/sub-subcategory/ajax') }}/"+subcategory_id,
-                    type:"GET",
-                    dataType:"json",
-                    success:function(data) {
-                       var d =$('select[name="subsubcategory_id"]').empty();
-                          $.each(data, function(key, value){
-                              $('select[name="subsubcategory_id"]').append('<option value="'+ value.id +'">' + value.subsubcategory_name_en + '</option>');
-                          });
-                    },
-                });
-            } else {
-                alert('danger');
-            }
+            // Código JS para mostrar nome sub-sub0categoria dinamicamente no select field ao selecionar a sub-categoria 
+            $('select[name="subcategory_id"]').on('change', function() {
+                var subcategory_id = $(this).val();
+                if (subcategory_id) {
+                    $.ajax({
+                        url: "{{ url('/category/sub-subcategory/ajax') }}/" + subcategory_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            var d = $('select[name="subsubcategory_id"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="subsubcategory_id"]').append(
+                                    '<option value="' + value.id + '">' + value
+                                    .subsubcategory_name_en + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
+
         });
- 
-    });
+    </script>
+
+
+    <!--Código JS p/ mostrar imagem Thumbnail pela função JS onChange
+                    Pega somente um index, ou seja, apenas uma imagem
+                -->
+    <script type="text/javascript">
+        // Chamar a função declarada na div thumbnail e passar o input
+        function thumbnailURL(input) {
+            // Condição: se existir um arquivo, pegar o primeiro index
+            if (input.files && input.files[0]) {
+                //declarar a variável (va reader) como FileReader
+                var reader = new FileReader();
+                // Onload a variável FileReader passando e na função
+                reader.onload = function(e) {
+                    // Pegar a id thumbnail img e passar o atributo, (src) declarado na div thumbnail <img src="" id="thumbnail"> 
+                    // e o 'e' target (e.target.result) declarando, também, a largura e a altura do thumbnail
+                    $('#thumbnail').attr('src', e.target.result).width(60).height(60);
+
+                };
+                // Função Default do JS para ler/interpretar o primeiro index declarado na condição deste cod;
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
+    <!-- Código JS p/ mostrar multiplas imagens pela função JS onChange -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#multiple_images').on('change', function() { //on file input change
+                if (window.File && window.FileReader && window.FileList && window
+                    .Blob) // verificar API Arquivo se o mesmo é suportado pelo navegador
+                {
+                    var data = $(this)[0].files; //this file data
+
+                    $.each(data, function(index, file) { //loop em cada arquivo
+                        if (/(\.|\/)(gif|jpe?g|png)$/i.test(file
+                                .type)) { // verifica o tipo do arquivo suportado 
+                            var fRead = new FileReader(); //new filereader
+                            fRead.onload = (function(file) { //trigger function on successful read
+                                return function(e) {
+                                    var img = $('<img/>').addClass('thumbnail').attr('src',
+                                            e.target.result).width(60)
+                                        .height(60); // cria um elemento de imagem 
+                                    $('#preview_multiple_images').append(
+                                        img); //append image to output element
+                                };
+                            })(file);
+                            fRead.readAsDataURL(file); //URL representing the file's data.
+                        }
+                    });
+
+                } else {
+                    alert("Your browser doesn't support File API!"); //if File API is absent
+                }
+            });
+        });
     </script>
 @endsection

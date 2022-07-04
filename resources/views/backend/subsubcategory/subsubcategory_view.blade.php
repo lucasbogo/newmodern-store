@@ -202,7 +202,6 @@
                     alert('danger');
                 }
             });
-
         });
     </script>
 @endsection
