@@ -7,6 +7,10 @@ e compartilhei com a equipe.
 
 @extends('admin.admin_master')
 @section('admin')
+
+    <!-- JQuery CDN p/ trabalhar com JS (mostrar nome subcategoria dinamicamente no select field) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <div class="container-full">
@@ -69,10 +73,9 @@ e compartilhei com a equipe.
 
                                                                 <!-- Mostrar os dados da variável $categories na condição foreach (nome categoria em inglês) -->
                                                                 @foreach ($categories as $category)
-
                                                                     <!--CONDIÇÃO p/ mostrar os dados, passa-se a coluna category e o id da mesma:
                                                                         quando os IDs combinarem, a fk_id category com a id subcategory, então
-                                                                        retorna os valores solicitados, caso contrário, retorna nulo 
+                                                                        retorna os valores solicitados, caso contrário, retorna nulo
                                                                     -->
                                                                     <option value="{{ $category->id }}">
                                                                         {{ $category->category_name_en }}</option>
@@ -236,14 +239,12 @@ e compartilhei com a equipe.
                                                 <!-- INPUT FIELD INSERIR VALOR DESCONTO-->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h5>Valor Desconto <span class="text-danger">*</span></h5>
+                                                        <h5>Valor Desconto <span class="text-info">Opcional</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_discount_price"
                                                                 class="form-control">
 
-                                                            @error('product_discount_price')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
+
 
                                                         </div>
                                                     </div>
@@ -267,8 +268,8 @@ e compartilhei com a equipe.
                                                     </div>
                                                 </div>
 
-                                                 <!-- INPUT FILE IMAGENS MULTIPLAS-->
-                                                 <div class="col-md-4">
+                                                <!-- INPUT FILE IMAGENS MULTIPLAS-->
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         <h5>Imagens <span class="text-danger">*</span></h5>
                                                         <div class="controls">
@@ -282,7 +283,7 @@ e compartilhei com a equipe.
                                                         </div>
                                                     </div>
                                                 </div> <!-- /col-md-4 -->
-                                               
+
                                             </div><!-- /row -->
 
 
@@ -363,19 +364,17 @@ e compartilhei com a equipe.
                                                     </div>
                                                 </div>
 
-                                                 <!-- TAMANHO PRODUTO INGLÊS -->
-                                                 <div class="col-md-4">
+                                                <!-- TAMANHO PRODUTO INGLÊS -->
+                                                <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h5> Size <span class="text-danger">*</span></h5>
+                                                        <h5> Size <span class="text-info">Optional</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_size_en"
                                                                 class="form-control"
                                                                 value="Small, Medium, Large, Extra-Large, XXL"
                                                                 data-role="tagsinput">
 
-                                                            @error('product_size_en')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
+
 
                                                         </div>
                                                     </div>
@@ -384,80 +383,141 @@ e compartilhei com a equipe.
                                                 <!-- TAMANHO PRODUTO PORTUGUÊS -->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h5> Tamanho <span class="text-danger">*</span></h5>
+                                                        <h5> Tamanho <span class="text-info">Opcional</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_size_pt"
                                                                 class="form-control"
                                                                 value="Pequeno, Médio, Grande, GG, GGG"
                                                                 data-role="tagsinput">
 
-                                                            @error('product_size_pt')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
+
 
                                                         </div>
                                                     </div>
                                                 </div> <!-- /col-md-4 -->
-                                               
+
                                             </div><!-- /row -->
 
 
 
-                                            <div class="form-group">
-                                                <h5>File Input Field <span class="text-danger">*</span></h5>
-                                                <div class="controls">
-                                                    <input type="file" name="file" class="form-control" required>
+                                            <!-- SÉTIMO ROW -->
+                                            <div class="row">
+
+                                                <!-- TEXT-AREA DESCRIÇÃO CURTA EN -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <h5>Short Description <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <textarea name="product_short_description_en" id="product_short_description_en" class="form-control" required
+                                                                placeholder="Insert Product's Short Description"></textarea>
+
+
+
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- /col-md-6 -->
+
+                                                <!-- TEXT-AREA DESCRIÇÃO CURTA PTBR -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <h5>Descrição Curta <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <textarea name="product_short_description_pt" id="product_short_description_pt" class="form-control" required
+                                                                placeholder="Insira a Descrição Curta do Produto"></textarea>
+
+
+
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- /col-md-6 -->
+                                            </div><!-- /row -->
+
+                                            <!-- OITAVO ROW -->
+                                            <div class="row">
+
+                                                <!-- TEXT-AREA DESCRIÇÃO LONGA EN -->
+                                                <!-- CK EDITOR FOI UTILIZADO PARA DESCRIÇÃO LONGA TIRADO DE **forms_editor.html** DO PACOTE TEMPLATE COMPRADO -->
+                                                <!-- É possível criar mais editores CK adicionando novas funções no editor.js localizado em /public/backend/pages/editor.js -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <h5>Long Description <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <textarea id="editorEN" name="product_long_description_en" rows="10" cols="80">
+                                                                Insert Product's Long Description
+                                                            </textarea>
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- /col-md-6 -->
+
+
+                                                <!-- TEXT-AREA DESCRIÇÃO LONGA PTBR -->
+                                                <!-- CK EDITOR FOI UTILIZADO PARA DESCRIÇÃO LONGA TIRADO DE **forms_editor.html** DO PACOTE TEMPLATE COMPRADO -->
+                                                <!-- É possível criar mais editores CK adicionando novas funções no editor.js localizado em /public/backend/pages/editor.js -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <h5>Descrição Longa <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <textarea id="editorPTBR" name="product_long_description_pt" rows="10" cols="80">
+                                                                Insira a descrição Longa do Produto
+                                                            </textarea>
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- /col-md-6 -->
+                                            </div><!-- /row -->
+
+
+                                            <hr><!-- quebra temática em uma página HTML -->
+
+
+                                            <div class="row">
+                                                <!-- CHECKBOX 1 -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <h5> PROMOÇÕES (OPCIONAL) </h5>
+                                                        <div class="controls">
+                                                            <fieldset>
+                                                                <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
+                                                                                 e aparecerá no campo específico no frontend cliente -->
+                                                                <input type="checkbox" id="checkbox_2"
+                                                                    name="product_hot_deals" value="1">
+                                                                <label for="checkbox_2">Hot Deals</label>
+                                                            </fieldset>
+                                                            <fieldset>
+                                                                <input type="checkbox" id="checkbox_3"
+                                                                    name="product_featured" value="1">
+                                                                <label for="checkbox_3">Featured/Destaque</label>
+                                                            </fieldset>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- CHECKBOX 2 -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <h5>PROMOÇÕES (OPCIONAL) </h5>
+                                                        <div class="controls">
+                                                            <fieldset>
+                                                                <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
+                                                                                 e aparecerá no campo específico no frontend cliente -->
+                                                                <input type="checkbox" id="checkbox_4"
+                                                                    name="product_special_offer" value="1">
+                                                                <label for="checkbox_4">Especial Offer</label>
+                                                            </fieldset>
+                                                            <fieldset>
+                                                                <input type="checkbox" id="checkbox_5"
+                                                                    name="product_special_deals" value="1">
+                                                                <label for="checkbox_5">Especial Deals</label>
+                                                            </fieldset>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                        </div>
-                                        <div class="form-group">
-                                            <h5>Basic Select <span class="text-danger">*</span></h5>
-                                            <div class="controls">
-                                                <select name="select" id="select" required class="form-control">
-                                                    <option value="">Select Your City</option>
-                                                    <option value="1">India</option>
-                                                    <option value="2">USA</option>
-                                                    <option value="3">UK</option>
-                                                    <option value="4">Canada</option>
-                                                    <option value="5">Dubai</option>
-                                                </select>
+                                            <!-- BOTÃO ADICIONAR PRODUTO -->
+                                            <div class="text-xs-right">
+                                                <input type="submit" class="btn btn-rounded btn-success mb-5"
+                                                    value="Adicionar">
                                             </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <h5>Checkbox <span class="text-danger">*</span></h5>
-                                                <div class="controls">
-                                                    <input type="checkbox" id="checkbox_1" required value="single">
-                                                    <label for="checkbox_1">Check this custom checkbox</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <h5>Checkbox Group <span class="text-danger">*</span></h5>
-                                                <div class="controls">
-                                                    <fieldset>
-                                                        <input type="checkbox" id="checkbox_2" required value="x">
-                                                        <label for="checkbox_2">I am unchecked Checkbox</label>
-                                                    </fieldset>
-                                                    <fieldset>
-                                                        <input type="checkbox" id="checkbox_3" value="y">
-                                                        <label for="checkbox_3">I am unchecked too</label>
-                                                    </fieldset>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="text-xs-right">
-                                        <input type="submit" class="btn btn-rounded btn-success mb-5" value="Adicionar">
-                                    </div>
                                 </form>
 
                             </div>
@@ -474,4 +534,51 @@ e compartilhei com a equipe.
         </div>
     </div>
     <!-- /.content-wrapper -->
+
+  <!-- Código JS para mostrar nome subcategoria dinamicamente -->
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('select[name="category_id"]').on('change', function() {
+            var category_id = $(this).val();
+            if (category_id) {
+                $.ajax({
+                    url: "{{ url('/category/subcategory/ajax') }}/" + category_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        var d = $('select[name="subcategory_id"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="subcategory_id"]').append(
+                                '<option value="' + value.id + '">' + value
+                                .subcategory_name_en + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+
+        // Código JS para mostrar nome sub-sub0categoria dinamicamente no select field ao selecionar a sub-categoria 
+        $('select[name="subcategory_id"]').on('change', function(){
+            var subcategory_id = $(this).val();
+            if(subcategory_id) {
+                $.ajax({
+                    url: "{{  url('/category/sub-subcategory/ajax') }}/"+subcategory_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                       var d =$('select[name="subsubcategory_id"]').empty();
+                          $.each(data, function(key, value){
+                              $('select[name="subsubcategory_id"]').append('<option value="'+ value.id +'">' + value.subsubcategory_name_en + '</option>');
+                          });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+ 
+    });
+    </script>
 @endsection

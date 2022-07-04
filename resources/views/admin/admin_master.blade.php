@@ -57,15 +57,22 @@
     <script src="{{ asset('../assets/vendor_components/easypiechart/dist/jquery.easypiechart.js') }}"></script>
     <script src="{{ asset('../assets/vendor_components/apexcharts-bundle/irregular-data-series.js') }}"></script>
     <script src="{{ asset('../assets/vendor_components/apexcharts-bundle/dist/apexcharts.js') }}"></script>
+
     <!-- JS tabela de Marcas -->
     <script src="{{ asset('../assets/vendor_components/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('backend/js/pages/data-table.js') }}"></script>
+
     <!-- Sunny Admin App -->
     <script src="{{ asset('backend/js/template.js') }}"></script>
     <script src="{{ asset('backend/js/pages/dashboard.js') }}"></script>
-    <!-- BootStrap p/ trababalhar com TAGS -->
+    
+    <!-- Bootstrap p/ trababalhar com TAGS -->
     <script src="{{ asset('../assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js')}}"></script>
 
+    <!-- Bootstrap p/ tabalhar com editores de texto completos como o CK EDITOR -->	
+    <script src="{{ asset('../assets/vendor_components/ckeditor/ckeditor.js')}}"></script>
+	<script src="{{ asset('../assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js')}}"></script>
+	<script src="{{ asset('backend/js/pages/editor.js')}}"></script>
 
 
     <!-- Script para mostrar as mensagens toaster para o admin. -->

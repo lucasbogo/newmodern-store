@@ -22,13 +22,23 @@ class SubSubCategoryController extends Controller
         return view('backend.subsubcategory.subsubcategory_view', compact('subsubcategories', 'categories'));
     }
 
-    // Função da rota p/ pegar url AJAX e definir as subcaterias inseridas em cada categoria (FOI PUNXS!!!) 
+
+
+    // Função da rota p/ pegar url AJAX e definir as subcaterias inseridas em cada categoria 
     public function GetSubCategory($category_id)
     {
         $subcategory = SubCategory::where('category_id', $category_id)->orderBy('subcategory_name_en', 'ASC')->get();
         return json_encode($subcategory);
     }
 
+
+
+     // Função da rota p/ pegar url AJAX e definir as subsubcaterias inseridas em cada subcategoria 
+     public function GetSubSubCategory($subcategory_id)
+     {
+         $subsubcategory = SubSubCategory::where('subcategory_id', $subcategory_id)->orderBy('subsubcategory_name_en', 'ASC')->get();
+         return json_encode($subsubcategory);
+     }
 
 
 
@@ -77,6 +87,8 @@ class SubSubCategoryController extends Controller
         return redirect()->back()->with($notification);
     }
 
+
+
     // Método para editar categoria
     public function SubSubCategoryEdit($id)
     {
@@ -94,6 +106,8 @@ class SubSubCategoryController extends Controller
         // Cria, também, um array com a marca selecionada pelo ID, essa é a função fo compact('brands'));
         return view('backend.subsubcategory.subsubcategory_edit', compact('categories','subcategories','subsubcategories'));
     }
+
+
 
     // Método para guardar os dados editados da subcategoria, POST = (Request $request)
     public function SubSubCategoryUpdate(Request $request)
@@ -125,6 +139,8 @@ class SubSubCategoryController extends Controller
         // Retornar para pagina todas marcas
         return redirect()->route('all.subsubcategories')->with($notification);
     }
+
+
 
     // Método para excluir categoria pelo id
     public function SubSubCategoryDelete($id)

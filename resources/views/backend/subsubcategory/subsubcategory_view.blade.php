@@ -40,7 +40,7 @@
                                                 <tr>
 
                                                     <!-- chamar aqui o método ['category'] Criado na Models/SubCategory.php
-                                                                            para mostrar o nome categoria ['category_name_en'] dinamicamente na view subcategory -->
+                                                                                para mostrar o nome categoria ['category_name_en'] dinamicamente na view subcategory -->
                                                     <td>{{ $item['category']['category_name_en'] }}</td>
                                                     <td>{{ $item['subcategory']['subcategory_name_en'] }}</td>
                                                     <td>{{ $item->subsubcategory_name_en }}</td>
@@ -179,7 +179,7 @@
         </div>
     </div>
 
-    <!-- Código JS para mostrar nome subcategoria dinamicamente **ESTUDAR ISSO** -->
+    <!-- Código JS para mostrar nome sub-categoria dinamicamente no select field ao selecionar a categoria -->
     <script type="text/javascript">
         $(document).ready(function() {
             $('select[name="category_id"]').on('change', function() {
@@ -202,6 +202,7 @@
                     alert('danger');
                 }
             });
+
         });
     </script>
 @endsection
