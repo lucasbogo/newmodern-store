@@ -107,7 +107,7 @@ class CategoryController extends Controller
         Category::findOrFail($category_id)->update([
             'category_name_en' => $request->category_name_en,
             'category_name_pt' => $request->category_name_pt,
-            'category_icon' => $request->category_icon,
+         
 
 
             //Slug, strtolower converte string para minusculo, se tiver espaço, substitui com traço e mostra o nome da marca em inglês

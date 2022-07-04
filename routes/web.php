@@ -206,8 +206,11 @@ Route::prefix('category')->group(function () {
 /*** prefix siginica que aparecerá o objeto na url antes da rota chamada: (product/view ; product/store; ...) */
 Route::prefix('product')->group(function () {
 
-    // Rota p/ visualizar a tabela de Marcas no Painel Admin.
-    Route::get('/add', [ProductController::class, 'AddProduct'])->name('add.product');
+    // Rota p/ visualizar o formulário adicionar produto no Painel Admin.
+    Route::get('/add', [ProductController::class, 'AddProduct'])->name('product.add');
+
+     // Rota p/ adicionar produtos no Painel Admin.
+     Route::post('/store', [ProductController::class, 'StoreProduct'])->name('product.store');
 
    
 });

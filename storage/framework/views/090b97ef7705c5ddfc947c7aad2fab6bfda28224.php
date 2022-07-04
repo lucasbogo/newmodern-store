@@ -1,0 +1,70 @@
+<?php $__env->startSection('admin'); ?>
+    <div class="content-wrapper" style="min-height: 326px;">
+        <div class="container-full">
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+
+                    <div class="box box-widget widget-user">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header bg-black"
+                            style="background: url('../images/gallery/full/10.jpg') center center;">
+                            <h3 class="widget-user-username"><?php echo e($adminData->name); ?></h3>
+
+                            <a href="<?php echo e(route('admin.profile.edit')); ?>" style="float: right;" class="btn btn-rounded btn-primary mb-5">
+                                Edit Profile</a>
+
+                            <h6 class="widget-user-desc"><?php echo e($adminData->email); ?></h6>
+                        </div>
+                        <div class="widget-user-image">
+
+                            <!--IMPORTANT!-->
+                            <!-- IMAGE CONDITION: when it is not empty, it gets admin's photo
+                                     OR (?) gets images in /public/upload/admin_images
+                                     OR (:)loads default images located in /public/upload -->
+                            <img class="rounded-circle"
+                                src="<?php echo e(!empty($adminData->profile_photo_path)
+                                    ? url('upload/admin_images/' . $adminData->profile_photo_path)
+                                    : url('upload/no-image.png')); ?>"
+                                alt="User Avatar">
+                        </div>
+
+                        <div class="box-footer">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="description-block">
+                                        <h5 class="description-header">12K</h5>
+                                        <span class="description-text">FOLLOWERS</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4 br-1 bl-1">
+                                    <div class="description-block">
+                                        <h5 class="description-header">550</h5>
+                                        <span class="description-text">FOLLOWERS</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4">
+                                    <div class="description-block">
+                                        <h5 class="description-header">158</h5>
+                                        <span class="description-text">TWEETS</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+    <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.admin_master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/lucas/newmodern-store/resources/views/admin/admin_profile_view.blade.php ENDPATH**/ ?>

@@ -100,8 +100,8 @@
                       <ul class="treeview-menu">
                           <!--chamar o prefixo Adicionar Produto e deixa-la como ativa ("iluminada") ao clickar, caso contrário, continua nulo ("apagado") -->
                           <!-- Rota para Adicionar Produto: href="..." -->
-                          <li class="{{ $route == 'add.product' ? 'active' : '' }}"><a
-                                  href="{{ route('add.product') }}"><i class="ti-more"></i>Adicionar Produtos</a>
+                          <li class="{{ $route == 'product.add' ? 'active' : '' }}"><a
+                                  href="{{ route('product.add') }}"><i class="ti-more"></i>Adicionar Produtos</a>
                           </li>
                           <li><a href="invoice.html"><i class="ti-more"></i>Gerenciar Produtos</a></li>
                       </ul>
