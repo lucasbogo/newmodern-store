@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\SubSubCategory;
 use App\Models\Brand;
+use App\Models\MultiImages;
 use App\Models\Product;
 use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
@@ -36,11 +37,11 @@ class ProductController extends Controller
         // Código Image Intervention Package for PHP
         $image = $request->file('product_thumbnail');
         $generate_name = hexdec(uniqid()) . '.' . $image->getClientOriginalName();
-        Image::make($image)->resize(917, 1000)->save('upload/products/thumbnails/product_thumbnail/' . $generate_name);
-        $save_url = 'upload/products/thumbnails/product_thumbnail/' . $generate_name;
+        Image::make($image)->resize(917, 1000)->save('upload/products/thumbnails/' . $generate_name);
+        $save_url = 'upload/products/thumbnails/' . $generate_name;
 
-        // Inserir todos os dados Models Produto
-        Product::insert([
+        // Inserir todos os dados Models Produto; atribuir-os à variável product_id
+        $product_id = Product::insertGetId([
 
             'brand_id' => $request->brand_id,
             'category_id' => $request->category_id,
@@ -75,5 +76,34 @@ class ProductController extends Controller
             'created_at' => Carbon::now(),
 
         ]);
+
+
+        // FUNÇÃO DAS MULTIPLAS IMAGENS PRODUTO
+        $images = $request->file('multi_images');
+        // LOOP CONDICIONAL donominar como $image todo arquivo multi_images declarado como variável $images
+        foreach ($images as $image) {
+            //gerar id única para a imagem
+            $generate_multi_image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalName();
+            Image::make($image)->resize(917, 1000)->save('upload/products/multiple_images/' . $generate_name);
+            $save_url_multi_image = 'upload/products/multiple_images/' . $generate_multi_image_name;
+
+            MultiImages::insert([
+
+                // Para não ter que declarar todos os campos do BD novamente, eu apenas atribui-os à variável product_id
+                'product_id' => $product_id,
+                'photo_name' => $save_url_multi_image,
+                'created_at' => Carbon::now(),
+
+            ]);
+        }
+
+        // Mensagen toaster para mostrar barra verde com a mensagem de sucesso
+        $notification = array(
+            'message' => 'Produto inserido com Sucesso',
+            'alert-type' => 'success'
+        );
+
+        // Retornar para pagina manter marca
+        return redirect()->back()->with($notification);
     }
 }
