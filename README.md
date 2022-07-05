@@ -193,7 +193,7 @@ php artisan migrate
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## Laravel Intervention Package
+## Laravel Image Intervention Package
 [documentação oficial](https://image.intervention.io/v2/introduction/installation)
 
 ### Sobre:
@@ -214,7 +214,7 @@ composer require intervention/image
 
 #### Configurar: 
 <br>
-- Entrar em config/app.php e colar: ```Intervention\Image\ImageServiceProvider::class,``` em Package Servie Providers
+- Entrar em config/app.php e colar: ```Intervention\Image\ImageServiceProvider::class,``` em Package Service Providers
 
 ```
 /*
