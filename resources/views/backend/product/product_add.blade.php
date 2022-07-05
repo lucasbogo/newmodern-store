@@ -30,7 +30,7 @@ e compartilhei com a equipe.
                             <div class="col">
 
                                 <!-- Validar os campos com POST e garantir que as imagens serão aceitas via upload, enctype -->
-                                <form method="POST"  enctype="multipart/form-data">
+                                <form method="post" action=" {{ route('product.store') }}"  enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="row">

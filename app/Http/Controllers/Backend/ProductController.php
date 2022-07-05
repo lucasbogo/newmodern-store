@@ -72,7 +72,7 @@ class ProductController extends Controller
             'product_hot_deals' => $request->product_hot_deals,
 
             'product_thumbnail' => $save_url,
-            'status' => 1,
+            'product_status' => 1,
             'created_at' => Carbon::now(),
 
         ]);
