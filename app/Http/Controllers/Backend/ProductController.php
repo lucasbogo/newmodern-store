@@ -78,7 +78,7 @@ class ProductController extends Controller
         ]);
 
 
-        // FUNÇÃO DAS MULTIPLAS IMAGENS PRODUTO
+        // Função p/ gerar e salvar multiplas imagens produto
         $images = $request->file('multi_images');
         // LOOP CONDICIONAL donominar como $image todo arquivo multi_images declarado como variável $images
         foreach ($images as $image) {
@@ -103,7 +103,40 @@ class ProductController extends Controller
             'alert-type' => 'success'
         );
 
-        // Retornar para pagina manter marca
-        return redirect()->back()->with($notification);
+        // Ao inserir produto com sucesso, retorna para a pagina gerenciar produto com o produto recém cadastrado
+        return redirect()->route('product.manage')->with($notification);
+    }
+
+    // MÉTODO P/ GERENCIAR PRODUTO
+    public function ManageProduct()
+    {
+        // Pegar os dados mais atuais da table Product pela Model e atribuir à variável $products
+        $products = Product::latest()->get();
+
+        // Após pegar os dados mais atuais, retornar para a página view com os dados compactados
+        return view('backend.product.product_view', compact('products'));
+    }
+
+    // MÉTODO P/ EDITAR PRODUTO
+    public function EditProduct($id)
+    {
+        // Pegar os dados MARCA mais recentes 
+        $brands = Brand::latest()->get();
+
+        // Pegar os dados CATEGORIA mais recentes 
+        $categories = Category::latest()->get();
+
+        // Pegar os dados SUBCATEGORIA mais recentes 
+        $subcategories = SubCategory::latest()->get();
+
+        // Pegar os dados SUBSUBCATEGORIA mais recentes 
+        $subsubcategories = SubSubCategory::latest()->get();
+
+        // Buscar o Id e atribuir à variável $products pelo find or fail, que:
+        // recebe um id e retorna um único modelo. Se não existir nenhum modelo correspondente, ele gera um erro 404
+        $products = Product::findOrFail($id);
+
+        // Após pegar os dados das Models e compactar-os, redirecionar o Admin p/ a página editar produtos
+        return view('backend.product.product_edit', compact('brands', 'categories', 'subcategories', 'subsubcategories', 'products'));
     }
 }

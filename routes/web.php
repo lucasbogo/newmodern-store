@@ -155,7 +155,7 @@ Route::prefix('category')->group(function () {
 
 
 
-/*** TODAS AS ROTAS SUB-CATEGORIAS DASHBOARD ADMINISTRADOR ***/
+    /*** TODAS AS ROTAS SUB-CATEGORIAS DASHBOARD ADMINISTRADOR ***/
 
     // Rota p/ visualizar a tabela de SubCategorias no Painel Admin.
     Route::get('/sub/view', [SubCategoryController::class, 'SubCategoryView'])->name('all.subcategories');
@@ -209,9 +209,12 @@ Route::prefix('product')->group(function () {
     // Rota p/ visualizar o formulário adicionar produto no Painel Admin.
     Route::get('/add', [ProductController::class, 'AddProduct'])->name('product.add');
 
-     // Rota p/ adicionar produtos no Painel Admin.
-     Route::post('/store', [ProductController::class, 'StoreProduct'])->name('product.store');
+    // Rota p/ adicionar produtos no Painel Admin.
+    Route::post('/store', [ProductController::class, 'StoreProduct'])->name('product.store');
 
-   
+    // Rota p/ a pagina gerenciar produtos no Painel Admin.
+    Route::get('/manage', [ProductController::class, 'ManageProduct'])->name('product.manage');
+
+      // Rota p/ editar produtos no Painel Admin.
+      Route::get('/edit/{id}', [ProductController::class, 'EditProduct'])->name('product.edit');
 });
-

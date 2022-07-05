@@ -99,11 +99,14 @@
                       </a>
                       <ul class="treeview-menu">
                           <!--chamar o prefixo Adicionar Produto e deixa-la como ativa ("iluminada") ao clickar, caso contrário, continua nulo ("apagado") -->
-                          <!-- Rota para Adicionar Produto: href="..." -->
+                          <!-- Rota para Adicionar Produto: href="product.add" -->
                           <li class="{{ $route == 'product.add' ? 'active' : '' }}"><a
                                   href="{{ route('product.add') }}"><i class="ti-more"></i>Adicionar Produtos</a>
                           </li>
-                          <li><a href="invoice.html"><i class="ti-more"></i>Gerenciar Produtos</a></li>
+                          <!--chamar o prefixo Gerenciar Produto e deixa-la como ativa ("iluminada") ao clickar, caso contrário, continua nulo ("apagado") -->
+                          <!-- Rota para genrenciar Produto: href="'product.manage" -->
+                          <li class="{{ $route == 'product.manage' ? 'active' : '' }}"><a href="{{ route('product.manage') }}"><i
+                                      class="ti-more"></i>Gerenciar Produtos</a></li>
                       </ul>
                   </li>
 

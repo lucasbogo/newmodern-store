@@ -1,4 +1,4 @@
-<!-- Copiei e colei código de category_edit.blade.php -->
+<!-- Copiei e colei código de brand_edit.blade.php -->
 
 @extends('admin.admin_master')
 @section('admin')
