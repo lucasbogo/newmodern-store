@@ -1,9 +1,4 @@
-<!--
-Eu utilizei o template "forms_validation.html"
-como referencia para essa view adicionar produto.
-Está disponível no pacote template que eu comprei
-e compartilhei com a equipe.
--->
+<!--Copiei e Colei a página product_add -->
 
 @extends('admin.admin_master')
 @section('admin')
@@ -51,9 +46,8 @@ e compartilhei com a equipe.
                                                                 </option>
 
                                                                 <!--Mostrar os dados da variável $brands na condição foreach (nome marca em inglês)
-                                                                            CONDIÇÃO: se a id marca for for relacionado com produto, retorna a opção 'selecionado'
-                                                                            caso contrário, retorna nulo.
-                                                                        -->
+                                                                CONDIÇÃO: se a id marca for for relacionado com produto, retorna a opção 'selecionado'
+                                                                caso contrário, retorna nulo-->
                                                                 @foreach ($brands as $brand)
                                                                     <option value="{{ $brand->id }}"
                                                                         {{ $brand->id == $products->brand_id ? 'selected' : '' }}>
@@ -79,10 +73,9 @@ e compartilhei com a equipe.
                                                                 </option>
 
                                                                 <!--Mostrar os dados da variável $categories na condição foreach (nome categoria em inglês)
-                                                                    CONDIÇÃO p/ mostrar os dados, passa-se a coluna category e o id da mesma:
-                                                                    Quando os IDs combinarem, a fk_id category com o produto, então mostra-se
-                                                                    dinamicamente, a categoria cadastrada p/ aquele produto
-                                                                -->
+                                                                CONDIÇÃO p/ mostrar os dados, passa-se a coluna category e o id da mesma:
+                                                                Quando os IDs combinarem, a fk_id category com o produto, então mostra-se
+                                                                dinamicamente, a categoria cadastrada p/ aquele produto-->
                                                                 @foreach ($categories as $category)
                                                                     <option value="{{ $category->id }}"
                                                                         {{ $category->id == $products->category_id ? 'selected' : '' }}>
@@ -109,11 +102,10 @@ e compartilhei com a equipe.
                                                                     Categoria
                                                                 </option>
 
-                                                                 <!--Mostrar os dados da variável $subcategories na condição foreach (nome subcategoria em inglês)
-                                                                    CONDIÇÃO p/ mostrar os dados, passa-se a coluna subcategory e o id da mesma:
-                                                                    Quando os IDs combinarem, a fk_id subcategory com o produto, então mostra-se
-                                                                    dinamicamente, a categoria cadastrada p/ aquele produto
-                                                                -->
+                                                                <!--Mostrar os dados da variável $subcategories na condição foreach (nome subcategoria em inglês)
+                                                                CONDIÇÃO p/ mostrar os dados, passa-se a coluna subcategory e o id da mesma:
+                                                                Quando os IDs combinarem, a fk_id subcategory com o produto, então mostra-se
+                                                                dinamicamente, a categoria cadastrada p/ aquele produto-->
 
                                                                 @foreach ($subcategories as $subcategory)
                                                                     <option value="{{ $subcategory->id }}"
@@ -146,16 +138,16 @@ e compartilhei com a equipe.
                                                                     Selecionar Sub Sub Categoria
                                                                 </option>
 
-                                                                 <!--Mostrar os dados da variável $subsubcategories na condição foreach (nome subsubcategoria em inglês)
-                                                                    CONDIÇÃO p/ mostrar os dados, passa-se a coluna subsubcategory e o id da mesma:
-                                                                    Quando os IDs combinarem, a fk_id subsubcategory com o produto, então mostra-se
-                                                                    dinamicamente, a categoria cadastrada p/ aquele produto
-                                                                -->
+                                                                <!--Mostrar os dados da variável $subsubcategories na condição foreach (nome subsubcategoria em inglês)
+                                                                CONDIÇÃO p/ mostrar os dados, passa-se a coluna subsubcategory e o id da mesma:
+                                                                Quando os IDs combinarem, a fk_id subsubcategory com o produto, então mostra-se
+                                                                dinamicamente, a categoria cadastrada p/ aquele produto-->
 
                                                                 @foreach ($subsubcategories as $subsubcategory)
                                                                     <option value="{{ $subsubcategory->id }}"
                                                                         {{ $subsubcategory->id == $products->subsubcategory_id ? 'selected' : '' }}>
-                                                                        {{ $subsubcategory->subsubcategory_name_en }}</option>
+                                                                        {{ $subsubcategory->subsubcategory_name_en }}
+                                                                    </option>
                                                                 @endforeach
 
                                                             </select>
@@ -171,8 +163,11 @@ e compartilhei com a equipe.
                                                     <div class="form-group">
                                                         <h5>Product Name (EN) <span class="text-danger">*</span></h5>
                                                         <div class="controls">
+                                                            <!-- Mostrar o nome da produto dinamicamente pela variável $products declarada
+                                                            na ProductController | value-"{..}" -->
                                                             <input type="text" name="product_name_en"
-                                                                class="form-control" required="">
+                                                                class="form-control" required=""
+                                                                value="{{ $products->product_name_en }}">
 
                                                             @error('product_id')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -188,7 +183,8 @@ e compartilhei com a equipe.
                                                         <h5>Nome Produto (PTBR) <span class="text-danger">*</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_name_pt"
-                                                                class="form-control" required="">
+                                                                class="form-control" required=""
+                                                                value="{{ $products->product_name_pt }}">
 
                                                             @error('product_id')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -209,7 +205,7 @@ e compartilhei com a equipe.
                                                         <h5>Código <span class="text-danger">*</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_code" class="form-control"
-                                                                required="">
+                                                                required="" value="{{ $products->product_code }}">
 
                                                             @error('product_code')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -225,7 +221,7 @@ e compartilhei com a equipe.
                                                         <h5>Quantidade <span class="text-danger">*</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_qty" class="form-control"
-                                                                required="">
+                                                                required="" value="{{ $products->product_qty }}">
 
                                                             @error('product_qty')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -242,7 +238,8 @@ e compartilhei com a equipe.
                                                         <h5>Valor Venda <span class="text-danger">*</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_selling_price"
-                                                                class="form-control" required="">
+                                                                class="form-control" required=""
+                                                                value="{{ $products->product_selling_price }}">
 
                                                             @error('product_selling_price')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -264,7 +261,8 @@ e compartilhei com a equipe.
                                                         <h5>Valor Desconto <span class="text-info">Opcional</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_discount_price"
-                                                                class="form-control" required="">
+                                                                class="form-control" required=""
+                                                                value="{{ $products->product_discount_price }}">
 
 
 
@@ -333,7 +331,8 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <input type="text" name="product_color_en"
                                                                 class="form-control" value="Black, Blue, Yellow, white"
-                                                                data-role="tagsinput" required="">
+                                                                data-role="tagsinput" required=""
+                                                                value="{{ $products->product_color_en }}">
 
                                                             @error('product_color_en')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -350,7 +349,8 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <input type="text" name="product_color_pt"
                                                                 class="form-control" value="Amarelo, Azul, Branco, Preto"
-                                                                data-role="tagsinput" required="">
+                                                                data-role="tagsinput" required=""
+                                                                value="{{ $products->product_color_pt }}">
 
                                                             @error('product_color_pt')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -367,7 +367,8 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <input type="text" name="product_tags_en"
                                                                 class="form-control" value="English,Lorem, Ipsum, Amet"
-                                                                data-role="tagsinput" required="">
+                                                                data-role="tagsinput" required=""
+                                                                value="{{ $products->product_tags_en }}">
 
                                                             @error('product_tags_en')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -392,7 +393,8 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <input type="text" name="product_tags_pt"
                                                                 class="form-control" value="Português,Lorem, Ipsum, Amet"
-                                                                data-role="tagsinput" required="">
+                                                                data-role="tagsinput" required=""
+                                                                value="{{ $products->product_tags_pt }}">
 
                                                             @error('product_tags_pt')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -410,7 +412,8 @@ e compartilhei com a equipe.
                                                             <input type="text" name="product_size_en"
                                                                 class="form-control"
                                                                 value="Small, Medium, Large, Extra-Large, XXL"
-                                                                data-role="tagsinput" required="">
+                                                                data-role="tagsinput" required=""
+                                                                value="{{ $products->product_size_en }}">
 
 
 
@@ -426,7 +429,8 @@ e compartilhei com a equipe.
                                                             <input type="text" name="product_size_pt"
                                                                 class="form-control"
                                                                 value="Pequeno, Médio, Grande, GG, GGG"
-                                                                data-role="tagsinput" required="">
+                                                                data-role="tagsinput" required=""
+                                                                value="{{ $products->product_size_pt }}">
 
 
 
@@ -519,7 +523,7 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <fieldset>
                                                                 <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
-                                                                                                                                         e aparecerá no campo específico no frontend cliente -->
+                                                                                                                                                 e aparecerá no campo específico no frontend cliente -->
                                                                 <input type="checkbox" id="checkbox_2"
                                                                     name="product_hot_deals" value="1">
                                                                 <label for="checkbox_2">Hot Deals</label>
@@ -540,7 +544,7 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <fieldset>
                                                                 <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
-                                                                                                                                         e aparecerá no campo específico no frontend cliente -->
+                                                                e aparecerá no campo específico no frontend cliente -->
                                                                 <input type="checkbox" id="checkbox_4"
                                                                     name="product_special_offer" value="1">
                                                                 <label for="checkbox_4">Especial Offer</label>
@@ -590,7 +594,7 @@ e compartilhei com a equipe.
                         success: function(data) {
                             $('select[name="subsubcategory_id"]').html(
                                 ''
-                            ); // ao mudar a categoria no selectview, o campo sub-sub-categoria torna-se nulo
+                            ); // Ao mudar a categoria no selectview, o campo sub-sub-categoria torna-se nulo
                             var d = $('select[name="subcategory_id"]').empty();
                             $.each(data, function(key, value) {
                                 $('select[name="subcategory_id"]').append(
@@ -631,8 +635,7 @@ e compartilhei com a equipe.
 
 
     <!--Código JS p/ mostrar imagem Thumbnail pela função JS onChange
-                                                                Pega somente um index, ou seja, apenas uma imagem
-                                                            -->
+    Pega somente um index, ou seja, apenas uma imagem-->
     <script type="text/javascript">
         // Chamar a função declarada na div thumbnail e passar o input
         function thumbnailURL(input) {
