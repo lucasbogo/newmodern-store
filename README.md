@@ -193,7 +193,7 @@ php artisan migrate
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## Laravel Intervention Package
+## Laravel Image Intervention Package
 [documentação oficial](https://image.intervention.io/v2/introduction/installation)
 
 ### Sobre:
