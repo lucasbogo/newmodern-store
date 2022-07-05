@@ -51,9 +51,9 @@ e compartilhei com a equipe.
                                                                 </option>
 
                                                                 <!--Mostrar os dados da variável $brands na condição foreach (nome marca em inglês)
-                                                                                                CONDIÇÃO: se a id marca for for relacionado com produto, retorna a opção 'selecionado'
-                                                                                                caso contrário, retorna nulo.
-                                                                                            -->
+                                                                            CONDIÇÃO: se a id marca for for relacionado com produto, retorna a opção 'selecionado'
+                                                                            caso contrário, retorna nulo.
+                                                                        -->
                                                                 @foreach ($brands as $brand)
                                                                     <option value="{{ $brand->id }}"
                                                                         {{ $brand->id == $products->brand_id ? 'selected' : '' }}>
@@ -79,9 +79,10 @@ e compartilhei com a equipe.
                                                                 </option>
 
                                                                 <!--Mostrar os dados da variável $categories na condição foreach (nome categoria em inglês)
-                                                                                        CONDIÇÃO p/ mostrar os dados, passa-se a coluna category e o id da mesma:
-                                                                                        Quando os IDs combinarem, a fk_id category com a id subcategory, então
-                                                                                    -->
+                                                                    CONDIÇÃO p/ mostrar os dados, passa-se a coluna category e o id da mesma:
+                                                                    Quando os IDs combinarem, a fk_id category com o produto, então mostra-se
+                                                                    dinamicamente, a categoria cadastrada p/ aquele produto
+                                                                -->
                                                                 @foreach ($categories as $category)
                                                                     <option value="{{ $category->id }}"
                                                                         {{ $category->id == $products->category_id ? 'selected' : '' }}>
@@ -108,12 +109,17 @@ e compartilhei com a equipe.
                                                                     Categoria
                                                                 </option>
 
-                                                                <!--AQUI FOI USADO JAVASCRIPT PARA SELECIONAR
-                                                                                                NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
-                                                                                                AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
-                                                                                                APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
-                                                                                                DE ACORDO COM O RELACIONAMENTO BD
-                                                                                            -->
+                                                                 <!--Mostrar os dados da variável $subcategories na condição foreach (nome subcategoria em inglês)
+                                                                    CONDIÇÃO p/ mostrar os dados, passa-se a coluna subcategory e o id da mesma:
+                                                                    Quando os IDs combinarem, a fk_id subcategory com o produto, então mostra-se
+                                                                    dinamicamente, a categoria cadastrada p/ aquele produto
+                                                                -->
+
+                                                                @foreach ($subcategories as $subcategory)
+                                                                    <option value="{{ $subcategory->id }}"
+                                                                        {{ $subcategory->id == $products->subcategory_id ? 'selected' : '' }}>
+                                                                        {{ $subcategory->subcategory_name_en }}</option>
+                                                                @endforeach
 
                                                             </select>
                                                             @error('subcategory_id')
@@ -140,13 +146,17 @@ e compartilhei com a equipe.
                                                                     Selecionar Sub Sub Categoria
                                                                 </option>
 
-                                                                <!--AQUI FOI USADO JAVASCRIPT PARA SELECIONAR
-                                                                    NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
-                                                                    AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
-                                                                    APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
-                                                                    DE ACORDO COM O RELACIONAMENTO BD
+                                                                 <!--Mostrar os dados da variável $subsubcategories na condição foreach (nome subsubcategoria em inglês)
+                                                                    CONDIÇÃO p/ mostrar os dados, passa-se a coluna subsubcategory e o id da mesma:
+                                                                    Quando os IDs combinarem, a fk_id subsubcategory com o produto, então mostra-se
+                                                                    dinamicamente, a categoria cadastrada p/ aquele produto
                                                                 -->
 
+                                                                @foreach ($subsubcategories as $subsubcategory)
+                                                                    <option value="{{ $subsubcategory->id }}"
+                                                                        {{ $subsubcategory->id == $products->subsubcategory_id ? 'selected' : '' }}>
+                                                                        {{ $subsubcategory->subsubcategory_name_en }}</option>
+                                                                @endforeach
 
                                                             </select>
                                                             @error('subsubcategory_id')
@@ -509,7 +519,7 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <fieldset>
                                                                 <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
-                                                                                                                                 e aparecerá no campo específico no frontend cliente -->
+                                                                                                                                         e aparecerá no campo específico no frontend cliente -->
                                                                 <input type="checkbox" id="checkbox_2"
                                                                     name="product_hot_deals" value="1">
                                                                 <label for="checkbox_2">Hot Deals</label>
@@ -530,7 +540,7 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <fieldset>
                                                                 <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
-                                                                                                                                 e aparecerá no campo específico no frontend cliente -->
+                                                                                                                                         e aparecerá no campo específico no frontend cliente -->
                                                                 <input type="checkbox" id="checkbox_4"
                                                                     name="product_special_offer" value="1">
                                                                 <label for="checkbox_4">Especial Offer</label>
@@ -621,8 +631,8 @@ e compartilhei com a equipe.
 
 
     <!--Código JS p/ mostrar imagem Thumbnail pela função JS onChange
-                                                        Pega somente um index, ou seja, apenas uma imagem
-                                                    -->
+                                                                Pega somente um index, ou seja, apenas uma imagem
+                                                            -->
     <script type="text/javascript">
         // Chamar a função declarada na div thumbnail e passar o input
         function thumbnailURL(input) {
