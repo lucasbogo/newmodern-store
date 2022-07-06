@@ -73,26 +73,26 @@ class ProductController extends Controller
 
             'product_thumbnail' => $save_url,
             'product_status' => 1,
-            'created_at' => Carbon::now(),
+            'created_at' => Carbon::now(), // Carbon = extensão DateTime
 
         ]);
 
 
-        // Função p/ gerar e salvar multiplas imagens produto
+        // Função p/ gerar e salvar imagens produto
         $images = $request->file('images');
         // LOOP CONDICIONAL donominar como $image todo arquivo images declarado como variável $images
         foreach ($images as $image) {
             //gerar id única para a imagem
             $generate_image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalName();
-            Image::make($image)->resize(917, 1000)->save('upload/products/images/' . $generate_name);
-            $save_url_multi_image = 'upload/products/images/' . $generate_image_name;
+            Image::make($image)->resize(917, 1000)->save('upload/products/images/' . $generate_image_name);
+            $save_url_images = 'upload/products/images/' . $generate_image_name;
 
             Images::insert([
 
                 // Para não ter que declarar todos os campos do BD novamente, eu apenas atribui-os à variável product_id
                 'product_id' => $product_id,
-                'photo_name' => $save_url_multi_image,
-                'created_at' => Carbon::now(),
+                'photo_name' => $save_url_images,
+                'created_at' => Carbon::now(), // Carbon = extensão DateTime
 
             ]);
         }
@@ -195,5 +195,44 @@ class ProductController extends Controller
 
         // Retornar para pagina todas marcas
         return redirect()->route('product.manage')->with($notification);
+    }
+
+    // MÉTODO P/ ATUALIZAR AS IMAGENS PRODUTOS NO PAINEL ADMIN
+    public function UpdateProductImage(Request $request)
+    {
+        $product_images = $request->images;
+
+        // Loop condicional
+        foreach ($product_images as $id => $image) {
+
+            // Pegar imagem pelo id e attribuir à varável $delete_image
+            $delete_image = Images::findOrFail($id);
+
+            // Desvincular a imagem pela função unlink
+            unlink($delete_image->photo_name);
+
+            // Mesma lógica utilizada no método StoreProduct
+            $generate_image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalName();
+            Image::make($image)->resize(917, 1000)->save('upload/products/images/' . $generate_image_name);
+            $image_url = 'upload/products/images/' . $generate_image_name;
+
+            // Atualizar a path imagem mudando o nome da foto e o timestamp pelo Carbon que é um extensão para DateTime
+            Images::where('id', $id)->update([
+
+                'photo_name' => $image_url,
+                'updated_at' => Carbon::now()// Carbon = extensão DateTime
+                
+
+            ]);
+        }
+
+        // Mensagen toaster para mostrar barra verde com a mensagem de sucesso
+        $notification = array(
+            'message' => 'Imagem(ns) produto(s) atualizado(s) com Sucesso',
+            'alert-type' => 'success'
+        );
+
+        // Retornar para pagina todas marcas
+        return redirect()->back()->with($notification);
     }
 }

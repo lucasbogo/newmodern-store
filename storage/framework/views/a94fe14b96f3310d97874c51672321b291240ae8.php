@@ -348,16 +348,16 @@ unset($__errorArgs, $__bag); ?>
                                                 </div>
 
                                                 <!-- INPUT FILE IMAGENS MULTIPLAS -->
-                                                <!--JS (onChange) utilizado para mostrar multiplas imagens O campo multiple="" serve para poder inserir multiplas fotos-->
+                                                <!--JS (onChange) utilizado para mostrar imagens O campo multiple="" serve para poder inserir multiplas fotos-->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <h5>Imagens <span class="text-danger">*</span></h5>
                                                         <div class="controls">
 
-                                                            <input type="file" name="multi_images[]"
-                                                                class="form-control" required="" multiple="" id="multiple_images">
+                                                            <input type="file" name="images[]"
+                                                                class="form-control" required="" multiple="" id="images">
 
-                                                            <?php $__errorArgs = ['multi_images'];
+                                                            <?php $__errorArgs = ['images'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -367,7 +367,7 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                                                            <div class="row" id="preview_multiple_images"></div>
+                                                            <div class="row" id="preview_images"></div>
 
 
 
@@ -739,10 +739,10 @@ unset($__errorArgs, $__bag); ?>
         }
     </script>
 
-    <!-- Código JS p/ mostrar multiplas imagens pela função JS onChange -->
+    <!-- Código JS p/ mostrar imagens produto pela função JS onChange -->
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#multiple_images').on('change', function() { //on file input change
+            $('#images').on('change', function() { //on file input change
                 if (window.File && window.FileReader && window.FileList && window
                     .Blob) // verificar API Arquivo se o mesmo é suportado pelo navegador
                 {
@@ -758,7 +758,7 @@ unset($__errorArgs, $__bag); ?>
                                             'src',
                                             e.target.result).width(60)
                                         .height(60); // cria um elemento de imagem 
-                                    $('#preview_multiple_images').append(
+                                    $('#preview_images').append(
                                         img); //append image to output element
                                 };
                             })(file);

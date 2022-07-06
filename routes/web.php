@@ -220,4 +220,8 @@ Route::prefix('product')->group(function () {
 
     // Rota p/ validar os campos editados produtos no Painel Admin.
     Route::post('/update', [ProductController::class, 'UpdateProduct'])->name('product.update');
+
+    // Rota p/ validar as imagens produtos editadas no Painel Admin.
+    Route::post('/update/image', [ProductController::class, 'UpdateProductImage'])->name('product.update.image');
+    
 });

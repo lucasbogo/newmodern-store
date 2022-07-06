@@ -165,7 +165,7 @@
                                                         <h5>Product Name (EN) <span class="text-danger">*</span></h5>
                                                         <div class="controls">
                                                             <!-- Mostrar o nome da produto dinamicamente pela variável $products declarada
-                                                                                                                                                    na ProductController | value-"{..}" -->
+                                                                                                                                                                        na ProductController | value-"{..}" -->
                                                             <input type="text" name="product_name_en"
                                                                 class="form-control" required=""
                                                                 value="{{ $products->product_name_en }}">
@@ -536,7 +536,7 @@
                                             <!-- BOTÃO ADICIONAR PRODUTO -->
                                             <div class="text-xs-right">
                                                 <input type="submit" class="btn btn-rounded btn-success mb-5"
-                                                    value="Adicionar">
+                                                    value="Adicionar Produto">
                                             </div>
                                 </form>
 
@@ -553,7 +553,7 @@
             <!-- /.content -->
         </div>
 
-        <!-- ================================ EDITAR MULTIPLAS IMAGENS PRODUTO ========================== -->
+        <!-- ============================ EDITAR IMAGENS PRODUTO ========================== -->
 
         <section class="content">
             <div class="row">
@@ -561,14 +561,14 @@
                 <div class="col-md-12">
                     <div class="box bt-3 border-warning">
                         <div class="box-header">
-                            <h4 class="box-title">Imagens Produto <strong>Atualizar</strong></h4>
+                            <h4 class="box-title">Atualizar <strong>Imagens</strong></h4>
                         </div>
 
                     </div><!-- /row -->
 
                     <!-- formulário com método POST para atualizar as imagens produto -->
-                    <form method="post" action="" enctype="multipart/form-data">
-
+                    <form method="post" action="{{ route('product.update.image') }}" enctype="multipart/form-data">
+                    @csrf
                         <!-- classe div pequena -->
                         <div class="row row-sm">
 
@@ -579,17 +579,18 @@
                                     <!-- card tirado do site oficial do Bootstrap em componentes/cards. -->
                                     <div class="card">
                                         <img src="{{ asset($image->photo_name) }}" class="card-img-top"
-                                            style="height: 130px; width: 280px;">
+                                            style="height: 300px; width: 280px;">
                                         <div class="card-body">
                                             <h5 class="card-title">
-                                                <a href="{{ route('product.images.delete', $image->id) }}"
-                                                    class="btn btn-sm btn-danger" id="delete" title="Excluir Imagens"><i
-                                                        class="fa fa-trash"></i> </a>
+                                                <a href="#" class="btn btn-sm btn-danger" id="delete"
+                                                    title="Excluir Imagens"><i class="fa fa-trash"></i> </a>
                                             </h5>
                                             <p class="card-text">
                                             <div class="form-group">
+                                                <!-- BootStrap class -->
                                                 <label class="form-control-label">Mudar Imagem <span
                                                         class="tx-danger">*</span></label>
+                                                <!-- acessar as imagens com a id da mesma -->
                                                 <input class="form-control" type="file"
                                                     name="images[{{ $image->id }}]">
                                             </div>
@@ -600,13 +601,21 @@
 
                                 </div><!-- /.div col-md-3-->
                             @endforeach
-
-
                         </div><!-- /.div roq-sm -->
+
+                        <!-- Botão update imagem, classe do botão é referente ao tema do projeto, (sunny admin) -->
+                        <div class="text-xs-right">
+                            <input type="submit" class="btn btn-rounded btn-success mb-5" value="Atualizar Imagens">
+                        </div>
+
+                        <br>
+                        <br>
+
                     </form><!-- /.form -->
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
 
+    <!-- ============================ EDITAR THUMBNAIL PRODUTO ========================== -->
 
     <!-- Código JS para mostrar nome subcategoria dinamicamente -->
     <script type="text/javascript">
@@ -662,7 +671,7 @@
 
 
     <!--Código JS p/ mostrar imagem Thumbnail pela função JS onChange
-                                                                                            Pega somente um index, ou seja, apenas uma imagem-->
+                                                                                                                Pega somente um index, ou seja, apenas uma imagem-->
     <script type="text/javascript">
         // Chamar a função declarada na div thumbnail e passar o input
         function thumbnailURL(input) {

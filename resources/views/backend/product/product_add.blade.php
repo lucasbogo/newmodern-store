@@ -278,7 +278,7 @@ e compartilhei com a equipe.
                                                 </div>
 
                                                 <!-- INPUT FILE IMAGENS MULTIPLAS -->
-                                                <!--JS (onChange) utilizado para mostrar multiplas imagens O campo multiple="" serve para poder inserir multiplas fotos-->
+                                                <!--JS (onChange) utilizado para mostrar imagens O campo multiple="" serve para poder inserir multiplas fotos-->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <h5>Imagens <span class="text-danger">*</span></h5>
@@ -634,7 +634,7 @@ e compartilhei com a equipe.
         }
     </script>
 
-    <!-- Código JS p/ mostrar multiplas imagens pela função JS onChange -->
+    <!-- Código JS p/ mostrar imagens produto pela função JS onChange -->
     <script type="text/javascript">
         $(document).ready(function() {
             $('#images').on('change', function() { //on file input change
