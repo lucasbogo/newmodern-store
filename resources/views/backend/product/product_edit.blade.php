@@ -24,9 +24,12 @@
                         <div class="row">
                             <div class="col">
 
-                                <!-- Validar os campos com POST e garantir que as imagens serão aceitas via upload, enctype -->
-                                <form method="post" action=" {{ route('product.store') }}" enctype="multipart/form-data">
+                                <!-- Validar os campos com POST e o input type hidden-->
+                                <form method="post" action=" {{ route('product.update') }}">
                                     @csrf
+
+                                    <!-- Pega-se o id do produto específico para poder validar os dados editados -->
+                                    <input type="hidden" name="id" value="{{ $products->id }}">
 
                                     <div class="row">
                                         <div class="col-12">
@@ -45,9 +48,9 @@
                                                                     Selecionar Marca
                                                                 </option>
 
-                                                                <!--Mostrar os dados da variável $brands na condição foreach (nome marca em inglês)
-                                                                CONDIÇÃO: se a id marca for for relacionado com produto, retorna a opção 'selecionado'
-                                                                caso contrário, retorna nulo-->
+                                                                <!--Mostrar os dados da variável $brands na condição foreach (nome marca em inglês) -->
+                                                                <!--CONDIÇÃO: se a id marca for for relacionado com produto, retorna a opção 'selecionado' -->
+                                                                <!--Caso contrário, retorna nulo -->
                                                                 @foreach ($brands as $brand)
                                                                     <option value="{{ $brand->id }}"
                                                                         {{ $brand->id == $products->brand_id ? 'selected' : '' }}>
@@ -72,10 +75,10 @@
                                                                     Selecionar Categoria
                                                                 </option>
 
-                                                                <!--Mostrar os dados da variável $categories na condição foreach (nome categoria em inglês)
-                                                                CONDIÇÃO p/ mostrar os dados, passa-se a coluna category e o id da mesma:
-                                                                Quando os IDs combinarem, a fk_id category com o produto, então mostra-se
-                                                                dinamicamente, a categoria cadastrada p/ aquele produto-->
+                                                                <!--Mostrar os dados da variável $categories na condição foreach (nome categoria em inglês) -->
+                                                                <!--CONDIÇÃO p/ mostrar os dados, passa-se a coluna category e o id da mesma: -->
+                                                                <!--Quando os IDs combinarem, a fk_id category com o produto, então mostra-se -->
+                                                                <!--Dinamicamente, a categoria cadastrada p/ aquele produto -->
                                                                 @foreach ($categories as $category)
                                                                     <option value="{{ $category->id }}"
                                                                         {{ $category->id == $products->category_id ? 'selected' : '' }}>
@@ -102,11 +105,10 @@
                                                                     Categoria
                                                                 </option>
 
-                                                                <!--Mostrar os dados da variável $subcategories na condição foreach (nome subcategoria em inglês)
-                                                                CONDIÇÃO p/ mostrar os dados, passa-se a coluna subcategory e o id da mesma:
-                                                                Quando os IDs combinarem, a fk_id subcategory com o produto, então mostra-se
-                                                                dinamicamente, a categoria cadastrada p/ aquele produto-->
-
+                                                                <!--Mostrar os dados da variável $subcategories na condição foreach (nome subcategoria em inglês) -->
+                                                                <!--CONDIÇÃO p/ mostrar os dados, passa-se a coluna subcategory e o id da mesma: -->
+                                                                <!--Quando os IDs combinarem, a fk_id subcategory com o produto, então mostra-se -->
+                                                                <!--dinamicamente, a categoria cadastrada p/ aquele produto -->
                                                                 @foreach ($subcategories as $subcategory)
                                                                     <option value="{{ $subcategory->id }}"
                                                                         {{ $subcategory->id == $products->subcategory_id ? 'selected' : '' }}>
@@ -138,11 +140,10 @@
                                                                     Selecionar Sub Sub Categoria
                                                                 </option>
 
-                                                                <!--Mostrar os dados da variável $subsubcategories na condição foreach (nome subsubcategoria em inglês)
-                                                                CONDIÇÃO p/ mostrar os dados, passa-se a coluna subsubcategory e o id da mesma:
-                                                                Quando os IDs combinarem, a fk_id subsubcategory com o produto, então mostra-se
-                                                                dinamicamente, a categoria cadastrada p/ aquele produto-->
-
+                                                                <!--Mostrar os dados da variável $subsubcategories na condição foreach (nome subsubcategoria em inglês)-->
+                                                                <!--CONDIÇÃO p/ mostrar os dados, passa-se a coluna subsubcategory e o id da mesma: -->
+                                                                <!--Quando os IDs combinarem, a fk_id subsubcategory com o produto, então mostra-se -->
+                                                                <!--Dinamicamente, a categoria cadastrada p/ aquele produto -->
                                                                 @foreach ($subsubcategories as $subsubcategory)
                                                                     <option value="{{ $subsubcategory->id }}"
                                                                         {{ $subsubcategory->id == $products->subsubcategory_id ? 'selected' : '' }}>
@@ -164,7 +165,7 @@
                                                         <h5>Product Name (EN) <span class="text-danger">*</span></h5>
                                                         <div class="controls">
                                                             <!-- Mostrar o nome da produto dinamicamente pela variável $products declarada
-                                                            na ProductController | value-"{..}" -->
+                                                                                                                                                    na ProductController | value-"{..}" -->
                                                             <input type="text" name="product_name_en"
                                                                 class="form-control" required=""
                                                                 value="{{ $products->product_name_en }}">
@@ -263,59 +264,9 @@
                                                             <input type="text" name="product_discount_price"
                                                                 class="form-control" required=""
                                                                 value="{{ $products->product_discount_price }}">
-
-
-
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <!-- INPUT FILE THUMBNAIL (MINIATURA)-->
-                                                <!-- JS (onChange) utilizado para mostrar a img miniatura-->
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-
-                                                        <h5>Thumbnail (miniatura) <span class="text-danger">*</span>
-                                                        </h5>
-                                                        <div class="controls">
-                                                            <input type="file" name="product_thumbnail"
-                                                                class="form-control" required=""
-                                                                onChange="thumbnailURL(this)">
-
-                                                            @error('product_thumbnail')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-
-                                                            <!-- Mostrar Img Thumbanail pelo JS -->
-                                                            <img src="" id="thumbnail">
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <!-- INPUT FILE IMAGENS MULTIPLAS -->
-                                                <!--JS (onChange) utilizado para mostrar multiplas imagens O campo multiple="" serve para poder inserir multiplas fotos-->
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <h5>Imagens <span class="text-danger">*</span></h5>
-                                                        <div class="controls">
-
-                                                            <input type="file" name="multi_images[]"
-                                                                class="form-control" required="" multiple=""
-                                                                id="multiple_images">
-
-                                                            @error('multi_images')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                            <div class="row" id="preview_multiple_images"></div>
-
-
-
-
-                                                        </div>
-                                                    </div>
-                                                </div> <!-- /col-md-4 -->
-
                                             </div><!-- /row -->
 
                                             <br>
@@ -330,8 +281,7 @@
                                                         <h5>Color <span class="text-danger">*</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_color_en"
-                                                                class="form-control" value="Black, Blue, Yellow, white"
-                                                                data-role="tagsinput" required=""
+                                                                class="form-control" data-role="tagsinput" required=""
                                                                 value="{{ $products->product_color_en }}">
 
                                                             @error('product_color_en')
@@ -348,8 +298,7 @@
                                                         <h5>Cor <span class="text-danger">*</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_color_pt"
-                                                                class="form-control" value="Amarelo, Azul, Branco, Preto"
-                                                                data-role="tagsinput" required=""
+                                                                class="form-control" data-role="tagsinput" required=""
                                                                 value="{{ $products->product_color_pt }}">
 
                                                             @error('product_color_pt')
@@ -366,8 +315,7 @@
                                                         <h5>Tags (EN) <span class="text-danger">*</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_tags_en"
-                                                                class="form-control" value="English,Lorem, Ipsum, Amet"
-                                                                data-role="tagsinput" required=""
+                                                                class="form-control" data-role="tagsinput" required=""
                                                                 value="{{ $products->product_tags_en }}">
 
                                                             @error('product_tags_en')
@@ -392,8 +340,7 @@
                                                         <h5>Tags (PTBR) <span class="text-danger">*</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_tags_pt"
-                                                                class="form-control" value="Português,Lorem, Ipsum, Amet"
-                                                                data-role="tagsinput" required=""
+                                                                class="form-control" data-role="tagsinput" required=""
                                                                 value="{{ $products->product_tags_pt }}">
 
                                                             @error('product_tags_pt')
@@ -410,9 +357,7 @@
                                                         <h5> Size <span class="text-info">Optional</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_size_en"
-                                                                class="form-control"
-                                                                value="Small, Medium, Large, Extra-Large, XXL"
-                                                                data-role="tagsinput" required=""
+                                                                class="form-control" data-role="tagsinput" required=""
                                                                 value="{{ $products->product_size_en }}">
 
 
@@ -427,9 +372,7 @@
                                                         <h5> Tamanho <span class="text-info">Opcional</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_size_pt"
-                                                                class="form-control"
-                                                                value="Pequeno, Médio, Grande, GG, GGG"
-                                                                data-role="tagsinput" required=""
+                                                                class="form-control" data-role="tagsinput" required=""
                                                                 value="{{ $products->product_size_pt }}">
 
 
@@ -451,8 +394,12 @@
                                                     <div class="form-group">
                                                         <h5>Short Description <span class="text-danger">*</span></h5>
                                                         <div class="controls">
+                                                            <!-- Mostrar a descrição curta original {! !} -->
                                                             <textarea name="product_short_description_en" id="product_short_description_en" class="form-control" required
-                                                                placeholder="Insert Product's Short Description"></textarea>
+                                                                placeholder="Insert Product's Short Description">
+                                                              
+                                                                {!! $products->product_short_description_en !!}
+                                                            </textarea>
 
 
 
@@ -465,8 +412,12 @@
                                                     <div class="form-group">
                                                         <h5>Descrição Curta <span class="text-danger">*</span></h5>
                                                         <div class="controls">
+                                                            <!-- Mostrar a descrição curta original {! !} -->
                                                             <textarea name="product_short_description_pt" id="product_short_description_pt" class="form-control" required
-                                                                placeholder="Insira a Descrição Curta do Produto"></textarea>
+                                                                placeholder="Insira a Descrição Curta do Produto">
+                                                            
+                                                            {!! $products->product_short_description_pt !!}
+                                                            </textarea>
 
 
 
@@ -481,30 +432,36 @@
                                             <!-- OITAVO ROW -->
                                             <div class="row">
 
-                                                <!-- TEXT-AREA DESCRIÇÃO LONGA EN -->
-                                                <!-- CK EDITOR FOI UTILIZADO PARA DESCRIÇÃO LONGA TIRADO DE **forms_editor.html** DO PACOTE TEMPLATE COMPRADO -->
-                                                <!-- É possível criar mais editores CK adicionando novas funções no editor.js localizado em /public/backend/pages/editor.js -->
+                                                <!--TEXT-AREA DESCRIÇÃO LONGA EN -->
+                                                <!--CK EDITOR FOI UTILIZADO PARA DESCRIÇÃO LONGA TIRADO DE **forms_editor.html** DO PACOTE TEMPLATE COMPRADO -->
+                                                <!--É possível criar mais editores CK adicionando novas funções no editor.js localizado em /public/backend/pages/editor.js -->
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <h5>Long Description <span class="text-danger">*</span></h5>
                                                         <div class="controls">
+                                                            <!-- Mostrar a descrição longa original -->
                                                             <textarea id="editorEN" name="product_long_description_en" rows="10" cols="80">
-                                                                Insert Product's Long Description
+                                                                
+                                                                {!! $products->product_long_description_en !!}
+
                                                             </textarea>
                                                         </div>
                                                     </div>
                                                 </div> <!-- /col-md-6 -->
 
 
-                                                <!-- TEXT-AREA DESCRIÇÃO LONGA PTBR -->
-                                                <!-- CK EDITOR FOI UTILIZADO PARA DESCRIÇÃO LONGA TIRADO DE **forms_editor.html** DO PACOTE TEMPLATE COMPRADO -->
-                                                <!-- É possível criar mais editores CK adicionando novas funções no editor.js localizado em /public/backend/pages/editor.js -->
+                                                <!--TEXT-AREA DESCRIÇÃO LONGA PTBR -->
+                                                <!--CK EDITOR FOI UTILIZADO PARA DESCRIÇÃO LONGA TIRADO DE **forms_editor.html** DO PACOTE TEMPLATE COMPRADO -->
+                                                <!--É possível criar mais editores CK adicionando novas funções no editor.js localizado em /public/backend/pages/editor.js -->
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <h5>Descrição Longa <span class="text-danger">*</span></h5>
                                                         <div class="controls">
+                                                            <!-- Mostrar a descrição longa original -->
                                                             <textarea id="editorPTBR" name="product_long_description_pt" rows="10" cols="80">
-                                                                Insira a descrição Longa do Produto
+                                                                
+                                                                {!! $products->product_long_description_pt !!}
+
                                                             </textarea>
                                                         </div>
                                                     </div>
@@ -521,16 +478,25 @@
                                                     <div class="form-group">
                                                         <h5> PROMOÇÕES (OPCIONAL) </h5>
                                                         <div class="controls">
+                                                            <!--Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta -->
+                                                            <!--E aparecerá no campo específico no frontend cliente -->
+
+
                                                             <fieldset>
-                                                                <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
-                                                                                                                                                 e aparecerá no campo específico no frontend cliente -->
+
+                                                                <!--CONDIÇÂO: quando hot deals for igual (==) a 1, -->
+                                                                <!--Aparecerá a opção no edit, caso contrário, retorna nulo -->
                                                                 <input type="checkbox" id="checkbox_2"
-                                                                    name="product_hot_deals" value="1">
+                                                                    name="product_hot_deals" value="1"
+                                                                    {{ $products->product_hot_deals == 1 ? 'checked' : '' }}>
                                                                 <label for="checkbox_2">Hot Deals</label>
                                                             </fieldset>
                                                             <fieldset>
+                                                                <!--CONDIÇÂO: quando hot deals for igual (==) a 1,-->
+                                                                <!--Aparecerá a opção no edit, caso contrário, retorna nulo -->
                                                                 <input type="checkbox" id="checkbox_3"
-                                                                    name="product_featured" value="1">
+                                                                    name="product_featured" value="1"
+                                                                    {{ $products->product_featured == 1 ? 'checked' : '' }}>
                                                                 <label for="checkbox_3">Featured/Destaque</label>
                                                             </fieldset>
                                                         </div>
@@ -543,15 +509,23 @@
                                                         <h5>PROMOÇÕES (OPCIONAL) </h5>
                                                         <div class="controls">
                                                             <fieldset>
-                                                                <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
-                                                                e aparecerá no campo específico no frontend cliente -->
+                                                                <!--Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta -->
+                                                                <!--E aparecerá no campo específico no frontend cliente -->
+
+                                                                <!--CONDIÇÂO: quando special offer for igual (==) a 1, -->
+                                                                <!--Aparecerá a opção no edit, caso contrário, retorna nulo -->
                                                                 <input type="checkbox" id="checkbox_4"
-                                                                    name="product_special_offer" value="1">
+                                                                    name="product_special_offer" value="1"
+                                                                    {{ $products->product_special_offer == 1 ? 'checked' : '' }}>
                                                                 <label for="checkbox_4">Especial Offer</label>
                                                             </fieldset>
                                                             <fieldset>
+
+                                                                <!--CONDIÇÂO: quando special deals for igual (==) a 1, -->
+                                                                <!--Aparecerá a opção no edit, caso contrário, retorna nulo-->
                                                                 <input type="checkbox" id="checkbox_5"
-                                                                    name="product_special_deals" value="1">
+                                                                    name="product_special_deals" value="1"
+                                                                    {{ $products->product_special_deals == 1 ? 'checked' : '' }}>
                                                                 <label for="checkbox_5">Especial Deals</label>
                                                             </fieldset>
                                                         </div>
@@ -578,8 +552,61 @@
             </section>
             <!-- /.content -->
         </div>
-    </div>
-    <!-- /.content-wrapper -->
+
+        <!-- ================================ EDITAR MULTIPLAS IMAGENS PRODUTO ========================== -->
+
+        <section class="content">
+            <div class="row">
+                <!-- Card exemplo tirado do template card-color.html -->
+                <div class="col-md-12">
+                    <div class="box bt-3 border-warning">
+                        <div class="box-header">
+                            <h4 class="box-title">Imagens Produto <strong>Atualizar</strong></h4>
+                        </div>
+
+                    </div><!-- /row -->
+
+                    <!-- formulário com método POST para atualizar as imagens produto -->
+                    <form method="post" action="" enctype="multipart/form-data">
+
+                        <!-- classe div pequena -->
+                        <div class="row row-sm">
+
+                            <!-- loop condicional -->
+                            @foreach ($images as $image)
+                                <div class="col-md-3">
+
+                                    <!-- card tirado do site oficial do Bootstrap em componentes/cards. -->
+                                    <div class="card">
+                                        <img src="{{ asset($image->photo_name) }}" class="card-img-top"
+                                            style="height: 130px; width: 280px;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <a href="{{ route('product.images.delete', $image->id) }}"
+                                                    class="btn btn-sm btn-danger" id="delete" title="Excluir Imagens"><i
+                                                        class="fa fa-trash"></i> </a>
+                                            </h5>
+                                            <p class="card-text">
+                                            <div class="form-group">
+                                                <label class="form-control-label">Mudar Imagem <span
+                                                        class="tx-danger">*</span></label>
+                                                <input class="form-control" type="file"
+                                                    name="images[{{ $image->id }}]">
+                                            </div>
+                                            </p>
+
+                                        </div><!-- /.div class card-body-->
+                                    </div><!-- /.div col-card-->
+
+                                </div><!-- /.div col-md-3-->
+                            @endforeach
+
+
+                        </div><!-- /.div roq-sm -->
+                    </form><!-- /.form -->
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+
 
     <!-- Código JS para mostrar nome subcategoria dinamicamente -->
     <script type="text/javascript">
@@ -635,7 +662,7 @@
 
 
     <!--Código JS p/ mostrar imagem Thumbnail pela função JS onChange
-    Pega somente um index, ou seja, apenas uma imagem-->
+                                                                                            Pega somente um index, ou seja, apenas uma imagem-->
     <script type="text/javascript">
         // Chamar a função declarada na div thumbnail e passar o input
         function thumbnailURL(input) {
@@ -656,10 +683,10 @@
         }
     </script>
 
-    <!-- Código JS p/ mostrar multiplas imagens pela função JS onChange -->
+    <!-- Código JS p/ mostrar as imagens produto pela função JS onChange -->
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#multiple_images').on('change', function() { //on file input change
+            $('#images').on('change', function() { //on file input change
                 if (window.File && window.FileReader && window.FileList && window
                     .Blob) // verificar API Arquivo se o mesmo é suportado pelo navegador
                 {
@@ -675,7 +702,7 @@
                                             'src',
                                             e.target.result).width(60)
                                         .height(60); // cria um elemento de imagem 
-                                    $('#preview_multiple_images').append(
+                                    $('#preview_images').append(
                                         img); //append image to output element
                                 };
                             })(file);

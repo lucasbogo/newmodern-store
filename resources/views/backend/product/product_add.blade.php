@@ -284,13 +284,13 @@ e compartilhei com a equipe.
                                                         <h5>Imagens <span class="text-danger">*</span></h5>
                                                         <div class="controls">
 
-                                                            <input type="file" name="multi_images[]"
-                                                                class="form-control" required="" multiple="" id="multiple_images">
+                                                            <input type="file" name="images[]"
+                                                                class="form-control" required="" multiple="" id="images">
 
-                                                            @error('multi_images')
+                                                            @error('images')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
-                                                            <div class="row" id="preview_multiple_images"></div>
+                                                            <div class="row" id="preview_images"></div>
 
 
 
@@ -637,7 +637,7 @@ e compartilhei com a equipe.
     <!-- Código JS p/ mostrar multiplas imagens pela função JS onChange -->
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#multiple_images').on('change', function() { //on file input change
+            $('#images').on('change', function() { //on file input change
                 if (window.File && window.FileReader && window.FileList && window
                     .Blob) // verificar API Arquivo se o mesmo é suportado pelo navegador
                 {
@@ -653,7 +653,7 @@ e compartilhei com a equipe.
                                             'src',
                                             e.target.result).width(60)
                                         .height(60); // cria um elemento de imagem 
-                                    $('#preview_multiple_images').append(
+                                    $('#preview_images').append(
                                         img); //append image to output element
                                 };
                             })(file);

@@ -215,6 +215,9 @@ Route::prefix('product')->group(function () {
     // Rota p/ a pagina gerenciar produtos no Painel Admin.
     Route::get('/manage', [ProductController::class, 'ManageProduct'])->name('product.manage');
 
-      // Rota p/ editar produtos no Painel Admin.
-      Route::get('/edit/{id}', [ProductController::class, 'EditProduct'])->name('product.edit');
+    // Rota p/ editar produtos no Painel Admin.
+    Route::get('/edit/{id}', [ProductController::class, 'EditProduct'])->name('product.edit');
+
+    // Rota p/ validar os campos editados produtos no Painel Admin.
+    Route::post('/update', [ProductController::class, 'UpdateProduct'])->name('product.update');
 });

@@ -1,6 +1,6 @@
 <?php
 
-// Importar todas as models categorias e marca
+// Importar todas as models
 
 namespace App\Http\Controllers\Backend;
 
@@ -10,7 +10,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\SubSubCategory;
 use App\Models\Brand;
-use App\Models\MultiImages;
+use App\Models\Images;
 use App\Models\Product;
 use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
@@ -79,15 +79,15 @@ class ProductController extends Controller
 
 
         // Função p/ gerar e salvar multiplas imagens produto
-        $images = $request->file('multi_images');
-        // LOOP CONDICIONAL donominar como $image todo arquivo multi_images declarado como variável $images
+        $images = $request->file('images');
+        // LOOP CONDICIONAL donominar como $image todo arquivo images declarado como variável $images
         foreach ($images as $image) {
             //gerar id única para a imagem
-            $generate_multi_image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalName();
-            Image::make($image)->resize(917, 1000)->save('upload/products/multiple_images/' . $generate_name);
-            $save_url_multi_image = 'upload/products/multiple_images/' . $generate_multi_image_name;
+            $generate_image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalName();
+            Image::make($image)->resize(917, 1000)->save('upload/products/images/' . $generate_name);
+            $save_url_multi_image = 'upload/products/images/' . $generate_image_name;
 
-            MultiImages::insert([
+            Images::insert([
 
                 // Para não ter que declarar todos os campos do BD novamente, eu apenas atribui-os à variável product_id
                 'product_id' => $product_id,
@@ -120,16 +120,20 @@ class ProductController extends Controller
     // MÉTODO P/ EDITAR PRODUTO
     public function EditProduct($id)
     {
-        // Pegar os dados MARCA mais recentes 
+        // Pegar os dados da images produto
+        // CONDIÇÃO WHERE: quando o id produto combinar com a id requisitada (edit), então salvar dado na variável $multi_images pela função get()
+        $images = Images::where('product_id', $id)->get();
+
+        // Pegar os dados MARCA mais recentes e atribui-los à variável $brands pela função get()
         $brands = Brand::latest()->get();
 
-        // Pegar os dados CATEGORIA mais recentes 
+        // Pegar os dados CATEGORIA mais recentes e atribui-los à variável $categories pela função get()
         $categories = Category::latest()->get();
 
-        // Pegar os dados SUBCATEGORIA mais recentes 
+        // Pegar os dados SUBCATEGORIA mais recentes e atribui-los à variável $subcategories pela função get()
         $subcategories = SubCategory::latest()->get();
 
-        // Pegar os dados SUBSUBCATEGORIA mais recentes 
+        // Pegar os dados SUBSUBCATEGORIA mais recentes ...
         $subsubcategories = SubSubCategory::latest()->get();
 
         // Buscar o Id e atribuir à variável $products pelo find or fail, que:
@@ -137,6 +141,59 @@ class ProductController extends Controller
         $products = Product::findOrFail($id);
 
         // Após pegar os dados das Models e compactar-os, redirecionar o Admin p/ a página editar produtos
-        return view('backend.product.product_edit', compact('brands', 'categories', 'subcategories', 'subsubcategories', 'products'));
+        return view('backend.product.product_edit', compact('brands', 'categories', 'subcategories', 'subsubcategories', 'products', 'images'));
+    }
+
+    // MÉTODO P/ GUARDAR OS DADOS EDITADOS DO PRODUTO NO PAINEL ADMIN | POST = (Request $request)
+    public function UpdateProduct(Request $request)
+    {
+        // Pegar id e atribuir à variável $product_id e enviar a request->id no hidden input field
+        $product_id = $request->id;
+
+        // Atualizar dados no BD com a função update
+        Product::findOrFail($product_id)->update([
+
+
+            'brand_id' => $request->brand_id,
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'subsubcategory_id' => $request->subsubcategory_id,
+            'product_name_en' => $request->product_name_en,
+            'product_name_pt' => $request->product_name_pt,
+            'product_slug_en' => strtolower(str_replace(' ', '-', $request->product_name_en)),
+            'product_slug_pt' => strtolower(str_replace(' ', '-', $request->product_name_pt)),
+            'product_code' => $request->product_code,
+            'product_qty' => $request->product_qty,
+            'product_tags_en' => $request->product_tags_en,
+            'product_tags_pt' => $request->product_tags_pt,
+            'product_size_en' => $request->product_size_en,
+            'product_size_pt' => $request->product_size_pt,
+            'product_color_en' => $request->product_color_en,
+            'product_color_pt' => $request->product_color_pt,
+            'product_selling_price' => $request->product_selling_price,
+            'product_discount_price' => $request->product_discount_price,
+            'product_short_description_en' => $request->product_short_description_en,
+            'product_short_description_pt' => $request->product_short_description_pt,
+            'product_long_description_en' => $request->product_long_description_en,
+            'product_long_description_pt' => $request->product_long_description_pt,
+
+            'product_hot_deals' => $request->product_hot_deals,
+            'product_featured' => $request->product_featured,
+            'product_special_deals' => $request->product_special_deals,
+            'product_special_offer' => $request->product_special_offer,
+
+            'product_status' => 1,
+            'created_at' => Carbon::now(),
+
+        ]);
+
+        // Mensagen toaster para mostrar barra verde com a mensagem de sucesso
+        $notification = array(
+            'message' => 'Dados do produto atualizado com Sucesso',
+            'alert-type' => 'success'
+        );
+
+        // Retornar para pagina todas marcas
+        return redirect()->route('product.manage')->with($notification);
     }
 }

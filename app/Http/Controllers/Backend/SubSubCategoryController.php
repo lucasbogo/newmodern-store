@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 class SubSubCategoryController extends Controller
 {
+    //MÉTODO P/ MOSTRAR A PAGINA VIEW SUB-SUB-CATEGORIA
     public function SubSubCategoryView()
     {
         // Pegar os dados categoria ordenado em ordem crescente pelo nome em inglês
@@ -42,7 +43,7 @@ class SubSubCategoryController extends Controller
 
 
 
-    // Método p/ guardar dados categoria no BD - a rota deve ser POST no web.php
+    // MÉTODO P/ GUARDAR OS DADOS INSERIDOS DA SUB-SUB-CATEGORIA | POST = (Request $request)
     public function SubSubCategoryStore(Request $request)
     {
         $request->validate(
@@ -89,7 +90,7 @@ class SubSubCategoryController extends Controller
 
 
 
-    // Método para editar categoria
+    // MÉTODO P/ EDITAR SUB-SUB-CATEGORIA
     public function SubSubCategoryEdit($id)
     {
         // Pegar os dados categoria ordenado em ordem crescente pelo nome em inglês
@@ -109,7 +110,7 @@ class SubSubCategoryController extends Controller
 
 
 
-    // Método para guardar os dados editados da subcategoria, POST = (Request $request)
+    // MÉTODO P/ GUARDAR OS DADOS EDITADOS DA SUB-SUB-CATEGORIA | POST = (Request $request)
     public function SubSubCategoryUpdate(Request $request)
     {
         // Pegar id e atribuir à variável $subbubcategory e enviar a request->id no hidden input field
@@ -142,7 +143,7 @@ class SubSubCategoryController extends Controller
 
 
 
-    // Método para excluir categoria pelo id
+    // MÉTODO PARA EXCLUIR SUB-SUB-CATEGORIA PELO ID
     public function SubSubCategoryDelete($id)
     {
 
