@@ -243,7 +243,7 @@ Route::prefix('product')->group(function () {
 
 /*** TODAS AS ROTAS MARCAS DASHBOARD ADMINISTRADOR ***/
 
-/*** prefix siginica que aparecerá o objeto na url antes da rota chamada: (brand/view ; brand/store; ...) */
+/*** prefix siginica que aparecerá o objeto na url antes da rota chamada: (brand/view ; brand/store; slider/view ...) */
 Route::prefix('slider')->group(function () {
 
     // Rota p/ visualizar a tabela de Marcas no Painel Admin.
@@ -260,4 +260,10 @@ Route::prefix('slider')->group(function () {
 
     // Rota p/ deletar Marca
     Route::get('/delete{id}', [SliderController::class, 'SliderDelete'])->name('slider.delete');
+
+    // Rota p/ inativar produto no painel admin edit product
+    Route::get('/inactivate/{id}', [SliderController::class, 'InactivateSlider'])->name('slider.inactivate');
+
+    // Rota p/ ativar produto no painel admin edit product
+    Route::get('/activate/{id}', [SliderController::class, 'ActivateSlider'])->name('slider.activate');
 });

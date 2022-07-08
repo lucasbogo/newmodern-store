@@ -12,7 +12,7 @@
                         <div class="box">
                             <div class="box-header with-border">
                                 <h3 class="box-title">Sliders <span class="badge badge-pill badge-danger">
-                                        {{ count($slider) }} </span></h3>
+                                        {{ count($sliders) }} </span></h3>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -34,28 +34,47 @@
                                                 <tr>
                                                     <td><img src="{{ asset($slider->slider_image) }}"
                                                             style="width: 70px; height: 40px;"> </td>
-                                                    <td>{{ $slider->title }}</td>
-                                                    <td>{{ $slider->description }}</td>
+                                                    <td>
+                                                        <!--CONDIÇÃO: Se o produto ffor igual a um, então, está ativo, caso contrário zero, é inativo  -->
+                                                        @if ($slider->slider_title == null)
+                                                            <span class="badge badge-pill badge-danger"> Sem Título</span>
+                                                        @else
+                                                            {{ $slider->slider_title }}
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ $slider->slider_description }}</td>
 
 
                                                     <td>
                                                         <!--CONDIÇÃO: Se o produto ffor igual a um, então, está ativo, caso contrário zero, é inativo  -->
-                                                        @if ($product->slider_status == 1)
+                                                        @if ($slider->slider_status == 1)
                                                             <span class="badge badge-pill badge-success"> Ativo</span>
                                                         @else
                                                             <span class="badge badge-pill badge-danger"> Inativo</span>
                                                         @endif
                                                     </td>
-                                                    <td>
-                                                        <!-- Editar Marca(s) -->
-                                                        <a href="{{ route('brand.edit', $item->id) }}"
-                                                            class="btn btn-info" title="Editar Marca"><i
+
+                                                    <td width="">
+                                                        <!-- Editar Slider(s) -->
+                                                        <a href="{{ route('slider.edit', $slider->id) }}"
+                                                            class="btn btn-info" title="Editar Slider"><i
                                                                 class="fa fa-pencil"></i> </a>
 
-                                                        <!-- Excluir Marca(s) -->
-                                                        <a href="{{ route('brand.delete', $item->id) }}"
-                                                            class="btn btn-danger" id="delete" title="Deletar Marca">
+                                                        <!-- Excluir Slider(s) -->
+                                                        <a href="{{ route('slider.delete', $slider->id) }}"
+                                                            class="btn btn-danger" id="delete" title="Deletar Slider">
                                                             <i class="fa fa-trash"></i></a>
+
+                                                        <!--CONDIÇÃO: Se o slider for igual a um, então, mostrar botão decrementar (desativar), caso contrário, mostrar incrementar (ativar)  -->
+                                                        @if ($slider->slider_status == 1)
+                                                            <a href="{{ route('slider.inactivate', $slider->id) }}"
+                                                                class="btn btn-dark" title="Desativar"><i
+                                                                    class="fa fa-arrow-down"></i> </a>
+                                                        @else
+                                                            <a href="{{ route('slider.activate', $slider->id) }}"
+                                                                class="btn btn-light" title="Ativar"><i
+                                                                    class="fa fa-arrow-up"></i> </a>
+                                                        @endif
                                                     </td>
 
                                                 </tr>
@@ -74,49 +93,41 @@
                     <!-- /.col -->
 
 
-                    <!--  =============== Adicionar Marcas ================ -->
+                    <!--  =============== Adicionar Sliders ================ -->
 
 
                     <div class="col-4">
 
                         <div class="box">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Adicionar Marcas </h3>
+                                <h3 class="box-title">Adicionar Sliders </h3>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
                                 <div class="table-responsive">
 
 
-                                    <form method="post" action="{{ route('brand.store') }}"
+                                    <form method="post" action="{{ route('slider.store') }}"
                                         enctype="multipart/form-data">
                                         @csrf
 
                                         <!-- INPUT FIELD P/ MARCA EN -->
                                         <div class="form-group">
-                                            <h5>Brand<span class="text-danger">*</span></h5>
+                                            <h5>Titulo<span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="text" name="brand_name_en" class="form-control">
+                                                <input type="text" name="slider_title" class="form-control">
 
-                                                <!-- Mensagem de Erro -->
-                                                @error('brand_name_en')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                                <!-- /Mensagem de Erro -->
+
                                             </div>
                                         </div>
 
                                         <!-- INPUT FIELD P/ MARCA PTBR -->
                                         <div class="form-group">
-                                            <h5>Marca<span class="text-danger">*</span></h5>
+                                            <h5>Descrição<span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="text" name="brand_name_pt" class="form-control">
+                                                <input type="text" name="slider_description" class="form-control">
 
-                                                <!-- Mensagem de Erro -->
-                                                @error('brand_name_pt')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                                <!-- /Mensagem de Erro -->
+
                                             </div>
 
                                         </div>
@@ -124,10 +135,10 @@
 
 
                                         <div class="form-group">
-                                            <h5>Brand Image <span class="text-danger">*</span></h5>
+                                            <h5>Imagem <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="file" name="brand_image" class="form-control">
-                                                @error('brand_image')
+                                                <input type="file" name="slider_image" class="form-control">
+                                                @error('slider_image')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -136,7 +147,7 @@
                                         <!-- Botão adicionar formato 'success' (verde) -->
                                         <div class="text-xs-right">
                                             <input type="submit" class="btn btn-rounded btn-success mb-5"
-                                                value="Adicionar Marca">
+                                                value="Adicionar Slider">
                                         </div>
                                     </form>
 
