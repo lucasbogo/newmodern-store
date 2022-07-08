@@ -28,6 +28,8 @@
                                                 <th> Produto </th>
                                                 <th> Valor Venda </th>
                                                 <th> Quantidade </th>
+                                                <th> Desconto </th>
+                                                <th> Status </th>
                                                 <th> Acão </th>
 
                                             </tr>
@@ -40,18 +42,59 @@
                                                     <td><img src="{{ asset($product->product_thumbnail) }}" width="60"
                                                             height="60"></td>
                                                     <td>{{ $product->product_name_pt }}</td>
-                                                    <td>{{ $product->product_selling_price }}</td>
-                                                    <td>{{ $product->product_qty }}</td>
-
+                                                    <td>R$ {{ $product->product_selling_price }} </td>
+                                                    <td>{{ $product->product_qty }} Unidades</td>
                                                     <td>
+                                                        <!-- LÓGICA: se o valor disconto do produto for nulo, retornar nulo, caso contrário, segue p/ a regra de três para mostrar percentagem do desconto -->
+                                                        <!-- Arrumar BUG do calculo da porcentagem desconto produto -->
+                                                        @if ($product->product_discount_price == null)
+                                                            <span class="badge badge-pill badge-danger"> Sem Desconto</span>
+                                                        @else
+                                                            @php
+                                                                $amount = $product->product_selling_price - $product->product_discount_price;
+                                                                $discount = ($amount / $product->product_selling_price) * 100;
+                                                            @endphp
+                                                            <span
+                                                                class="badge badge-pill badge-danger">{{ round($discount) }}
+                                                                %</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <!--CONDIÇÃO: Se o produto ffor igual a um, então, está ativo, caso contrário zero, é inativo  -->
+                                                        @if ($product->product_status == 1)
+                                                            <span class="badge badge-pill badge-success"> Ativo</span>
+                                                        @else
+                                                            <span class="badge badge-pill badge-danger"> Inativo</span>
+                                                        @endif
+                                                    </td>
+
+                                                    <!-- caso necessário, mudar o widht table buttons para caber certinho -->
+                                                    <td width="">
+                                                        <!-- Ver Detalhes Produto(s) -->
+                                                        <a href="{{ route('product.edit', $product->id) }}"
+                                                            class="btn btn-success" title="Detalhes Produto"><i
+                                                                class="fa fa-eye"></i> </a>
+
                                                         <!-- Editar Produto(s) -->
-                                                        <a href="{{ route('product.edit', $product->id) }}" class="btn btn-info" title="Editar Produto"><i
+                                                        <a href="{{ route('product.edit', $product->id) }}"
+                                                            class="btn btn-info" title="Editar Produto"><i
                                                                 class="fa fa-pencil"></i> </a>
 
                                                         <!-- Excluir Produto(s) -->
-                                                        <a href="#" class="btn btn-danger" id="delete"
+                                                        <a href="{{ route('product.delete', $product->id) }}" class="btn btn-danger" id="delete"
                                                             title="Excluir Produto">
                                                             <i class="fa fa-trash"></i></a>
+
+                                                        <!--CONDIÇÃO: Se o produto for igual a um, então, mostrar botão decrementar apenas um, caso contrário, mostrar incrementar apenas um  -->
+                                                        @if ($product->product_status == 1)
+                                                            <a href="{{ route('product.inactivate', $product->id) }}"
+                                                                class="btn btn-dark" title="Desativar"><i
+                                                                    class="fa fa-arrow-down"></i> </a>
+                                                        @else
+                                                            <a href="{{ route('product.activate', $product->id) }}"
+                                                                class="btn btn-light" title="Ativar"><i
+                                                                    class="fa fa-arrow-up"></i> </a>
+                                                        @endif
                                                     </td>
 
                                                 </tr>

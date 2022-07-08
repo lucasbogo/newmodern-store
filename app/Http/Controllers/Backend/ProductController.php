@@ -220,8 +220,8 @@ class ProductController extends Controller
             Images::where('id', $id)->update([
 
                 'photo_name' => $image_url,
-                'updated_at' => Carbon::now()// Carbon = extensão DateTime
-                
+                'updated_at' => Carbon::now() // Carbon = extensão DateTime
+
 
             ]);
         }
@@ -233,6 +233,86 @@ class ProductController extends Controller
         );
 
         // Retornar para pagina todas marcas
+        return redirect()->back()->with($notification);
+    }
+
+    // MÉTODO P/ ATUALIZAR OS THUMBNAILS PRODUTOS NO PAINEL ADMIN
+    public function UpdateProductThumbnail(Request $request)
+    {
+        $product_thumbnails = $request->id;
+        $thumbnail_image = $request->old_image;
+        unlink($thumbnail_image);
+
+        // Código Image Intervention Package for PHP
+        $image = $request->file('product_thumbnail');
+        $generate_name = hexdec(uniqid()) . '.' . $image->getClientOriginalName();
+        Image::make($image)->resize(917, 1000)->save('upload/products/thumbnails/' . $generate_name);
+        $save_url = 'upload/products/thumbnails/' . $generate_name;
+
+        // Mesma lógica utilizada no método StoreProduct
+        Product::findOrFail($product_thumbnails)->update([
+            'product_thumbnail' => $save_url,
+            'updated_at' => Carbon::now(),
+
+        ]);
+
+        // Mensagen toaster para mostrar barra verde com a mensagem de sucesso
+        $notification = array(
+            'message' => 'Thumbnail atualizado com Sucesso',
+            'alert-type' => 'success'
+        );
+
+        // Retornar para pagina todas marcas
+        return redirect()->back()->with($notification);
+    }
+
+    // Método para excluir imagem produto pelo Id
+    public function DeleteProductImage($id)
+    {
+        // Como ja explicado, é necessário pegar o id na Model Images pelo método findOrFail, pega ou 404 error
+        $old_product_image = Images::findOrFail($id);
+
+        unlink($old_product_image->photo_name);
+
+        // após achar imagem pelo Id, deler pela função delete
+        Images::findOrFail($id)->delete();
+
+        // Mostrar notificação (toaster message) de exclusão bem sucedida.
+        $notification = array(
+            'message' => 'Imagem Excluída com Sucesso',
+            'alert-type' => 'success'
+        );
+        // Após exclusão, simplesmente retornar.
+        return redirect()->back()->with($notification);
+    }
+
+    // Método para desativar Produto pelo ID
+    public function InactivateProduct($id)
+    {
+        // Lógica simples: achar o produto pelo ID, chamar a função update e alterar o status para zero (inativo)
+        Product::findOrFail($id)->update(['product_status' => 0]);
+
+         // Mostrar notificação (toaster message) de desativação bem sucedida.
+         $notification = array(
+            'message' => 'Produto Desativado com Sucesso',
+            'alert-type' => 'success'
+        );
+        // Após exclusão, simplesmente retornar.
+        return redirect()->back()->with($notification);
+    }
+
+    // Método para ativar Produto pelo ID
+    public function ActivateProduct($id)
+    {
+        // Lógica simples: achar o produto pelo ID, chamar a função update e alterar o status para um (ativo)
+        Product::findOrFail($id)->update(['product_status' => 1]);
+
+         // Mostrar notificação (toaster message) de ativação bem sucedida.
+         $notification = array(
+            'message' => 'Produto Ativado com Sucesso',
+            'alert-type' => 'success'
+        );
+        // Após exclusão, simplesmente retornar.
         return redirect()->back()->with($notification);
     }
 }

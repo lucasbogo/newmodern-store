@@ -223,5 +223,19 @@ Route::prefix('product')->group(function () {
 
     // Rota p/ validar as imagens produtos editadas no Painel Admin.
     Route::post('/update/image', [ProductController::class, 'UpdateProductImage'])->name('product.update.image');
-    
+
+    // Rota p/ deletar Imagem Produto
+    Route::get('/delete/image{id}', [ProductController::class, 'DeleteProductImage'])->name('product.delete.image');
+
+    // Rota p/ validar as imagens produtos editadas no Painel Admin.
+    Route::post('/update/thumbnail', [ProductController::class, 'UpdateProductThumbnail'])->name('product.update.thumbnail');
+
+    // Rota p/ inativar produto no painel admin edit product
+    Route::get('/inactivate/{id}', [ProductController::class, 'InactivateProduct'])->name('product.inactivate');
+
+    // Rota p/ ativar produto no painel admin edit product
+    Route::get('/activate/{id}', [ProductController::class, 'ActivateProduct'])->name('product.activate');
+
+    // Rota p/ deletar produto no painel admin edit product
+    Route::get('/delete/{id}', [ProductController::class, 'DeleteProduct'])->name('product.delete');
 });
