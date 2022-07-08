@@ -292,8 +292,8 @@ class ProductController extends Controller
         // Lógica simples: achar o produto pelo ID, chamar a função update e alterar o status para zero (inativo)
         Product::findOrFail($id)->update(['product_status' => 0]);
 
-         // Mostrar notificação (toaster message) de desativação bem sucedida.
-         $notification = array(
+        // Mostrar notificação (toaster message) de desativação bem sucedida.
+        $notification = array(
             'message' => 'Produto Desativado com Sucesso',
             'alert-type' => 'success'
         );
@@ -301,17 +301,42 @@ class ProductController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    // Método para ativar Produto pelo ID
+    // Método p/ ativar Produto pelo ID
     public function ActivateProduct($id)
     {
         // Lógica simples: achar o produto pelo ID, chamar a função update e alterar o status para um (ativo)
         Product::findOrFail($id)->update(['product_status' => 1]);
 
-         // Mostrar notificação (toaster message) de ativação bem sucedida.
-         $notification = array(
+        // Mostrar notificação (toaster message) de ativação bem sucedida.
+        $notification = array(
             'message' => 'Produto Ativado com Sucesso',
             'alert-type' => 'success'
         );
+        // Após exclusão, simplesmente retornar.
+        return redirect()->back()->with($notification);
+    }
+
+    // Método p/ Deletar Produto pelo ID
+    public function DeleteProduct($id)
+    {
+        // Pegar os dados da classe produto e excluir thumbnail
+        $product = Product::findOrFail($id);
+        unlink($product->product_thumbnail);
+        Product::findOrFail($id)->delete();
+
+        // Pegar os dados da classe Images atribuidos a fk_produtos e excluir.
+        $images = Images::where('product_id', $id)->get();
+        foreach ($images as $image) {
+            unlink($image->photo_name);
+            Images::where('product_id', $id)->delete();
+        }
+
+        // Mostrar notificação (toaster message) de ativação bem sucedida.
+        $notification = array(
+            'message' => 'Produto Excluído com Sucesso',
+            'alert-type' => 'success'
+        );
+
         // Após exclusão, simplesmente retornar.
         return redirect()->back()->with($notification);
     }
