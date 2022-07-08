@@ -191,6 +191,12 @@ npm install && npm run dev
 php artisan migrate
 ```
 
+#### Rodar a Seeder :
+
+```
+php artisan db:seed
+```
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Laravel Image Intervention Package
