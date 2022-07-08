@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SliderController;
 
 
 use App\Http\Controllers\Frontend\IndexController;
@@ -238,4 +239,25 @@ Route::prefix('product')->group(function () {
 
     // Rota p/ deletar produto no painel admin edit product
     Route::get('/delete/{id}', [ProductController::class, 'DeleteProduct'])->name('product.delete');
+});
+
+/*** TODAS AS ROTAS MARCAS DASHBOARD ADMINISTRADOR ***/
+
+/*** prefix siginica que aparecerá o objeto na url antes da rota chamada: (brand/view ; brand/store; ...) */
+Route::prefix('slider')->group(function () {
+
+    // Rota p/ visualizar a tabela de Marcas no Painel Admin.
+    Route::get('/view', [SliderController::class, 'SliderView'])->name('all.sliders');
+
+    // Rota p/ guardar informações Marcas no Painel Admin
+    Route::post('/store', [SliderController::class, 'SliderStore'])->name('slider.store');
+
+    // Rota p/ editar Marca
+    Route::get('/edit{id}', [SliderController::class, 'SliderEdit'])->name('slider.edit');
+
+    // Rota p/ guardar inforções EDITADAS Marcas no Painel Admin
+    Route::post('/update', [SliderController::class, 'SliderUpdate'])->name('slider.update');
+
+    // Rota p/ deletar Marca
+    Route::get('/delete{id}', [SliderController::class, 'SliderDelete'])->name('slider.delete');
 });
