@@ -57,7 +57,7 @@
                                                     <td width="">
                                                         <!-- Editar Slider(s) -->
                                                         <a href="{{ route('slider.edit', $slider->id) }}"
-                                                            class="btn btn-info" title="Editar Slider"><i
+                                                            class="btn btn-warning" title="Editar Slider"><i
                                                                 class="fa fa-pencil"></i> </a>
 
                                                         <!-- Excluir Slider(s) -->

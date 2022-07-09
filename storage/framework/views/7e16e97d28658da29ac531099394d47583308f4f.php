@@ -14,7 +14,7 @@
                         <div class="box">
                             <div class="box-header with-border">
                                 <h3 class="box-title">Categorias <span class="badge badge-pill badge-danger">
-                                        <?php echo e(count($categories)); ?> </span></h3>
+                                        <?php echo e(count($categories)); ?> </span></h3> <!-- função para contar quantidade de categorias inseridas pelo admin -->
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">

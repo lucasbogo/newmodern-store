@@ -262,7 +262,7 @@
                                                         <h5>Valor Desconto <span class="text-info">Opcional</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_discount_price"
-                                                                class="form-control" required=""
+                                                                class="form-control" 
                                                                 value="{{ $products->product_discount_price }}">
                                                         </div>
                                                     </div>

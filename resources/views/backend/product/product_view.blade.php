@@ -72,12 +72,12 @@
                                                     <td width="">
                                                         <!-- Ver Detalhes Produto(s) -->
                                                         <a href="{{ route('product.edit', $product->id) }}"
-                                                            class="btn btn-success" title="Detalhes Produto"><i
+                                                            class="btn btn-info" title="Detalhes Produto"><i
                                                                 class="fa fa-eye"></i> </a>
 
                                                         <!-- Editar Produto(s) -->
                                                         <a href="{{ route('product.edit', $product->id) }}"
-                                                            class="btn btn-info" title="Editar Produto"><i
+                                                            class="btn btn-warning" title="Editar Produto"><i
                                                                 class="fa fa-pencil"></i> </a>
 
                                                         <!-- Excluir Produto(s) -->

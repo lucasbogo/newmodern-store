@@ -40,7 +40,7 @@
                                                     <td>
                                                         <!-- Editar Categoria(s) -->
                                                         <a href="{{ route('category.edit', $item->id) }}"
-                                                            class="btn btn-info" title="Editar Categoria"><i
+                                                            class="btn btn-warning" title="Editar Categoria"><i
                                                                 class="fa fa-pencil"></i> </a>
 
                                                         <!-- Excluir Categoria(s) -->

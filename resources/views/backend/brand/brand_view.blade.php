@@ -38,7 +38,7 @@
                                                     <td>
                                                         <!-- Editar Marca(s) -->
                                                         <a href="{{ route('brand.edit', $item->id) }}"
-                                                            class="btn btn-info" title="Editar Marca"><i
+                                                            class="btn btn-warning" title="Editar Marca"><i
                                                                 class="fa fa-pencil"></i> </a>
                                                                 
                                                         <!-- Excluir Marca(s) -->    

@@ -36,12 +36,14 @@
                             </ul>
                         </li>
                         <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle"
-                                data-hover="dropdown" data-toggle="dropdown"><span class="value">English </span><b
+                                data-hover="dropdown" data-toggle="dropdown"><span class="value">Idiomas </span><b
                                     class="caret"></b></a>
                             <ul class="dropdown-menu">
+                                <!-- CONDIÇÃO: verificar a sessão do usuário, se for... -->
+                                @if(session()->get('language') == 'portuguese')
                                 <li><a href="#">English</a></li>
-                                <li><a href="#">French</a></li>
-                                <li><a href="#">German</a></li>
+                                <li><a href="#">Portuguese</a></li>
+                                @endif
                             </ul>
                         </li>
                     </ul>
