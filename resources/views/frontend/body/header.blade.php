@@ -13,17 +13,54 @@
                                     My Profile
                                 @endif
                             </a></li>
-                        <li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
-                        <li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
-                        <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
+                        <li><a href="#"><i class="icon fa fa-heart"></i>
+                                <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                @if (session()->get('language') == 'portuguese')
+                                    Lista de Desejos
+                                @else
+                                    Wishlist
+                                @endif
+                            </a>
+                        </li>
+                        <li><a href="#"><i class="icon fa fa-shopping-cart"></i>
+                                <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                @if (session()->get('language') == 'portuguese')
+                                    Meu Carrinho
+                                @else
+                                    My Cart
+                                @endif
+                            </a>
+                        </li>
+                        <li><a href="#"><i class="icon fa fa-check"></i>
+                                <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                @if (session()->get('language') == 'portuguese')
+                                    Confirir Compras
+                                @else
+                                    Checkout
+                                @endif
+                            </a></li>
 
                         <!-- Se o usuario estiver logado(auth), mostra o icone usuario e link para entrar no perfil -->
                         @auth
-                            <li><a href="{{ route('login') }}"><i class="icon fa fa-user"></i>User Profile</a></li>
+                            <li><a href="{{ route('login') }}"><i class="icon fa fa-user"></i>
+                                    <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                    @if (session()->get('language') == 'portuguese')
+                                        Perfil Usuário
+                                    @else
+                                        User Profile
+                                    @endif
+                                </a></li>
 
                             <!-- Se usuário não estiver logado, mostra o icone lock(cadeado) e link para realizar login ou registro -->
                         @else
-                            <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login/Register</a></li>
+                            <li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>
+                                    <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                    @if (session()->get('language') == 'portuguese')
+                                        Entrar/Registrar
+                                    @else
+                                        Login/Register
+                                    @endif
+                                </a></li>
 
                         @endauth
                     </ul>
@@ -137,8 +174,14 @@
                             <div class="items-cart-inner">
                                 <div class="basket"> <i class="glyphicon glyphicon-shopping-cart"></i> </div>
                                 <div class="basket-item-count"><span class="count">2</span></div>
-                                <div class="total-price-basket"> <span class="lbl">cart -</span> <span
-                                        class="total-price"> <span class="sign">$</span><span
+                                <div class="total-price-basket"> <span class="lbl">
+                                        <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                        @if (session()->get('language') == 'portuguese')
+                                            Carrinho
+                                        @else
+                                            Cart
+                                        @endif 
+                                    </span> <span class="total-price"> <span class="sign">$</span><span
                                             class="value">600.00</span>
                                     </span> </div>
                             </div>
@@ -204,8 +247,15 @@
                     <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
                         <div class="nav-outer">
                             <ul class="nav navbar-nav">
-                                <li class="active dropdown yamm-fw"> <a href="{{ url('/ ') }}"
-                                        data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                                <li class="active dropdown yamm-fw"> <a href="{{ url('/') }}"
+                                        data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">
+                                        <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                        @if (session()->get('language') == 'portuguese')
+                                            Pagina Principal
+                                        @else
+                                            Home
+                                        @endif
+                                    </a>
                                 </li>
 
 
@@ -227,7 +277,7 @@
                                                 <div class="yamm-content ">
                                                     <div class="row">
 
-                                                        
+
                                                         <!-- =========================== DEIXAR O MENU DROPDOWN DINÂMICO CHAMANDO AS SUB-CATEGORIAS DO PAINEL ADMIN =========================== -->
 
                                                         <!-- Relacionar a subcategoria com a fk categoria; quando bater com a categoria id, então, order by ascendente -->
@@ -239,7 +289,7 @@
 
                                                         @foreach ($subcategories as $subcategory)
                                                             <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                                                                 <!-- CONDIÇÃO IF ELSE: se a sessão for em ptbr, mostrar nome ptbr caso contrário, mostrar inglês -->
+                                                                <!-- CONDIÇÃO IF ELSE: se a sessão for em ptbr, mostrar nome ptbr caso contrário, mostrar inglês -->
                                                                 <a
                                                                     href="{{ url('subcategory/product/' . $subcategory->id . '/' . $subcategory->subcategory_slug_en) }}">
                                                                     <h2 class="title">
@@ -252,9 +302,9 @@
                                                                 </a>
 
 
-                                                               <!-- =========================== DEIXAR O MENU DROPDOWN DINÂMICO CHAMANDO AS SUB-SUB-CATEGORIAS DO PAINEL ADMIN =========================== -->
+                                                                <!-- =========================== DEIXAR O MENU DROPDOWN DINÂMICO CHAMANDO AS SUB-SUB-CATEGORIAS DO PAINEL ADMIN =========================== -->
 
-                                                               <!-- Relacionar a subsubcategoria com a fk subcategoria; quando bater com a subcategoria id, então, order by ascendente -->
+                                                                <!-- Relacionar a subsubcategoria com a fk subcategoria; quando bater com a subcategoria id, então, order by ascendente -->
                                                                 @php
                                                                     $subsubcategories = App\Models\SubSubCategory::where('subcategory_id', $subcategory->id)
                                                                         ->orderBy('subsubcategory_name_en', 'ASC')
@@ -262,9 +312,9 @@
                                                                 @endphp
 
                                                                 @foreach ($subsubcategories as $subsubcategory)
-                                                                <!-- CONDIÇÃO IF ELSE: se a sessão for em ptbr, mostrar nome ptbr caso contrário, mostrar inglês -->
+                                                                    <!-- CONDIÇÃO IF ELSE: se a sessão for em ptbr, mostrar nome ptbr caso contrário, mostrar inglês -->
                                                                     <ul class="links">
-                                                                        <li><a  
+                                                                        <li><a
                                                                                 href="{{ url('subsubcategory/product/' . $subsubcategory->id . '/' . $subsubcategory->subsubcategory_slug_en) }}">
                                                                                 @if (session()->get('language') == 'portuguese')
                                                                                     {{ $subsubcategory->subsubcategory_name_pt }}
@@ -286,7 +336,8 @@
                                                         <div class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image">
                                                             <img class="img-responsive"
                                                                 src="{{ asset('frontend/assets/images/banners/top-menu-banner.jpg') }}"
-                                                                alt=""> </div>
+                                                                alt="">
+                                                        </div>
                                                         <!-- /.yamm-content -->
                                                     </div>
                                                 </div>
