@@ -1,12 +1,18 @@
 <header class="header-style-1">
-
     <!-- ============================================== TOP MENU ============================================== -->
     <div class="top-bar animate-dropdown">
         <div class="container">
             <div class="header-top-inner">
                 <div class="cnt-account">
                     <ul class="list-unstyled">
-                        <li><a href="#"><i class="icon fa fa-user"></i>My Account</a></li>
+                        <li><a href="#"><i class="icon fa fa-user"></i>
+                                <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                <?php if(session()->get('language') == 'portuguese'): ?>
+                                    Minha Conta
+                                <?php else: ?>
+                                    My Profile
+                                <?php endif; ?>
+                            </a></li>
                         <li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
                         <li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
                         <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
@@ -25,7 +31,9 @@
                 <!-- /.cnt-account -->
 
                 <div class="cnt-block">
+
                     <ul class="list-unstyled list-inline">
+                        <!--
                         <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle"
                                 data-hover="dropdown" data-toggle="dropdown"><span class="value">USD </span><b
                                     class="caret"></b></a>
@@ -35,13 +43,24 @@
                                 <li><a href="#">GBP</a></li>
                             </ul>
                         </li>
+                    -->
                         <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle"
-                                data-hover="dropdown" data-toggle="dropdown"><span class="value">English </span><b
-                                    class="caret"></b></a>
+                                data-hover="dropdown" data-toggle="dropdown"><span class="value">
+                                    <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                    <?php if(session()->get('language') == 'portuguese'): ?>
+                                        Idioma
+                                    <?php else: ?>
+                                        Language
+                                    <?php endif; ?>
+                                </span><b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">English</a></li>
-                                <li><a href="#">French</a></li>
-                                <li><a href="#">German</a></li>
+
+                                <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                <?php if(session()->get('language') == 'portuguese'): ?>
+                                    <li><a href="<?php echo e(route('english.language')); ?>">English</a></li>
+                                <?php else: ?>
+                                    <li><a href="<?php echo e(route('portuguese.language')); ?>">Português</a></li>
+                                <?php endif; ?>
                             </ul>
                         </li>
                     </ul>
@@ -184,206 +203,103 @@
                     <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
                         <div class="nav-outer">
                             <ul class="nav navbar-nav">
-                                <li class="active dropdown yamm-fw"> <a href="home.html" data-hover="dropdown"
-                                        class="dropdown-toggle" data-toggle="dropdown">Home</a> </li>
-                                <li class="dropdown yamm mega-menu"> <a href="home.html" data-hover="dropdown"
-                                        class="dropdown-toggle" data-toggle="dropdown">Clothing</a>
-                                    <ul class="dropdown-menu container">
-                                        <li>
-                                            <div class="yamm-content ">
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                                                        <h2 class="title">Men</h2>
-                                                        <ul class="links">
-                                                            <li><a href="#">Dresses</a></li>
-                                                            <li><a href="#">Shoes </a></li>
-                                                            <li><a href="#">Jackets</a></li>
-                                                            <li><a href="#">Sunglasses</a></li>
-                                                            <li><a href="#">Sport Wear</a></li>
-                                                            <li><a href="#">Blazers</a></li>
-                                                            <li><a href="#">Shirts</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.col -->
-
-                                                    <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                                                        <h2 class="title">Women</h2>
-                                                        <ul class="links">
-                                                            <li><a href="#">Handbags</a></li>
-                                                            <li><a href="#">Jwellery</a></li>
-                                                            <li><a href="#">Swimwear </a></li>
-                                                            <li><a href="#">Tops</a></li>
-                                                            <li><a href="#">Flats</a></li>
-                                                            <li><a href="#">Shoes</a></li>
-                                                            <li><a href="#">Winter Wear</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.col -->
-
-                                                    <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                                                        <h2 class="title">Boys</h2>
-                                                        <ul class="links">
-                                                            <li><a href="#">Toys & Games</a></li>
-                                                            <li><a href="#">Jeans</a></li>
-                                                            <li><a href="#">Shirts</a></li>
-                                                            <li><a href="#">Shoes</a></li>
-                                                            <li><a href="#">School Bags</a></li>
-                                                            <li><a href="#">Lunch Box</a></li>
-                                                            <li><a href="#">Footwear</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.col -->
-
-                                                    <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                                                        <h2 class="title">Girls</h2>
-                                                        <ul class="links">
-                                                            <li><a href="#">Sandals </a></li>
-                                                            <li><a href="#">Shorts</a></li>
-                                                            <li><a href="#">Dresses</a></li>
-                                                            <li><a href="#">Jwellery</a></li>
-                                                            <li><a href="#">Bags</a></li>
-                                                            <li><a href="#">Night Dress</a></li>
-                                                            <li><a href="#">Swim Wear</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.col -->
-
-                                                    <div class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image">
-                                                        <img class="img-responsive"
-                                                            src="<?php echo e(asset('frontend/assets/images/banners/top-menu-banner.jpg')); ?>"
-                                                            alt="">
-                                                    </div>
-                                                    <!-- /.yamm-content -->
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                <li class="active dropdown yamm-fw"> <a href="<?php echo e(url('/dashboard')); ?>"
+                                        data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>
                                 </li>
-                                <li class="dropdown mega-menu">
-                                    <a href="category.html" data-hover="dropdown" class="dropdown-toggle"
-                                        data-toggle="dropdown">Electronics <span
-                                            class="menu-label hot-menu hidden-xs">hot</span> </a>
-                                    <ul class="dropdown-menu container">
-                                        <li>
-                                            <div class="yamm-content">
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
-                                                        <h2 class="title">Laptops</h2>
-                                                        <ul class="links">
-                                                            <li><a href="#">Gaming</a></li>
-                                                            <li><a href="#">Laptop Skins</a></li>
-                                                            <li><a href="#">Apple</a></li>
-                                                            <li><a href="#">Dell</a></li>
-                                                            <li><a href="#">Lenovo</a></li>
-                                                            <li><a href="#">Microsoft</a></li>
-                                                            <li><a href="#">Asus</a></li>
-                                                            <li><a href="#">Adapters</a></li>
-                                                            <li><a href="#">Batteries</a></li>
-                                                            <li><a href="#">Cooling Pads</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.col -->
 
-                                                    <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
-                                                        <h2 class="title">Desktops</h2>
-                                                        <ul class="links">
-                                                            <li><a href="#">Routers & Modems</a></li>
-                                                            <li><a href="#">CPUs, Processors</a></li>
-                                                            <li><a href="#">PC Gaming Store</a></li>
-                                                            <li><a href="#">Graphics Cards</a></li>
-                                                            <li><a href="#">Components</a></li>
-                                                            <li><a href="#">Webcam</a></li>
-                                                            <li><a href="#">Memory (RAM)</a></li>
-                                                            <li><a href="#">Motherboards</a></li>
-                                                            <li><a href="#">Keyboards</a></li>
-                                                            <li><a href="#">Headphones</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.col -->
 
-                                                    <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
-                                                        <h2 class="title">Cameras</h2>
-                                                        <ul class="links">
-                                                            <li><a href="#">Accessories</a></li>
-                                                            <li><a href="#">Binoculars</a></li>
-                                                            <li><a href="#">Telescopes</a></li>
-                                                            <li><a href="#">Camcorders</a></li>
-                                                            <li><a href="#">Digital</a></li>
-                                                            <li><a href="#">Film Cameras</a></li>
-                                                            <li><a href="#">Flashes</a></li>
-                                                            <li><a href="#">Lenses</a></li>
-                                                            <li><a href="#">Surveillance</a></li>
-                                                            <li><a href="#">Tripods</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.col -->
-                                                    <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
-                                                        <h2 class="title">Mobile Phones</h2>
-                                                        <ul class="links">
-                                                            <li><a href="#">Apple</a></li>
-                                                            <li><a href="#">Samsung</a></li>
-                                                            <li><a href="#">Lenovo</a></li>
-                                                            <li><a href="#">Motorola</a></li>
-                                                            <li><a href="#">LeEco</a></li>
-                                                            <li><a href="#">Asus</a></li>
-                                                            <li><a href="#">Acer</a></li>
-                                                            <li><a href="#">Accessories</a></li>
-                                                            <li><a href="#">Headphones</a></li>
-                                                            <li><a href="#">Memory Cards</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-4 col-menu custom-banner">
-                                                        <a href="#"><img alt=""
-                                                                src="<?php echo e(asset('frontend/assets/images/banners/banner-side.png')); ?>"></a>
+                                <!-- =========================== DEIXAR O MENU DROPDOWN DINÂMICO CHAMANDO AS CATEGORIAS DO PAINEL ADMIN =========================== -->
+
+                                <!-- Relacionar a subcategoria com a fk categoria; quando bater com a categoria id, então, order by ascendente -->
+
+                                <?php
+                                    $categories = App\Models\Category::orderBy('category_name_en', 'ASC')->get();
+                                ?>
+
+
+                                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li class="dropdown yamm mega-menu"> <a href="home.html" data-hover="dropdown"
+                                            class="dropdown-toggle"
+                                            data-toggle="dropdown"><?php echo e($category->category_name_en); ?></a>
+                                        <ul class="dropdown-menu container">
+                                            <li>
+                                                <div class="yamm-content ">
+                                                    <div class="row">
+
+                                                        
+                                                        <!-- =========================== DEIXAR O MENU DROPDOWN DINÂMICO CHAMANDO AS SUB-CATEGORIAS DO PAINEL ADMIN =========================== -->
+
+                                                        <!-- Relacionar a subcategoria com a fk categoria; quando bater com a categoria id, então, order by ascendente -->
+                                                        <?php
+                                                            $subcategories = App\Models\SubCategory::where('category_id', $category->id)
+                                                                ->orderBy('subcategory_name_en', 'ASC')
+                                                                ->get();
+                                                        ?>
+
+                                                        <?php $__currentLoopData = $subcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
+                                                                 <!-- CONDIÇÃO IF ELSE: se a sessão for em ptbr, mostrar nome ptbr caso contrário, mostrar inglês -->
+                                                                <a
+                                                                    href="<?php echo e(url('subcategory/product/' . $subcategory->id . '/' . $subcategory->subcategory_slug_en)); ?>">
+                                                                    <h2 class="title">
+                                                                        <?php if(session()->get('language') == 'portuguese'): ?>
+                                                                            <?php echo e($subcategory->subcategory_name_pt); ?>
+
+                                                                        <?php else: ?>
+                                                                            <?php echo e($subcategory->subcategory_name_en); ?>
+
+                                                                        <?php endif; ?>
+                                                                    </h2>
+                                                                </a>
+
+
+                                                               <!-- =========================== DEIXAR O MENU DROPDOWN DINÂMICO CHAMANDO AS SUB-SUB-CATEGORIAS DO PAINEL ADMIN =========================== -->
+
+                                                               <!-- Relacionar a subsubcategoria com a fk subcategoria; quando bater com a subcategoria id, então, order by ascendente -->
+                                                                <?php
+                                                                    $subsubcategories = App\Models\SubSubCategory::where('subcategory_id', $subcategory->id)
+                                                                        ->orderBy('subsubcategory_name_en', 'ASC')
+                                                                        ->get();
+                                                                ?>
+
+                                                                <?php $__currentLoopData = $subsubcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subsubcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <!-- CONDIÇÃO IF ELSE: se a sessão for em ptbr, mostrar nome ptbr caso contrário, mostrar inglês -->
+                                                                    <ul class="links">
+                                                                        <li><a  
+                                                                                href="<?php echo e(url('subsubcategory/product/' . $subsubcategory->id . '/' . $subsubcategory->subsubcategory_slug_en)); ?>">
+                                                                                <?php if(session()->get('language') == 'portuguese'): ?>
+                                                                                    <?php echo e($subsubcategory->subsubcategory_name_pt); ?>
+
+                                                                                <?php else: ?>
+                                                                                    <?php echo e($subsubcategory->subsubcategory_name_en); ?>
+
+                                                                                <?php endif; ?>
+                                                                            </a></li>
+
+                                                                    </ul>
+                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                <!-- /. SubSubCategory Foreach -->
+
+                                                            </div>
+                                                            <!-- /.col -->
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        <!-- /. SubCategory Foreach -->
+
+
+                                                        <div class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image">
+                                                            <img class="img-responsive"
+                                                                src="<?php echo e(asset('frontend/assets/images/banners/top-menu-banner.jpg')); ?>"
+                                                                alt=""> </div>
+                                                        <!-- /.yamm-content -->
                                                     </div>
                                                 </div>
-                                                <!-- /.row -->
-                                            </div>
-                                            <!-- /.yamm-content -->
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown hidden-sm"> <a href="category.html">Health & Beauty <span
-                                            class="menu-label new-menu hidden-xs">new</span> </a> </li>
-                                <li class="dropdown hidden-sm"> <a href="category.html">Watches</a> </li>
-                                <li class="dropdown"> <a href="contact.html">Jewellery</a> </li>
-                                <li class="dropdown"> <a href="contact.html">Shoes</a> </li>
-                                <li class="dropdown"> <a href="contact.html">Kids & Girls</a> </li>
-                                <li class="dropdown"> <a href="#" class="dropdown-toggle"
-                                        data-hover="dropdown" data-toggle="dropdown">Pages</a>
-                                    <ul class="dropdown-menu pages">
-                                        <li>
-                                            <div class="yamm-content">
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-menu">
-                                                        <ul class="links">
-                                                            <li><a href="home.html">Home</a></li>
-                                                            <li><a href="category.html">Category</a></li>
-                                                            <li><a href="detail.html">Detail</a></li>
-                                                            <li><a href="shopping-cart.html">Shopping Cart Summary</a>
-                                                            </li>
-                                                            <li><a href="checkout.html">Checkout</a></li>
-                                                            <li><a href="blog.html">Blog</a></li>
-                                                            <li><a href="blog-details.html">Blog Detail</a></li>
-                                                            <li><a href="contact.html">Contact</a></li>
-                                                            <li><a href="sign-in.html">Sign In</a></li>
-                                                            <li><a href="my-wishlist.html">Wishlist</a></li>
-                                                            <li><a href="terms-conditions.html">Terms and Condition</a>
-                                                            </li>
-                                                            <li><a href="track-orders.html">Track Orders</a></li>
-                                                            <li><a
-                                                                    href="product-comparison.html">Product-Comparison</a>
-                                                            </li>
-                                                            <li><a href="faq.html">FAQ</a></li>
-                                                            <li><a href="404.html">404</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown  navbar-right special-menu"> <a href="#">Todays offer</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> <!-- /.Category Foreach -->
+
+                                <li class="dropdown  navbar-right special-menu"> <a href="#">Todays
+                                        offer</a>
                                 </li>
                             </ul>
                             <!-- /.navbar-nav -->

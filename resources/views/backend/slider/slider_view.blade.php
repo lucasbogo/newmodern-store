@@ -113,7 +113,7 @@
 
                                         <!-- INPUT FIELD P/ MARCA EN -->
                                         <div class="form-group">
-                                            <h5>Titulo<span class="text-danger">*</span></h5>
+                                            <h5>Titulo<span class="text-info"> OPCIONAL</span></h5>
                                             <div class="controls">
                                                 <input type="text" name="slider_title" class="form-control">
 
@@ -123,7 +123,7 @@
 
                                         <!-- INPUT FIELD P/ MARCA PTBR -->
                                         <div class="form-group">
-                                            <h5>Descrição<span class="text-danger">*</span></h5>
+                                            <h5>Descrição<span class="text-info"> OPCIONAL</span></h5>
                                             <div class="controls">
                                                 <input type="text" name="slider_description" class="form-control">
 

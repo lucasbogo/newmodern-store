@@ -1,4 +1,4 @@
-<!-- Copiei e colei código de category_edit.blade.php -->
+<!-- Copiei e colei código de brand_edit.blade.php -->
 
 
 <?php $__env->startSection('admin'); ?>
@@ -88,31 +88,9 @@ unset($__errorArgs, $__bag); ?>
 
                                         </div>
 
-                                        <!-- INPUT FIELD P/ ÍCONE CATEGORIA -->
-                                        <div class="form-group">
-                                            <h5> Ícone <span class="text-danger">*</span></h5>
-                                            <div class="controls">
-                                                <input type="text" name="category_icon" class="form-control"
-                                                    value="<?php echo e($category->category_icon); ?>">
-                                                <!-- Mostrar nome categoria dinamicamente -->
 
-                                                <!-- Mensagem de Erro -->
-                                                <?php $__errorArgs = ['category_icon'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                                    <span class="text-danger"><?php echo e($message); ?></span>
-                                                <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                                <!-- /Mensagem de Erro -->
-                                            </div>
 
-                                        </div>
-
-                                        <!--SE QUISERMOS TRABALHAR COM IMAGEM AO INVÉS DE ÍCONE -->
+                                        <!--SE QUISERMOS TRABALHAR COM IMAGEM -->
                                         <!--
                                             <div class="form-group">
                                                 <h5>Imagem <span class="text-danger">*</span></h5>

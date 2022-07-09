@@ -45,7 +45,7 @@
                                                     <td width="25%">
                                                         <!-- Editar Sub-Categoria(s) -->
                                                         <a href="<?php echo e(route('subcategory.edit', $item->id)); ?>"
-                                                            class="btn btn-info" title="Editar Sub-Categoria"><i
+                                                            class="btn btn-warning" title="Editar Sub-Categoria"><i
                                                                 class="fa fa-pencil"></i> </a>
 
                                                         <!-- Excluir Sub-Categoria(s) -->

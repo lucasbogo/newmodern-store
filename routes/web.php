@@ -1,6 +1,6 @@
 <?php
 
-/* IMPORTAR TODOS OS CONTROLLERS AQUI */
+// ======================= IMPORTAR TODAS AS CONTROLLERS AQUI =======================/
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\SliderController;
 
 
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\LanguageController;
 
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
@@ -31,48 +32,52 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+/*
 Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function () {
     Route::get('admin/login', [AdminController::class, 'loginForm']);
     Route::post('admin/login', [AdminController::class, 'store'])->name('admin.login');
 });
+*/
 
 
 
-Route::middleware('admin:admin')->group(function () {
+//Route::middleware('admin:admin')->group(function () {
+
+
+// ======================= TODAS AS ROTAS ADMIN =======================/
+
+
+Route::middleware([
+    'auth:sanctum,admin', config('jetstream.auth_session'), 'verified'
+])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.index');
+    })->name('dashboard')->middleware('auth:admin');
 
     Route::get('admin/login', [AdminController::class, 'loginForm']);
+
     Route::post('admin/login', [AdminController::class, 'store'])->name('admin.login');
 
+    // Rota para logout do mantenedor
+    Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout')->middleware('auth:admin');
 
+    // Rota para manter perfil mantenedor
+    Route::get('/admin/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile')->middleware('auth:admin');;
 
-    Route::middleware([
-        'auth:sanctum,admin', config('jetstream.auth_session'), 'verified'
-    ])->group(function () {
-        Route::get('/admin/dashboard', function () {
-            return view('admin.index');
-        })->name('dashboard')->middleware('auth:admin');
+    // Rota para entrar em editar perfil mantenedor
+    Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit')->middleware('auth:admin');;
 
+    // Rota que aceita os dados anexados no corpo da mensagem de requisição para armazenamento [POST admin.edit.profile]
+    Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store')->middleware('auth:admin');;
 
-        // Rota para logout do mantenedor
-        Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout')->middleware('auth:admin');
+    // Rota para mudar senha mantenedor
+    Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password')->middleware('auth:admin');;
 
-        // Rota para manter perfil mantenedor
-        Route::get('/admin/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile')->middleware('auth:admin');;
-
-        // Rota para entrar em editar perfil mantenedor
-        Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit')->middleware('auth:admin');;
-
-        // Rota que aceita os dados anexados no corpo da mensagem de requisição para armazenamento [POST admin.edit.profile]
-        Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store')->middleware('auth:admin');;
-
-        // Rota para mudar senha mantenedor
-        Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password')->middleware('auth:admin');;
-
-        // Rota que aceita as mudanças senha mantenedor
-        Route::post('/update/change/password', [AdminProfileController::class, 'AdminUpdateChangePassword'])->name('update.change.password')->middleware('auth:admin');;
-    });
+    // Rota que aceita as mudanças senha mantenedor
+    Route::post('/update/change/password', [AdminProfileController::class, 'AdminUpdateChangePassword'])->name('update.change.password')->middleware('auth:admin');;
 });
+
+
 
 
 
@@ -85,26 +90,25 @@ Route::middleware([
     Route::get('/dashboard', function () {
 
         return view('dashboard');
-
-
-        // Rota Usuario [HOME] - primeira página, serve tanto para visitante como usuário
-        Route::get('/', [IndexController::class, 'index']);
-
-        // Rota Usuario [LOGOUT] - rota para logout do usuario
-        Route::get('/user/logout', [IndexController::class, 'UserLogout'])->name('user.logout');
-
-        // Rota Usuario [PROFILE - PERFIL] - rota p/ acessar a pagina perfil usuario
-        Route::get('/user/profile', [IndexController::class, 'UserProfile'])->name('user.profile');
-
-        // Rota Usuario [PROFILE - PERFIL] - rota p/ guardar dados perfil usuario editados pelo mesmo - Store, em inglês, é guardar/manter
-        Route::post('/user/profile/store', [IndexController::class, 'UserProfileStore'])->name('user.profile.store');
-
-        // Rota Usuario [PASSWORD] - rota p/ acessar página mudar senha usuario
-        Route::get('/user/change/password', [IndexController::class, 'UserChangePassword'])->name('change.password');
-
-        // Rota Usuario [PASSWORD] - rota p/ guardar senha alterado pelo usuario
-        Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdate'])->name('user.password.update');
     });
+
+    // Rota Usuario [HOME] - primeira página, serve tanto para visitante como usuário
+    Route::get('/', [IndexController::class, 'index']);
+
+    // Rota Usuario [LOGOUT] - rota para logout do usuario
+    Route::get('/user/logout', [IndexController::class, 'UserLogout'])->name('user.logout');
+
+    // Rota Usuario [PROFILE - PERFIL] - rota p/ acessar a pagina perfil usuario
+    Route::get('/user/profile', [IndexController::class, 'UserProfile'])->name('user.profile');
+
+    // Rota Usuario [PROFILE - PERFIL] - rota p/ guardar dados perfil usuario editados pelo mesmo - Store, em inglês, é guardar/manter
+    Route::post('/user/profile/store', [IndexController::class, 'UserProfileStore'])->name('user.profile.store');
+
+    // Rota Usuario [PASSWORD] - rota p/ acessar página mudar senha usuario
+    Route::get('/user/change/password', [IndexController::class, 'UserChangePassword'])->name('change.password');
+
+    // Rota Usuario [PASSWORD] - rota p/ guardar senha alterado pelo usuario
+    Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdate'])->name('user.password.update');
 });
 
 
@@ -238,7 +242,7 @@ Route::prefix('product')->group(function () {
     Route::get('/delete/{id}', [ProductController::class, 'DeleteProduct'])->name('product.delete');
 });
 
-// ================ TODAS AS ROTAS SLIDER PAINEL ADMIN ================/
+// ======================= TODAS AS ROTAS SLIDER PAINEL ADMIN =======================/
 
 /*** prefix siginica que aparecerá o objeto na url antes da rota chamada: (brand/view ; brand/store; slider/view ...) */
 Route::prefix('slider')->group(function () {
@@ -264,3 +268,12 @@ Route::prefix('slider')->group(function () {
     // Rota p/ ativar produto no painel admin edit product
     Route::get('/activate/{id}', [SliderController::class, 'ActivateSlider'])->name('slider.activate');
 });
+
+
+// ======================= TODAS AS ROTAS FRONT-END =======================/
+
+// Rota p/ ativar produto no painel admin edit product
+Route::get('/language/portuguese', [LanguageController::class, 'Portuguese'])->name('portuguese.language');
+
+// Rota p/ ativar produto no painel admin edit product
+Route::get('/language/english', [LanguageController::class, 'English'])->name('english.language');
