@@ -13,17 +13,54 @@
                                     My Profile
                                 <?php endif; ?>
                             </a></li>
-                        <li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
-                        <li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
-                        <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
+                        <li><a href="#"><i class="icon fa fa-heart"></i>
+                                <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                <?php if(session()->get('language') == 'portuguese'): ?>
+                                    Lista de Desejos
+                                <?php else: ?>
+                                    Wishlist
+                                <?php endif; ?>
+                            </a>
+                        </li>
+                        <li><a href="#"><i class="icon fa fa-shopping-cart"></i>
+                                <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                <?php if(session()->get('language') == 'portuguese'): ?>
+                                    Meu Carrinho
+                                <?php else: ?>
+                                    My Cart
+                                <?php endif; ?>
+                            </a>
+                        </li>
+                        <li><a href="#"><i class="icon fa fa-check"></i>
+                                <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                <?php if(session()->get('language') == 'portuguese'): ?>
+                                    Confirir Compras
+                                <?php else: ?>
+                                    Checkout
+                                <?php endif; ?>
+                            </a></li>
 
                         <!-- Se o usuario estiver logado(auth), mostra o icone usuario e link para entrar no perfil -->
                         <?php if(auth()->guard()->check()): ?>
-                            <li><a href="<?php echo e(route('login')); ?>"><i class="icon fa fa-user"></i>User Profile</a></li>
+                            <li><a href="<?php echo e(route('login')); ?>"><i class="icon fa fa-user"></i>
+                                    <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                    <?php if(session()->get('language') == 'portuguese'): ?>
+                                        Perfil Usuário
+                                    <?php else: ?>
+                                        User Profile
+                                    <?php endif; ?>
+                                </a></li>
 
                             <!-- Se usuário não estiver logado, mostra o icone lock(cadeado) e link para realizar login ou registro -->
                         <?php else: ?>
-                            <li><a href="<?php echo e(route('login')); ?>"><i class="icon fa fa-lock"></i>Login/Register</a></li>
+                            <li><a href="<?php echo e(route('login')); ?>"><i class="icon fa fa-lock"></i>
+                                    <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                    <?php if(session()->get('language') == 'portuguese'): ?>
+                                        Entrar/Registrar
+                                    <?php else: ?>
+                                        Login/Register
+                                    <?php endif; ?>
+                                </a></li>
 
                         <?php endif; ?>
                     </ul>
@@ -33,6 +70,7 @@
                 <div class="cnt-block">
 
                     <ul class="list-unstyled list-inline">
+                        <!-- ============= ESCOLHER MOEDA (IMPLEMENTAR ESSA LÓGICA FUTURAMENTRE) ============= -->
                         <!--
                         <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle"
                                 data-hover="dropdown" data-toggle="dropdown"><span class="value">USD </span><b
@@ -136,8 +174,14 @@
                             <div class="items-cart-inner">
                                 <div class="basket"> <i class="glyphicon glyphicon-shopping-cart"></i> </div>
                                 <div class="basket-item-count"><span class="count">2</span></div>
-                                <div class="total-price-basket"> <span class="lbl">cart -</span> <span
-                                        class="total-price"> <span class="sign">$</span><span
+                                <div class="total-price-basket"> <span class="lbl">
+                                        <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                        <?php if(session()->get('language') == 'portuguese'): ?>
+                                            Car...
+                                        <?php else: ?>
+                                            Cart
+                                        <?php endif; ?>
+                                    </span> <span class="total-price"> <span class="sign">$</span><span
                                             class="value">600.00</span>
                                     </span> </div>
                             </div>
@@ -203,8 +247,15 @@
                     <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
                         <div class="nav-outer">
                             <ul class="nav navbar-nav">
-                                <li class="active dropdown yamm-fw"> <a href="<?php echo e(url('/dashboard')); ?>"
-                                        data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                                <li class="active dropdown yamm-fw"> <a href="<?php echo e(url('/')); ?>"
+                                        data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">
+                                        <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                        <?php if(session()->get('language') == 'portuguese'): ?>
+                                            Pagina Principal
+                                        <?php else: ?>
+                                            Home
+                                        <?php endif; ?>
+                                    </a>
                                 </li>
 
 
@@ -219,14 +270,22 @@
 
                                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <li class="dropdown yamm mega-menu"> <a href="home.html" data-hover="dropdown"
-                                            class="dropdown-toggle"
-                                            data-toggle="dropdown"><?php echo e($category->category_name_en); ?></a>
+                                            class="dropdown-toggle" data-toggle="dropdown">
+
+                                            <?php if(session()->get('language') == 'portuguese'): ?>
+                                                <?php echo e($category->category_name_pt); ?>
+
+                                            <?php else: ?>
+                                                <?php echo e($category->category_name_en); ?>
+
+                                            <?php endif; ?>
+                                        </a>
                                         <ul class="dropdown-menu container">
                                             <li>
                                                 <div class="yamm-content ">
                                                     <div class="row">
 
-                                                        
+
                                                         <!-- =========================== DEIXAR O MENU DROPDOWN DINÂMICO CHAMANDO AS SUB-CATEGORIAS DO PAINEL ADMIN =========================== -->
 
                                                         <!-- Relacionar a subcategoria com a fk categoria; quando bater com a categoria id, então, order by ascendente -->
@@ -238,7 +297,7 @@
 
                                                         <?php $__currentLoopData = $subcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                             <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                                                                 <!-- CONDIÇÃO IF ELSE: se a sessão for em ptbr, mostrar nome ptbr caso contrário, mostrar inglês -->
+                                                                <!-- CONDIÇÃO IF ELSE: se a sessão for em ptbr, mostrar nome ptbr caso contrário, mostrar inglês -->
                                                                 <a
                                                                     href="<?php echo e(url('subcategory/product/' . $subcategory->id . '/' . $subcategory->subcategory_slug_en)); ?>">
                                                                     <h2 class="title">
@@ -253,9 +312,9 @@
                                                                 </a>
 
 
-                                                               <!-- =========================== DEIXAR O MENU DROPDOWN DINÂMICO CHAMANDO AS SUB-SUB-CATEGORIAS DO PAINEL ADMIN =========================== -->
+                                                                <!-- =========================== DEIXAR O MENU DROPDOWN DINÂMICO CHAMANDO AS SUB-SUB-CATEGORIAS DO PAINEL ADMIN =========================== -->
 
-                                                               <!-- Relacionar a subsubcategoria com a fk subcategoria; quando bater com a subcategoria id, então, order by ascendente -->
+                                                                <!-- Relacionar a subsubcategoria com a fk subcategoria; quando bater com a subcategoria id, então, order by ascendente -->
                                                                 <?php
                                                                     $subsubcategories = App\Models\SubSubCategory::where('subcategory_id', $subcategory->id)
                                                                         ->orderBy('subsubcategory_name_en', 'ASC')
@@ -263,9 +322,9 @@
                                                                 ?>
 
                                                                 <?php $__currentLoopData = $subsubcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subsubcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                <!-- CONDIÇÃO IF ELSE: se a sessão for em ptbr, mostrar nome ptbr caso contrário, mostrar inglês -->
+                                                                    <!-- CONDIÇÃO IF ELSE: se a sessão for em ptbr, mostrar nome ptbr caso contrário, mostrar inglês -->
                                                                     <ul class="links">
-                                                                        <li><a  
+                                                                        <li><a
                                                                                 href="<?php echo e(url('subsubcategory/product/' . $subsubcategory->id . '/' . $subsubcategory->subsubcategory_slug_en)); ?>">
                                                                                 <?php if(session()->get('language') == 'portuguese'): ?>
                                                                                     <?php echo e($subsubcategory->subsubcategory_name_pt); ?>
@@ -289,7 +348,8 @@
                                                         <div class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image">
                                                             <img class="img-responsive"
                                                                 src="<?php echo e(asset('frontend/assets/images/banners/top-menu-banner.jpg')); ?>"
-                                                                alt=""> </div>
+                                                                alt="">
+                                                        </div>
                                                         <!-- /.yamm-content -->
                                                     </div>
                                                 </div>

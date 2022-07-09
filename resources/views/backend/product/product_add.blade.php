@@ -247,7 +247,7 @@ e compartilhei com a equipe.
                                                         <h5>Valor Desconto <span class="text-info">Opcional</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_discount_price"
-                                                                class="form-control" required="">
+                                                                class="form-control">
 
 
                                                         </div>
@@ -309,11 +309,11 @@ e compartilhei com a equipe.
                                                 <!-- INSERIR COR INGLÊS-->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h5>Color <span class="text-danger">*</span></h5>
+                                                        <h5>Color <span class="text-info">OPCIONAL</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_color_en"
                                                                 class="form-control" value="Black, Blue, Yellow, white"
-                                                                data-role="tagsinput" required="">
+                                                                data-role="tagsinput">
 
                                                             @error('product_color_en')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -326,11 +326,11 @@ e compartilhei com a equipe.
                                                 <!-- INSERIR COR PORTUGUÊS-->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h5>Cor <span class="text-danger">*</span></h5>
+                                                        <h5>Cor <span class="text-info">OPCIONAL</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_color_pt"
                                                                 class="form-control" value="Amarelo, Azul, Branco, Preto"
-                                                                data-role="tagsinput" required="">
+                                                                data-role="tagsinput" >
 
                                                             @error('product_color_pt')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -343,11 +343,11 @@ e compartilhei com a equipe.
                                                 <!-- INSERIR TAGS INGLÊS -->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h5>Tags (EN) <span class="text-danger">*</span></h5>
+                                                        <h5>Tags (EN) <span class="text-info">OPCIONAL</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_tags_en"
                                                                 class="form-control" value="English,Lorem, Ipsum, Amet"
-                                                                data-role="tagsinput" required="">
+                                                                data-role="tagsinput">
 
                                                             @error('product_tags_en')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -368,11 +368,11 @@ e compartilhei com a equipe.
                                                 <!-- INSERIR TAGS PORTUGUÊS-->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h5>Tags (PTBR) <span class="text-danger">*</span></h5>
+                                                        <h5>Tags (PTBR) <span class="text-info">OPCIONAL</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_tags_pt"
                                                                 class="form-control" value="Português,Lorem, Ipsum, Amet"
-                                                                data-role="tagsinput" required="">
+                                                                data-role="tagsinput" >
 
                                                             @error('product_tags_pt')
                                                                 <span class="text-danger">{{ $message }}</span>

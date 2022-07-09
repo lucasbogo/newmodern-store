@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -10,14 +12,19 @@ use Illuminate\Support\Facades\Hash;
 
 class IndexController extends Controller
 {
-    // Método para mostrar a página index [HOME]
+    // [HOME]
     public function index()
     {
+        //'Baixar' as informações admin backend categorias no menu vertical esquerdo da HOME
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
 
-        return view('frontend.index');
+        // 'Baixar' os dados admin backend sliders no SliderHome e mostrar apenas 3 sliders.
+        $sliders = Slider::where('slider_status', 1)->orderBy('id', 'DESC')->limit(3)->get();
+
+        return view('frontend.index',compact('categories', 'sliders'));
     }
 
-    // Método logout usuario [LOGOUT]
+    // [LOGOUT]
     public function UserLogout()
     {
 
@@ -28,7 +35,7 @@ class IndexController extends Controller
         return Redirect()->route('login');
     }
 
-    // Método para mostrar a página perfil usuario [PROFILE]
+    //  [PROFILE]
     public function UserProfile()
     {
         //Verificar o usuario pelo ID e atribuir à variável ID

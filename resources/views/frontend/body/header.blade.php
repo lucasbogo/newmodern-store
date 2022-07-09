@@ -177,10 +177,10 @@
                                 <div class="total-price-basket"> <span class="lbl">
                                         <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
                                         @if (session()->get('language') == 'portuguese')
-                                            Carrinho
+                                            Car...
                                         @else
                                             Cart
-                                        @endif 
+                                        @endif
                                     </span> <span class="total-price"> <span class="sign">$</span><span
                                             class="value">600.00</span>
                                     </span> </div>
@@ -270,8 +270,14 @@
 
                                 @foreach ($categories as $category)
                                     <li class="dropdown yamm mega-menu"> <a href="home.html" data-hover="dropdown"
-                                            class="dropdown-toggle"
-                                            data-toggle="dropdown">{{ $category->category_name_en }}</a>
+                                            class="dropdown-toggle" data-toggle="dropdown">
+
+                                            @if (session()->get('language') == 'portuguese')
+                                                {{ $category->category_name_pt }}
+                                            @else
+                                                {{ $category->category_name_en }}
+                                            @endif
+                                        </a>
                                         <ul class="dropdown-menu container">
                                             <li>
                                                 <div class="yamm-content ">
