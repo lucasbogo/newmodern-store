@@ -259,7 +259,7 @@
                                                 <!-- INPUT FIELD INSERIR VALOR DESCONTO-->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h5>Valor Desconto <span class="text-info">Opcional</span></h5>
+                                                        <h5>Valor final com Desconto <span class="text-info">Opcional</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_discount_price"
                                                                 class="form-control" 

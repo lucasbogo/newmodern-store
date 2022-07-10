@@ -1130,20 +1130,33 @@
                                                                 </a> </div>
                                                             <!-- /.image -->
 
+                                                            <!-- Lógica porcentagem -->
                                                             @php
-                                                                 $discount = $product->product_discount_price * 100; 
-                                                                $percentage = $discount / $product->product_selling_price;
+                                                                $discount = $product->product_selling_price - $product->product_discount_price;
+                                                                $percentage = ($discount / $product->product_selling_price) * 100;
                                                             @endphp
 
+                                                            <div>
+                                                                <!-- Lógica: se não houver desconto, aparecer a a tag new...-->
+                                                                @if ($product->product_discount_price == null)
+                                                                    <div class="tag new"><span>
+                                                                            <!-- Lógica internacionalização simples tradução da tag new -->
+                                                                            @if (session()->get('language') == 'portuguese')
+                                                                                NOVO
+                                                                            @else
+                                                                                NEW
+                                                                            @endif
+                                                                        </span></div>
+                                                                @else
+                                                                    <!-- caso contrário, mostrar a porcentagem de desconto -->
+                                                                    <div class="tag hot">
+                                                                        <span>{{ round($percentage) }} %</span>
+                                                                    </div>
+                                                                @endif
+                                                            </div>
 
-                                                            <div class="tag new"><span>
-                                                                    <!-- Lógica internacionalização simples tradução da tag new -->
-                                                                    @if (session()->get('language') == 'portuguese')
-                                                                        Novo
-                                                                    @else
-                                                                        New
-                                                                    @endif
-                                                                </span></div>
+
+
                                                         </div>
                                                         <!-- /.product-image -->
 
@@ -1159,11 +1172,26 @@
                                                             </h3>
                                                             <div class="rating rateit-small"></div>
                                                             <div class="description"></div>
-                                                            <div class="product-price"> <span class="price"> $450.99
-                                                                </span>
-                                                                <span class="price-before-discount">$ 800</span>
-                                                            </div>
-                                                            <!-- /.product-price -->
+
+                                                            <!--== LÓGICA P/ MOSTRAR VALOR PRODUTO DINAMICAMENTE ==-->
+
+                                                            <!-- Lógica: se não houver desconto, aparecer o valor normal (product_selling_price)...-->
+                                                            @if ($product->product_discount_price == null)
+                                                                <div class="product-price"> <span class="price">
+                                                                        {{ $product->product_selling_price }}
+                                                                    </span>
+                                                                </div>
+                                                                <!-- /.product_selling_price without discount -->
+                                                            @else
+                                                                <!-- caso contrário, mostrar valor com o desconto -->
+                                                                <div class="product-price"> <span class="price">
+                                                                        {{ $product->product_discount_price }}
+                                                                    </span><span class="price-before-discount">
+                                                                        {{ $product->product_selling_price }}
+                                                                    </span>
+                                                                </div>
+                                                                <!-- /.product_discount_price with discount -->
+                                                            @endif
 
                                                         </div>
                                                         <!-- /.product-info -->
@@ -1226,6 +1254,7 @@
                                                     ->get();
                                             @endphp
 
+
                                             <!-- loop condicional para 'baixar' os dados produto por categoria na index.home -->
                                             @forelse ($categorised_product as $product)
                                                 <div class="item item-carousel">
@@ -1239,14 +1268,33 @@
                                                                     </a> </div>
                                                                 <!-- /.image -->
 
-                                                                <div class="tag new"><span>
-                                                                        <!-- Lógica internacionalização simples tradução -->
-                                                                        @if (session()->get('language') == 'portuguese')
-                                                                            Novo
-                                                                        @else
-                                                                            New
-                                                                        @endif
-                                                                    </span></div>
+                                                                <!-- Lógica porcentagem -->
+                                                                @php
+                                                                    $discount = $product->product_selling_price - $product->product_discount_price;
+                                                                    $percentage = ($discount / $product->product_selling_price) * 100;
+                                                                @endphp
+
+                                                                <div>
+                                                                    <!-- Lógica: se não houver desconto, aparecer a a tag new...-->
+                                                                    @if ($product->product_discount_price == null)
+                                                                        <div class="tag new"><span>
+                                                                                <!-- Lógica internacionalização simples tradução da tag new -->
+                                                                                @if (session()->get('language') == 'portuguese')
+                                                                                    NOVO
+                                                                                @else
+                                                                                    NEW
+                                                                                @endif
+                                                                            </span></div>
+                                                                    @else
+                                                                        <!-- caso contrário, mostrar a porcentagem de desconto -->
+                                                                        <div class="tag hot">
+                                                                            <span>{{ round($percentage) }} %</span>
+                                                                        </div>
+                                                                    @endif
+                                                                </div>
+
+
+
                                                             </div>
                                                             <!-- /.product-image -->
 
@@ -1262,11 +1310,26 @@
                                                                 </h3>
                                                                 <div class="rating rateit-small"></div>
                                                                 <div class="description"></div>
-                                                                <div class="product-price"> <span class="price"> $450.99
-                                                                    </span>
-                                                                    <span class="price-before-discount">$ 800</span>
-                                                                </div>
-                                                                <!-- /.product-price -->
+
+                                                                <!--== LÓGICA P/ MOSTRAR VALOR PRODUTO DINAMICAMENTE ==-->
+
+                                                                <!-- Lógica: se não houver desconto, aparecer o valor normal (product_selling_price)...-->
+                                                                @if ($product->product_discount_price == null)
+                                                                    <div class="product-price"> <span class="price">
+                                                                            {{ $product->product_selling_price }}
+                                                                        </span>
+                                                                    </div>
+                                                                    <!-- /.product_selling_price without discount -->
+                                                                @else
+                                                                    <!-- caso contrário, mostrar valor com o desconto -->
+                                                                    <div class="product-price"> <span class="price">
+                                                                            {{ $product->product_discount_price }}
+                                                                        </span><span class="price-before-discount">
+                                                                            {{ $product->product_selling_price }}
+                                                                        </span>
+                                                                    </div>
+                                                                    <!-- /.product_discount_price with discount -->
+                                                                @endif
 
                                                             </div>
                                                             <!-- /.product-info -->

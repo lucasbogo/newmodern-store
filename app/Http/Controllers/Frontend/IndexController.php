@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+
 class IndexController extends Controller
 {
     // [HOME]
@@ -33,10 +34,12 @@ class IndexController extends Controller
     {
 
         // Auth::logout acessa o método logout default do jetstream
-        Auth::logout();
+        //Auth::logout();
+        // Estava com erros ao realizar logout, isso ajudou a resolver...
+        auth()->guard('web')->logout();
 
         // Após logout, o usuario é redirecionado para a pagina login
-        return Redirect()->route('login');
+        return Redirect()->route('dashboard');
     }
 
     //  [PROFILE]

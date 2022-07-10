@@ -1137,14 +1137,33 @@
                                                                 </a> </div>
                                                             <!-- /.image -->
 
-                                                            <div class="tag new"><span>
-                                                                    <!-- Lógica internacionalização simples tradução -->
-                                                                    <?php if(session()->get('language') == 'portuguese'): ?>
-                                                                        Novo
-                                                                    <?php else: ?>
-                                                                        New
-                                                                    <?php endif; ?>
-                                                                </span></div>
+                                                            <!-- Lógica porcentagem -->
+                                                            <?php
+                                                                $discount = $product->product_selling_price - $product->product_discount_price;
+                                                                $percentage = ($discount / $product->product_selling_price) * 100;
+                                                            ?>
+
+                                                            <div>
+                                                                <!-- Lógica: se não houver desconto, aparecer a a tag new...-->
+                                                                <?php if($product->product_discount_price == null): ?>
+                                                                    <div class="tag new"><span>
+                                                                            <!-- Lógica internacionalização simples tradução da tag new -->
+                                                                            <?php if(session()->get('language') == 'portuguese'): ?>
+                                                                                NOVO
+                                                                            <?php else: ?>
+                                                                                NEW
+                                                                            <?php endif; ?>
+                                                                        </span></div>
+                                                                <?php else: ?>
+                                                                    <!-- caso contrário, mostrar a porcentagem de desconto -->
+                                                                    <div class="tag hot">
+                                                                        <span><?php echo e(round($percentage)); ?> %</span>
+                                                                    </div>
+                                                                <?php endif; ?>
+                                                            </div>
+
+
+
                                                         </div>
                                                         <!-- /.product-image -->
 
@@ -1162,11 +1181,29 @@
                                                             </h3>
                                                             <div class="rating rateit-small"></div>
                                                             <div class="description"></div>
-                                                            <div class="product-price"> <span class="price"> $450.99
-                                                                </span>
-                                                                <span class="price-before-discount">$ 800</span>
-                                                            </div>
-                                                            <!-- /.product-price -->
+
+                                                            <!--== LÓGICA P/ MOSTRAR VALOR PRODUTO DINAMICAMENTE ==-->
+
+                                                            <!-- Lógica: se não houver desconto, aparecer o valor normal (product_selling_price)...-->
+                                                            <?php if($product->product_discount_price == null): ?>
+                                                                <div class="product-price"> <span class="price">
+                                                                        <?php echo e($product->product_selling_price); ?>
+
+                                                                    </span>
+                                                                </div>
+                                                                <!-- /.product_selling_price without discount -->
+                                                            <?php else: ?>
+                                                                <!-- caso contrário, mostrar valor com o desconto -->
+                                                                <div class="product-price"> <span class="price">
+                                                                        <?php echo e($product->product_discount_price); ?>
+
+                                                                    </span><span class="price-before-discount">
+                                                                        <?php echo e($product->product_selling_price); ?>
+
+                                                                    </span>
+                                                                </div>
+                                                                <!-- /.product_discount_price with discount -->
+                                                            <?php endif; ?>
 
                                                         </div>
                                                         <!-- /.product-info -->
@@ -1229,6 +1266,7 @@
                                                     ->get();
                                             ?>
 
+
                                             <!-- loop condicional para 'baixar' os dados produto por categoria na index.home -->
                                             <?php $__empty_1 = true; $__currentLoopData = $categorised_product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                 <div class="item item-carousel">
@@ -1242,14 +1280,33 @@
                                                                     </a> </div>
                                                                 <!-- /.image -->
 
-                                                                <div class="tag new"><span>
-                                                                        <!-- Lógica internacionalização simples tradução -->
-                                                                        <?php if(session()->get('language') == 'portuguese'): ?>
-                                                                            Novo
-                                                                        <?php else: ?>
-                                                                            New
-                                                                        <?php endif; ?>
-                                                                    </span></div>
+                                                                <!-- Lógica porcentagem -->
+                                                                <?php
+                                                                    $discount = $product->product_selling_price - $product->product_discount_price;
+                                                                    $percentage = ($discount / $product->product_selling_price) * 100;
+                                                                ?>
+
+                                                                <div>
+                                                                    <!-- Lógica: se não houver desconto, aparecer a a tag new...-->
+                                                                    <?php if($product->product_discount_price == null): ?>
+                                                                        <div class="tag new"><span>
+                                                                                <!-- Lógica internacionalização simples tradução da tag new -->
+                                                                                <?php if(session()->get('language') == 'portuguese'): ?>
+                                                                                    NOVO
+                                                                                <?php else: ?>
+                                                                                    NEW
+                                                                                <?php endif; ?>
+                                                                            </span></div>
+                                                                    <?php else: ?>
+                                                                        <!-- caso contrário, mostrar a porcentagem de desconto -->
+                                                                        <div class="tag hot">
+                                                                            <span><?php echo e(round($percentage)); ?> %</span>
+                                                                        </div>
+                                                                    <?php endif; ?>
+                                                                </div>
+
+
+
                                                             </div>
                                                             <!-- /.product-image -->
 
@@ -1267,11 +1324,29 @@
                                                                 </h3>
                                                                 <div class="rating rateit-small"></div>
                                                                 <div class="description"></div>
-                                                                <div class="product-price"> <span class="price"> $450.99
-                                                                    </span>
-                                                                    <span class="price-before-discount">$ 800</span>
-                                                                </div>
-                                                                <!-- /.product-price -->
+
+                                                                <!--== LÓGICA P/ MOSTRAR VALOR PRODUTO DINAMICAMENTE ==-->
+
+                                                                <!-- Lógica: se não houver desconto, aparecer o valor normal (product_selling_price)...-->
+                                                                <?php if($product->product_discount_price == null): ?>
+                                                                    <div class="product-price"> <span class="price">
+                                                                            <?php echo e($product->product_selling_price); ?>
+
+                                                                        </span>
+                                                                    </div>
+                                                                    <!-- /.product_selling_price without discount -->
+                                                                <?php else: ?>
+                                                                    <!-- caso contrário, mostrar valor com o desconto -->
+                                                                    <div class="product-price"> <span class="price">
+                                                                            <?php echo e($product->product_discount_price); ?>
+
+                                                                        </span><span class="price-before-discount">
+                                                                            <?php echo e($product->product_selling_price); ?>
+
+                                                                        </span>
+                                                                    </div>
+                                                                    <!-- /.product_discount_price with discount -->
+                                                                <?php endif; ?>
 
                                                             </div>
                                                             <!-- /.product-info -->
@@ -1311,7 +1386,7 @@
 
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                                 <h5 class="text-danger">
-                                                    <!-- Lógica internacionalização mostrar mensagem de falta  de produto -->
+                                                    <!-- Lógica internacionalização mostrar mensagem de falta de produto ao selecionar uma categoria sem produtos -->
                                                     <?php if(session()->get('language') == 'portuguese'): ?>
                                                         Categoria sem Produtos
                                                     <?php else: ?>

@@ -93,7 +93,7 @@ Route::middleware([
     });
 
     // Rota Usuario [HOME] - primeira página, serve tanto para visitante como usuário
-    Route::get('/', [IndexController::class, 'index']);
+    Route::get('/', [IndexController::class, 'index'])->name('index');
 
     // Rota Usuario [LOGOUT] - rota para logout do usuario
     Route::get('/user/logout', [IndexController::class, 'UserLogout'])->name('user.logout');

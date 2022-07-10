@@ -52,8 +52,8 @@
                                                         @else
                                                             <!-- Lógica percentagem desconto -->
                                                             @php
-                                                                $discount = $product->product_discount_price * 100; 
-                                                                $percentage = $discount / $product->product_selling_price;
+                                                                $discount = $product->product_selling_price - $product->product_discount_price;
+                                                                $percentage = ( $discount / $product->product_selling_price) * 100;
                                                             @endphp
                                                             <span
                                                                 class="badge badge-pill badge-danger">{{ round($percentage) }}
@@ -72,7 +72,7 @@
                                                     <!-- caso necessário, mudar o widht table buttons para caber certinho -->
                                                     <td width="">
                                                         <!-- Ver Detalhes Produto(s) -->
-                                                        <a href="{{ route('product.edit', $product->id) }}"
+                                                        <a href="{{ route('product.manage', $product->id) }}"
                                                             class="btn btn-info" title="Detalhes Produto"><i
                                                                 class="fa fa-eye"></i> </a>
 
