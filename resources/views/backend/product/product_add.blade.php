@@ -312,12 +312,10 @@ e compartilhei com a equipe.
                                                         <h5>Color <span class="text-info">OPCIONAL</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_color_en"
-                                                                class="form-control" value="Black, Blue, Yellow, white"
+                                                                class="form-control" value=""
                                                                 data-role="tagsinput">
 
-                                                            @error('product_color_en')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
+                                                          
 
                                                         </div>
                                                     </div>
@@ -329,12 +327,10 @@ e compartilhei com a equipe.
                                                         <h5>Cor <span class="text-info">OPCIONAL</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_color_pt"
-                                                                class="form-control" value="Amarelo, Azul, Branco, Preto"
+                                                                class="form-control" value=""
                                                                 data-role="tagsinput" >
 
-                                                            @error('product_color_pt')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
+                                                         
 
                                                         </div>
                                                     </div>
@@ -346,12 +342,10 @@ e compartilhei com a equipe.
                                                         <h5>Tags (EN) <span class="text-info">OPCIONAL</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_tags_en"
-                                                                class="form-control" value="English,Lorem, Ipsum, Amet"
+                                                                class="form-control" value=""
                                                                 data-role="tagsinput">
 
-                                                            @error('product_tags_en')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
+                                                          
 
                                                         </div>
                                                     </div>
@@ -389,8 +383,8 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <input type="text" name="product_size_en"
                                                                 class="form-control"
-                                                                value="Small, Medium, Large, Extra-Large, XXL"
-                                                                data-role="tagsinput" required="">
+                                                                value=""
+                                                                data-role="tagsinput">
 
 
 
@@ -405,8 +399,8 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <input type="text" name="product_size_pt"
                                                                 class="form-control"
-                                                                value="Pequeno, Médio, Grande, GG, GGG"
-                                                                data-role="tagsinput" required="">
+                                                                value=""
+                                                                data-role="tagsinput">
 
 
 

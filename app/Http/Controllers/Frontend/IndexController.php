@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Slider;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class IndexController extends Controller
@@ -21,7 +22,10 @@ class IndexController extends Controller
         // 'Baixar' os dados admin backend sliders no SliderHome e mostrar apenas 3 sliders.
         $sliders = Slider::where('slider_status', 1)->orderBy('id', 'DESC')->limit(3)->get();
 
-        return view('frontend.index',compact('categories', 'sliders'));
+        // 'Baixar' os dados admin backend products no NovosProdutosHome se ativar o produto no painel, então ele irá aparecer no front Novos Produtos
+        $products = Product::where('product_status', 1)->orderBy('id', 'DESC')->get();
+
+        return view('frontend.index', compact('categories', 'sliders', 'products'));
     }
 
     // [LOGOUT]

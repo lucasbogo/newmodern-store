@@ -50,12 +50,13 @@
                                                         @if ($product->product_discount_price == null)
                                                             <span class="badge badge-pill badge-danger"> Sem Desconto</span>
                                                         @else
+                                                            <!-- Lógica percentagem desconto -->
                                                             @php
-                                                                $amount = $product->product_selling_price - $product->product_discount_price;
-                                                                $discount = ($amount / $product->product_selling_price) * 100;
+                                                                $total = $product->product_selling_price - $product->product_discount_price;
+                                                                $percentage = ($total / $product->product_selling_price) * 100;
                                                             @endphp
                                                             <span
-                                                                class="badge badge-pill badge-danger">{{ round($discount) }}
+                                                                class="badge badge-pill badge-danger">{{ round($percentage) }}
                                                                 %</span>
                                                         @endif
                                                     </td>
@@ -81,8 +82,8 @@
                                                                 class="fa fa-pencil"></i> </a>
 
                                                         <!-- Excluir Produto(s) -->
-                                                        <a href="{{ route('product.delete', $product->id) }}" class="btn btn-danger" id="delete"
-                                                            title="Excluir Produto">
+                                                        <a href="{{ route('product.delete', $product->id) }}"
+                                                            class="btn btn-danger" id="delete" title="Excluir Produto">
                                                             <i class="fa fa-trash"></i></a>
 
                                                         <!--CONDIÇÃO: Se o produto for igual a um, então, mostrar botão decrementar apenas um, caso contrário, mostrar incrementar apenas um  -->
