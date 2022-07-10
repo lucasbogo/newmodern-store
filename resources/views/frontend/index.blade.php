@@ -1131,8 +1131,8 @@
                                                             <!-- /.image -->
 
                                                             @php
-                                                                $total = $product->product_selling_price - $product->product_discount_price
-                                                                $percentage = ($total/$product->product_selling_price) * 100;
+                                                                 $discount = $product->product_discount_price * 100; 
+                                                                $percentage = $discount / $product->product_selling_price;
                                                             @endphp
 
 
