@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Images;
 use App\Models\Slider;
 use App\Models\Product;
 use App\Models\User;
@@ -106,7 +107,22 @@ class IndexController extends Controller
             Auth::logout();
             return redirect()->route('user.logout');
         } else {
+
             return redirect()->back();
         }
     }
+
+    // Método redirecionamento para página detalhes produto
+    public function ProductDetails($id, $slug)
+    {
+        // Achar o produto pelo o ID
+        $product = Product::findOrFail($id);
+
+        // 'Baixar' as imagens da Model Images quando o id do produto combinar, apóis isso, pegar pela função get()
+        $images = Images::where('product_id', $id)->get();
+
+        // Retornar view detalhes do produto com os dados produto compactado
+        return view('frontend.product.product_details', compact('product','images'));
+
+    } 
 }

@@ -272,8 +272,11 @@ Route::prefix('slider')->group(function () {
 
 // ======================= TODAS AS ROTAS FRONT-END =======================/
 
-// Rota p/ ativar produto no painel admin edit product
+// Rota tradução português
 Route::get('/language/portuguese', [LanguageController::class, 'Portuguese'])->name('portuguese.language');
 
-// Rota p/ ativar produto no painel admin edit product
+// Rota tradução inglês
 Route::get('/language/english', [LanguageController::class, 'English'])->name('english.language');
+
+// Rota p/ detalhes do produto - como usei url, não é necessário nomear a rota
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);

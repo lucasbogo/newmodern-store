@@ -10,7 +10,7 @@
     <meta name="keywords" content="MediaCenter, Template, eCommerce">
     <meta name="robots" content="all">
     <link rel="icon" href="<?php echo e(asset('backend/images/favicon-32x32.png')); ?>">
-    <title>NewModern</title>
+    <title><?php echo $__env->yieldContent('title'); ?></title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="<?php echo e(asset('frontend/assets/css/bootstrap.min.css')); ?>">
