@@ -34,7 +34,7 @@
                         <li><a href="#"><i class="icon fa fa-check"></i>
                                 <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
                                 <?php if(session()->get('language') == 'portuguese'): ?>
-                                    Confirir Compras
+                                    Conferir Compras
                                 <?php else: ?>
                                     Checkout
                                 <?php endif; ?>

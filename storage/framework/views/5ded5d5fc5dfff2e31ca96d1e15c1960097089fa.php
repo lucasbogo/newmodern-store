@@ -1,9 +1,11 @@
 <?php $__env->startSection('content'); ?>
-<!-- query Builder -->
-<?php
-    $user = DB::table('users')->where('id',Auth::user()->id)->first();
-?>
-<!-- /query builder-->
+    <!-- query Builder -->
+    <?php
+    $user = DB::table('users')
+        ->where('id', Auth::user()->id)
+        ->first();
+    ?>
+    <!-- /query builder-->
     <div class="body-content">
         <div class="container">
             <div class="row">
@@ -17,9 +19,31 @@
                     <ul class="list-group list-group-flush">
                         <!-- botão primário pequeno -->
                         <a href="<?php echo e(route('dashboard')); ?>" class="btn btn-primary btn-sm btn-block">Home</a>
-                        <a href="<?php echo e(route('user.profile')); ?>"" class="btn btn-primary btn-sm btn-block">Profile Update</a>
-                        <a href="<?php echo e(route('change.password')); ?>" class="btn btn-primary btn-sm btn-block">Change Password</a>
-                        <a href="<?php echo e(route('user.logout')); ?>" class="btn btn-danger btn-sm btn-block">Logout</a>
+                        <a href="<?php echo e(route('user.profile')); ?>" class="btn btn-primary btn-sm btn-block">
+                            <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                            <?php if(session()->get('language') == 'portuguese'): ?>
+                                Atualizar Perfil
+                            <?php else: ?>
+                                Profile Update
+                            <?php endif; ?>
+                        </a>
+                        <a href="<?php echo e(route('change.password')); ?>" class="btn btn-primary btn-sm btn-block">
+                            <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                            <?php if(session()->get('language') == 'portuguese'): ?>
+                                Mudar Senha
+                            <?php else: ?>
+                                Change Password
+                            <?php endif; ?>
+
+                        </a>
+                        <a href="<?php echo e(route('user.logout')); ?>" class="btn btn-danger btn-sm btn-block">
+                            <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                            <?php if(session()->get('language') == 'portuguese'): ?>
+                                Sair
+                            <?php else: ?>
+                                Logout
+                            <?php endif; ?>
+                        </a>
 
                     </ul>
 
@@ -33,8 +57,22 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <h3 class="text-center"><span class="text-danger">Olá...</span><strong>
-                                <?php echo e(Auth::user()->name); ?></strong> Bem vindo à NewModern Loja Virtual</h3>
+                        <h3 class="text-center"><span class="text-danger">
+                                <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                <?php if(session()->get('language') == 'portuguese'): ?>
+                                    Olá...
+                                <?php else: ?>
+                                    Hello...
+                                <?php endif; ?>
+                            </span><strong>
+                                <?php echo e(Auth::user()->name); ?></strong>
+                            <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                            <?php if(session()->get('language') == 'portuguese'): ?>
+                                Bem Vindo à NewModern Ecommerce
+                            <?php else: ?>
+                                Welcome to NewModern Ecommerce
+                            <?php endif; ?>
+                        </h3>
                     </div>
 
 

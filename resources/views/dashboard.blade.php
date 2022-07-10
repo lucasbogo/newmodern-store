@@ -1,10 +1,12 @@
 @extends('frontend.main_master')
 @section('content')
-<!-- query Builder -->
-@php
-    $user = DB::table('users')->where('id',Auth::user()->id)->first();
-@endphp
-<!-- /query builder-->
+    <!-- query Builder -->
+    @php
+    $user = DB::table('users')
+        ->where('id', Auth::user()->id)
+        ->first();
+    @endphp
+    <!-- /query builder-->
     <div class="body-content">
         <div class="container">
             <div class="row">
@@ -18,9 +20,31 @@
                     <ul class="list-group list-group-flush">
                         <!-- botão primário pequeno -->
                         <a href="{{ route('dashboard') }}" class="btn btn-primary btn-sm btn-block">Home</a>
-                        <a href="{{ route('user.profile') }}"" class="btn btn-primary btn-sm btn-block">Profile Update</a>
-                        <a href="{{ route('change.password') }}" class="btn btn-primary btn-sm btn-block">Change Password</a>
-                        <a href="{{ route('user.logout') }}" class="btn btn-danger btn-sm btn-block">Logout</a>
+                        <a href="{{ route('user.profile') }}" class="btn btn-primary btn-sm btn-block">
+                            <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                            @if (session()->get('language') == 'portuguese')
+                                Atualizar Perfil
+                            @else
+                                Profile Update
+                            @endif
+                        </a>
+                        <a href="{{ route('change.password') }}" class="btn btn-primary btn-sm btn-block">
+                            <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                            @if (session()->get('language') == 'portuguese')
+                                Mudar Senha
+                            @else
+                                Change Password
+                            @endif
+
+                        </a>
+                        <a href="{{ route('user.logout') }}" class="btn btn-danger btn-sm btn-block">
+                            <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                            @if (session()->get('language') == 'portuguese')
+                                Sair
+                            @else
+                                Logout
+                            @endif
+                        </a>
 
                     </ul>
 
@@ -34,8 +58,22 @@
 
                 <div class="col-md-6">
                     <div class="card">
-                        <h3 class="text-center"><span class="text-danger">Olá...</span><strong>
-                                {{ Auth::user()->name }}</strong> Bem vindo à NewModern Loja Virtual</h3>
+                        <h3 class="text-center"><span class="text-danger">
+                                <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                @if (session()->get('language') == 'portuguese')
+                                    Olá...
+                                @else
+                                    Hello...
+                                @endif
+                            </span><strong>
+                                {{ Auth::user()->name }}</strong>
+                            <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                            @if (session()->get('language') == 'portuguese')
+                                Bem Vindo à NewModern Ecommerce
+                            @else
+                                Welcome to NewModern Ecommerce
+                            @endif
+                        </h3>
                     </div>
 
 
