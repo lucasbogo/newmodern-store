@@ -27,7 +27,13 @@ class IndexController extends Controller
         // 'Baixar' os dados admin backend products no NovosProdutosHome se ativar o produto no painel, então ele irá aparecer no front Novos Produtos
         $products = Product::where('product_status', 1)->orderBy('id', 'DESC')->get();
 
-        return view('frontend.index', compact('categories', 'sliders', 'products'));
+        // 'Baixar' os dados admin backend products no FeaturedProductsHome  se ativar o produto no painel, então ele irá aparecer no front Featured Products
+        $featured = Product::where('product_featured', 1)->orderBy('id', 'DESC')->get();
+
+        // 'Baixar' os dados admin backend products no HotDealsProductsHome  se ativar o produto no painel, então ele irá aparecer no front Hot Deals Products
+        $hotdeals = Product::where('product_hot_deals', 1)->orderBy('id', 'DESC')->limit(4)->get();
+
+        return view('frontend.index', compact('categories', 'sliders', 'products', 'featured', 'hotdeals'));
     }
 
     // [LOGOUT]
@@ -122,7 +128,6 @@ class IndexController extends Controller
         $images = Images::where('product_id', $id)->get();
 
         // Retornar view detalhes do produto com os dados produto compactado
-        return view('frontend.product.product_details', compact('product','images'));
-
-    } 
+        return view('frontend.product.product_details', compact('product', 'images'));
+    }
 }

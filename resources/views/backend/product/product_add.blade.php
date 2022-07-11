@@ -30,7 +30,7 @@ e compartilhei com a equipe.
                             <div class="col">
 
                                 <!-- Validar os campos com POST e garantir que as imagens serão aceitas via upload, enctype -->
-                                <form method="post" action=" {{ route('product.store') }}"  enctype="multipart/form-data">
+                                <form method="post" action=" {{ route('product.store') }}" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="row">
@@ -77,9 +77,9 @@ e compartilhei com a equipe.
                                                                 <!-- Mostrar os dados da variável $categories na condição foreach (nome categoria em inglês) -->
                                                                 @foreach ($categories as $category)
                                                                     <!--CONDIÇÃO p/ mostrar os dados, passa-se a coluna category e o id da mesma:
-                                                                                            quando os IDs combinarem, a fk_id category com a id subcategory, então
-                                                                                            retorna os valores solicitados, caso contrário, retorna nulo
-                                                                                        -->
+                                                                                                    quando os IDs combinarem, a fk_id category com a id subcategory, então
+                                                                                                    retorna os valores solicitados, caso contrário, retorna nulo
+                                                                                                -->
                                                                     <option value="{{ $category->id }}">
                                                                         {{ $category->category_name_en }}</option>
                                                                 @endforeach
@@ -105,11 +105,11 @@ e compartilhei com a equipe.
                                                                 </option>
 
                                                                 <!--AQUI FOI USADO JAVASCRIPT PARA SELECIONAR
-                                                                    NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
-                                                                    AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
-                                                                    APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
-                                                                    DE ACORDO COM O RELACIONAMENTO BD
-                                                                -->
+                                                                            NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
+                                                                            AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
+                                                                            APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
+                                                                            DE ACORDO COM O RELACIONAMENTO BD
+                                                                        -->
 
                                                             </select>
                                                             @error('subcategory_id')
@@ -137,11 +137,11 @@ e compartilhei com a equipe.
                                                                 </option>
 
                                                                 <!--AQUI FOI USADO JAVASCRIPT PARA SELECIONAR
-                                                                    NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
-                                                                    AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
-                                                                    APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
-                                                                    DE ACORDO COM O RELACIONAMENTO BD
-                                                                -->
+                                                                            NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
+                                                                            AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
+                                                                            APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
+                                                                            DE ACORDO COM O RELACIONAMENTO BD
+                                                                        -->
 
                                                             </select>
                                                             @error('subsubcategory_id')
@@ -193,7 +193,8 @@ e compartilhei com a equipe.
                                                     <div class="form-group">
                                                         <h5>Código <span class="text-danger">*</span></h5>
                                                         <div class="controls">
-                                                            <input type="text" name="product_code" class="form-control" required="">
+                                                            <input type="text" name="product_code" class="form-control"
+                                                                required="">
 
                                                             @error('product_code')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -208,7 +209,8 @@ e compartilhei com a equipe.
                                                     <div class="form-group">
                                                         <h5>Quantidade <span class="text-danger">*</span></h5>
                                                         <div class="controls">
-                                                            <input type="text" name="product_qty" class="form-control" required="">
+                                                            <input type="text" name="product_qty" class="form-control"
+                                                                required="">
 
                                                             @error('product_qty')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -244,7 +246,8 @@ e compartilhei com a equipe.
                                                 <!-- INPUT FIELD INSERIR VALOR DESCONTO-->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h5>Valor Final com Desconto <span class="text-info">Opcional</span></h5>
+                                                        <h5>Valor Final com Desconto <span
+                                                                class="text-info">Opcional</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_discount_price"
                                                                 class="form-control">
@@ -263,7 +266,8 @@ e compartilhei com a equipe.
                                                         </h5>
                                                         <div class="controls">
                                                             <input type="file" name="product_thumbnail"
-                                                                class="form-control" required="" onChange="thumbnailURL(this)">
+                                                                class="form-control" required=""
+                                                                onChange="thumbnailURL(this)">
 
                                                             @error('product_thumbnail')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -283,8 +287,8 @@ e compartilhei com a equipe.
                                                         <h5>Imagens <span class="text-danger">*</span></h5>
                                                         <div class="controls">
 
-                                                            <input type="file" name="images[]"
-                                                                class="form-control" required="" multiple="" id="images">
+                                                            <input type="file" name="images[]" class="form-control"
+                                                                required="" multiple="" id="images">
 
                                                             @error('images')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -315,7 +319,7 @@ e compartilhei com a equipe.
                                                                 class="form-control" value=""
                                                                 data-role="tagsinput">
 
-                                                          
+
 
                                                         </div>
                                                     </div>
@@ -328,9 +332,9 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <input type="text" name="product_color_pt"
                                                                 class="form-control" value=""
-                                                                data-role="tagsinput" >
+                                                                data-role="tagsinput">
 
-                                                         
+
 
                                                         </div>
                                                     </div>
@@ -345,7 +349,10 @@ e compartilhei com a equipe.
                                                                 class="form-control" value=""
                                                                 data-role="tagsinput">
 
-                                                          
+                                                            @error('product_tags_en')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+
 
                                                         </div>
                                                     </div>
@@ -365,8 +372,8 @@ e compartilhei com a equipe.
                                                         <h5>Tags (PTBR) <span class="text-info">OPCIONAL</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_tags_pt"
-                                                                class="form-control" value="Português,Lorem, Ipsum, Amet"
-                                                                data-role="tagsinput" >
+                                                                class="form-control" value=""
+                                                                data-role="tagsinput">
 
                                                             @error('product_tags_pt')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -382,8 +389,7 @@ e compartilhei com a equipe.
                                                         <h5> Size <span class="text-info">Optional</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_size_en"
-                                                                class="form-control"
-                                                                value=""
+                                                                class="form-control" value=""
                                                                 data-role="tagsinput">
 
 
@@ -398,8 +404,7 @@ e compartilhei com a equipe.
                                                         <h5> Tamanho <span class="text-info">Opcional</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_size_pt"
-                                                                class="form-control"
-                                                                value=""
+                                                                class="form-control" value=""
                                                                 data-role="tagsinput">
 
 
@@ -493,7 +498,7 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <fieldset>
                                                                 <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
-                                                                                                     e aparecerá no campo específico no frontend cliente -->
+                                                                                                             e aparecerá no campo específico no frontend cliente -->
                                                                 <input type="checkbox" id="checkbox_2"
                                                                     name="product_hot_deals" value="1">
                                                                 <label for="checkbox_2">Hot Deals</label>
@@ -514,7 +519,7 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <fieldset>
                                                                 <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
-                                                                                                     e aparecerá no campo específico no frontend cliente -->
+                                                                                                             e aparecerá no campo específico no frontend cliente -->
                                                                 <input type="checkbox" id="checkbox_4"
                                                                     name="product_special_offer" value="1">
                                                                 <label for="checkbox_4">Especial Offer</label>
@@ -605,8 +610,8 @@ e compartilhei com a equipe.
 
 
     <!--Código JS p/ mostrar imagem Thumbnail pela função JS onChange
-                            Pega somente um index, ou seja, apenas uma imagem
-                        -->
+                                    Pega somente um index, ou seja, apenas uma imagem
+                                -->
     <script type="text/javascript">
         // Chamar a função declarada na div thumbnail e passar o input
         function thumbnailURL(input) {

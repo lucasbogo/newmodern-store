@@ -30,7 +30,7 @@ e compartilhei com a equipe.
                             <div class="col">
 
                                 <!-- Validar os campos com POST e garantir que as imagens serão aceitas via upload, enctype -->
-                                <form method="post" action=" <?php echo e(route('product.store')); ?>"  enctype="multipart/form-data">
+                                <form method="post" action=" <?php echo e(route('product.store')); ?>" enctype="multipart/form-data">
                                     <?php echo csrf_field(); ?>
 
                                     <div class="row">
@@ -84,9 +84,9 @@ unset($__errorArgs, $__bag); ?>
                                                                 <!-- Mostrar os dados da variável $categories na condição foreach (nome categoria em inglês) -->
                                                                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                     <!--CONDIÇÃO p/ mostrar os dados, passa-se a coluna category e o id da mesma:
-                                                                                            quando os IDs combinarem, a fk_id category com a id subcategory, então
-                                                                                            retorna os valores solicitados, caso contrário, retorna nulo
-                                                                                        -->
+                                                                                                    quando os IDs combinarem, a fk_id category com a id subcategory, então
+                                                                                                    retorna os valores solicitados, caso contrário, retorna nulo
+                                                                                                -->
                                                                     <option value="<?php echo e($category->id); ?>">
                                                                         <?php echo e($category->category_name_en); ?></option>
                                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -119,11 +119,11 @@ unset($__errorArgs, $__bag); ?>
                                                                 </option>
 
                                                                 <!--AQUI FOI USADO JAVASCRIPT PARA SELECIONAR
-                                                                    NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
-                                                                    AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
-                                                                    APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
-                                                                    DE ACORDO COM O RELACIONAMENTO BD
-                                                                -->
+                                                                            NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
+                                                                            AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
+                                                                            APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
+                                                                            DE ACORDO COM O RELACIONAMENTO BD
+                                                                        -->
 
                                                             </select>
                                                             <?php $__errorArgs = ['subcategory_id'];
@@ -158,11 +158,11 @@ unset($__errorArgs, $__bag); ?>
                                                                 </option>
 
                                                                 <!--AQUI FOI USADO JAVASCRIPT PARA SELECIONAR
-                                                                    NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
-                                                                    AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
-                                                                    APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
-                                                                    DE ACORDO COM O RELACIONAMENTO BD
-                                                                -->
+                                                                            NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
+                                                                            AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
+                                                                            APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
+                                                                            DE ACORDO COM O RELACIONAMENTO BD
+                                                                        -->
 
                                                             </select>
                                                             <?php $__errorArgs = ['subsubcategory_id'];
@@ -235,7 +235,8 @@ unset($__errorArgs, $__bag); ?>
                                                     <div class="form-group">
                                                         <h5>Código <span class="text-danger">*</span></h5>
                                                         <div class="controls">
-                                                            <input type="text" name="product_code" class="form-control" required="">
+                                                            <input type="text" name="product_code" class="form-control"
+                                                                required="">
 
                                                             <?php $__errorArgs = ['product_code'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -257,7 +258,8 @@ unset($__errorArgs, $__bag); ?>
                                                     <div class="form-group">
                                                         <h5>Quantidade <span class="text-danger">*</span></h5>
                                                         <div class="controls">
-                                                            <input type="text" name="product_qty" class="form-control" required="">
+                                                            <input type="text" name="product_qty" class="form-control"
+                                                                required="">
 
                                                             <?php $__errorArgs = ['product_qty'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -307,7 +309,8 @@ unset($__errorArgs, $__bag); ?>
                                                 <!-- INPUT FIELD INSERIR VALOR DESCONTO-->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h5>Valor Desconto <span class="text-info">Opcional</span></h5>
+                                                        <h5>Valor Final com Desconto <span
+                                                                class="text-info">Opcional</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_discount_price"
                                                                 class="form-control">
@@ -326,7 +329,8 @@ unset($__errorArgs, $__bag); ?>
                                                         </h5>
                                                         <div class="controls">
                                                             <input type="file" name="product_thumbnail"
-                                                                class="form-control" required="" onChange="thumbnailURL(this)">
+                                                                class="form-control" required=""
+                                                                onChange="thumbnailURL(this)">
 
                                                             <?php $__errorArgs = ['product_thumbnail'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -353,8 +357,8 @@ unset($__errorArgs, $__bag); ?>
                                                         <h5>Imagens <span class="text-danger">*</span></h5>
                                                         <div class="controls">
 
-                                                            <input type="file" name="images[]"
-                                                                class="form-control" required="" multiple="" id="images">
+                                                            <input type="file" name="images[]" class="form-control"
+                                                                required="" multiple="" id="images">
 
                                                             <?php $__errorArgs = ['images'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -389,19 +393,10 @@ unset($__errorArgs, $__bag); ?>
                                                         <h5>Color <span class="text-info">OPCIONAL</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_color_en"
-                                                                class="form-control" value="Black, Blue, Yellow, white"
+                                                                class="form-control" value=""
                                                                 data-role="tagsinput">
 
-                                                            <?php $__errorArgs = ['product_color_en'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                                                <span class="text-danger"><?php echo e($message); ?></span>
-                                                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
+
 
                                                         </div>
                                                     </div>
@@ -413,19 +408,10 @@ unset($__errorArgs, $__bag); ?>
                                                         <h5>Cor <span class="text-info">OPCIONAL</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_color_pt"
-                                                                class="form-control" value="Amarelo, Azul, Branco, Preto"
-                                                                data-role="tagsinput" >
+                                                                class="form-control" value=""
+                                                                data-role="tagsinput">
 
-                                                            <?php $__errorArgs = ['product_color_pt'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                                                <span class="text-danger"><?php echo e($message); ?></span>
-                                                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
+
 
                                                         </div>
                                                     </div>
@@ -437,7 +423,7 @@ unset($__errorArgs, $__bag); ?>
                                                         <h5>Tags (EN) <span class="text-info">OPCIONAL</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_tags_en"
-                                                                class="form-control" value="English,Lorem, Ipsum, Amet"
+                                                                class="form-control" value=""
                                                                 data-role="tagsinput">
 
                                                             <?php $__errorArgs = ['product_tags_en'];
@@ -450,6 +436,7 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+
 
                                                         </div>
                                                     </div>
@@ -469,8 +456,8 @@ unset($__errorArgs, $__bag); ?>
                                                         <h5>Tags (PTBR) <span class="text-info">OPCIONAL</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_tags_pt"
-                                                                class="form-control" value="Português,Lorem, Ipsum, Amet"
-                                                                data-role="tagsinput" >
+                                                                class="form-control" value=""
+                                                                data-role="tagsinput">
 
                                                             <?php $__errorArgs = ['product_tags_pt'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -493,9 +480,8 @@ unset($__errorArgs, $__bag); ?>
                                                         <h5> Size <span class="text-info">Optional</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_size_en"
-                                                                class="form-control"
-                                                                value="Small, Medium, Large, Extra-Large, XXL"
-                                                                data-role="tagsinput" required="">
+                                                                class="form-control" value=""
+                                                                data-role="tagsinput">
 
 
 
@@ -509,9 +495,8 @@ unset($__errorArgs, $__bag); ?>
                                                         <h5> Tamanho <span class="text-info">Opcional</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_size_pt"
-                                                                class="form-control"
-                                                                value="Pequeno, Médio, Grande, GG, GGG"
-                                                                data-role="tagsinput" required="">
+                                                                class="form-control" value=""
+                                                                data-role="tagsinput">
 
 
 
@@ -604,7 +589,7 @@ unset($__errorArgs, $__bag); ?>
                                                         <div class="controls">
                                                             <fieldset>
                                                                 <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
-                                                                                                     e aparecerá no campo específico no frontend cliente -->
+                                                                                                             e aparecerá no campo específico no frontend cliente -->
                                                                 <input type="checkbox" id="checkbox_2"
                                                                     name="product_hot_deals" value="1">
                                                                 <label for="checkbox_2">Hot Deals</label>
@@ -625,7 +610,7 @@ unset($__errorArgs, $__bag); ?>
                                                         <div class="controls">
                                                             <fieldset>
                                                                 <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
-                                                                                                     e aparecerá no campo específico no frontend cliente -->
+                                                                                                             e aparecerá no campo específico no frontend cliente -->
                                                                 <input type="checkbox" id="checkbox_4"
                                                                     name="product_special_offer" value="1">
                                                                 <label for="checkbox_4">Especial Offer</label>
@@ -716,8 +701,8 @@ unset($__errorArgs, $__bag); ?>
 
 
     <!--Código JS p/ mostrar imagem Thumbnail pela função JS onChange
-                            Pega somente um index, ou seja, apenas uma imagem
-                        -->
+                                    Pega somente um index, ou seja, apenas uma imagem
+                                -->
     <script type="text/javascript">
         // Chamar a função declarada na div thumbnail e passar o input
         function thumbnailURL(input) {
