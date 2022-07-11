@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Images;
 use App\Models\Slider;
 use App\Models\Product;
+use App\Models\Brand;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,8 +31,8 @@ class IndexController extends Controller
         // 'Baixar' os dados admin backend products no FeaturedProductsHome  se ativar o produto no painel, então ele irá aparecer no front Featured Products
         $featured = Product::where('product_featured', 1)->orderBy('id', 'DESC')->get();
 
-        // 'Baixar' os dados admin backend products no HotDealsProductsHome  se ativar o produto no painel, então ele irá aparecer no front Hot Deals Products
-        $hotdeals = Product::where('product_hot_deals', 1)->orderBy('id', 'DESC')->limit(6)->get();
+        // 'Baixar' os dados admin backend products no HotDealsProductsHome  se ativar o produto no painel, então ele irá aparecer no front Hot Deals Products. Só deve aparece produtos com o campo desconto.
+        $hotdeals = Product::where('product_hot_deals', 1)->where('product_discount_price','!=',null)->orderBy('id', 'DESC')->limit(6)->get();
 
         // 'Baixar' os dados admin backend products no SpecialDealsProductsHome  se ativar o produto no painel, então ele irá aparecer no front Special Deals Products
         $specialdeals = Product::where('product_special_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
@@ -41,10 +42,32 @@ class IndexController extends Controller
 
         // Função nativa do Laravel skip(), serve p/ pular categorias e mostrar, dinamicamente, todos os produtos da categoria desejada.
         $skip_category_0 = Category::skip(0)->first();
-        $skip_product_0 = Product::where('product_status', 1)->where('category_id', $skip_category_0->id )->orderBy('id', 'DESC')->get();
-       
+        $skip_product_0 = Product::where('product_status', 1)->where('category_id', $skip_category_0->id)->orderBy('id', 'DESC')->get();
 
-        return view('frontend.index', compact('categories', 'sliders', 'products', 'featured', 'hotdeals', 'specialdeals','specialoffers','skip_category_0','skip_product_0'));
+        $skip_category_1 = Category::skip(1)->first();
+        $skip_product_1 = Product::where('product_status', 1)->where('category_id', $skip_category_1->id)->orderBy('id', 'DESC')->get();
+
+        $skip_brand_1 = Brand::skip(1)->first();
+        $skip_brand_product_1 = Product::where('product_status', 1)->where('brand_id', $skip_brand_1->id)->orderBy('id', 'DESC')->get();
+
+
+        return view('frontend.index', compact(
+            'categories',
+            'sliders',
+            'products',
+            'featured',
+            'hotdeals',
+            'specialdeals',
+            'specialoffers',
+            'skip_category_0',
+            'skip_product_0',
+            'skip_category_1',
+            'skip_product_1',
+            'skip_brand_1',
+            'skip_brand_product_1'
+
+
+        ));
     }
 
     // [LOGOUT]

@@ -129,26 +129,18 @@
                                         <div class="image"> <img src="{{ asset($product->product_thumbnail) }}"
                                                 alt=""> </div>
 
+                                        <!-- Lógica porcentagem -->
+                                        @php
+                                            $discount = $product->product_selling_price - $product->product_discount_price;
+                                            $percentage = ($discount / $product->product_selling_price) * 100;
+                                        @endphp
 
-                                        {{-- <div> <!-- RRUMAR BUG TAG NO CAMPO HOT DEALS -->
-                                            <!-- Lógica: se não houver desconto, aparecer a a tag new...-->
-                                            @if ($product->product_discount_price == null)
-                                                <div class="tag new"><span>
-                                                        <!-- Lógica internacionalização simples tradução da tag new -->
-                                                        @if (session()->get('language') == 'portuguese')
-                                                            NOVO
-                                                        @else
-                                                            NEW
-                                                        @endif
-                                                    </span></div>
-                                            @else
-                                                <!-- caso contrário, mostrar a porcentagem de desconto -->
-                                                <div class="tag hot">
-                                                    <span>{{ round($percentage) }} %</span>
-                                                </div>
-                                            @endif
-                                        </div> --}}
-
+                                        @if ($product->product_discount_price == null)
+                                            <div class="tag new"><span>new</span></div>
+                                        @else
+                                            <div class="sale-offer-tag"><span>{{ round($percentage) }}%<br>
+                                                    off</span></div>
+                                        @endif
 
 
                                         <div class="timing-wrapper">
@@ -911,7 +903,8 @@
                         <div class="col-md-7 col-sm-7">
                             <div class="wide-banner cnt-strip">
                                 <div class="image"> <img class="img-responsive"
-                                        src="assets/images/banners/home-banner1.jpg" alt=""> </div>
+                                        src="{{ asset('frontend/assets/images/banners/home-banner1.jpg') }}"
+                                        alt=""> </div>
                             </div>
                             <!-- /.wide-banner -->
                         </div>
@@ -919,7 +912,8 @@
                         <div class="col-md-5 col-sm-5">
                             <div class="wide-banner cnt-strip">
                                 <div class="image"> <img class="img-responsive"
-                                        src="assets/images/banners/home-banner2.jpg" alt=""> </div>
+                                        src="{{ asset('frontend/assets/images/banners/home-banner2.jpg') }}"
+                                        alt=""> </div>
                             </div>
                             <!-- /.wide-banner -->
                         </div>
@@ -1105,7 +1099,7 @@
 
 
 
-                <!-- ================================ SKIP CATEGORY PRODUCTS COMEÇA AQUI =========================================== -->
+                <!-- ================================ SKIP CATEGORY 0 PRODUCTS COMEÇA AQUI =========================================== -->
 
                 <section class="section featured-product wow fadeInUp">
                     <h3 class="section-title">
@@ -1238,8 +1232,277 @@
                     <!-- /.home-owl-carousel -->
                 </section>
                 <!-- /.section -->
-                <!-- ================================ SKIP CATEGORY PRODUCTS TERMINA AQUI =========================================== -->
+                <!-- ================================ SKIP CATEGORY 0 PRODUCTS TERMINA AQUI =========================================== -->
 
+                <!-- ================================ SKIP CATEGORY 1 PRODUCTS COMEÇA AQUI =========================================== -->
+
+                <section class="section featured-product wow fadeInUp">
+                    <h3 class="section-title">
+                        @if (session()->get('language') == 'portuguese')
+                            {{ $skip_category_1->category_name_pt }}
+                        @else
+                            {{ $skip_category_1->category_name_en }}
+                        @endif
+                    </h3>
+                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+
+                        @foreach ($skip_product_1 as $product)
+                            <div class="item item-carousel">
+                                <div class="products">
+                                    <div class="product">
+                                        <div class="product-image">
+                                            <div class="image">
+                                                <!-- url para redirecionar para pagina detalhes produto ao clickar na imagem -->
+                                                <a
+                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
+                                                    <!-- mostrar miniatura produto dinamicamente em 'novos produtos' -->
+                                                    <img src="{{ asset($product->product_thumbnail) }}"
+                                                        alt="">
+                                                </a>
+                                            </div>
+                                            <!-- /.image -->
+
+                                            <!-- Lógica porcentagem -->
+                                            @php
+                                                $discount = $product->product_selling_price - $product->product_discount_price;
+                                                $percentage = ($discount / $product->product_selling_price) * 100;
+                                            @endphp
+
+                                            <div>
+                                                <!-- Lógica: se não houver desconto, aparecer a a tag new...-->
+                                                @if ($product->product_discount_price == null)
+                                                    <div class="tag new"><span>
+                                                            <!-- Lógica internacionalização simples tradução da tag new -->
+                                                            @if (session()->get('language') == 'portuguese')
+                                                                NOVO
+                                                            @else
+                                                                NEW
+                                                            @endif
+                                                        </span></div>
+                                                @else
+                                                    <!-- caso contrário, mostrar a porcentagem de desconto -->
+                                                    <div class="tag hot">
+                                                        <span>{{ round($percentage) }} %</span>
+                                                    </div>
+                                                @endif
+                                            </div>
+
+
+
+                                        </div>
+                                        <!-- /.product-image -->
+
+                                        <div class="product-info text-left">
+                                            <h3 class="name">
+                                                <!-- url para redirecionar para pagina detalhes produto ao clickar no nome produto -->
+                                                <a
+                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
+                                                    <!-- Lógica internacionalização mostrar nome produto -->
+                                                    @if (session()->get('language') == 'portuguese')
+                                                        {{ $product->product_name_pt }}
+                                                    @else
+                                                        {{ $product->product_name_en }}
+                                                    @endif
+                                                </a>
+                                            </h3>
+                                            <div class="rating rateit-small"></div>
+                                            <div class="description"></div>
+
+                                            <!--== LÓGICA P/ MOSTRAR VALOR PRODUTO DINAMICAMENTE ==-->
+
+                                            <!-- Lógica: se não houver desconto, aparecer o valor normal (product_selling_price)...-->
+                                            @if ($product->product_discount_price == null)
+                                                <div class="product-price"> <span class="price">
+                                                        {{ $product->product_selling_price }}
+                                                    </span>
+                                                </div>
+                                                <!-- /.product_selling_price without discount -->
+                                            @else
+                                                <!-- caso contrário, mostrar valor com o desconto -->
+                                                <div class="product-price"> <span class="price">
+                                                        {{ $product->product_discount_price }}
+                                                    </span><span class="price-before-discount">
+                                                        {{ $product->product_selling_price }}
+                                                    </span>
+                                                </div>
+                                                <!-- /.product_discount_price with discount -->
+                                            @endif
+
+                                        </div>
+                                        <!-- /.product-info -->
+                                        <div class="cart clearfix animate-effect">
+                                            <div class="action">
+                                                <ul class="list-unstyled">
+                                                    <li class="add-cart-button btn-group">
+                                                        <button data-toggle="tooltip" class="btn btn-primary icon"
+                                                            type="button" title="Add Cart"> <i
+                                                                class="fa fa-shopping-cart"></i>
+                                                        </button>
+                                                        <button class="btn btn-primary cart-btn" type="button">Add to
+                                                            cart</button>
+                                                    </li>
+                                                    <li class="lnk wishlist"> <a data-toggle="tooltip"
+                                                            class="add-to-cart" href="detail.html" title="Wishlist">
+                                                            <i class="icon fa fa-heart"></i>
+                                                        </a> </li>
+                                                    <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart"
+                                                            href="detail.html" title="Compare"> <i
+                                                                class="fa fa-signal" aria-hidden="true"></i> </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.action -->
+                                        </div>
+                                        <!-- /.cart -->
+                                    </div>
+                                    <!-- /.product -->
+
+                                </div>
+                                <!-- /.products -->
+                            </div>
+                            <!-- /.item CAROUSEL IMPORTANTE -->
+                        @endforeach
+
+                    </div>
+                    <!-- /.home-owl-carousel -->
+                </section>
+                <!-- /.section -->
+                <!-- ================================ SKIP CATEGORY 1 PRODUCTS TERMINA AQUI =========================================== -->
+
+                <!-- ================================ SKIP BRAND 1 PRODUCTS COMEÇA AQUI =========================================== -->
+
+                <section class="section featured-product wow fadeInUp">
+                    <h3 class="section-title">
+                        @if (session()->get('language') == 'portuguese')
+                            {{ $skip_brand_1->brand_name_pt }}
+                        @else
+                            {{ $skip_brand_1->brand_name_en }}
+                        @endif
+                    </h3>
+                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+
+                        @foreach ($skip_brand_product_1 as $product)
+                            <div class="item item-carousel">
+                                <div class="products">
+                                    <div class="product">
+                                        <div class="product-image">
+                                            <div class="image">
+                                                <!-- url para redirecionar para pagina detalhes produto ao clickar na imagem -->
+                                                <a
+                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
+                                                    <!-- mostrar miniatura produto dinamicamente em 'novos produtos' -->
+                                                    <img src="{{ asset($product->product_thumbnail) }}"
+                                                        alt="">
+                                                </a>
+                                            </div>
+                                            <!-- /.image -->
+
+                                            <!-- Lógica porcentagem -->
+                                            @php
+                                                $discount = $product->product_selling_price - $product->product_discount_price;
+                                                $percentage = ($discount / $product->product_selling_price) * 100;
+                                            @endphp
+
+                                            <div>
+                                                <!-- Lógica: se não houver desconto, aparecer a a tag new...-->
+                                                @if ($product->product_discount_price == null)
+                                                    <div class="tag new"><span>
+                                                            <!-- Lógica internacionalização simples tradução da tag new -->
+                                                            @if (session()->get('language') == 'portuguese')
+                                                                NOVO
+                                                            @else
+                                                                NEW
+                                                            @endif
+                                                        </span></div>
+                                                @else
+                                                    <!-- caso contrário, mostrar a porcentagem de desconto -->
+                                                    <div class="tag hot">
+                                                        <span>{{ round($percentage) }} %</span>
+                                                    </div>
+                                                @endif
+                                            </div>
+
+
+
+                                        </div>
+                                        <!-- /.product-image -->
+
+                                        <div class="product-info text-left">
+                                            <h3 class="name">
+                                                <!-- url para redirecionar para pagina detalhes produto ao clickar no nome produto -->
+                                                <a
+                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
+                                                    <!-- Lógica internacionalização mostrar nome produto -->
+                                                    @if (session()->get('language') == 'portuguese')
+                                                        {{ $product->product_name_pt }}
+                                                    @else
+                                                        {{ $product->product_name_en }}
+                                                    @endif
+                                                </a>
+                                            </h3>
+                                            <div class="rating rateit-small"></div>
+                                            <div class="description"></div>
+
+                                            <!--== LÓGICA P/ MOSTRAR VALOR PRODUTO DINAMICAMENTE ==-->
+
+                                            <!-- Lógica: se não houver desconto, aparecer o valor normal (product_selling_price)...-->
+                                            @if ($product->product_discount_price == null)
+                                                <div class="product-price"> <span class="price">
+                                                        {{ $product->product_selling_price }}
+                                                    </span>
+                                                </div>
+                                                <!-- /.product_selling_price without discount -->
+                                            @else
+                                                <!-- caso contrário, mostrar valor com o desconto -->
+                                                <div class="product-price"> <span class="price">
+                                                        {{ $product->product_discount_price }}
+                                                    </span><span class="price-before-discount">
+                                                        {{ $product->product_selling_price }}
+                                                    </span>
+                                                </div>
+                                                <!-- /.product_discount_price with discount -->
+                                            @endif
+
+                                        </div>
+                                        <!-- /.product-info -->
+                                        <div class="cart clearfix animate-effect">
+                                            <div class="action">
+                                                <ul class="list-unstyled">
+                                                    <li class="add-cart-button btn-group">
+                                                        <button data-toggle="tooltip" class="btn btn-primary icon"
+                                                            type="button" title="Add Cart"> <i
+                                                                class="fa fa-shopping-cart"></i>
+                                                        </button>
+                                                        <button class="btn btn-primary cart-btn" type="button">Add to
+                                                            cart</button>
+                                                    </li>
+                                                    <li class="lnk wishlist"> <a data-toggle="tooltip"
+                                                            class="add-to-cart" href="detail.html" title="Wishlist">
+                                                            <i class="icon fa fa-heart"></i>
+                                                        </a> </li>
+                                                    <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart"
+                                                            href="detail.html" title="Compare"> <i
+                                                                class="fa fa-signal" aria-hidden="true"></i> </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.action -->
+                                        </div>
+                                        <!-- /.cart -->
+                                    </div>
+                                    <!-- /.product -->
+
+                                </div>
+                                <!-- /.products -->
+                            </div>
+                            <!-- /.item CAROUSEL IMPORTANTE -->
+                        @endforeach
+
+                    </div>
+                    <!-- /.home-owl-carousel -->
+                </section>
+                <!-- /.section -->
+                <!-- ================================ SKIP BRAND 1 PRODUCTS TERMINA AQUI =========================================== -->
 
                 <!-- ============================================== BEST SELLER ============================================== -->
 
@@ -1535,7 +1798,8 @@
                                 <div class="blog-post">
                                     <div class="blog-post-image">
                                         <div class="image"> <a href="blog.html"><img
-                                                    src="assets/images/blog-post/post1.jpg" alt=""></a>
+                                                    src="{{ asset('frontend/assets/images/blog-post/post1.jpg') }}"
+                                                    alt=""></a>
                                         </div>
                                     </div>
                                     <!-- /.blog-post-image -->
