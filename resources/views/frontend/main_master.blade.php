@@ -9,6 +9,7 @@
     <meta name="NewModern Team" content="">
     <meta name="keywords" content="MediaCenter, Template, eCommerce">
     <meta name="robots" content="all">
+    <!-- ========================== FAVICON ============================ -->
     <link rel="icon" href="{{ asset('backend/images/favicon-32x32.png') }}">
     <title>@yield('title')</title>
 

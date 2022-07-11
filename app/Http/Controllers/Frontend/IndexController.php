@@ -31,9 +31,12 @@ class IndexController extends Controller
         $featured = Product::where('product_featured', 1)->orderBy('id', 'DESC')->get();
 
         // 'Baixar' os dados admin backend products no HotDealsProductsHome  se ativar o produto no painel, então ele irá aparecer no front Hot Deals Products
-        $hotdeals = Product::where('product_hot_deals', 1)->orderBy('id', 'DESC')->limit(4)->get();
+        $hotdeals = Product::where('product_hot_deals', 1)->orderBy('id', 'DESC')->limit(6)->get();
 
-        return view('frontend.index', compact('categories', 'sliders', 'products', 'featured', 'hotdeals'));
+        // 'Baixar' os dados admin backend products no SpecialDealsProductsHome  se ativar o produto no painel, então ele irá aparecer no front Special Deals Products
+        $specialdeals = Product::where('product_special_deals', 1)->orderBy('id', 'DESC')->limit(6)->get();
+
+        return view('frontend.index', compact('categories', 'sliders', 'products', 'featured', 'hotdeals', 'specialdeals'));
     }
 
     // [LOGOUT]
