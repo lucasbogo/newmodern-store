@@ -318,29 +318,30 @@
                 </div>
                 <!-- /.sidebar-widget -->
                 <!-- ============================================== SPECIAL TERMINA AQUI ============================================== -->
-                <!-- ============================================== PRODUCT TAGS ============================================== -->
-                <div class="sidebar-widget product-tag wow fadeInUp">
-                    <h3 class="section-title">Product tags</h3>
-                    <div class="sidebar-widget-body outer-top-xs">
-                        <div class="tag-list"> <a class="item" title="Phone" href="category.html">Phone</a> <a
-                                class="item active" title="Vest" href="category.html">Vest</a> <a class="item"
-                                title="Smartphone" href="category.html">Smartphone</a> <a class="item"
-                                title="Furniture" href="category.html">Furniture</a> <a class="item"
-                                title="T-shirt" href="category.html">T-shirt</a> <a class="item"
-                                title="Sweatpants" href="category.html">Sweatpants</a> <a class="item"
-                                title="Sneaker" href="category.html">Sneaker</a> <a class="item" title="Toys"
-                                href="category.html">Toys</a> <a class="item" title="Rose"
-                                href="category.html">Rose</a> </div>
-                        <!-- /.tag-list -->
-                    </div>
-                    <!-- /.sidebar-widget-body -->
-                </div>
-                <!-- /.sidebar-widget -->
+
+
+
+                <!-- ============================================== PRODUCT TAGS COMEÇA AQUI ============================================== -->
+                <!-- fragmentação -->
+                <?php echo $__env->make('frontend.fragments.product_tags', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+
+
                 <!-- ============================================== PRODUCT TAGS TERMINA AQUI ============================================== -->
+
+
+
                 <!-- ============================================== SPECIAL DEALS COMEÇA AQUI ============================================== -->
 
                 <div class="sidebar-widget outer-bottom-small wow fadeInUp">
-                    <h3 class="section-title">Special Deals</h3>
+                    <h3 class="section-title">
+                        <!-- Lógica internacionalização simples tradução da tag new -->
+                        <?php if(session()->get('language') == 'portuguese'): ?>
+                            Oferta Unica
+                        <?php else: ?>
+                            Special Deals
+                        <?php endif; ?>
+                    </h3>
                     <div class="sidebar-widget-body outer-top-xs">
                         <div
                             class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
