@@ -117,7 +117,14 @@
 
                 <!-- ============================================== HOT DEALS COMEÇA AQUI ============================================== -->
                 <div class="sidebar-widget hot-deals wow fadeInUp outer-bottom-xs">
-                    <h3 class="section-title">hot deals</h3>
+                    <h3 class="section-title">
+                        <!-- Lógica internacionalização simples tradução da tag new -->
+                        <?php if(session()->get('language') == 'portuguese'): ?>
+                            Promoções
+                        <?php else: ?>
+                            Hot Deals
+                        <?php endif; ?>
+                    </h3>
                     <div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-ss">
 
                         <?php $__currentLoopData = $hotdeals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -209,311 +216,93 @@
                 <!-- ============================================== SPECIAL OFFER COMEÇA AQUI ============================================== -->
 
                 <div class="sidebar-widget outer-bottom-small wow fadeInUp">
-                    <h3 class="section-title">Special Offer</h3>
+                    <h3 class="section-title">
+                        <!-- Lógica internacionalização simples tradução da tag new -->
+                        <?php if(session()->get('language') == 'portuguese'): ?>
+                            Oferta Especial
+                        <?php else: ?>
+                            Special Offer
+                        <?php endif; ?>
+                    </h3>
                     <div class="sidebar-widget-body outer-top-xs">
                         <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
 
-                            <?php $__currentLoopData = $specialdeals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
                             <div class="item">
+
                                 <div class="products special-product">
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="<?php echo e(asset('frontend/assets/images/products/p30.jpg')); ?>"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
 
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
+                                    <?php $__currentLoopData = $specialoffers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div class="product">
+                                            <div class="product-micro">
+                                                <div class="row product-micro-row">
+                                                    <div class="col col-xs-5">
+                                                        <div class="product-image">
+                                                            <div class="image"> <a
+                                                                    href="<?php echo e(url('product/details/' . $product->id . '/' . $product->product_slug_en)); ?>">
+                                                                    <img src="<?php echo e(asset($product->product_thumbnail)); ?>"
+                                                                        alt=""> </a> </div>
+                                                            <!-- /.image -->
 
+                                                        </div>
+                                                        <!-- /.product-image -->
                                                     </div>
+                                                    <!-- /.col -->
+                                                    <div class="col col-xs-7">
+                                                        <div class="product-info">
+                                                            <h3 class="name"><a
+                                                                    href="<?php echo e(url('product/details/' . $product->id . '/' . $product->product_slug_en)); ?>">
+                                                                    <!-- Lógica internacionalização mostrar nome produto -->
+                                                                    <?php if(session()->get('language') == 'portuguese'): ?>
+                                                                        <?php echo e($product->product_name_pt); ?>
+
+                                                                    <?php else: ?>
+                                                                        <?php echo e($product->product_name_en); ?>
+
+                                                                    <?php endif; ?>
+                                                                </a>
+                                                            </h3>
+                                                            <div class="rating rateit-small"></div>
+                                                            <div class="product-price"> <span class="price">
+                                                                    <!-- Lógica: se não houver desconto, aparecer o valor normal (product_selling_price)...-->
+                                                                    <?php if($product->product_discount_price == null): ?>
+                                                                        <div class="product-price"> <span
+                                                                                class="price">
+                                                                                <?php echo e($product->product_selling_price); ?>
+
+                                                                            </span>
+                                                                        </div>
+                                                                        <!-- /.product_selling_price without discount -->
+                                                                    <?php else: ?>
+                                                                        <!-- caso contrário, mostrar valor com o desconto -->
+                                                                        <div class="product-price"> <span
+                                                                                class="price">
+                                                                                <?php echo e($product->product_discount_price); ?>
+
+                                                                            </span><span class="price-before-discount">
+                                                                                <?php echo e($product->product_selling_price); ?>
+
+                                                                            </span>
+                                                                        </div>
+                                                                        <!-- /.product_discount_price with discount -->
+                                                                    <?php endif; ?>
+                                                                </span> </div>
+                                                            <!-- /.product-price -->
+
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.col -->
                                                 </div>
-                                                <!-- /.col -->
+                                                <!-- /.product-micro-row -->
                                             </div>
-                                            <!-- /.product-micro-row -->
+                                            <!-- /.product-micro -->
+
                                         </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="<?php echo e(asset('frontend/assets/images/products/p29.jpg')); ?>"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="<?php echo e(asset('frontend/assets/images/products/p28.jpg')); ?>"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
                             </div>
-                            <div class="item">
-                                <div class="products special-product">
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="<?php echo e(asset('frontend/assets/images/products/p27.jpg')); ?>"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
+                            <!-- Start here -->
 
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="assets/images/products/p26.jpg"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="assets/images/products/p25.jpg"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="products special-product">
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="assets/images/products/p24.jpg"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="assets/images/products/p23.jpg"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="assets/images/products/p22.jpg"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                </div>
-                            </div>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                     </div>
                     <!-- /.sidebar-widget-body -->
@@ -538,8 +327,8 @@
                     <!-- /.sidebar-widget-body -->
                 </div>
                 <!-- /.sidebar-widget -->
-                <!-- ============================================== PRODUCT TAGS : END ============================================== -->
-                <!-- ============================================== SPECIAL DEALS ============================================== -->
+                <!-- ============================================== PRODUCT TAGS TERMINA AQUI ============================================== -->
+                <!-- ============================================== SPECIAL DEALS COMEÇA AQUI ============================================== -->
 
                 <div class="sidebar-widget outer-bottom-small wow fadeInUp">
                     <h3 class="section-title">Special Deals</h3>
@@ -548,307 +337,80 @@
                             class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
                             <div class="item">
                                 <div class="products special-product">
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="assets/images/products/p28.jpg"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
 
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
+                                    <?php $__currentLoopData = $specialdeals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div class="product">
+                                            <div class="product-micro">
+                                                <div class="row product-micro-row">
+                                                    <div class="col col-xs-5">
+                                                        <div class="product-image">
+                                                            <div class="image"> <a
+                                                                    href="<?php echo e(url('product/details/' . $product->id . '/' . $product->product_slug_en)); ?>">
+                                                                    <img src="<?php echo e(asset($product->product_thumbnail)); ?>"
+                                                                        alt=""> </a> </div>
+                                                            <!-- /.image -->
 
+                                                        </div>
+                                                        <!-- /.product-image -->
                                                     </div>
+                                                    <!-- /.col -->
+                                                    <div class="col col-xs-7">
+                                                        <div class="product-info">
+                                                            <h3 class="name"><a
+                                                                    href="<?php echo e(url('product/details/' . $product->id . '/' . $product->product_slug_en)); ?>">
+                                                                    <!-- Lógica internacionalização mostrar nome produto -->
+                                                                    <?php if(session()->get('language') == 'portuguese'): ?>
+                                                                        <?php echo e($product->product_name_pt); ?>
+
+                                                                    <?php else: ?>
+                                                                        <?php echo e($product->product_name_en); ?>
+
+                                                                    <?php endif; ?>
+                                                                </a>
+                                                            </h3>
+                                                            <div class="rating rateit-small"></div>
+                                                            <div class="product-price"> <span class="price">
+                                                                    <!-- Lógica: se não houver desconto, aparecer o valor normal (product_selling_price)...-->
+                                                                    <?php if($product->product_discount_price == null): ?>
+                                                                        <div class="product-price"> <span
+                                                                                class="price">
+                                                                                <?php echo e($product->product_selling_price); ?>
+
+                                                                            </span>
+                                                                        </div>
+                                                                        <!-- /.product_selling_price without discount -->
+                                                                    <?php else: ?>
+                                                                        <!-- caso contrário, mostrar valor com o desconto -->
+                                                                        <div class="product-price"> <span
+                                                                                class="price">
+                                                                                <?php echo e($product->product_discount_price); ?>
+
+                                                                            </span><span class="price-before-discount">
+                                                                                <?php echo e($product->product_selling_price); ?>
+
+                                                                            </span>
+                                                                        </div>
+                                                                        <!-- /.product_discount_price with discount -->
+                                                                    <?php endif; ?>
+                                                                </span> </div>
+                                                            <!-- /.product-price -->
+
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.col -->
                                                 </div>
-                                                <!-- /.col -->
+                                                <!-- /.product-micro-row -->
                                             </div>
-                                            <!-- /.product-micro-row -->
+                                            <!-- /.product-micro -->
+
                                         </div>
-                                        <!-- /.product-micro -->
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                                    </div>
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="assets/images/products/p15.jpg"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
 
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
 
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="assets/images/products/p26.jpg"
-                                                                    alt="image"> </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
                                 </div>
                             </div>
-                            <div class="item">
-                                <div class="products special-product">
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="assets/images/products/p18.jpg"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
 
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="assets/images/products/p17.jpg"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="assets/images/products/p16.jpg"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="products special-product">
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="assets/images/products/p15.jpg"
-                                                                    alt="images">
-                                                                <div class="zoom-overlay"></div>
-                                                            </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="assets/images/products/p14.jpg"
-                                                                    alt="">
-                                                                <div class="zoom-overlay"></div>
-                                                            </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                    <div class="product">
-                                        <div class="product-micro">
-                                            <div class="row product-micro-row">
-                                                <div class="col col-xs-5">
-                                                    <div class="product-image">
-                                                        <div class="image"> <a href="#"> <img
-                                                                    src="assets/images/products/p13.jpg"
-                                                                    alt="image"> </a> </div>
-                                                        <!-- /.image -->
-
-                                                    </div>
-                                                    <!-- /.product-image -->
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-xs-7">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Shirt</a>
-                                                        </h3>
-                                                        <div class="rating rateit-small"></div>
-                                                        <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
-
-                                                    </div>
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.product-micro-row -->
-                                        </div>
-                                        <!-- /.product-micro -->
-
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <!-- /.sidebar-widget-body -->
@@ -1384,7 +946,7 @@
 
 
 
-                <!-- ============================================== FEATURED PRODUCTS COMEÇA AQUI ============================================== -->
+                <!-- ============================================== FEATURED PRODUCTS COMEÇA AQUI ===================================== -->
                 <section class="section featured-product wow fadeInUp">
                     <h3 class="section-title">
                         <!-- Lógica internacionalização simples tradução da tag new -->
@@ -1518,21 +1080,23 @@
                             <!-- /.item CAROUSEL IMPORTANTE -->
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                        <!-- ============================================== FEATURED PRODUCTS TERMINA AQUI ============================================== -->
-
-
-
                     </div>
                     <!-- /.home-owl-carousel -->
                 </section>
                 <!-- /.section -->
-                <!-- ============================================== WIDE PRODUCTS ============================================== -->
+
+                <!-- ================================ FEATURED PRODUCTS TERMINA AQUI =========================================== -->
+
+
+
+                <!-- ============================================== BANNER ============================================== -->
                 <div class="wide-banners wow fadeInUp outer-bottom-xs">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="wide-banner cnt-strip">
                                 <div class="image"> <img class="img-responsive"
-                                        src="assets/images/banners/home-banner.jpg" alt=""> </div>
+                                        src="<?php echo e(asset('frontend/assets/images/banners/home-banner.jpg')); ?>"
+                                        alt=""> </div>
                                 <div class="strip strip-text">
                                     <div class="strip-inner">
                                         <h2 class="text-right">New Mens Fashion<br>
@@ -1553,7 +1117,155 @@
                     <!-- /.row -->
                 </div>
                 <!-- /.wide-banners -->
-                <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
+                <!-- ============================================== BANNER FINAL =================================================== -->
+
+
+
+
+
+                <!-- ================================ SKIP CATEGORY PRODUCTS COMEÇA AQUI =========================================== -->
+
+                <section class="section featured-product wow fadeInUp">
+                    <h3 class="section-title">
+                        <?php if(session()->get('language') == 'portuguese'): ?>
+                            <?php echo e($skip_category_0->category_name_pt); ?>
+
+                        <?php else: ?>
+                            <?php echo e($skip_category_0->category_name_en); ?>
+
+                        <?php endif; ?>
+                    </h3>
+                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+
+                        <?php $__currentLoopData = $skip_product_0; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="item item-carousel">
+                                <div class="products">
+                                    <div class="product">
+                                        <div class="product-image">
+                                            <div class="image">
+                                                <!-- url para redirecionar para pagina detalhes produto ao clickar na imagem -->
+                                                <a
+                                                    href="<?php echo e(url('product/details/' . $product->id . '/' . $product->product_slug_en)); ?>">
+                                                    <!-- mostrar miniatura produto dinamicamente em 'novos produtos' -->
+                                                    <img src="<?php echo e(asset($product->product_thumbnail)); ?>"
+                                                        alt="">
+                                                </a>
+                                            </div>
+                                            <!-- /.image -->
+
+                                            <!-- Lógica porcentagem -->
+                                            <?php
+                                                $discount = $product->product_selling_price - $product->product_discount_price;
+                                                $percentage = ($discount / $product->product_selling_price) * 100;
+                                            ?>
+
+                                            <div>
+                                                <!-- Lógica: se não houver desconto, aparecer a a tag new...-->
+                                                <?php if($product->product_discount_price == null): ?>
+                                                    <div class="tag new"><span>
+                                                            <!-- Lógica internacionalização simples tradução da tag new -->
+                                                            <?php if(session()->get('language') == 'portuguese'): ?>
+                                                                NOVO
+                                                            <?php else: ?>
+                                                                NEW
+                                                            <?php endif; ?>
+                                                        </span></div>
+                                                <?php else: ?>
+                                                    <!-- caso contrário, mostrar a porcentagem de desconto -->
+                                                    <div class="tag hot">
+                                                        <span><?php echo e(round($percentage)); ?> %</span>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
+
+
+
+                                        </div>
+                                        <!-- /.product-image -->
+
+                                        <div class="product-info text-left">
+                                            <h3 class="name">
+                                                <!-- url para redirecionar para pagina detalhes produto ao clickar no nome produto -->
+                                                <a
+                                                    href="<?php echo e(url('product/details/' . $product->id . '/' . $product->product_slug_en)); ?>">
+                                                    <!-- Lógica internacionalização mostrar nome produto -->
+                                                    <?php if(session()->get('language') == 'portuguese'): ?>
+                                                        <?php echo e($product->product_name_pt); ?>
+
+                                                    <?php else: ?>
+                                                        <?php echo e($product->product_name_en); ?>
+
+                                                    <?php endif; ?>
+                                                </a>
+                                            </h3>
+                                            <div class="rating rateit-small"></div>
+                                            <div class="description"></div>
+
+                                            <!--== LÓGICA P/ MOSTRAR VALOR PRODUTO DINAMICAMENTE ==-->
+
+                                            <!-- Lógica: se não houver desconto, aparecer o valor normal (product_selling_price)...-->
+                                            <?php if($product->product_discount_price == null): ?>
+                                                <div class="product-price"> <span class="price">
+                                                        <?php echo e($product->product_selling_price); ?>
+
+                                                    </span>
+                                                </div>
+                                                <!-- /.product_selling_price without discount -->
+                                            <?php else: ?>
+                                                <!-- caso contrário, mostrar valor com o desconto -->
+                                                <div class="product-price"> <span class="price">
+                                                        <?php echo e($product->product_discount_price); ?>
+
+                                                    </span><span class="price-before-discount">
+                                                        <?php echo e($product->product_selling_price); ?>
+
+                                                    </span>
+                                                </div>
+                                                <!-- /.product_discount_price with discount -->
+                                            <?php endif; ?>
+
+                                        </div>
+                                        <!-- /.product-info -->
+                                        <div class="cart clearfix animate-effect">
+                                            <div class="action">
+                                                <ul class="list-unstyled">
+                                                    <li class="add-cart-button btn-group">
+                                                        <button data-toggle="tooltip" class="btn btn-primary icon"
+                                                            type="button" title="Add Cart"> <i
+                                                                class="fa fa-shopping-cart"></i>
+                                                        </button>
+                                                        <button class="btn btn-primary cart-btn" type="button">Add to
+                                                            cart</button>
+                                                    </li>
+                                                    <li class="lnk wishlist"> <a data-toggle="tooltip"
+                                                            class="add-to-cart" href="detail.html" title="Wishlist">
+                                                            <i class="icon fa fa-heart"></i>
+                                                        </a> </li>
+                                                    <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart"
+                                                            href="detail.html" title="Compare"> <i
+                                                                class="fa fa-signal" aria-hidden="true"></i> </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.action -->
+                                        </div>
+                                        <!-- /.cart -->
+                                    </div>
+                                    <!-- /.product -->
+
+                                </div>
+                                <!-- /.products -->
+                            </div>
+                            <!-- /.item CAROUSEL IMPORTANTE -->
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                    </div>
+                    <!-- /.home-owl-carousel -->
+                </section>
+                <!-- /.section -->
+                <!-- ================================ SKIP CATEGORY PRODUCTS TERMINA AQUI =========================================== -->
+
+
                 <!-- ============================================== BEST SELLER ============================================== -->
 
                 <div class="best-deal wow fadeInUp outer-bottom-xs">
@@ -2162,9 +1874,8 @@
                                                     <button class="btn btn-primary cart-btn" type="button">Add to
                                                         cart</button>
                                                 </li>
-                                                <li class="lnk wishlist"> <a class="add-to-cart"
-                                                        href="detail.html" title="Wishlist"> <i
-                                                            class="icon fa fa-heart"></i> </a> </li>
+                                                <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html"
+                                                        title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
                                                 <li class="lnk"> <a class="add-to-cart" href="detail.html"
                                                         title="Compare"> <i class="fa fa-signal"
                                                             aria-hidden="true"></i> </a> </li>
@@ -2214,9 +1925,8 @@
                                                     <button class="btn btn-primary cart-btn" type="button">Add to
                                                         cart</button>
                                                 </li>
-                                                <li class="lnk wishlist"> <a class="add-to-cart"
-                                                        href="detail.html" title="Wishlist"> <i
-                                                            class="icon fa fa-heart"></i> </a> </li>
+                                                <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html"
+                                                        title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
                                                 <li class="lnk"> <a class="add-to-cart" href="detail.html"
                                                         title="Compare"> <i class="fa fa-signal"
                                                             aria-hidden="true"></i> </a> </li>
@@ -2265,9 +1975,8 @@
                                                     <button class="btn btn-primary cart-btn" type="button">Add to
                                                         cart</button>
                                                 </li>
-                                                <li class="lnk wishlist"> <a class="add-to-cart"
-                                                        href="detail.html" title="Wishlist"> <i
-                                                            class="icon fa fa-heart"></i> </a> </li>
+                                                <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html"
+                                                        title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
                                                 <li class="lnk"> <a class="add-to-cart" href="detail.html"
                                                         title="Compare"> <i class="fa fa-signal"
                                                             aria-hidden="true"></i> </a> </li>
