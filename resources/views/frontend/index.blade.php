@@ -1,5 +1,4 @@
 @extends('frontend.main_master')
-<!-- Extender main_master localizado em views/frontend (fragmentacao frontend) -->
 @section('content')
 
 @section('title')
@@ -12,8 +11,10 @@
             <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
 
                 <!-- ======= MENU VERTICAL CATEGORIAS =========== -->
-                @include('frontend.common.vertical_menu')
-                <!-- ===== MENU VERTICAL CATEGORIAL FINAL ======== --> 
+
+                @include('frontend.fragments.vertical_menu')
+
+                <!-- ===== MENU VERTICAL CATEGORIAL FINAL ======== -->
 
                 <!-- ============================================== HOT DEALS COMEÇA AQUI ============================================== -->
                 <div class="sidebar-widget hot-deals wow fadeInUp outer-bottom-xs">
@@ -214,10 +215,8 @@
 
 
                 <!-- ============================================== PRODUCT TAGS COMEÇA AQUI ============================================== -->
-                <!-- fragmentação -->
+
                 @include('frontend.fragments.product_tags')
-
-
 
                 <!-- ============================================== PRODUCT TAGS TERMINA AQUI ============================================== -->
 
@@ -235,8 +234,7 @@
                         @endif
                     </h3>
                     <div class="sidebar-widget-body outer-top-xs">
-                        <div
-                            class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
+                        <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
                             <div class="item">
                                 <div class="products special-product">
 
@@ -313,8 +311,8 @@
                     <!-- /.sidebar-widget-body -->
                 </div>
                 <!-- /.sidebar-widget -->
-                <!-- ============================================== SPECIAL DEALS : END ============================================== -->
-                <!-- ============================================== NEWSLETTER ============================================== -->
+                <!-- ============================================== SPECIAL TERMINA AQUI ============================================== -->
+                <!-- ============================================== NEWSLETTER COMEÇA AQUI============================================== -->
                 <div class="sidebar-widget newsletter wow fadeInUp outer-bottom-small">
                     <h3 class="section-title">Newsletters</h3>
                     <div class="sidebar-widget-body outer-top-xs">
@@ -331,54 +329,29 @@
                     <!-- /.sidebar-widget-body -->
                 </div>
                 <!-- /.sidebar-widget -->
-                <!-- ============================================== NEWSLETTER: END ============================================== -->
+                <!-- ============================================== NEWSLETTER TERMINA AQUI ============================================== -->
 
-                <!-- ============================================== Testimonials============================================== -->
-                <div class="sidebar-widget  wow fadeInUp outer-top-vs ">
-                    <div id="advertisement" class="advertisement">
-                        <div class="item">
-                            <div class="avatar"><img src="assets/images/testimonials/member1.png" alt="Image">
-                            </div>
-                            <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis.
-                                Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                            <div class="clients_author">John Doe <span>Abc Company</span> </div>
-                            <!-- /.container-fluid -->
-                        </div>
-                        <!-- /.item -->
+                <!-- =============================================== AVALIAÇÕES LOJA FRAGMENTAÇÃO ========================================= -->
 
-                        <div class="item">
-                            <div class="avatar"><img src="assets/images/testimonials/member3.png" alt="Image">
-                            </div>
-                            <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis.
-                                Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                            <div class="clients_author">Stephen Doe <span>Xperia Designs</span> </div>
-                        </div>
-                        <!-- /.item -->
+                @include('frontend.fragments.store_reviews')
 
-                        <div class="item">
-                            <div class="avatar"><img src="assets/images/testimonials/member2.png" alt="Image">
-                            </div>
-                            <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis.
-                                Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                            <div class="clients_author">Saraha Smith <span>Datsun &amp; Co</span> </div>
-                            <!-- /.container-fluid -->
-                        </div>
-                        <!-- /.item -->
+                <!-- =============================================== AVALIAÇÕES LOJA /FRAGMENTAÇÃO ========================================= -->
 
-                    </div>
-                    <!-- /.owl-carousel -->
-                </div>
 
-                <!-- ============================================== Testimonials: END ============================================== -->
+
 
                 <div class="home-banner"> <img src="{{ asset('frontend/assets/images/banners/LHS-banner.jpg') }}"
                         alt="Image"> </div>
             </div>
             <!-- /.sidemenu-holder -->
+
+
+
             <!-- ============================================== SIDEBAR : END ============================================== -->
 
             <!-- ============================================== CONTENT ============================================== -->
             <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
+
                 <!-- ========================================== SLIDERS ========================================= -->
 
                 <div id="hero">
@@ -640,7 +613,7 @@
                         </div>
                         <!-- /.tab-pane ALL IMPORTANTE-->
 
-                        <!--======================================== /.nav-tabs PRIMEIRO============================================ -->
+                        <!--======================================== /.nav-tabs PRIMEIRO ============================================ -->
 
 
                         @foreach ($categories as $category)

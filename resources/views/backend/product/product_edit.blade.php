@@ -140,10 +140,10 @@
                                                                     Selecionar Sub Sub Categoria
                                                                 </option>
 
-                                                                <!--Mostrar os dados da variável $subsubcategories na condição foreach (nome subsubcategoria em inglês)-->
+                                                                {{-- <!--Mostrar os dados da variável $subsubcategories na condição foreach (nome subsubcategoria em inglês)-->
                                                                 <!--CONDIÇÃO p/ mostrar os dados, passa-se a coluna subsubcategory e o id da mesma: -->
                                                                 <!--Quando os IDs combinarem, a fk_id subsubcategory com o produto, então mostra-se -->
-                                                                <!--Dinamicamente, a categoria cadastrada p/ aquele produto -->
+                                                                <!--Dinamicamente, a categoria cadastrada p/ aquele produto --> --}}
                                                                 @foreach ($subsubcategories as $subsubcategory)
                                                                     <option value="{{ $subsubcategory->id }}"
                                                                         {{ $subsubcategory->id == $products->subsubcategory_id ? 'selected' : '' }}>
@@ -164,8 +164,8 @@
                                                     <div class="form-group">
                                                         <h5>Product Name (EN) <span class="text-danger">*</span></h5>
                                                         <div class="controls">
-                                                            <!-- Mostrar o nome da produto dinamicamente pela variável $products declarada
-                                                                                                                                                                                                                                    na ProductController | value-"{..}" -->
+                                                            {{-- <!-- Mostrar o nome da produto dinamicamente pela variável $products 
+                                                                declarada na ProductController | value-"{..}" --> --}}
                                                             <input type="text" name="product_name_en"
                                                                 class="form-control" required=""
                                                                 value="{{ $products->product_name_en }}">
@@ -281,7 +281,7 @@
                                                         <h5>Color <span class="text-danger">*</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_color_en"
-                                                                class="form-control" data-role="tagsinput" required=""
+                                                                class="form-control" data-role="tagsinput" 
                                                                 value="{{ $products->product_color_en }}">
 
                                                             @error('product_color_en')
@@ -298,7 +298,7 @@
                                                         <h5>Cor <span class="text-danger">*</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_color_pt"
-                                                                class="form-control" data-role="tagsinput" required=""
+                                                                class="form-control" data-role="tagsinput" 
                                                                 value="{{ $products->product_color_pt }}">
 
                                                             @error('product_color_pt')
@@ -357,7 +357,7 @@
                                                         <h5> Size <span class="text-info">Optional</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_size_en"
-                                                                class="form-control" data-role="tagsinput" required=""
+                                                                class="form-control" data-role="tagsinput" 
                                                                 value="{{ $products->product_size_en }}">
 
 
@@ -372,7 +372,7 @@
                                                         <h5> Tamanho <span class="text-info">Opcional</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_size_pt"
-                                                                class="form-control" data-role="tagsinput" required=""
+                                                                class="form-control" data-role="tagsinput" 
                                                                 value="{{ $products->product_size_pt }}">
 
 

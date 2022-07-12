@@ -83,10 +83,9 @@ unset($__errorArgs, $__bag); ?>
 
                                                                 <!-- Mostrar os dados da variável $categories na condição foreach (nome categoria em inglês) -->
                                                                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                    <!--CONDIÇÃO p/ mostrar os dados, passa-se a coluna category e o id da mesma:
-                                                                                                    quando os IDs combinarem, a fk_id category com a id subcategory, então
-                                                                                                    retorna os valores solicitados, caso contrário, retorna nulo
-                                                                                                -->
+
+                                                                    
+                                                                                                
                                                                     <option value="<?php echo e($category->id); ?>">
                                                                         <?php echo e($category->category_name_en); ?></option>
                                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -118,12 +117,8 @@ unset($__errorArgs, $__bag); ?>
                                                                     Categoria
                                                                 </option>
 
-                                                                <!--AQUI FOI USADO JAVASCRIPT PARA SELECIONAR
-                                                                            NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
-                                                                            AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
-                                                                            APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
-                                                                            DE ACORDO COM O RELACIONAMENTO BD
-                                                                        -->
+                                                                
+                                                                       
 
                                                             </select>
                                                             <?php $__errorArgs = ['subcategory_id'];
@@ -157,12 +152,8 @@ unset($__errorArgs, $__bag); ?>
                                                                     Selecionar Sub Sub Categoria
                                                                 </option>
 
-                                                                <!--AQUI FOI USADO JAVASCRIPT PARA SELECIONAR
-                                                                            NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
-                                                                            AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
-                                                                            APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
-                                                                            DE ACORDO COM O RELACIONAMENTO BD
-                                                                        -->
+                                                                
+                                                                        
 
                                                             </select>
                                                             <?php $__errorArgs = ['subsubcategory_id'];
@@ -423,7 +414,7 @@ unset($__errorArgs, $__bag); ?>
                                                         <h5>Tags (EN) <span class="text-info">OPCIONAL</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_tags_en"
-                                                                class="form-control" value=""
+                                                                class="form-control" value="" required=""
                                                                 data-role="tagsinput">
 
                                                             <?php $__errorArgs = ['product_tags_en'];
@@ -456,7 +447,7 @@ unset($__errorArgs, $__bag); ?>
                                                         <h5>Tags (PTBR) <span class="text-info">OPCIONAL</span></h5>
                                                         <div class="controls">
                                                             <input type="text" name="product_tags_pt"
-                                                                class="form-control" value=""
+                                                                class="form-control" value="" required=""
                                                                 data-role="tagsinput">
 
                                                             <?php $__errorArgs = ['product_tags_pt'];
@@ -578,7 +569,7 @@ unset($__errorArgs, $__bag); ?>
                                             </div><!-- /row -->
 
 
-                                            <hr><!-- quebra temática em uma página HTML -->
+                                            <br><!-- quebra temática em uma página HTML -->
 
 
                                             <div class="row">
@@ -588,8 +579,7 @@ unset($__errorArgs, $__bag); ?>
                                                         <h5> PROMOÇÕES (OPCIONAL) </h5>
                                                         <div class="controls">
                                                             <fieldset>
-                                                                <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
-                                                                                                             e aparecerá no campo específico no frontend cliente -->
+                                                                
                                                                 <input type="checkbox" id="checkbox_2"
                                                                     name="product_hot_deals" value="1">
                                                                 <label for="checkbox_2">Hot Deals</label>
@@ -609,8 +599,7 @@ unset($__errorArgs, $__bag); ?>
                                                         <h5>PROMOÇÕES (OPCIONAL) </h5>
                                                         <div class="controls">
                                                             <fieldset>
-                                                                <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
-                                                                                                             e aparecerá no campo específico no frontend cliente -->
+                                                                
                                                                 <input type="checkbox" id="checkbox_4"
                                                                     name="product_special_offer" value="1">
                                                                 <label for="checkbox_4">Especial Offer</label>
@@ -700,9 +689,8 @@ unset($__errorArgs, $__bag); ?>
     </script>
 
 
-    <!--Código JS p/ mostrar imagem Thumbnail pela função JS onChange
-                                    Pega somente um index, ou seja, apenas uma imagem
-                                -->
+    
+                                
     <script type="text/javascript">
         // Chamar a função declarada na div thumbnail e passar o input
         function thumbnailURL(input) {

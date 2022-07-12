@@ -1,4 +1,3 @@
-<!-- Extender main_master localizado em views/frontend (fragmentacao frontend) -->
 <?php $__env->startSection('content'); ?>
 
 <?php $__env->startSection('title'); ?>
@@ -10,110 +9,11 @@
             <!-- ============================================== SIDEBAR ============================================== -->
             <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
 
-                <!-- ================================== TOP NAVIGATION ================================== -->
-                <div class="side-menu animate-dropdown outer-bottom-xs">
-                    <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Categories</div>
-                    <nav class="yamm megamenu-horizontal">
-                        <ul class="nav">
+                <!-- ======= MENU VERTICAL CATEGORIAS =========== -->
 
-                            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <li class="dropdown menu-item"> <a href="#" class="dropdown-toggle"
-                                        data-toggle="dropdown"><i class="#" aria-hidden="true"></i>
-                                        <?php if(session()->get('language') == 'portuguese'): ?>
-                                            <?php echo e($category->category_name_pt); ?>
+                <?php echo $__env->make('frontend.fragments.vertical_menu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-                                        <?php else: ?>
-                                            <?php echo e($category->category_name_en); ?>
-
-                                        <?php endif; ?>
-                                    </a>
-                                    <ul class="dropdown-menu mega-menu">
-                                        <li class="yamm-content">
-                                            <div class="row">
-
-                                                <!-- Relacionar a subcategoria com a fk categoria; quando bater com a categoria id, então, order by ascendente -->
-                                                <?php
-                                                    $subcategories = App\Models\SubCategory::where('category_id', $category->id)
-                                                        ->orderBy('subcategory_name_en', 'ASC')
-                                                        ->get();
-                                                ?>
-
-                                                <?php $__currentLoopData = $subcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <div class="col-sm-12 col-md-3">
-
-                                                        <!-- CONDIÇÃO IF ELSE: se a sessão for em ptbr, mostrar nome ptbr caso contrário, mostrar inglês -->
-
-                                                        <h2 class="title">
-                                                            <?php if(session()->get('language') == 'portuguese'): ?>
-                                                                <?php echo e($subcategory->subcategory_name_pt); ?>
-
-                                                            <?php else: ?>
-                                                                <?php echo e($subcategory->subcategory_name_en); ?>
-
-                                                            <?php endif; ?>
-                                                        </h2>
-
-                                                        <!-- Relacionar a subsubcategoria com a fk subcategoria; quando bater com a subcategoria id, então, order by ascendente -->
-                                                        <?php
-                                                            $subsubcategories = App\Models\SubSubCategory::where('subcategory_id', $subcategory->id)
-                                                                ->orderBy('subsubcategory_name_en', 'ASC')
-                                                                ->get();
-                                                        ?>
-
-                                                        <?php $__currentLoopData = $subsubcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subsubcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <ul class="links list-unstyled">
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <?php if(session()->get('language') == 'portuguese'): ?>
-                                                                            <?php echo e($subsubcategory->subsubcategory_name_pt); ?>
-
-                                                                        <?php else: ?>
-                                                                            <?php echo e($subsubcategory->subsubcategory_name_en); ?>
-
-                                                                        <?php endif; ?>
-                                                                    </a>
-                                                                </li>
-
-                                                            </ul>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                        <!-- /. final subsubcategoria -->
-                                                    </div>
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                <!-- /. final subcategoria -->
-                                            </div>
-                                            <!-- /.row -->
-
-                                        </li>
-                                        <!-- /.yamm-content -->
-                                    </ul>
-                                    <!-- /.dropdown-menu -->
-                                </li>
-                                <!-- /.menu-item -->
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <!-- /. category foreach -->
-                            <!-- HERE ! -->
-
-                            <li class="dropdown menu-item"> <a href="#" class="dropdown-toggle"
-                                    data-toggle="dropdown"><i class="icon fa fa-futbol-o"></i>Sports</a>
-                                <!-- ================================== MEGAMENU VERTICAL ================================== -->
-                                <!-- /.dropdown-menu -->
-                                <!-- ================================== MEGAMENU VERTICAL ================================== -->
-                            </li>
-                            <!-- /.menu-item -->
-
-                            <li class="dropdown menu-item"> <a href="#" class="dropdown-toggle"
-                                    data-toggle="dropdown"><i class="icon fa fa-envira"></i>Home and Garden</a>
-                                <!-- /.dropdown-menu -->
-                            </li>
-                            <!-- /.menu-item -->
-
-                        </ul>
-                        <!-- /.nav -->
-                    </nav>
-                    <!-- /.megamenu-horizontal -->
-                </div>
-                <!-- /.side-menu -->
-                <!-- ================================== TOP NAVIGATION : END ================================== -->
+                <!-- ===== MENU VERTICAL CATEGORIAL FINAL ======== -->
 
                 <!-- ============================================== HOT DEALS COMEÇA AQUI ============================================== -->
                 <div class="sidebar-widget hot-deals wow fadeInUp outer-bottom-xs">
@@ -322,10 +222,8 @@
 
 
                 <!-- ============================================== PRODUCT TAGS COMEÇA AQUI ============================================== -->
-                <!-- fragmentação -->
+
                 <?php echo $__env->make('frontend.fragments.product_tags', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-
 
                 <!-- ============================================== PRODUCT TAGS TERMINA AQUI ============================================== -->
 
@@ -343,8 +241,7 @@
                         <?php endif; ?>
                     </h3>
                     <div class="sidebar-widget-body outer-top-xs">
-                        <div
-                            class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
+                        <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
                             <div class="item">
                                 <div class="products special-product">
 
@@ -426,8 +323,8 @@
                     <!-- /.sidebar-widget-body -->
                 </div>
                 <!-- /.sidebar-widget -->
-                <!-- ============================================== SPECIAL DEALS : END ============================================== -->
-                <!-- ============================================== NEWSLETTER ============================================== -->
+                <!-- ============================================== SPECIAL TERMINA AQUI ============================================== -->
+                <!-- ============================================== NEWSLETTER COMEÇA AQUI============================================== -->
                 <div class="sidebar-widget newsletter wow fadeInUp outer-bottom-small">
                     <h3 class="section-title">Newsletters</h3>
                     <div class="sidebar-widget-body outer-top-xs">
@@ -444,54 +341,29 @@
                     <!-- /.sidebar-widget-body -->
                 </div>
                 <!-- /.sidebar-widget -->
-                <!-- ============================================== NEWSLETTER: END ============================================== -->
+                <!-- ============================================== NEWSLETTER TERMINA AQUI ============================================== -->
 
-                <!-- ============================================== Testimonials============================================== -->
-                <div class="sidebar-widget  wow fadeInUp outer-top-vs ">
-                    <div id="advertisement" class="advertisement">
-                        <div class="item">
-                            <div class="avatar"><img src="assets/images/testimonials/member1.png" alt="Image">
-                            </div>
-                            <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis.
-                                Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                            <div class="clients_author">John Doe <span>Abc Company</span> </div>
-                            <!-- /.container-fluid -->
-                        </div>
-                        <!-- /.item -->
+                <!-- =============================================== AVALIAÇÕES LOJA FRAGMENTAÇÃO ========================================= -->
 
-                        <div class="item">
-                            <div class="avatar"><img src="assets/images/testimonials/member3.png" alt="Image">
-                            </div>
-                            <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis.
-                                Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                            <div class="clients_author">Stephen Doe <span>Xperia Designs</span> </div>
-                        </div>
-                        <!-- /.item -->
+                <?php echo $__env->make('frontend.fragments.store_reviews', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-                        <div class="item">
-                            <div class="avatar"><img src="assets/images/testimonials/member2.png" alt="Image">
-                            </div>
-                            <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis.
-                                Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-                            <div class="clients_author">Saraha Smith <span>Datsun &amp; Co</span> </div>
-                            <!-- /.container-fluid -->
-                        </div>
-                        <!-- /.item -->
+                <!-- =============================================== AVALIAÇÕES LOJA /FRAGMENTAÇÃO ========================================= -->
 
-                    </div>
-                    <!-- /.owl-carousel -->
-                </div>
 
-                <!-- ============================================== Testimonials: END ============================================== -->
+
 
                 <div class="home-banner"> <img src="<?php echo e(asset('frontend/assets/images/banners/LHS-banner.jpg')); ?>"
                         alt="Image"> </div>
             </div>
             <!-- /.sidemenu-holder -->
+
+
+
             <!-- ============================================== SIDEBAR : END ============================================== -->
 
             <!-- ============================================== CONTENT ============================================== -->
             <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
+
                 <!-- ========================================== SLIDERS ========================================= -->
 
                 <div id="hero">
@@ -760,7 +632,7 @@
                         </div>
                         <!-- /.tab-pane ALL IMPORTANTE-->
 
-                        <!--======================================== /.nav-tabs PRIMEIRO============================================ -->
+                        <!--======================================== /.nav-tabs PRIMEIRO ============================================ -->
 
 
                         <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

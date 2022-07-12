@@ -10,13 +10,7 @@
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
                 <li><a href="#">Home</a></li>
-                <li class='active'>
-                    @if (session()->get('language') == 'portuguese')
-                        {{ $category->category_name_pt }}
-                    @else
-                        {{ $category->category_name_en }}
-                    @endif
-                </li>
+                <li class='active'>Tags</li>
             </ul>
         </div>
         <!-- /.breadcrumb-inner -->
@@ -29,9 +23,9 @@
         <div class='row'>
             <div class='col-md-3 sidebar'>
 
-                 <!-- ======= MENU VERTICAL CATEGORIAS =========== -->
-                @include('frontend.common.vertical_menu')
-                <!-- ===== MENU VERTICAL CATEGORIAL FINAL ======== --> 
+                <!-- ======= MENU VERTICAL CATEGORIAS =========== -->
+                @include('frontend.fragments.vertical_menu')
+                <!-- ===== MENU VERTICAL CATEGORIAL FINAL ======== -->
 
 
 
@@ -77,6 +71,9 @@
                                                 style="height: 0px;">
                                                 <div class="accordion-inner">
 
+                                                    {{-- <!-- bloco php para chamar a Models Subcategoria, 
+                                                        para, assim, poder relacionar as categorias 
+                                                        com suas respectivas categorias --> --}}
                                                     @php
                                                         $subcategories = App\Models\SubCategory::where('category_id', $category->id)
                                                             ->orderBy('subcategory_name_en', 'ASC')
@@ -105,16 +102,6 @@
                                         </div>
                                         <!-- /.accordion-group -->
                                     @endforeach
-
-
-
-
-
-
-
-
-
-
 
                                 </div>
                                 <!-- /.accordion -->
@@ -200,7 +187,7 @@
 
                         <!-- ======== PRODUCT TAGS COMEÇA AQUI =========== -->
 
-                        @include('frontend.common.product_tags')
+                        @include('frontend.fragments.product_tags')
 
                         <!-- ======== PRODUCT TAGS TERMINA AQUI ========== -->
 
@@ -209,11 +196,11 @@
 
 
 
-                        {{-- <!-- ========= AVALIAÇÕES COMEÇA AQUI ============ -->
+                        <!-- ========= AVALIAÇÕES COMEÇA AQUI ============ -->
 
-                        @include('frontend.common.testimonials')
+                        @include('frontend.fragments.store_reviews')
 
-                        <!-- ========= AVALIAÇÕES TERMINA AQUI ============ --> --}}
+                        <!-- ========= AVALIAÇÕES TERMINA AQUI ============ -->
 
 
 
@@ -230,7 +217,7 @@
 
 
 
-                <!-- == ==== SECTION – HERO === ====== -->
+                <!-- ======= SECTION – HERO ========= -->
 
                 <div id="category" class="category-carousel hidden-xs">
                     <div class="item">
@@ -330,8 +317,6 @@
                             <div class="category-product">
                                 <div class="row">
 
-
-
                                     @foreach ($products as $product)
                                         <div class="col-sm-6 col-md-4 wow fadeInUp">
                                             <div class="products">
@@ -425,16 +410,6 @@
                                         </div>
                                         <!-- /.item -->
                                     @endforeach
-
-
-
-
-
-
-
-
-
-
 
                                 </div>
                                 <!-- /.row -->
@@ -586,6 +561,7 @@
                     <div class="clearfix filters-container">
                         <div class="text-right">
                             <div class="pagination-container">
+                                <!-- função paginate do Laravel (links), serve para mostrar variás paginas (previous/next)-->
                                 <ul class="list-inline list-unstyled">
                                     {{ $products->links() }}
                                 </ul>

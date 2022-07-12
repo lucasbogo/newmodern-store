@@ -169,9 +169,13 @@ class IndexController extends Controller
     public function ProductTags($tag)
     {
         // 'Pegar' 'Baixar' (verificar) o produto ativo
-        $products = Product::where('product_status', 1)->where('product_tags_en', $tag)->where('product_tags_pt', $tag)->orderBy('id', 'DESC')->get();
+        $products = Product::where('product_status', 1)->where('product_tags_en', $tag)->where(
+            'product_tags_pt', $tag)->orderBy('id', 'DESC')->paginate(3);
+
+        //'Baixar' as informações admin backend categorias no menu vertical esquerdo da HOME
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
 
         // retornar view tags com a variável compactada
-        return view('frontend.tags.tags_view', compact('products'));
+        return view('frontend.tags.tags_view', compact('products','categories'));
     }
 }

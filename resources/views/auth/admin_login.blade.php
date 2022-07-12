@@ -65,6 +65,8 @@
                                             placeholder="Password">
                                     </div>
                                 </div>
+                                <br>
+                                <br>
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="checkbox text-white">
@@ -75,19 +77,29 @@
                                     <!-- /.col -->
                                     <div class="col-6">
                                         <div class="fog-pwd text-right">
-                                            <a href="{{ route('password.request')}}" class="text-white hover-info"><i
+                                            <a href="{{ route('password.request') }}" class="text-white hover-info"><i
                                                     class="ion ion-locked"></i> Forgot password?</a><br>
                                         </div>
                                     </div>
                                     <!-- /.col -->
+                                    <br>
+                                    <br>
+                                    <br>
+
                                     <div class="col-12 text-center">
+                                        <br>
+                                        <br>
+                                        <br>
                                         <button type="submit" class="btn btn-info btn-rounded mt-10">SIGN IN</button>
                                     </div>
                                     <!-- /.col -->
                                 </div>
                             </form>
+                            <br>
+                            <br>
 
-                            <div class="text-center text-white">
+
+                            {{-- <div class="text-center text-white">
                                 <p class="mt-20">- Sign With -</p>
                                 <p class="gap-items-2 mb-20">
                                     <a class="btn btn-social-icon btn-round btn-outline btn-white" href="#"><i
@@ -99,7 +111,7 @@
                                     <a class="btn btn-social-icon btn-round btn-outline btn-white" href="#"><i
                                             class="fa fa-instagram"></i></a>
                                 </p>
-                            </div>
+                            </div> --}}
 
                             <div class="text-center">
                                 <p class="mt-15 mb-0 text-white">Don't have an account? <a href="auth_register.html"
