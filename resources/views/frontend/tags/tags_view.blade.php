@@ -1,7 +1,12 @@
 @extends('frontend.main_master')
 @section('content')
 @section('title')
-    Category Tags
+    <!-- Lógica internacionalização simples tradução da tag new -->
+    @if (session()->get('language') == 'portuguese')
+        Sub-Categoria
+    @else
+        Sub Category
+    @endif
 @endsection
 
 <!-- Utilizei o a pagina category.html do template flipmart -->
@@ -10,7 +15,7 @@
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
                 <li><a href="#">Home</a></li>
-                <li class='active'>Tags</li>
+                <li class='active'>SubCategory</li>
             </ul>
         </div>
         <!-- /.breadcrumb-inner -->

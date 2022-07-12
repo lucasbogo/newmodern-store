@@ -1,5 +1,5 @@
 @php
-    $categories = App\Models\Category::orderBy('category_name_en', 'ASC')->get();
+$categories = App\Models\Category::orderBy('category_name_en', 'ASC')->get();
 @endphp
 
 <div class="side-menu animate-dropdown outer-bottom-xs">
@@ -30,15 +30,19 @@
                                 @foreach ($subcategories as $subcategory)
                                     <div class="col-sm-12 col-md-3">
 
-                                        <!-- CONDIÇÃO IF ELSE: se a sessão for em ptbr, mostrar nome ptbr caso contrário, mostrar inglês -->
-
-                                        <h2 class="title">
-                                            @if (session()->get('language') == 'portuguese')
-                                                {{ $subcategory->subcategory_name_pt }}
-                                            @else
-                                                {{ $subcategory->subcategory_name_en }}
-                                            @endif
-                                        </h2>
+                                        {{-- <!-- Url redirecionamento para descrição produto: declare a url, 
+                                            depois passe a id subcategoria concatenada(.) com o nome produto 
+                                            user friendly (slug) --> --}}
+                                        <a href="{{ url('subcategory/product/'.$subcategory->id.'/'.$subcategory->subcategory_slug_en) }}">
+                                            <h2 class="title">
+                                                <!-- CONDIÇÃO IF ELSE: se a sessão for em ptbr, mostrar nome ptbr caso contrário, mostrar inglês -->
+                                                @if (session()->get('language') == 'portuguese')
+                                                    {{ $subcategory->subcategory_name_pt }}
+                                                @else
+                                                    {{ $subcategory->subcategory_name_en }}
+                                                @endif
+                                            </h2>
+                                        </a>
 
                                         <!-- Relacionar a subsubcategoria com a fk subcategoria; quando bater com a subcategoria id, então, order by ascendente -->
                                         @php
@@ -50,7 +54,7 @@
                                         @foreach ($subsubcategories as $subsubcategory)
                                             <ul class="links list-unstyled">
                                                 <li>
-                                                    <a href="#">
+                                                    <a href="{{ url('subsubcategory/product/'.$subsubcategory->id.'/'.$subsubcategory->subsubcategory_slug_en) }}">
                                                         @if (session()->get('language') == 'portuguese')
                                                             {{ $subsubcategory->subsubcategory_name_pt }}
                                                         @else
@@ -86,4 +90,3 @@
     <!-- /.megamenu-horizontal -->
 </div>
 <!-- /.side-menu -->
-

@@ -19,7 +19,7 @@ class IndexController extends Controller
     // [HOME]
     public function index()
     {
-        //'Baixar' as informações admin backend categorias no menu vertical esquerdo da HOME
+        // 'Baixar' as informações admin backend categorias no menu vertical esquerdo da HOME
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
 
         // 'Baixar' os dados admin backend sliders no SliderHome e mostrar apenas 3 sliders.
@@ -158,24 +158,72 @@ class IndexController extends Controller
         // Achar o produto pelo o ID
         $product = Product::findOrFail($id);
 
+        // Achar o produto pela Cor Inglês
+        $color = $product->product_color_en;
+        $product_color_en = explode(',', $color);
+
+        // Achar o produto pela Cor PTBR
+        $cor = $product->product_color_pt;
+        $product_color_pt = explode(',', $cor);
+
+        // Achar o produto pelo tamanho Inglês
+        $size = $product->product_size_en;
+        $product_size_en = explode(',', $size);
+
+        // Achar o produto pelo tamanho Inglês
+        $tamanho = $product->product_size_pt;
+        $product_size_pt = explode(',', $tamanho);
+
         // 'Baixar' as imagens da Model Images quando o id do produto combinar, apóis isso, pegar pela função get()
         $images = Images::where('product_id', $id)->get();
 
+        // Pegar a ID Categoria relacionado com o produto clickado pelo cliente
+        $category_id = $product->category_id;
+
+        // Mostrar produtos relacionados na página descrição produto (produtos da mesma categoria). Codição, se o produto 
+        // ja estiver selecionado, ele não deve aparecer no campo produto relacionado ->where('id', '!=', $id)
+        $related = Product::where('category_id', $category_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->get();
+
         // Retornar view detalhes do produto com os dados produto compactado
-        return view('frontend.product.product_details', compact('product', 'images'));
+        return view('frontend.product.product_details', compact('product', 'images', 'product_color_en', 'product_color_pt', 'product_size_en', 'product_size_pt', 'related'));
     }
 
     // Método Tags Dinâmicos Produto
     public function ProductTags($tag)
     {
         // 'Pegar' 'Baixar' (verificar) o produto ativo
-        $products = Product::where('product_status', 1)->where('product_tags_en', $tag)->where(
-            'product_tags_pt', $tag)->orderBy('id', 'DESC')->paginate(3);
+        $products = Product::where('product_status', 1)->where('product_tags_en', $tag)->where('product_tags_pt', $tag)->orderBy('id', 'DESC')->paginate(3);
 
         //'Baixar' as informações admin backend categorias no menu vertical esquerdo da HOME
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
 
         // retornar view tags com a variável compactada
-        return view('frontend.tags.tags_view', compact('products','categories'));
+        return view('frontend.tags.tags_view', compact('products', 'categories'));
+    }
+
+    // Método redirecionamento para página detalhes produto
+    public function ProductSubDetails($subcategory_id, $slug)
+    {
+        // 'Pegar' 'Baixar' (verificar) o produto ativo
+        $products = Product::where('product_status', 1)->where('subcategory_id', $subcategory_id)->orderBy('id', 'DESC')->paginate(4);
+
+        //'Baixar' as informações admin backend categorias no menu vertical esquerdo da HOME
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+
+        // retornar view tags com a variável compactada
+        return view('frontend.product.subcategory_view', compact('products', 'categories'));
+    }
+
+    // Método redirecionamento para página detalhes produto
+    public function ProductSubSubDetails($subsubcategory_id, $slug)
+    {
+        // 'Pegar' 'Baixar' (verificar) o produto ativo
+        $products = Product::where('product_status', 1)->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(4);
+
+        //'Baixar' as informações admin backend categorias no menu vertical esquerdo da HOME
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+
+        // retornar view tags com a variável compactada
+        return view('frontend.product.subsubcategory_view', compact('products', 'categories'));
     }
 }
