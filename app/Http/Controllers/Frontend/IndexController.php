@@ -32,7 +32,7 @@ class IndexController extends Controller
         $featured = Product::where('product_featured', 1)->orderBy('id', 'DESC')->get();
 
         // 'Baixar' os dados admin backend products no HotDealsProductsHome  se ativar o produto no painel, então ele irá aparecer no front Hot Deals Products. Só deve aparece produtos com o campo desconto.
-        $hotdeals = Product::where('product_hot_deals', 1)->where('product_discount_price','!=',null)->orderBy('id', 'DESC')->limit(6)->get();
+        $hotdeals = Product::where('product_hot_deals', 1)->where('product_discount_price', '!=', null)->orderBy('id', 'DESC')->limit(6)->get();
 
         // 'Baixar' os dados admin backend products no SpecialDealsProductsHome  se ativar o produto no painel, então ele irá aparecer no front Special Deals Products
         $specialdeals = Product::where('product_special_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
@@ -163,5 +163,15 @@ class IndexController extends Controller
 
         // Retornar view detalhes do produto com os dados produto compactado
         return view('frontend.product.product_details', compact('product', 'images'));
+    }
+
+    // Método Tags Dinâmicos Produto
+    public function ProductTags($tag)
+    {
+        // 'Pegar' 'Baixar' (verificar) o produto ativo
+        $products = Product::where('product_status', 1)->where('product_tags_en', $tag)->where('product_tags_pt', $tag)->orderBy('id', 'DESC')->get();
+
+        // retornar view tags com a variável compactada
+        return view('frontend.tags.tags_view', compact('products'));
     }
 }

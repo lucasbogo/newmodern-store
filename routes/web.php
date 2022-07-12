@@ -280,3 +280,6 @@ Route::get('/language/english', [LanguageController::class, 'English'])->name('e
 
 // Rota p/ detalhes do produto - como usei url, não é necessário nomear a rota
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+
+// Rota tags - como usei url, não é necessário nomear a rota
+Route::get('/product/tag/{tag}', [IndexController::class, 'ProductTags']);

@@ -28,12 +28,12 @@ $tags_pt = App\Models\Product::groupBy('product_tags_pt')
             @if (session()->get('language') == 'portuguese')
                 @foreach ($tags_pt as $tag)
                     <a class="item active" title="{{ str_replace(',', ' ', $tag->product_tags_pt) }}"
-                        href="category.html">{{ str_replace(',', ' ', $tag->product_tags_pt) }}</a>
+                        href="{{ url('product/tag/' . $tag->product_tags_pt) }}">{{ str_replace(',', ' ', $tag->product_tags_pt) }}</a>
                 @endforeach
             @else
                 @foreach ($tags_en as $tag)
                     <a class="item active" title="{{ str_replace(',', ' ', $tag->product_tags_en) }}"
-                        href="category.html">{{ str_replace(',', ' ', $tag->product_tags_en) }}</a>
+                        href="{{ url('product/tag/' . $tag->product_tags_en) }}">{{ str_replace(',', ' ', $tag->product_tags_en) }}</a>
                 @endforeach
             @endif
 
