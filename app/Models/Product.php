@@ -16,4 +16,20 @@ class Product extends Model
      * 
      */
     protected $guarded = [];
+
+    /* Relacionamento categoria com sub-categoria, necessário para mostrar 
+       nome categoria na tabela subcategoria */
+    public function category()
+    {
+        // fk_category_id pertence à table subcategory; 
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    /* Relacionamento categoria com sub-categoria, necessário para mostrar 
+       nome categoria na tabela subcategoria */
+    public function brand()
+    {
+        // fk_category_id pertence à table subcategory; 
+        return $this->belongsTo(Brand::class, 'brand_id', 'id');
+    }
 }

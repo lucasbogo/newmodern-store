@@ -289,3 +289,6 @@ Route::get('/subcategory/product/{id}/{slug}', [IndexController::class, 'Product
 
 // Rota p/ detalhes do produto ao clickar em sua subsubcategoria - como usei url, não é necessário nomear a rota
 Route::get('/subsubcategory/product/{id}/{slug}', [IndexController::class, 'ProductSubSubDetails']);
+
+// Rota AJAX p/ pegar os dados do produto onClick, em formato json, e passar para a bootstrap modal ao clickar no botão carrinho
+Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);

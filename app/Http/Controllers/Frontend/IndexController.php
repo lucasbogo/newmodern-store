@@ -226,4 +226,24 @@ class IndexController extends Controller
         // retornar view tags com a variável compactada
         return view('frontend.product.subsubcategory_view', compact('products', 'categories'));
     }
+
+    // Método p/ pegar os dados do produto em json e passar p/ a bootstrap modal utilizando AJAX
+    public function ProductViewAjax($id)
+    {
+        // Achar o produto pelo o ID
+        $product = Product::with('category','brand')->findOrFail($id);
+
+        $color = $product->product_color_en;
+        $product_color = explode(',', $color);
+
+        $size = $product->product_size_en;
+        $product_size = explode(',', $size);
+
+        return response()->json(array(
+            'product' => $product,
+            'color' => $product_color,
+            'size' => $product_size,
+
+        ));
+    }
 }

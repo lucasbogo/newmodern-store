@@ -268,8 +268,7 @@
                                         <div class="excerpt fadeInDown-2 hidden-xs">
                                             <span>{{ $slider->slider_description }} </span>
                                         </div>
-                                        <div class="button-holder fadeInDown-3"> <a
-                                                href="index.php?page=single-product"
+                                        <div class="button-holder fadeInDown-3"> <a href="index.php?page=single-product"
                                                 class="btn-lg btn btn-uppercase btn-primary shop-now-button">Shop
                                                 Now</a>
                                         </div>
@@ -808,10 +807,15 @@
                                             <div class="action">
                                                 <ul class="list-unstyled">
                                                     <li class="add-cart-button btn-group">
-                                                        <button data-toggle="tooltip" class="btn btn-primary icon"
-                                                            type="button" title="Add Cart"> <i
+
+                                                        <!-- Modal Bootstrap Button -->
+                                                        <button class="btn btn-primary icon" type="button"
+                                                            title="Add Cart" data-toggle="modal"
+                                                            data-target="#exampleModal" id="{{ $product->id }}"
+                                                            onclick="productView(this.id)"> <i
                                                                 class="fa fa-shopping-cart"></i>
                                                         </button>
+
                                                         <button class="btn btn-primary cart-btn" type="button">Add to
                                                             cart</button>
                                                     </li>

@@ -15,112 +15,11 @@
 
                 <!-- ===== MENU VERTICAL CATEGORIAL FINAL ======== -->
 
-                <!-- ============================================== HOT DEALS COMEÇA AQUI ============================================== -->
-                <div class="sidebar-widget hot-deals wow fadeInUp outer-bottom-xs">
-                    <h3 class="section-title">
-                        <!-- Lógica internacionalização simples tradução da tag new -->
-                        <?php if(session()->get('language') == 'portuguese'): ?>
-                            Promoções
-                        <?php else: ?>
-                            Hot Deals
-                        <?php endif; ?>
-                    </h3>
-                    <div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-ss">
+                <!-- ============================================== HOT DEALS FRAGMENT ============================================== -->
 
-                        <?php $__currentLoopData = $hotdeals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="item">
-                                <div class="products">
-                                    <div class="hot-deal-wrapper">
-                                        <div class="image"> <img src="<?php echo e(asset($product->product_thumbnail)); ?>"
-                                                alt=""> </div>
+                <?php echo $__env->make('frontend.fragments.hot_deals', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-                                        <!-- Lógica porcentagem -->
-                                        <?php
-                                            $discount = $product->product_selling_price - $product->product_discount_price;
-                                            $percentage = ($discount / $product->product_selling_price) * 100;
-                                        ?>
-
-                                        <?php if($product->product_discount_price == null): ?>
-                                            <div class="tag new"><span>new</span></div>
-                                        <?php else: ?>
-                                            <div class="sale-offer-tag"><span><?php echo e(round($percentage)); ?>%<br>
-                                                    off</span></div>
-                                        <?php endif; ?>
-
-
-                                        <div class="timing-wrapper">
-                                            <div class="box-wrapper">
-                                                <div class="date box"> <span class="key">120</span> <span
-                                                        class="value">DAYS</span> </div>
-                                            </div>
-                                            <div class="box-wrapper">
-                                                <div class="hour box"> <span class="key">20</span> <span
-                                                        class="value">HRS</span> </div>
-                                            </div>
-                                            <div class="box-wrapper">
-                                                <div class="minutes box"> <span class="key">36</span> <span
-                                                        class="value">MINS</span> </div>
-                                            </div>
-                                            <div class="box-wrapper hidden-md">
-                                                <div class="seconds box"> <span class="key">60</span> <span
-                                                        class="value">SEC</span> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.hot-deal-wrapper -->
-
-                                    <div class="product-info text-left m-t-20">
-                                        <h3 class="name"><a
-                                                href="<?php echo e(url('product/details/' . $product->id . '/' . $product->product_slug_en)); ?>"></a>
-                                        </h3>
-                                        <div class="rating rateit-small"></div>
-                                        <!--== LÓGICA P/ MOSTRAR VALOR PRODUTO DINAMICAMENTE ==-->
-
-                                        <!-- Lógica: se não houver desconto, aparecer o valor normal (product_selling_price)...-->
-                                        <?php if($product->product_discount_price == null): ?>
-                                            <div class="product-price"> <span class="price">
-                                                    <?php echo e($product->product_selling_price); ?>
-
-                                                </span>
-                                            </div>
-                                            <!-- /.product_selling_price without discount -->
-                                        <?php else: ?>
-                                            <!-- caso contrário, mostrar valor com o desconto -->
-                                            <div class="product-price"> <span class="price">
-                                                    <?php echo e($product->product_discount_price); ?>
-
-                                                </span><span class="price-before-discount">
-                                                    <?php echo e($product->product_selling_price); ?>
-
-                                                </span>
-                                            </div>
-                                            <!-- /.product_discount_price with discount -->
-                                        <?php endif; ?>
-
-                                    </div>
-                                    <!-- /.product-info -->
-
-                                    <div class="cart clearfix animate-effect">
-                                        <div class="action">
-                                            <div class="add-cart-button btn-group">
-                                                <button class="btn btn-primary icon" data-toggle="dropdown"
-                                                    type="button">
-                                                    <i class="fa fa-shopping-cart"></i> </button>
-                                                <button class="btn btn-primary cart-btn" type="button">Add to
-                                                    cart</button>
-                                            </div>
-                                        </div>
-                                        <!-- /.action -->
-                                    </div>
-                                    <!-- /.cart -->
-                                </div>
-                            </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-                    </div>
-                    <!-- /.sidebar-widget -->
-                </div>
-                <!-- ============================================== HOT DEALS TERMINA AQUI ============================================== -->
+                <!-- ============================================== HOT DEALS /FRAGMENT ============================================== -->
 
                 <!-- ============================================== SPECIAL OFFER COMEÇA AQUI ============================================== -->
 
@@ -378,8 +277,7 @@
                                         <div class="excerpt fadeInDown-2 hidden-xs">
                                             <span><?php echo e($slider->slider_description); ?> </span>
                                         </div>
-                                        <div class="button-holder fadeInDown-3"> <a
-                                                href="index.php?page=single-product"
+                                        <div class="button-holder fadeInDown-3"> <a href="index.php?page=single-product"
                                                 class="btn-lg btn btn-uppercase btn-primary shop-now-button">Shop
                                                 Now</a>
                                         </div>
@@ -935,10 +833,15 @@
                                             <div class="action">
                                                 <ul class="list-unstyled">
                                                     <li class="add-cart-button btn-group">
-                                                        <button data-toggle="tooltip" class="btn btn-primary icon"
-                                                            type="button" title="Add Cart"> <i
+
+                                                        <!-- Modal Bootstrap Button -->
+                                                        <button class="btn btn-primary icon" type="button"
+                                                            title="Add Cart" data-toggle="modal"
+                                                            data-target="#exampleModal" id="<?php echo e($product->id); ?>"
+                                                            onclick="productView(this.id)"> <i
                                                                 class="fa fa-shopping-cart"></i>
                                                         </button>
+
                                                         <button class="btn btn-primary cart-btn" type="button">Add to
                                                             cart</button>
                                                     </li>
