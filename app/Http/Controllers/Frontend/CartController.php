@@ -11,7 +11,6 @@ class CartController extends Controller
 {
     public function AddToCart(Request $request, $id)
     {
-
         $product = Product::findOrFail($id);
 
         if ($product->product_discount_price == NULL) {
@@ -46,6 +45,7 @@ class CartController extends Controller
             return response()->json(['success' => 'Successfully Added on Your Cart']);
         }
     }
+
 
     // Minicart
     public function AddMiniCart()

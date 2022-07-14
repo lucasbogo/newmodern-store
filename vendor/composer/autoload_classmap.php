@@ -26,6 +26,7 @@ return array(
     'App\\Http\\Controllers\\Backend\\SubCategoryController' => $baseDir . '/app/Http/Controllers/Backend/SubCategoryController.php',
     'App\\Http\\Controllers\\Backend\\SubSubCategoryController' => $baseDir . '/app/Http/Controllers/Backend/SubSubCategoryController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\Frontend\\CartController' => $baseDir . '/app/Http/Controllers/Frontend/CartController.php',
     'App\\Http\\Controllers\\Frontend\\IndexController' => $baseDir . '/app/Http/Controllers/Frontend/IndexController.php',
     'App\\Http\\Controllers\\Frontend\\LanguageController' => $baseDir . '/app/Http/Controllers/Frontend/LanguageController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',

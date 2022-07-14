@@ -591,6 +591,7 @@ class ComposerStaticInit89eac0bb6850e97caf11721438deabd3
         'App\\Http\\Controllers\\Backend\\SubCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/SubCategoryController.php',
         'App\\Http\\Controllers\\Backend\\SubSubCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/SubSubCategoryController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\Frontend\\CartController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/CartController.php',
         'App\\Http\\Controllers\\Frontend\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/IndexController.php',
         'App\\Http\\Controllers\\Frontend\\LanguageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/LanguageController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',

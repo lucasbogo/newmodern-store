@@ -117,7 +117,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"><strong><span id="productname"></strong></span></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModel">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -236,7 +236,7 @@
 
                                 {{-- <!-- Submit Button com js function onclick para adicionar produto no carrinho
                                  necessário hidden input field para poder passar o ID produto --> --}}
-
+                                 @csrf
                                 <input type="hidden" id="product_id">
                                 <button type="submit" class="btn btn-success mb-2" onclick="addToCart()">
                                     @if (session()->get('language') == 'portuguese')
@@ -254,7 +254,7 @@
     </div>
     <!-- JS AJAX P/ MOSTRAR DADOS PRODUTO NA MODEL DINAMICAMENTE -->
     <script type="text/javascript">
-        $ajaxSetup({
+        $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
@@ -330,8 +330,50 @@
             })
         }
 
-
-
+        function addToCart() {
+            var product_name = $('#productname').text();
+            var id = $('#product_id').val();
+            var color = $('#color option:selected').text();
+            var size = $('#size option:selected').text();
+            var quantity = $('#qty').val();
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                data: {
+                    //_token: "{{ csrf_token() }}",
+                    color: color,
+                    size: size,
+                    quantity: quantity,
+                    product_name: product_name
+                },
+                url: "/cart/data/store/" + id,
+                success: function(data) {
+                    miniCart()
+                    $('#closeModel').click();
+                    // console.log(data)
+                    // Start Message 
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error
+                        })
+                    }
+                    // End Message 
+                }
+            })
+        }
     </script>
 
 

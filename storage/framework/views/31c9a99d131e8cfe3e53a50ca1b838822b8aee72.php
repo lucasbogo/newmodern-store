@@ -235,7 +235,7 @@
                                 <!--\formgroup -->
 
                                 
-
+                                 <?php echo csrf_field(); ?>
                                 <input type="hidden" id="product_id">
                                 <button type="submit" class="btn btn-success mb-2" onclick="addToCart()">
                                     <?php if(session()->get('language') == 'portuguese'): ?>
@@ -253,7 +253,7 @@
     </div>
     <!-- JS AJAX P/ MOSTRAR DADOS PRODUTO NA MODEL DINAMICAMENTE -->
     <script type="text/javascript">
-        $ajaxSetup({
+        $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
@@ -328,7 +328,56 @@
                 }
             })
         }
+
+        function addToCart() {
+            var product_name = $('#productname').text();
+            var id = $('#product_id').val();
+            var color = $('#color option:selected').text();
+            var size = $('#size option:selected').text();
+            var quantity = $('#qty').val();
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                data: {
+                    //_token: "<?php echo e(csrf_token()); ?>",
+                    color: color,
+                    size: size,
+                    quantity: quantity,
+                    product_name: product_name
+                },
+                url: "/cart/data/store/" + id,
+                success: function(data) {
+                    miniCart()
+                    $('#closeModel').click();
+                    // console.log(data)
+                    // Start Message 
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error
+                        })
+                    }
+                    // End Message 
+                }
+            })
+        }
     </script>
+
+
+
+
     <script type="text/javascript">
         function miniCart() {
             $.ajax({
