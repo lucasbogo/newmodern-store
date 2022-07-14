@@ -162,7 +162,7 @@
                         <div class='col-sm-6 col-md-7 product-info-block'>
                             <div class="product-info">
                                 <!-- ================ NOME AQUI =================-->
-                                <h1 class="name">
+                                <h1 class="name" id="productname">
                                     <!-- Lógica internacionalização mostrar nome produto -->
                                     @if (session()->get('language') == 'portuguese')
                                         {{ $product->product_name_pt }}
@@ -271,7 +271,7 @@
                                                     Choose Color
                                                 @endif <span>*</span>
                                             </label>
-                                            <select class="form-control unicase-form-control selectpicker">
+                                            <select class="form-control unicase-form-control selectpicker" id="color">
                                                 <option selected="" disabled="">--
                                                     <!-- Lógica internacionalização simples tradução da tag new -->
                                                     @if (session()->get('language') == 'portuguese')
@@ -312,8 +312,7 @@
                                         {{-- <!-- condição if-else: tamanho protuo ingles e portugues forem nulos, 
                                             não mostrar campo tamanho na descrição do produto, caso contrário, seguir normalmente. --> --}}
                                         <div class="form-group">
-                                            @if ($product->product_size_en and $product->product_size_pt == null)
-
+                                            @if ($product->product_size_en == null && $product->product_size_pt == null)
                                             @else
                                                 <label class="info-title control-label">
                                                     <!-- Lógica internacionalização simples tradução da tag new -->
@@ -323,7 +322,7 @@
                                                         Choose Size
                                                     @endif <span></span>
                                                 </label>
-                                                <select class="form-control unicase-form-control selectpicker">
+                                                <select class="form-control unicase-form-control selectpicker" id="size">
                                                     <option selected="" disabled="">--
                                                         <!-- Lógica internacionalização simples tradução da tag new -->
                                                         @if (session()->get('language') == 'portuguese')
@@ -355,12 +354,19 @@
                                     </div>
                                     <!-- ================ TAMANHO TERMINA AQUI =================-->
 
-                                    <!-- ================ PREÇO AQUI =================-->
+                                    <!-- ================ ADD TO CARTO COM QUANTIDADE ESPECÍFICA  =================-->
                                     <div class="quantity-container info-container">
                                         <div class="row">
 
                                             <div class="col-sm-2">
-                                                <span class="label">Qty :</span>
+                                                <span class="label">
+                                                    <!-- Lógica internacionalização simples tradução da tag new -->
+                                                    @if (session()->get('language') == 'portuguese')
+                                                        Quantidade
+                                                    @else
+                                                        Quantity
+                                                    @endif :
+                                                </span>
                                             </div>
 
                                             <div class="col-sm-2">
@@ -372,14 +378,24 @@
                                                             <div class="arrow minus gradient"><span class="ir"><i
                                                                         class="icon fa fa-sort-desc"></i></span></div>
                                                         </div>
-                                                        <input type="text" value="1">
+                                                        <input type="text" id="qty" value="1"
+                                                            min="1">
                                                     </div>
                                                 </div>
                                             </div>
 
+                                            <input type="hidden" id="product_id" value="{{ $product->id }}"
+                                                min="1">
                                             <div class="col-sm-7">
-                                                <a href="#" class="btn btn-primary"><i
-                                                        class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+
+                                                <button type="submit" onclick="addToCart()" class="btn btn-primary"><i
+                                                        class="fa fa-shopping-cart inner-right-vs"></i>
+                                                    @if (session()->get('language') == 'portuguese')
+                                                        Adicionar
+                                                    @else
+                                                        Add to Cart
+                                                    @endif
+                                                </button>
                                             </div>
 
 

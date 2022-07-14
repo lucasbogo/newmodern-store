@@ -298,3 +298,6 @@ Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax
 
 // Rota AJAX p/ pegar os dados do produto onClick, em formato json, e passar para a bootstrap modal ao clickar no botão carrinho
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+
+// Pegar dados mini carrinho
+Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);

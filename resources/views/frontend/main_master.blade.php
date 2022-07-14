@@ -117,7 +117,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"><strong><span id="productname"></strong></span></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModel">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -329,54 +329,26 @@
                 }
             })
         }
-        
 
-        // Ajax adicionar carrinho
-        function addToCart() {
-            var product_name = $('#productname').text();
-            var id = $('#product_id').val();
-            var color = $('#color option:selected').text();
-            var size = $('#size option:selected').text();
-            var quantity = $('#qty').val();
+
+
+    </script>
+
+
+
+
+    <script type="text/javascript">
+        function miniCart() {
             $.ajax({
-                type: "POST",
+                type: 'GET',
+                url: '/product/mini/cart/',
                 dataType: 'json',
-                data: {
-                    color: color,
-                    size: size,
-                    quantity: quantity,
-                    product_name: product_name
-                },
-                url: "/cart/data/store/" + id,
-                success: function(data) {
-                    $('#closeModel').click();
+                success: function(response) {
+                    console.log(response);
 
-                    // Start Message 
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        icon: 'success',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                    if ($.isEmptyObject(data.error)) {
-                        Toast.fire({
-                            type: 'success',
-                            title: data.success
-                        })
-                    } else {
-                        Toast.fire({
-                            type: 'error',
-                            title: data.error
-                        })
-                    }
-                    // End Message 
                 }
             })
         }
-    
-
-        // End Add To Cart Product
     </script>
 
 
