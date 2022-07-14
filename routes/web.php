@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\SliderController;
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
+use App\Http\Controllers\Frontend\CartController;
 
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
@@ -292,3 +293,8 @@ Route::get('/subsubcategory/product/{id}/{slug}', [IndexController::class, 'Prod
 
 // Rota AJAX p/ pegar os dados do produto onClick, em formato json, e passar para a bootstrap modal ao clickar no botão carrinho
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+
+// Todas as rotas Carrinho
+
+// Rota AJAX p/ pegar os dados do produto onClick, em formato json, e passar para a bootstrap modal ao clickar no botão carrinho
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);

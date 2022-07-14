@@ -39,6 +39,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
 
+
 </head>
 
 <body class="cnt-home">
@@ -79,6 +80,9 @@
     <script src="<?php echo e(asset('frontend/assets/js/wow.min.js')); ?>"></script>
     <script src="<?php echo e(asset('frontend/assets/js/scripts.js')); ?>"></script>
 
+    <!-- Sweer Alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Script para mostrar as mensagens toaster para o admin. -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
@@ -113,7 +117,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"><strong><span id="productname"></strong></span></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModel">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -187,14 +191,14 @@
 
                             <!-- bootstrap 4.6 form group 1 -->
                             <div class="form-group" id="colorForm">
-                                <label for="exampleFormControlSelect1">
+                                <label for="color">
                                     <?php if(session()->get('language') == 'portuguese'): ?>
                                         Escolha a Cor
                                     <?php else: ?>
                                         Choose Color
                                     <?php endif; ?>
                                 </label>
-                                <select class="form-control" id="exampleFormControlSelect1" name="color">
+                                <select class="form-control" id="color" name="color">
 
 
                                 </select>
@@ -202,14 +206,14 @@
 
                             <!-- bootstrap 4.6 form group 2 -->
                             <div class="form-group" id="sizeForm">
-                                <label for="exampleFormControlSelect1">
+                                <label for="size">
                                     <?php if(session()->get('language') == 'portuguese'): ?>
                                         Escolha o Tamanho
                                     <?php else: ?>
                                         Choose Size
                                     <?php endif; ?>
                                 </label>
-                                <select class="form-control" id="exampleFormControlSelect1" name="size">
+                                <select class="form-control" id="size" name="size">
                                     <option>1</option>
 
                                 </select>
@@ -218,18 +222,22 @@
                             <!-- bootstrap 4.6 form -->
                             <form>
                                 <div class="form-group">
-                                    <label for="exampleFormControlInput1">
+                                    <label for="qty">
                                         <?php if(session()->get('language') == 'portuguese'): ?>
                                             Quantidade
                                         <?php else: ?>
                                             Quantity
                                         <?php endif; ?>
                                     </label>
-                                    <input type="number" class="form-control" id="exampleFormControlInput1"
-                                        value="1" min="1">
+                                    <input type="number" class="form-control" id="qty" value="1"
+                                        min="1">
                                 </div>
                                 <!--\formgroup -->
-                                <button type="submit" class="btn btn-success mb-2">
+
+                                
+
+                                <input type="hidden" id="product_id">
+                                <button type="submit" class="btn btn-success mb-2" onclick="addToCart()">
                                     <?php if(session()->get('language') == 'portuguese'): ?>
                                         Adicionar ao Carrinho
                                     <?php else: ?>
@@ -264,6 +272,9 @@
                     $('#productcategory').text(data.product.category.category_name_en);
                     $('#productbrand').text(data.product.brand.brand_name_en);
                     $('#productimage').attr('src', '/' + data.product.product_thumbnail);
+                    $('#product_id').val(id);
+                    $('#qty').val(1);
+
 
                     // Condição: mostrar desconto produto caso exista...
                     if (data.product.product_discount_price == null) {
@@ -295,7 +306,7 @@
                     $.each(data.size, function(key, value) {
                         $('select[name="size"]').append('<option value=" ' + value + ' ">' + value +
                             '</option>')
-                        // Condição, se produto não tem tamanho, esconder o form tanho, caso contrário, mostrar form tamanho
+                        // Condição, se produto não tem tamanho, esconder o form tamanho, caso contrário, mostrar form tamanho
                         if (data.size == "") {
                             $('#sizeForm').hide();
                         } else {
@@ -317,6 +328,54 @@
                 }
             })
         }
+        
+
+        // Ajax adicionar carrinho
+        function addToCart() {
+            var product_name = $('#productname').text();
+            var id = $('#product_id').val();
+            var color = $('#color option:selected').text();
+            var size = $('#size option:selected').text();
+            var quantity = $('#qty').val();
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                data: {
+                    color: color,
+                    size: size,
+                    quantity: quantity,
+                    product_name: product_name
+                },
+                url: "/cart/data/store/" + id,
+                success: function(data) {
+                    $('#closeModel').click();
+
+                    // Start Message 
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error
+                        })
+                    }
+                    // End Message 
+                }
+            })
+        }
+    
+
+        // End Add To Cart Product
     </script>
 
 

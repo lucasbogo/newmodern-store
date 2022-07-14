@@ -309,40 +309,48 @@
                                     <div class="col-sm-6">
                                         {{-- BOOTSTRAP TIRADO DE shopping-cart.html Flipmart Template --}}
 
+                                        {{-- <!-- condição if-else: tamanho protuo ingles e portugues forem nulos, 
+                                            não mostrar campo tamanho na descrição do produto, caso contrário, seguir normalmente. --> --}}
                                         <div class="form-group">
-                                            <label class="info-title control-label">
-                                                <!-- Lógica internacionalização simples tradução da tag new -->
-                                                @if (session()->get('language') == 'portuguese')
-                                                    Escolher Tamanho
-                                                @else
-                                                    Choose Size
-                                                @endif <span></span>
-                                            </label>
-                                            <select class="form-control unicase-form-control selectpicker">
-                                                <option selected="" disabled="">--
+                                            @if ($product->product_size_en and $product->product_size_pt == null)
+
+                                            @else
+                                                <label class="info-title control-label">
                                                     <!-- Lógica internacionalização simples tradução da tag new -->
                                                     @if (session()->get('language') == 'portuguese')
                                                         Escolher Tamanho
                                                     @else
                                                         Choose Size
-                                                    @endif --
-                                                </option>
-                                                <!-- Lógica internacionalização simples tradução da tag new -->
-                                                {{-- função ucwords() padroniza palvras, assim o mantendeor 
+                                                    @endif <span></span>
+                                                </label>
+                                                <select class="form-control unicase-form-control selectpicker">
+                                                    <option selected="" disabled="">--
+                                                        <!-- Lógica internacionalização simples tradução da tag new -->
+                                                        @if (session()->get('language') == 'portuguese')
+                                                            Escolher Tamanho
+                                                        @else
+                                                            Choose Size
+                                                        @endif --
+                                                    </option>
+                                                    <!-- Lógica internacionalização simples tradução da tag new -->
+                                                    {{-- função ucwords() padroniza palvras, assim o mantendeor 
                                                     não precisa se procupar em digitar Maniusculas ou Minusculas --}}
-                                                @if (session()->get('language') == 'portuguese')
-                                                    @foreach ($product_size_pt as $tamanho)
-                                                        <option value="{{ $tamanho }}">{{ ucwords($tamanho) }}
-                                                        </option>
-                                                    @endforeach
-                                                @else
-                                                    @foreach ($product_size_en as $size)
-                                                        <option value="{{ $size }}">{{ ucwords($size) }}
-                                                        </option>
-                                                    @endforeach
-                                                @endif--
+                                                    @if (session()->get('language') == 'portuguese')
+                                                        @foreach ($product_size_pt as $tamanho)
+                                                            <option value="{{ $tamanho }}">
+                                                                {{ ucwords($tamanho) }}
+                                                            </option>
+                                                        @endforeach
+                                                    @else
+                                                        @foreach ($product_size_en as $size)
+                                                            <option value="{{ $size }}">
+                                                                {{ ucwords($size) }}
+                                                            </option>
+                                                        @endforeach
+                                                    @endif--
 
-                                            </select>
+                                                </select>
+                                            @endif
                                         </div>
                                     </div>
                                     <!-- ================ TAMANHO TERMINA AQUI =================-->
