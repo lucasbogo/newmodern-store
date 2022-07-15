@@ -80,6 +80,8 @@
     <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/scripts.js') }}"></script>
 
+
+
     <!-- Sweer Alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -111,227 +113,167 @@
         @endif
     </script>
 
-    <!-- Bootstrap 4.6 Modal Botão Adicionar ao Carrinho -->
+    <!-- Add to Cart Product Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><strong><span id="productname"></strong></span></h5>
+                    <h5 class="modal-title" id="exampleModalLabel"><strong><span id="pname"></span> </strong></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModel">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
-                    <!-- Design começa aqui -->
+
                     <div class="row">
+
                         <div class="col-md-4">
 
-                            <!-- bootstrap 4.6 card -->
                             <div class="card" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="..."
-                                    style="width:220px; height:220px;" id="productimage">
+
+                                <img src=" " class="card-img-top" alt="..."
+                                    style="height: 200px; width: 200px;" id="pimage">
 
                             </div>
 
-                        </div><!-- \1° col md 4 -->
+                        </div><!-- // end col md -->
+
+
                         <div class="col-md-4">
 
-                            <!-- bootstrap 4.6 list -->
                             <ul class="list-group">
-                                <li class="list-group-item">
-                                    @if (session()->get('language') == 'portuguese')
-                                        Preço:
-                                    @else
-                                        Price:
-                                    @endif
-                                    <strong class="text-danger">R$<span id="pricecondition"></span></strong><br>
-                                    <del id="oldpricecondition"></del>
+                                <li class="list-group-item">Product Price: <strong class="text-danger">$<span
+                                            id="pprice"></span></strong>
+                                    <del id="oldprice">$</del>
                                 </li>
-                                <li class="list-group-item">
-                                    @if (session()->get('language') == 'portuguese')
-                                        Codigo:
-                                    @else
-                                        Code:
-                                    @endif
-                                    <strong id="productcode"></strong>
-                                </li>
-                                <li class="list-group-item">
-                                    @if (session()->get('language') == 'portuguese')
-                                        Categoria:
-                                    @else
-                                        Category:
-                                    @endif
-                                    <strong id="productcategory"></strong>
-                                </li>
-                                <li class="list-group-item">
-                                    @if (session()->get('language') == 'portuguese')
-                                        Marca:
-                                    @else
-                                        Brand:
-                                    @endif
-                                    <strong id="productbrand"></strong>
-                                </li>
-                                <li class="list-group-item">
-                                    @if (session()->get('language') == 'portuguese')
-                                        Estoque:
-                                    @else
-                                        Stock:
-                                    @endif
-                                    <span class="badge badge-pill badge-success" id="available"
-                                        style="background: green;color: white;">
-                                    </span>
-                                    <span class="badge badge-pill badge-danger" id="unavailable"
-                                        style="background: red;color: white;">
-                                    </span>
+                                <li class="list-group-item">Product Code: <strong id="pcode"></strong></li>
+                                <li class="list-group-item">Category: <strong id="pcategory"></strong></li>
+                                <li class="list-group-item">Brand: <strong id="pbrand"></strong></li>
+                                <li class="list-group-item">Stock: <span class="badge badge-pill badge-success"
+                                        id="aviable" style="background: green; color: white;"></span>
+                                    <span class="badge badge-pill badge-danger" id="stockout"
+                                        style="background: red; color: white;"></span>
+
                                 </li>
                             </ul>
 
-                        </div><!-- \2° col md 4 -->
+                        </div><!-- // end col md -->
+
+
                         <div class="col-md-4">
 
-                            <!-- bootstrap 4.6 form group 1 -->
-                            <div class="form-group" id="colorForm">
-                                <label for="color">
-                                    @if (session()->get('language') == 'portuguese')
-                                        Escolha a Cor
-                                    @else
-                                        Choose Color
-                                    @endif
-                                </label>
+                            <div class="form-group">
+                                <label for="color">Choose Color</label>
                                 <select class="form-control" id="color" name="color">
 
 
                                 </select>
-                            </div><!-- \form group 1 -->
+                            </div> <!-- // end form group -->
 
-                            <!-- bootstrap 4.6 form group 2 -->
-                            <div class="form-group" id="sizeForm">
-                                <label for="size">
-                                    @if (session()->get('language') == 'portuguese')
-                                        Escolha o Tamanho
-                                    @else
-                                        Choose Size
-                                    @endif
-                                </label>
+
+                            <div class="form-group" id="sizeArea">
+                                <label for="size">Choose Size</label>
                                 <select class="form-control" id="size" name="size">
                                     <option>1</option>
 
                                 </select>
-                            </div><!-- \form group 2 -->
+                            </div> <!-- // end form group -->
 
-                            <!-- bootstrap 4.6 form -->
-                            <form>
-                                <div class="form-group">
-                                    <label for="qty">
-                                        @if (session()->get('language') == 'portuguese')
-                                            Quantidade
-                                        @else
-                                            Quantity
-                                        @endif
-                                    </label>
-                                    <input type="number" class="form-control" id="qty" value="1"
-                                        min="1">
-                                </div>
-                                <!--\formgroup -->
+                            <div class="form-group">
+                                <label for="qty">Quantity</label>
+                                <input type="number" class="form-control" id="qty" value="1"
+                                    min="1">
+                            </div> <!-- // end form group -->
 
-                                {{-- <!-- Submit Button com js function onclick para adicionar produto no carrinho
-                                 necessário hidden input field para poder passar o ID produto --> --}}
-                                 @csrf
-                                <input type="hidden" id="product_id">
-                                <button type="submit" class="btn btn-success mb-2" onclick="addToCart()">
-                                    @if (session()->get('language') == 'portuguese')
-                                        Adicionar ao Carrinho
-                                    @else
-                                        Add to Cart
-                                    @endif
-                                </button>
-                            </form>
-                        </div><!-- \3° col md 4 -->
-                    </div><!-- \final row -->
-                </div>
+                            <input type="hidden" id="product_id">
+                            <button type="submit" class="btn btn-primary mb-2" onclick="addToCart()">Add to
+                                Cart</button>
+
+
+                        </div><!-- // end col md -->
+
+
+                    </div> <!-- // end row -->
+
+
+
+                </div> <!-- // end modal Body -->
+
             </div>
         </div>
     </div>
-    <!-- JS AJAX P/ MOSTRAR DADOS PRODUTO NA MODEL DINAMICAMENTE -->
+    <!-- End Add to Cart Product Modal -->
+
+
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         })
-
-        // View Produto com a Modal Bootstrap | nome dado no método onclick="productView"
+        // Start Product View with Modal 
         function productView(id) {
+            // alert(id)
             $.ajax({
                 type: 'GET',
                 url: '/product/view/modal/' + id,
                 dataType: 'json',
                 success: function(data) {
-                    $('#productname').text(data.product.product_name_en);
-                    $('#productprice').text(data.product.product_selling_price);
-                    $('#productcode').text(data.product.product_code);
-                    $('#productcategory').text(data.product.category.category_name_en);
-                    $('#productbrand').text(data.product.brand.brand_name_en);
-                    $('#productimage').attr('src', '/' + data.product.product_thumbnail);
+                    // console.log(data)
+                    $('#pname').text(data.product.product_name_en);
+                    $('#price').text(data.product.product_selling_price);
+                    $('#pcode').text(data.product.product_code);
+                    $('#pcategory').text(data.product.category.category_name_en);
+                    $('#pbrand').text(data.product.brand.brand_name_en);
+                    $('#pimage').attr('src', '/' + data.product.product_thumbnail);
                     $('#product_id').val(id);
                     $('#qty').val(1);
-
-
-                    // Condição: mostrar desconto produto caso exista...
+                    // Product Price 
                     if (data.product.product_discount_price == null) {
-                        $('#pricecondition').text("");
-                        $('#oldpricecondition').text("");
-                        $('#pricecondition').text(data.product.product_selling_price);
+                        $('#pprice').text('');
+                        $('#oldprice').text('');
+                        $('#pprice').text(data.product.product_selling_price);
                     } else {
-                        $('#pricecondition').text(data.product.product_discount_price);
-                        $('#oldpricecondition').text(data.product.product_selling_price);
-                    }
-
-                    // Cor c/ AJAX
-                    // limpar o select field antes de clickar em um produto novo. load with empty function
+                        $('#pprice').text(data.product.product_discount_price);
+                        $('#oldprice').text(data.product.product_selling_price);
+                    } // end prodcut price 
+                    // Start Stock opiton
+                    if (data.product.product_qty > 0) {
+                        $('#aviable').text('');
+                        $('#stockout').text('');
+                        $('#aviable').text('available');
+                    } else {
+                        $('#aviable').text('');
+                        $('#stockout').text('');
+                        $('#stockout').text('out of stock');
+                    } // end Stock Option 
+                    // Color
                     $('select[name="color"]').empty();
                     $.each(data.color, function(key, value) {
                         $('select[name="color"]').append('<option value=" ' + value + ' ">' + value +
-                            '</option>')
-                        // Condição, se produto não tem tamanho, esconder o form tanho, caso contrário, mostrar form tamanho
-                        if (data.color == "") {
-                            $('#colorForm').hide();
-                        } else {
-                            $('#colorForm').show();
-                        }
-                    })
-
-                    // Tamanho c/ AJAX
-                    // limpar o select field antes de clickar em um produto novo. load with empty function
+                            ' </option>')
+                    }) // end color
+                    // Size
                     $('select[name="size"]').empty();
                     $.each(data.size, function(key, value) {
                         $('select[name="size"]').append('<option value=" ' + value + ' ">' + value +
-                            '</option>')
-                        // Condição, se produto não tem tamanho, esconder o form tamanho, caso contrário, mostrar form tamanho
+                            ' </option>')
                         if (data.size == "") {
-                            $('#sizeForm').hide();
+                            $('#sizeArea').hide();
                         } else {
-                            $('#sizeForm').show();
+                            $('#sizeArea').show();
                         }
-                    })
-
-                    // Estoque
-                    if (data.product.product_qty > 0) {
-                        $('#available').text("");
-                        $('#unavailable').text("");
-                        $('#available').text('available')
-                    } else {
-                        $('#available').text("");
-                        $('#unavailable').text("");
-                        $('#unavailable').text('out of stock')
-                    }
+                    }) // end size
 
                 }
             })
-        }
 
+        }
+        // Eend Product View with Modal 
+        // Start Add To Cart Product 
         function addToCart() {
-            var product_name = $('#productname').text();
+            var product_name = $('#pname').text();
             var id = $('#product_id').val();
             var color = $('#color option:selected').text();
             var size = $('#size option:selected').text();
@@ -340,7 +282,6 @@
                 type: "POST",
                 dataType: 'json',
                 data: {
-                    //_token: "{{ csrf_token() }}",
                     color: color,
                     size: size,
                     quantity: quantity,
@@ -374,23 +315,76 @@
                 }
             })
         }
+
+        // End Add To Cart Product
     </script>
-
-
-
 
     <script type="text/javascript">
         function miniCart() {
             $.ajax({
                 type: 'GET',
-                url: '/product/mini/cart/',
+                url: '/product/mini/cart',
                 dataType: 'json',
                 success: function(response) {
-                    console.log(response);
+                    $('span[id="cartSubTotal"]').text(response.cartTotal);
+                    $('#cartQty').text(response.cartQty);
+                    var miniCart = ""
+                    $.each(response.carts, function(key, value) {
+                        miniCart += `<div class="cart-item product-summary">
+            <div class="row">
+              <div class="col-xs-4">
+                <div class="image"> <a href="detail.html"><img src="/${value.options.image}" alt=""></a> </div>
+              </div>
+              <div class="col-xs-7">
+                <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
+                <div class="price"> ${value.price} * ${value.qty} </div>
+              </div>
+              <div class="col-xs-1 action"> 
+              <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button> </div>
+            </div>
+          </div>
+          <!-- /.cart-item -->
+          <div class="clearfix"></div>
+          <hr>`
+                    });
 
+                    $('#miniCart').html(miniCart);
                 }
             })
         }
+        miniCart();
+        /// mini cart remove Start 
+        function miniCartRemove(rowId) {
+            $.ajax({
+                type: 'GET',
+                url: '/minicart/product-remove/' + rowId,
+                dataType: 'json',
+                success: function(data) {
+                    miniCart();
+                    // Start Message 
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error
+                        })
+                    }
+                    // End Message 
+                }
+            });
+        }
+        //  end mini cart remove
     </script>
 
 

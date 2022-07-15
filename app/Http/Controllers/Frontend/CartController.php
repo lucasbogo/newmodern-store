@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -13,7 +14,7 @@ class CartController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        if ($product->product_discount_price == NULL) {
+        if ($product->product_discount_price == null) {
             Cart::add([
                 'id' => $id,
                 'name' => $request->product_name,
@@ -27,9 +28,8 @@ class CartController extends Controller
                 ],
             ]);
 
-            return response()->json(['success' => 'Successfully Added on Your Cart']);
+            return response()->json(['success' => 'Produto Adicionado ao Carrinho']);
         } else {
-
             Cart::add([
                 'id' => $id,
                 'name' => $request->product_name,
@@ -42,12 +42,12 @@ class CartController extends Controller
                     'size' => $request->size,
                 ],
             ]);
-            return response()->json(['success' => 'Successfully Added on Your Cart']);
+
+            return response()->json(['success' => 'Produto Adicionado ao Carrinho']);
         }
     }
 
-
-    // Minicart
+ 
     public function AddMiniCart()
     {
         $carts = Cart::content();
@@ -58,6 +58,14 @@ class CartController extends Controller
             'carts' => $carts,
             'cartQty' => $cartQty,
             'cartTotal' => round($cartTotal),
+
         ));
+    }
+
+
+    public function RemoveMiniCart($rowId)
+    {
+        Cart::remove($rowId);
+        return response()->json(['success' => 'Product Remove from Cart']);
     }
 }

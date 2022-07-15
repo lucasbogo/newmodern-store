@@ -294,10 +294,13 @@ Route::get('/subsubcategory/product/{id}/{slug}', [IndexController::class, 'Prod
 // Rota AJAX p/ pegar os dados do produto onClick, em formato json, e passar para a bootstrap modal ao clickar no botão carrinho
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
 
-// Todas as rotas Carrinho
+// ======================= TODAS AS CARRINHO =======================/
 
 // Rota AJAX p/ pegar os dados do produto onClick, em formato json, e passar para a bootstrap modal ao clickar no botão carrinho
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 
-// Pegar dados mini carrinho
+// Rota AJAX Pegar dados mini carrinho - como usei url, não é necessário nomear a rota
 Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);
+
+// ROTA AJAX Remover dados mini carrinho - como usei url, não é necessário nomear a rota
+Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
