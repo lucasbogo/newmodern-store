@@ -253,7 +253,8 @@ php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLa
 sudo apt-get install php8.1-gd
 ```
  --------------------------------------------------------------------------------------------------------------------------------------------------------
- ## bumbummen99/shoppingcart 
+ ## bumbummen99/shoppingcart
+ [documentação oficial]([https://image.intervention.io/v2/introduction/installation](https://packagist.org/packages/bumbummen99/shoppingcart))
 
 ### Sobre:
 
