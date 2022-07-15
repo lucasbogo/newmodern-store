@@ -832,6 +832,7 @@
                                         <div class="cart clearfix animate-effect">
                                             <div class="action">
                                                 <ul class="list-unstyled">
+                                                    <!-- ========== BOTÃO ADICIONAR AO CARRINHO ======= -->
                                                     <li class="add-cart-button btn-group">
 
                                                         <!-- Modal Bootstrap Button -->
@@ -842,17 +843,36 @@
                                                                 class="fa fa-shopping-cart"></i>
                                                         </button>
 
-                                                        <button class="btn btn-primary cart-btn" type="button">Add to
-                                                            cart</button>
+                                                        <button class="btn btn-primary cart-btn" type="button">
+                                                            <!-- Lógica internacionalização simples tradução da tag new -->
+                                                            <?php if(session()->get('language') == 'portuguese'): ?>
+                                                                Adicionar
+                                                            <?php else: ?>
+                                                                Add to Cart
+                                                            <?php endif; ?>
+                                                        </button>
                                                     </li>
-                                                    <li class="lnk wishlist"> <a data-toggle="tooltip"
-                                                            class="add-to-cart" href="detail.html" title="Wishlist">
-                                                            <i class="icon fa fa-heart"></i>
-                                                        </a> </li>
+                                                    <!-- ========== /BOTÃO ADICIONAR AO CARRINHO ======= -->
+
+                                                    <!-- ========== BOTÃO WISHLIST ======= -->
+
+
+                                                    <!-- Wishlist Button -->
+                                                    <button class="btn btn-primary icon" type="button"
+                                                        title="Wishlist" id="<?php echo e($product->id); ?>"
+                                                        onclick="productView(this.id)"> <i class="fa fa-heart"></i>
+                                                    </button>
+
+
+                                                    <!-- ========== /BOTÃO WISHLIST ======== -->
+
+                                                    <!-- ========== BOTÃO COMPARE ========== -->
                                                     <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart"
                                                             href="detail.html" title="Compare"> <i
                                                                 class="fa fa-signal" aria-hidden="true"></i> </a>
                                                     </li>
+
+                                                    <!-- ========== /BOTÃO COMPARE ========== -->
                                                 </ul>
                                             </div>
                                             <!-- /.action -->
