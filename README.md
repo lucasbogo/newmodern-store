@@ -214,9 +214,9 @@ cd <nome_projeto>
 composer require intervention/image
 ```
 
-#### Configurar: 
+### Configurar: 
 <br>
-- Entrar em config/app.php e colar: ```Intervention\Image\ImageServiceProvider::class,``` em Package Service Providers
+#### Entrar em config/app.php e colar: ```Intervention\Image\ImageServiceProvider::class,``` em Package Service Providers
 
 ```
 /*
@@ -239,7 +239,7 @@ composer require intervention/image
     ])->toArray(),
 
 ```
-<br>
+
 #### Publicar:
 
 ```
