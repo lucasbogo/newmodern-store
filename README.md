@@ -21,6 +21,7 @@ Loja Virtual desenvolvida como trabalho obrigatório para a disciplina de **Proj
 -  **MySQL 8.0.29**
 -  **Mailtrap.io**
 -  **Laravel Image Intervention Package (trabalhar com imagens)**
+-  **Laravel Shoppingcart - bumbummen99/shoppingcart**
 -  **VSCode**
 -  **Banco de dados tratado com o padrão Factory** 
 -  **Padrão MVC**
@@ -134,12 +135,12 @@ laravel new <nome_projeto>
 
 #### Criar projeto Laravel utilizando Composer
 ```
-composer create-project laravel/newmodern-store
+composer create-project laravel/<project_name>
 ```
 
 #### Para iniciar o servidor de desenvolvimento do Laravel, insira os comandos:
 ```
-cd /lojavirtual-app
+cd /<project_name>
 php artisan serve
 ```
 
@@ -251,4 +252,22 @@ php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLa
 ```
 sudo apt-get install php8.1-gd
 ```
- 
+ --------------------------------------------------------------------------------------------------------------------------------------------------------
+ ## bumbummen99/shoppingcart 
+
+### Sobre:
+
+Laravel Shoppingcart
+
+### Instalação: Instalar o Pacote pelo composer;
+
+#### Execute o comando necessário do Composer no Terminal:
+```
+composer require bumbummen99/shoppingcart
+```
+#### Você definitivamente deveria publicar o arquivo de configuração e dar uma olhada nele
+```
+php artisan vendor:publish --provider="Gloudemans\Shoppingcart\ShoppingcartServiceProvider" --tag="config"
+```
+#### Isso lhe dará um arquivo de configuração cart.php no qual você pode fazer alterações no comportamento dos pacotes.
+
