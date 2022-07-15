@@ -215,7 +215,7 @@ composer require intervention/image
 ```
 
 ### Configurar: 
-<br>
+
 #### Entrar em config/app.php e colar: ```Intervention\Image\ImageServiceProvider::class,``` em Package Service Providers
 
 ```
