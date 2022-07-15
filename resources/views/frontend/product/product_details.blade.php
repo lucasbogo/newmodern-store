@@ -162,7 +162,7 @@
                         <div class='col-sm-6 col-md-7 product-info-block'>
                             <div class="product-info">
                                 <!-- ================ NOME AQUI =================-->
-                                <h1 class="name" id="productname">
+                                <h1 class="name" id="pname">
                                     <!-- Lógica internacionalização mostrar nome produto -->
                                     @if (session()->get('language') == 'portuguese')
                                         {{ $product->product_name_pt }}
@@ -261,42 +261,47 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         {{-- BOOTSTRAP TIRADO DE shopping-cart.html Flipmart Template --}}
-
+                                        {{-- Condição &&: se a cor do produto ingles e portugues forem nulos, então não mostrar selectform, caso contrário, mostrar --}}
                                         <div class="form-group">
-                                            <label class="info-title control-label">
-                                                <!-- Lógica internacionalização simples tradução da tag new -->
-                                                @if (session()->get('language') == 'portuguese')
-                                                    Escolher Cor
-                                                @else
-                                                    Choose Color
-                                                @endif <span>*</span>
-                                            </label>
-                                            <select class="form-control unicase-form-control selectpicker" id="color">
-                                                <option selected="" disabled="">--
+                                            @if ($product->product_color_en == null && $product->product_color_pt == null)
+                                            @else
+                                                <label class="info-title control-label">
                                                     <!-- Lógica internacionalização simples tradução da tag new -->
                                                     @if (session()->get('language') == 'portuguese')
                                                         Escolher Cor
                                                     @else
                                                         Choose Color
-                                                    @endif--
-                                                </option>
-                                                <!-- Lógica internacionalização simples tradução  -->
-                                                {{-- função ucwords() padroniza palvras, assim o mantendeor 
+                                                    @endif <span>*</span>
+                                                </label>
+                                                <select class="form-control unicase-form-control selectpicker"
+                                                    id="color">
+                                                    <option selected="" disabled="">--
+                                                        <!-- Lógica internacionalização simples tradução da tag new -->
+                                                        @if (session()->get('language') == 'portuguese')
+                                                            Escolher Cor
+                                                        @else
+                                                            Choose Color
+                                                        @endif--
+                                                    </option>
+                                                    <!-- Lógica internacionalização simples tradução  -->
+                                                    {{-- função ucwords() padroniza palvras, assim o mantendeor 
                                                     não precisa se procupar em digitar Maniusculas ou Minusculas --}}
-                                                @if (session()->get('language') == 'portuguese')
-                                                    @foreach ($product_color_pt as $cor)
-                                                        <option value="{{ $cor }}">{{ ucwords($cor) }}
-                                                        </option>
-                                                    @endforeach
-                                                @else
-                                                    @foreach ($product_color_en as $color)
-                                                        <option value="{{ $color }}">{{ ucwords($color) }}
-                                                        </option>
-                                                    @endforeach
-                                                @endif--
+                                                    @if (session()->get('language') == 'portuguese')
+                                                        @foreach ($product_color_pt as $cor)
+                                                            <option value="{{ $cor }}">{{ ucwords($cor) }}
+                                                            </option>
+                                                        @endforeach
+                                                    @else
+                                                        @foreach ($product_color_en as $color)
+                                                            <option value="{{ $color }}">
+                                                                {{ ucwords($color) }}
+                                                            </option>
+                                                        @endforeach
+                                                    @endif--
 
 
-                                            </select>
+                                                </select>
+                                            @endif
                                         </div>
 
                                     </div>
@@ -322,7 +327,8 @@
                                                         Choose Size
                                                     @endif <span></span>
                                                 </label>
-                                                <select class="form-control unicase-form-control selectpicker" id="size">
+                                                <select class="form-control unicase-form-control selectpicker"
+                                                    id="size">
                                                     <option selected="" disabled="">--
                                                         <!-- Lógica internacionalização simples tradução da tag new -->
                                                         @if (session()->get('language') == 'portuguese')
@@ -354,7 +360,7 @@
                                     </div>
                                     <!-- ================ TAMANHO TERMINA AQUI =================-->
 
-                                    <!-- ================ ADD TO CARTO COM QUANTIDADE ESPECÍFICA  =================-->
+                                    <!-- ================ ADD TO CART COM QUANTIDADE ESPECÍFICA  =================-->
                                     <div class="quantity-container info-container">
                                         <div class="row">
 
@@ -388,7 +394,8 @@
                                                 min="1">
                                             <div class="col-sm-7">
 
-                                                <button type="submit" onclick="addToCart()" class="btn btn-primary"><i
+                                                <button type="submit" onclick="addToCart()"
+                                                    class="btn btn-primary"><i
                                                         class="fa fa-shopping-cart inner-right-vs"></i>
                                                     @if (session()->get('language') == 'portuguese')
                                                         Adicionar

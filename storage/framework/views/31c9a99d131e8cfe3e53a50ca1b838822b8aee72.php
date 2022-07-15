@@ -113,7 +113,7 @@
         <?php endif; ?>
     </script>
 
-    <!-- Add to Cart Product Modal -->
+    <!-- Modal adicionar produto no carrinho -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -143,14 +143,47 @@
                         <div class="col-md-4">
 
                             <ul class="list-group">
-                                <li class="list-group-item">Product Price: <strong class="text-danger">$<span
-                                            id="pprice"></span></strong>
-                                    <del id="oldprice">$</del>
+                                <li class="list-group-item">
+                                    <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                    <?php if(session()->get('language') == 'portuguese'): ?>
+                                        Preço Produto:
+                                    <?php else: ?>
+                                        Product Price:
+                                    <?php endif; ?>
+                                    <strong class="text-danger">R$<span id="pprice"></span></strong>
+                                    <del id="oldprice">R$</del>
                                 </li>
-                                <li class="list-group-item">Product Code: <strong id="pcode"></strong></li>
-                                <li class="list-group-item">Category: <strong id="pcategory"></strong></li>
-                                <li class="list-group-item">Brand: <strong id="pbrand"></strong></li>
-                                <li class="list-group-item">Stock: <span class="badge badge-pill badge-success"
+                                <li class="list-group-item">
+                                    <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                    <?php if(session()->get('language') == 'portuguese'): ?>
+                                        Código do Produto:
+                                    <?php else: ?>
+                                        Product Code:
+                                    <?php endif; ?> <strong id="pcode"></strong>
+                                </li>
+                                <li class="list-group-item">
+                                    <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                    <?php if(session()->get('language') == 'portuguese'): ?>
+                                        Categoria:
+                                    <?php else: ?>
+                                        Category:
+                                    <?php endif; ?> <strong id="pcategory"></strong>
+                                </li>
+                                <li class="list-group-item">
+                                    <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                    <?php if(session()->get('language') == 'portuguese'): ?>
+                                        Marca:
+                                    <?php else: ?>
+                                        Brand:
+                                    <?php endif; ?> <strong id="pbrand"></strong>
+                                </li>
+                                <li class="list-group-item">
+                                    <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                    <?php if(session()->get('language') == 'portuguese'): ?>
+                                        Estoque:
+                                    <?php else: ?>
+                                        Stock:
+                                    <?php endif; ?> <span class="badge badge-pill badge-success"
                                         id="aviable" style="background: green; color: white;"></span>
                                     <span class="badge badge-pill badge-danger" id="stockout"
                                         style="background: red; color: white;"></span>
@@ -164,7 +197,14 @@
                         <div class="col-md-4">
 
                             <div class="form-group">
-                                <label for="color">Choose Color</label>
+                                <label for="color">
+                                    <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                    <?php if(session()->get('language') == 'portuguese'): ?>
+                                        Escolha a Cor
+                                    <?php else: ?>
+                                        Choose Color
+                                    <?php endif; ?>
+                                </label>
                                 <select class="form-control" id="color" name="color">
 
 
@@ -173,7 +213,14 @@
 
 
                             <div class="form-group" id="sizeArea">
-                                <label for="size">Choose Size</label>
+                                <label for="size">
+                                    <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                    <?php if(session()->get('language') == 'portuguese'): ?>
+                                        Escolha o Tamanho
+                                    <?php else: ?>
+                                        Choose Size
+                                    <?php endif; ?>
+                                </label>
                                 <select class="form-control" id="size" name="size">
                                     <option>1</option>
 
@@ -181,7 +228,14 @@
                             </div> <!-- // end form group -->
 
                             <div class="form-group">
-                                <label for="qty">Quantity</label>
+                                <label for="qty">
+                                    <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                    <?php if(session()->get('language') == 'portuguese'): ?>
+                                        Quantidade
+                                    <?php else: ?>
+                                        Quantity
+                                    <?php endif; ?>
+                                </label>
                                 <input type="number" class="form-control" id="qty" value="1"
                                     min="1">
                             </div> <!-- // end form group -->
@@ -269,9 +323,9 @@
                 }
             })
 
-        }
-        // Eend Product View with Modal 
-        // Start Add To Cart Product 
+        } // Final View Produto pela Modal
+        
+        // função onclick: addToCarto()
         function addToCart() {
             var product_name = $('#pname').text();
             var id = $('#product_id').val();
