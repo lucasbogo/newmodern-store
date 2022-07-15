@@ -127,15 +127,11 @@ O Laravel é adequado para desenvolvimento de aplicativos em pequena escala e em
 composer global require laravel/installer
 ```
 
-#### Instalar Laravel -basta rodar o comando:
-
-```
-laravel
-```
 #### Para criar e instalar um projeto usando Laravel:
 ```
-laravel new newmodern-store
+laravel new <nome_projeto>
 ```
+
 #### Criar projeto Laravel utilizando Composer
 ```
 composer create-project laravel/newmodern-store
@@ -170,7 +166,7 @@ Jetstream é projetado usando Tailwind CSS e oferece sua escolha de andaimes Liv
 #### Entrar no diretorio do projeto:
 
 ```
-cd newmodern-store
+cd <nome_projeto>
 ```
 
 #### Instalar Jetstream com Livewire :
@@ -208,7 +204,7 @@ php artisan db:seed
 #### Entrar no projeto:
 
 ```
-cd newmodern-store
+cd <nome_projeto>
 ```
 
  
@@ -230,7 +226,7 @@ composer require intervention/image
  Intervention\Image\ImageServiceProvider::class,
 ```
 
-- No mesmo arquivo (config/app.php) Adicione a facade deste pacote ao array $aliases. 
+#### No mesmo arquivo (config/app.php) Adicione a facade deste pacote ao array $aliases. 
 
 ```
 'Image' => Intervention\Image\Facades\Image::class
