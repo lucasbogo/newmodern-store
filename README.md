@@ -21,6 +21,7 @@ Loja Virtual desenvolvida como trabalho obrigatório para a disciplina de **Proj
 -  **MySQL 8.0.29**
 -  **Mailtrap.io**
 -  **Laravel Image Intervention Package (trabalhar com imagens)**
+-  **Laravel Shoppingcart - bumbummen99/shoppingcart**
 -  **VSCode**
 -  **Banco de dados tratado com o padrão Factory** 
 -  **Padrão MVC**
@@ -127,23 +128,19 @@ O Laravel é adequado para desenvolvimento de aplicativos em pequena escala e em
 composer global require laravel/installer
 ```
 
-#### Instalar Laravel -basta rodar o comando:
-
-```
-laravel
-```
 #### Para criar e instalar um projeto usando Laravel:
 ```
-laravel new newmodern-store
+laravel new <nome_projeto>
 ```
+
 #### Criar projeto Laravel utilizando Composer
 ```
-composer create-project laravel/newmodern-store
+composer create-project laravel/<project_name>
 ```
 
 #### Para iniciar o servidor de desenvolvimento do Laravel, insira os comandos:
 ```
-cd /lojavirtual-app
+cd /<project_name>
 php artisan serve
 ```
 
@@ -170,7 +167,7 @@ Jetstream é projetado usando Tailwind CSS e oferece sua escolha de andaimes Liv
 #### Entrar no diretorio do projeto:
 
 ```
-cd newmodern-store
+cd <nome_projeto>
 ```
 
 #### Instalar Jetstream com Livewire :
@@ -208,7 +205,7 @@ php artisan db:seed
 #### Entrar no projeto:
 
 ```
-cd newmodern-store
+cd <nome_projeto>
 ```
 
  
@@ -218,9 +215,9 @@ cd newmodern-store
 composer require intervention/image
 ```
 
-#### Configurar: 
-<br>
-- Entrar em config/app.php e colar: ```Intervention\Image\ImageServiceProvider::class,``` em Package Service Providers
+### Configurar: 
+
+#### Entrar em config/app.php e colar: ```Intervention\Image\ImageServiceProvider::class,``` em Package Service Providers
 
 ```
 /*
@@ -230,7 +227,7 @@ composer require intervention/image
  Intervention\Image\ImageServiceProvider::class,
 ```
 
-- No mesmo arquivo (config/app.php) Adicione a facade deste pacote ao array $aliases. 
+#### No mesmo arquivo (config/app.php) Adicione a facade deste pacote ao array $aliases. 
 
 ```
 'Image' => Intervention\Image\Facades\Image::class
@@ -243,7 +240,7 @@ composer require intervention/image
     ])->toArray(),
 
 ```
-<br>
+
 #### Publicar:
 
 ```
@@ -255,4 +252,23 @@ php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLa
 ```
 sudo apt-get install php8.1-gd
 ```
- 
+ --------------------------------------------------------------------------------------------------------------------------------------------------------
+ ## bumbummen99/shoppingcart
+ [documentação oficial](https://packagist.org/packages/bumbummen99/shoppingcart)
+
+### Sobre:
+
+Laravel Shoppingcart
+
+### Instalação: Instalar o Pacote pelo composer;
+
+#### Execute o comando necessário do Composer no Terminal:
+```
+composer require bumbummen99/shoppingcart
+```
+#### Você definitivamente deveria publicar o arquivo de configuração e dar uma olhada nele
+```
+php artisan vendor:publish --provider="Gloudemans\Shoppingcart\ShoppingcartServiceProvider" --tag="config"
+```
+#### Isso lhe dará um arquivo de configuração cart.php no qual você pode fazer alterações no comportamento dos pacotes.
+
