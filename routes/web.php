@@ -15,7 +15,10 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CartController;
+
+
 use App\Http\Controllers\User\WishListController;
+use App\Http\Controllers\User\MyCartController;
 
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
@@ -323,11 +326,19 @@ Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMi
 // Rota AJAX p/ pegar os dados Produto pela função onclick() Ajax e enviar à Lista de Desejos
 Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishList']);
 
-// Rota p/ acessar a página view Lista de Desejos
-Route::get('/wishlist', [WishListController::class, 'ViewWishList'])->name('wishlist');
+# ================================= PROTEGER A PÁGINA VIEW WISHLIST e MYCART COM MIDDLEWARE ====================== #
 
-// Rota declarada na url Ajax, p/ pegar o produto adicionado la lista de desejos e mostrar na view lista desejos
-Route::get('/get-wishlist-product', [WishListController::class, 'GetWishListProduct']);
+Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function () {
 
-// ROTA AJAX Remover dados lista des. - como usei url, não é necessário nomear a rota
-Route::get('/wishlist-remove/{id}', [WishListController::class, 'RemoveWishListProduct']);
+    // Rota p/ acessar a página view Lista de Desejos
+    Route::get('/wishlist', [WishListController::class, 'ViewWishList'])->name('wishlist');
+
+    // Rota declarada na url Ajax, p/ pegar o produto adicionado la lista de desejos e mostrar na view lista desejos
+    Route::get('/get-wishlist-product', [WishListController::class, 'GetWishListProduct']);
+
+    // ROTA AJAX Remover dados lista des. - como usei url, não é necessário nomear a rota
+    Route::get('/wishlist-remove/{id}', [WishListController::class, 'RemoveWishListProduct']);
+
+    // Rota Meu Carrinho.
+    Route::get('/mycart', [MyCartController::class, 'MyCart'])->name('mycart');
+});

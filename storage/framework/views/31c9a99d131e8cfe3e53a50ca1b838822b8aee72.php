@@ -242,7 +242,7 @@
 
                             <input type="hidden" id="product_id">
                             <button type="submit" class="btn btn-primary mb-2" onclick="addToCart()">
-                                <!-- Lógica internacionalização simples tradução da tag new -->
+                                <!-- Lógica internacionalização simples -->
                                 <?php if(session()->get('language') == 'portuguese'): ?>
                                     Adicionar
                                 <?php else: ?>

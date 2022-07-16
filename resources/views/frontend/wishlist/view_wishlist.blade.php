@@ -30,12 +30,18 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th colspan="4" class="heading-title">My Wishlist</th>
+                                    <th colspan="4" class="heading-title">
+                                        @if (session()->get('language') == 'portuguese')
+                                            Minha Lista de Desejos
+                                        @else
+                                            My Wish List
+                                        @endif
+                                    </th>
                                 </tr>
                             </thead>
                             <!-- Chamei, pelo Id, o Ajax wishlist codificado na main_master -->
                             <tbody id="wishlist">
-                                
+
 
                             </tbody>
                         </table>
