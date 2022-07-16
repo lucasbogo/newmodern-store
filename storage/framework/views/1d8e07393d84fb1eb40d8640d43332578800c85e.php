@@ -860,7 +860,7 @@
                                                     <!-- Wishlist Button -->
                                                     <button class="btn btn-primary icon" type="button"
                                                         title="Wishlist" id="<?php echo e($product->id); ?>"
-                                                        onclick="productView(this.id)"> <i class="fa fa-heart"></i>
+                                                        onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i>
                                                     </button>
 
 

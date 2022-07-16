@@ -137,7 +137,7 @@
 
                             </div>
 
-                        </div><!-- // end col md -->
+                        </div><!-- /col md -->
 
 
                         <div class="col-md-4">
@@ -191,7 +191,7 @@
                                 </li>
                             </ul>
 
-                        </div><!-- // end col md -->
+                        </div><!-- /col md -->
 
 
                         <div class="col-md-4">
@@ -209,7 +209,7 @@
 
 
                                 </select>
-                            </div> <!-- // end form group -->
+                            </div> <!-- /form group -->
 
 
                             <div class="form-group" id="sizeArea">
@@ -238,26 +238,32 @@
                                 </label>
                                 <input type="number" class="form-control" id="qty" value="1"
                                     min="1">
-                            </div> <!-- // end form group -->
+                            </div> <!-- /form group -->
 
                             <input type="hidden" id="product_id">
-                            <button type="submit" class="btn btn-primary mb-2" onclick="addToCart()">Add to
-                                Cart</button>
+                            <button type="submit" class="btn btn-primary mb-2" onclick="addToCart()">
+                                <!-- Lógica internacionalização simples tradução da tag new -->
+                                <?php if(session()->get('language') == 'portuguese'): ?>
+                                    Adicionar
+                                <?php else: ?>
+                                    Add to Cart
+                                <?php endif; ?>
+                            </button>
 
 
-                        </div><!-- // end col md -->
+                        </div><!-- /col md -->
 
 
-                    </div> <!-- // end row -->
+                    </div> <!-- /row -->
 
 
 
-                </div> <!-- // end modal Body -->
+                </div> <!-- /Final Corpo Modal -->
 
             </div>
         </div>
     </div>
-    <!-- End Add to Cart Product Modal -->
+    <!--  /Final Modal Produto Adcionar ao Carrinho -->
 
 
     <script type="text/javascript">
@@ -266,15 +272,15 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         })
-        // Start Product View with Modal 
+        // View Produto com Bootstrap Modal 
         function productView(id) {
-            // alert(id)
+            // Id toaster msg (alert)
             $.ajax({
                 type: 'GET',
                 url: '/product/view/modal/' + id,
                 dataType: 'json',
                 success: function(data) {
-                    // console.log(data)
+
                     $('#pname').text(data.product.product_name_en);
                     $('#price').text(data.product.product_selling_price);
                     $('#pcode').text(data.product.product_code);
@@ -283,7 +289,7 @@
                     $('#pimage').attr('src', '/' + data.product.product_thumbnail);
                     $('#product_id').val(id);
                     $('#qty').val(1);
-                    // Product Price 
+                    // Preço Produto
                     if (data.product.product_discount_price == null) {
                         $('#pprice').text('');
                         $('#oldprice').text('');
@@ -291,8 +297,8 @@
                     } else {
                         $('#pprice').text(data.product.product_discount_price);
                         $('#oldprice').text(data.product.product_selling_price);
-                    } // end prodcut price 
-                    // Start Stock opiton
+                    } // Final Preço Produto
+                    // Estoque
                     if (data.product.product_qty > 0) {
                         $('#aviable').text('');
                         $('#stockout').text('');
@@ -301,14 +307,14 @@
                         $('#aviable').text('');
                         $('#stockout').text('');
                         $('#stockout').text('out of stock');
-                    } // end Stock Option 
-                    // Color
+                    } // Final Estoque
+                    // Cor
                     $('select[name="color"]').empty();
                     $.each(data.color, function(key, value) {
                         $('select[name="color"]').append('<option value=" ' + value + ' ">' + value +
                             ' </option>')
-                    }) // end color
-                    // Size
+                    }) // Final cor
+                    // Tamanho
                     $('select[name="size"]').empty();
                     $.each(data.size, function(key, value) {
                         $('select[name="size"]').append('<option value=" ' + value + ' ">' + value +
@@ -318,14 +324,14 @@
                         } else {
                             $('#sizeArea').show();
                         }
-                    }) // end size
+                    }) // Final Tamanho
 
                 }
             })
 
         } // Final View Produto pela Modal
-        
-        // função onclick: addToCarto()
+
+        // função onclick: addToCart()
         function addToCart() {
             var product_name = $('#pname').text();
             var id = $('#product_id').val();
@@ -345,8 +351,8 @@
                 success: function(data) {
                     miniCart()
                     $('#closeModel').click();
-                    // console.log(data)
-                    // Start Message 
+
+                    // Toaster msg
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -365,12 +371,12 @@
                             title: data.error
                         })
                     }
-                    // End Message 
+                    //Final Toaster msg
                 }
             })
         }
 
-        // End Add To Cart Product
+        // Final Adicionar Item Carrinho
     </script>
 
     <script type="text/javascript">
@@ -384,22 +390,28 @@
                     $('#cartQty').text(response.cartQty);
                     var miniCart = ""
                     $.each(response.carts, function(key, value) {
-                        miniCart += `<div class="cart-item product-summary">
-            <div class="row">
-              <div class="col-xs-4">
-                <div class="image"> <a href="detail.html"><img src="/${value.options.image}" alt=""></a> </div>
-              </div>
-              <div class="col-xs-7">
-                <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
-                <div class="price"> ${value.price} * ${value.qty} </div>
-              </div>
-              <div class="col-xs-1 action"> 
-              <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button> </div>
-            </div>
-          </div>
-          <!-- /.cart-item -->
-          <div class="clearfix"></div>
-          <hr>`
+                        miniCart +=
+                            `<div class="cart-item product-summary">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <div class="image"> 
+                                        <a href="detail.html"><img src="/${value.options.image}" alt=""></a> 
+                                    </div>
+                                </div>
+                                <div class="col-xs-7">
+                                    <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
+                                        <div class="price"> ${value.price} * ${value.qty} </div>
+                                </div>
+                                    <div class="col-xs-1 action"> 
+                                        <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)">
+                                            <i class="fa fa-trash"></i>
+                                        </button> 
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- /.cart-item -->
+                        <div class="clearfix"></div>
+                        <hr>`
                     });
 
                     $('#miniCart').html(miniCart);
@@ -407,7 +419,9 @@
             })
         }
         miniCart();
-        /// mini cart remove Start 
+
+
+        // Função Remover Item Carrinho 
         function miniCartRemove(rowId) {
             $.ajax({
                 type: 'GET',
@@ -415,31 +429,154 @@
                 dataType: 'json',
                 success: function(data) {
                     miniCart();
-                    // Start Message 
+                    
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
-                        icon: 'success',
                         showConfirmButton: false,
                         timer: 3000
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
                             type: 'success',
+                            icon: 'success',
                             title: data.success
                         })
                     } else {
                         Toast.fire({
                             type: 'error',
+                            icon: 'error',
                             title: data.error
                         })
                     }
-                    // End Message 
+                    // Final Toaster msg 
                 }
             });
         }
-        //  end mini cart remove
+        //  Final Remover Item Carrinho
     </script>
+
+    <!-- JS p/ Adicionar Item Lista de Desejos -->
+    <script type="text/javascript">
+        function addToWishList(product_id) {
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: "/add-to-wishlist/" + product_id,
+
+                success: function(data) {
+
+                    // Toaster msg 
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                    // Final Toaster msg 
+                }
+            })
+        }
+    </script>
+
+    <!-- JS Ajax p/  'baixar' Item na Lista de Desejos view page -->
+    <script type="text/javascript">
+        function wishlist() {
+            $.ajax({
+                type: 'GET',
+                url: '/get-wishlist-product',
+                dataType: 'json',
+                success: function(response) {
+                    var rows = ""
+                    $.each(response, function(key, value) {
+                        rows +=
+                            `<tr>
+                            <td class="col-md-2"><img src="/${value.product.product_thumbnail} "alt="imga"></td>
+                                <td class="col-md-7">
+                                    <div class="product-name"><a href="#">${value.product.product_name_pt}</a></div>
+                        
+                                    <div class="price">
+                                        ${value.product.product_discount_price == null 
+                                            ? `${value.product.product_selling_price}`
+                                            : `${value.product.product_discount_price}<span>
+                                                ${value.product.product_selling_price}</span>`
+                                        }
+                                    </div>
+                                </td>
+                                    <td class="col-md-2">
+                                        <button class="btn btn-primary icon" type="button" 
+                                            title="Add Cart" data-toggle="modal" data-target="#exampleModal" 
+                                            id="${value.product_id}" onclick="productView(this.id)">
+                                                <?php if(session()->get('language') == 'portuguese'): ?>
+                                                    Adicionar Carr.
+                                                <?php else: ?>
+                                                    Add to Cart
+                                                <?php endif; ?> 
+                                        </button>
+                                    </td>
+                                        <td class="col-md-1 close-btn">
+                                            <button type="submit" class="" id="${value.id}" 
+                                                onclick="wishlistRemove(this.id)">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                        </tr>`
+                    });
+
+                    $('#wishlist').html(rows);
+                }
+            })
+        }
+        wishlist();
+
+        // ajax onclick function p/ remover item lista desejo
+        function wishlistRemove(id) {
+            $.ajax({
+                type: 'GET',
+                url: '/wishlist-remove/' + id,
+                dataType: 'json',
+                success: function(data) {
+                    wishlist();
+                  
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                    // Final Toaster msg
+                }
+            });
+        }
+        // Final ajax onclick function p/ remover item lista desejo
+    </script>
+
 
 
 </body>

@@ -19,7 +19,7 @@
                     <!-- bootstrap class list-group e list-group-flush -->
                     <ul class="list-group list-group-flush">
                         <!-- botão primário pequeno -->
-                        <a href="{{ route('dashboard') }}" class="btn btn-primary btn-sm btn-block">Home</a>
+                        <a href="{{ route('index') }}" class="btn btn-primary btn-sm btn-block">Home</a>
                         <a href="{{ route('user.profile') }}" class="btn btn-primary btn-sm btn-block">
                             <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
                             @if (session()->get('language') == 'portuguese')

@@ -1,6 +1,6 @@
 <?php
 
-// ======================= IMPORTAR TODAS AS CONTROLLERS AQUI =======================/
+# =============================== IMPORTAR TODAS AS CONTROLLERS AQUI ==================================== #
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\User\WishListController;
 
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
@@ -45,7 +46,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function ()
 //Route::middleware('admin:admin')->group(function () {
 
 
-// ======================= TODAS AS ROTAS ADMIN =======================/
+# ======================================== TODAS AS ROTAS ADMIN ========================================= #
 
 
 Route::middleware([
@@ -82,7 +83,7 @@ Route::middleware([
 
 
 
-// ======================= TODAS AS ROTAS USUARIO =======================/
+# ======================================== TODAS AS ROTAS USUARIO ======================================= #
 
 // login, registration, email verification, two-factor authentication, session management 
 Route::middleware([
@@ -114,7 +115,8 @@ Route::middleware([
 
 
 
-// ======================= TODAS AS ROTAS MARCAS PAINEL ADMIN =======================/
+
+# ================================= TODAS AS ROTAS MARCAS PAINEL ADMIN ================================== #
 
 /*** prefix siginica que aparecerá o objeto na url antes da rota chamada: (brand/view ; brand/store; ...) */
 Route::prefix('brand')->group(function () {
@@ -137,7 +139,7 @@ Route::prefix('brand')->group(function () {
 
 
 
-// ======================= TODAS AS ROTAS CATEGORIA PAINEL ADMIN =======================/
+# =============================== TODAS AS ROTAS CATEGORIA PAINEL ADMIN ================================= #
 
 Route::prefix('category')->group(function () {
 
@@ -158,7 +160,7 @@ Route::prefix('category')->group(function () {
 
 
 
-    // ======================= TODAS AS ROTAS SUBCATEGORIA PAINEL ADMIN =======================/
+    # ============================ TODAS AS ROTAS SUBCATEGORIA PAINEL ADMIN ============================= #
 
     // Rota p/ visualizar a tabela de SubCategorias no Painel Admin.
     Route::get('/sub/view', [SubCategoryController::class, 'SubCategoryView'])->name('all.subcategories');
@@ -178,7 +180,7 @@ Route::prefix('category')->group(function () {
 
 
 
-    // ======================= TODAS AS ROTAS SUBSUBCATEGORIA PAINEL ADMIN =======================/
+    # ============================ TODAS AS ROTAS SUBSUBCATEGORIA PAINEL ADMIN ========================== #
 
     // Rota p/ visualizar a tabela de SubCategorias no Painel Admin.
     Route::get('/sub/sub/view', [SubSubCategoryController::class, 'SubSubCategoryView'])->name('all.subsubcategories');
@@ -204,7 +206,7 @@ Route::prefix('category')->group(function () {
 
 
 
-// ======================= TODAS AS ROTAS PRODUTO PAINEL ADMIN =======================/
+# ================================ TODAS AS ROTAS PRODUTO PAINEL ADMIN ================================== #
 
 /*** prefix siginica que aparecerá o objeto na url antes da rota chamada: (product/view ; product/store; ...) */
 Route::prefix('product')->group(function () {
@@ -243,7 +245,10 @@ Route::prefix('product')->group(function () {
     Route::get('/delete/{id}', [ProductController::class, 'DeleteProduct'])->name('product.delete');
 });
 
-// ======================= TODAS AS ROTAS SLIDER PAINEL ADMIN =======================/
+
+
+
+# =============================== TODAS AS ROTAS SLIDER PAINEL ADMIN ==================================== #
 
 /*** prefix siginica que aparecerá o objeto na url antes da rota chamada: (brand/view ; brand/store; slider/view ...) */
 Route::prefix('slider')->group(function () {
@@ -271,7 +276,9 @@ Route::prefix('slider')->group(function () {
 });
 
 
-// ======================= TODAS AS ROTAS FRONT-END =======================/
+
+
+# =================================== TODAS AS ROTAS FRONT-END ========================================= #
 
 // Rota tradução português
 Route::get('/language/portuguese', [LanguageController::class, 'Portuguese'])->name('portuguese.language');
@@ -294,7 +301,10 @@ Route::get('/subsubcategory/product/{id}/{slug}', [IndexController::class, 'Prod
 // Rota AJAX p/ pegar os dados do produto onClick, em formato json, e passar para a bootstrap modal ao clickar no botão carrinho
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
 
-// ======================= TODAS AS CARRINHO =======================/
+
+
+
+# ========================================== TODAS AS ROTAS CARRINHO ==================================== #
 
 // Rota AJAX p/ pegar os dados do produto onClick, em formato json, e passar para a bootstrap modal ao clickar no botão carrinho
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
@@ -304,3 +314,20 @@ Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);
 
 // ROTA AJAX Remover dados mini carrinho - como usei url, não é necessário nomear a rota
 Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+
+
+
+
+# ==================================== TODAS AS ROTAS LISTA ITEM DESEJO ================================= #
+
+// Rota AJAX p/ pegar os dados Produto pela função onclick() Ajax e enviar à Lista de Desejos
+Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishList']);
+
+// Rota p/ acessar a página view Lista de Desejos
+Route::get('/wishlist', [WishListController::class, 'ViewWishList'])->name('wishlist');
+
+// Rota declarada na url Ajax, p/ pegar o produto adicionado la lista de desejos e mostrar na view lista desejos
+Route::get('/get-wishlist-product', [WishListController::class, 'GetWishListProduct']);
+
+// ROTA AJAX Remover dados lista des. - como usei url, não é necessário nomear a rota
+Route::get('/wishlist-remove/{id}', [WishListController::class, 'RemoveWishListProduct']);

@@ -3,7 +3,11 @@
 
     <!-- Mostrar nome produto no título dinamicamente -->
 @section('title')
-    {{ $product->product_name_pt }}
+    @if (session()->get('language') == 'portuguese')
+        {{ $product->product_name_pt }} Detalhes
+    @else
+        {{ $product->product_name_en }} Details
+    @endif
 @endsection
 
 
