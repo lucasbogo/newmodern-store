@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\ShippingController;
 
 
 use App\Http\Controllers\Frontend\IndexController;
@@ -340,7 +341,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/wishlist-remove/{id}', [WishListController::class, 'RemoveWishListProduct']);
 });
 
-# ========================================== TODAS AS ROTAS MEU CARRINHO ==================================== #
+# ====================================== TODAS AS ROTAS MEU CARRINHO ==================================== #
 
 
 // Rota Meu Carrinho View Page.
@@ -357,3 +358,14 @@ Route::get('/cart-increment/{rowId}', [MyCartController::class, 'CartProductIncr
 
 // Rota Ajax decrementar Itens na view Meu Carrinho. URL
 Route::get('/cart-decrement/{rowId}', [MyCartController::class, 'CartProductDecrement']);
+
+# ==================================== TODAS AS ROTAS ADMIN SHIPPING/ENVIO ============================== #
+
+Route::prefix('shipping')->group(function () {
+
+    // Rota p/ a view Divisão Envio
+    Route::get('/division/view', [ShippingController::class, 'ShippingDivisionView'])->name('division.manage');
+
+    // Rota p/ a view Divisão Envio
+    Route::post('/division/store', [ShippingController::class, 'ShippingDivisionStore'])->name('division.store');
+});

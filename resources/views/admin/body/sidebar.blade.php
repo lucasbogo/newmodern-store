@@ -119,45 +119,35 @@
                               <i class="fa fa-angle-right pull-right"></i>
                           </span>
                       </a>
+
                       <ul class="treeview-menu">
                           <!--chamar o prefixo Adicionar Produto e deixa-la como ativa ("iluminada") ao clickar, caso contrário, continua nulo ("apagado") -->
                           <!-- Rota para Adicionar Produto: href="product.add" -->
                           <li class="{{ $route == 'all.sliders' ? 'active' : '' }}"><a
                                   href="{{ route('all.sliders') }}"><i class="ti-more"></i>Gerenciar Sliders</a>
-
-
-                          <li class="header nav-small-cap">User Interface</li>
-
-                          <li class="treeview">
-                              <a href="#">
-                                  <i data-feather="grid"></i>
-                                  <span>Components</span>
-                                  <span class="pull-right-container">
-                                      <i class="fa fa-angle-right pull-right"></i>
-                                  </span>
-                              </a>
-                              <ul class="treeview-menu">
-                                  <li><a href="components_alerts.html"><i class="ti-more"></i>Alerts</a></li>
-                                  <li><a href="components_badges.html"><i class="ti-more"></i>Badge</a></li>
-
-                              </ul>
-                          </li>
-
-                          <li class="treeview">
-                              <a href="#">
-                                  <i data-feather="credit-card"></i>
-                                  <span>Cards</span>
-                                  <span class="pull-right-container">
-                                      <i class="fa fa-angle-right pull-right"></i>
-                                  </span>
-                              </a>
-                              <ul class="treeview-menu">
-                                  <li><a href="card_advanced.html"><i class="ti-more"></i>Advanced Cards</a></li>
-                                  <li><a href="card_basic.html"><i class="ti-more"></i>Basic Cards</a></li>
-                                  <li><a href="card_color.html"><i class="ti-more"></i>Cards Color</a></li>
-                              </ul>
                           </li>
                       </ul>
+                  </li>
+
+                  <li class="treeview {{ $prefix == '/shipping' ? 'active' : '' }}">
+                      <a href="#">
+                          <i data-feather="file"></i>
+                          <span>Envio</span>
+                          <span class="pull-right-container">
+                              <i class="fa fa-angle-right pull-right"></i>
+                          </span>
+                      </a>
+
+                      <ul class="treeview-menu">
+                          <!--chamar o prefixo Adicionar Produto e deixa-la como ativa ("iluminada") ao clickar, caso contrário, continua nulo ("apagado") -->
+                          <!-- Rota para Adicionar Produto: href="product.add" -->
+                          <li class="{{ $route == 'division.manage' ? 'active' : '' }}"><a
+                                  href="{{ route('division.manage') }}"><i class="ti-more"></i>Cidades</a>
+                          </li>
+                      </ul>
+                  </li>
+
+              </ul>
       </section>
 
       <div class="sidebar-footer">
