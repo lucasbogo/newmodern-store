@@ -54,7 +54,7 @@ class ShippingController extends Controller
     }
 
     // Método p/ guardar dados Cidade editados (copiei e colei a mesma lógica do Shipp...Store)
-    public function ShippingDivisionUpdate(Request $request)
+    public function ShippingDivisionUpdate(Request $request,$id)
     {
         // Validar o nome Cidade 
         $request->validate([
@@ -63,7 +63,7 @@ class ShippingController extends Controller
         ]);
 
         // Inserir o nome Cidade
-        Shipping::insert([
+        Shipping::findOrFail($id)->update()([
 
             'shipping_division_name' => $request->shipping_division_name,
             'created_at' => Carbon::now(),
