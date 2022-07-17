@@ -15,7 +15,13 @@
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
                 <li><a href="home.html">Home</a></li>
-                <li class='active'>Wishlist</li>
+                <li class='active'>
+                    @if (session()->get('language') == 'portuguese')
+                        Lista de Desejos
+                    @else
+                        Wishlist
+                    @endif
+                </li>
             </ul>
         </div><!-- /.breadcrumb-inner -->
     </div><!-- /.container -->

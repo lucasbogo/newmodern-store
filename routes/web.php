@@ -67,19 +67,18 @@ Route::middleware([
     Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout')->middleware('auth:admin');
 
     // Rota para manter perfil mantenedor
-    Route::get('/admin/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile')->middleware('auth:admin');;
-
+    Route::get('/admin/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile')->middleware('auth:admin');
     // Rota para entrar em editar perfil mantenedor
-    Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit')->middleware('auth:admin');;
+    Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit')->middleware('auth:admin');
 
     // Rota que aceita os dados anexados no corpo da mensagem de requisição para armazenamento [POST admin.edit.profile]
-    Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store')->middleware('auth:admin');;
+    Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store')->middleware('auth:admin');
 
     // Rota para mudar senha mantenedor
-    Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password')->middleware('auth:admin');;
+    Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password')->middleware('auth:admin');
 
     // Rota que aceita as mudanças senha mantenedor
-    Route::post('/update/change/password', [AdminProfileController::class, 'AdminUpdateChangePassword'])->name('update.change.password')->middleware('auth:admin');;
+    Route::post('/update/change/password', [AdminProfileController::class, 'AdminUpdateChangePassword'])->name('update.change.password')->middleware('auth:admin');
 });
 
 
@@ -326,7 +325,8 @@ Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMi
 // Rota AJAX p/ pegar os dados Produto pela função onclick() Ajax e enviar à Lista de Desejos
 Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishList']);
 
-# ================================= PROTEGER A PÁGINA VIEW WISHLIST e MYCART COM MIDDLEWARE ====================== #
+
+# ================================= PROTEGER A PÁGINA VIEW WISHLIST COM MIDDLEWARE ====================== #
 
 Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function () {
 
@@ -338,7 +338,22 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
 
     // ROTA AJAX Remover dados lista des. - como usei url, não é necessário nomear a rota
     Route::get('/wishlist-remove/{id}', [WishListController::class, 'RemoveWishListProduct']);
-
-    // Rota Meu Carrinho.
-    Route::get('/mycart', [MyCartController::class, 'MyCart'])->name('mycart');
 });
+
+# ========================================== TODAS AS ROTAS MEU CARRINHO ==================================== #
+
+
+// Rota Meu Carrinho View Page.
+Route::get('/mycart', [MyCartController::class, 'MyCart'])->name('mycart');
+
+// Rota Ajax adicionar Itens na view Meu Carrinho. URL
+Route::get('/user/get-cart-product', [MyCartController::class, 'GetCartProduct']);
+
+// Rota Ajax excluir Itens na view Meu Carrinho. URL
+Route::get('/user/cart-remove/{rowId}', [MyCartController::class, 'RemoveCartProduct']);
+
+// Rota Ajax incrementar Itens na view Meu Carrinho. URL
+Route::get('/cart-increment/{rowId}', [MyCartController::class, 'CartProductIncrement']);
+
+// Rota Ajax decrementar Itens na view Meu Carrinho. URL
+Route::get('/cart-decrement/{rowId}', [MyCartController::class, 'CartProductDecrement']);

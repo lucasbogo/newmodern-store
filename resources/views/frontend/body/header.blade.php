@@ -176,7 +176,7 @@
                             <div class="items-cart-inner">
                                 <div class="basket"> <i class="glyphicon glyphicon-shopping-cart"></i> </div>
                                 <div class="basket-item-count"><span class="count" id="cartQty"> </span></div>
-                                <div class="total-price-basket"> <span class="lbl">cart -</span>
+                                <div class="total-price-basket"> <span class="lbl"></span>
                                     <span class="total-price"> <span class="sign">R$</span>
                                         <span class="value" id="cartSubTotal"> </span> </span>
                                 </div>
@@ -239,7 +239,7 @@
                                         data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">
                                         <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
                                         @if (session()->get('language') == 'portuguese')
-                                            Pagina Principal
+                                            Pagina Incial
                                         @else
                                             Home
                                         @endif

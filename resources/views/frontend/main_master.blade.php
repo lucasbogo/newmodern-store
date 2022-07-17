@@ -331,7 +331,7 @@
 
         } // Final View Produto pela Modal
 
-        // função onclick: addToCart()
+        // função onclick: addToCart()  adiciona o produto sem ter que 'carregar' a página novamente
         function addToCart() {
             var product_name = $('#pname').text();
             var id = $('#product_id').val();
@@ -575,6 +575,159 @@
             });
         }
         // Final ajax onclick function p/ remover item lista desejo
+    </script>
+
+    <!-- JS Ajax p/  'baixar' Item no Meu Carrinho view page -->
+    <script type="text/javascript">
+        // Função adiciona o produto sem ter que 'carregar' a página novamente -AJAX serve p/ isso...
+        function cart() {
+            $.ajax({
+                type: 'GET',
+                url: '/user/get-cart-product',
+                dataType: 'json',
+                success: function(response) {
+                    var rows = ""
+                    $.each(response.carts, function(key, value) {
+                        rows +=
+                        `<tr>
+                            <td class="col-md-2"><img src="/${value.options.image} "alt="imga"
+                                style="width:; height:"></td>
+                                <td class="col-md-2">
+                                    <div class="product-name"><a href="#">${value.name}</a></div>
+                        
+                                    <div class="price">
+                                        ${value.price}
+                                    </div>
+                                </td>
+
+                                <td class="col-md-2">
+                                    ${value.options.color == null
+                                        ?   `<span>
+                                                @if (session()->get('language') == 'portuguese')
+                                                    Cor Padrão
+                                                @else
+                                                    Default Color
+                                                @endif 
+                                            </span>`
+                                        :`<strong>${value.options.color}</strong>`
+                                    }   
+
+                                </td>
+
+                                <td class="col-md-2">
+                                    ${value.options.size == null
+                                        ? `<span>
+                                                @if (session()->get('language') == 'portuguese')
+                                                    Tamanho Padrão
+                                                @else
+                                                    Default Color
+                                                @endif
+                                            </span>`
+                                        :`<strong>${value.options.size} </strong>` 
+                                    }           
+                                </td>
+
+                                <td class="col-md-2">
+
+                                    ${value.qty > 1
+
+                                    ?`<button type="submit" class="btn btn-danger btn-sm"id="${value.rowId}" 
+                                        onclick="mycartDecrement(this.id)">-</button>`
+
+                                    :`<button type="submit" class="btn btn-danger btn-sm" disabled >-</button>`
+                                    }
+
+                                        <input type="text" value="${value.qty}" min="1" max="100" disabled=""style="width:25px;">
+
+                                    <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}" 
+                                        onclick="mycartIncrement(this.id)">+</button>
+                                </td>
+
+                                <td class="col-md-2">
+                                    <strong>R$ ${value.subtotal}</strong>    
+                                </td>
+
+                                <td class="col-md-1 close-btn">
+                                    <button type="submit" class="" id="${value.rowId}" 
+                                        onclick="mycartRemove(this.id)">
+                                            <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                        </tr>`
+                    });
+
+                    $('#mycart').html(rows);
+                }
+            })
+        }
+        cart();
+
+        // ajax onclick function p/ remover item Meu Carrinho
+        function mycartRemove(id) {
+            $.ajax({
+                type: 'GET',
+                url: '/user/cart-remove/' + id,
+                dataType: 'json',
+                success: function(data) {
+                    // Função exclui o produto sem ter que 'carregar' a página novamente
+                    cart();
+                    // Função exclui o produto e atualiza o minicart sem ter que 'carregar' a página novamente
+                    miniCart(); 
+                  
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                    // Final Toaster msg
+                }
+            });
+        }
+        // Final myCartRemove
+
+        // ajax onclick function p/ incrementar item meu carrinho
+        function mycartIncrement(rowId){
+        $.ajax({
+            type:'GET',
+            url: "/cart-increment/"+rowId,
+            dataType:'json',
+            success:function(data){
+                //couponCalculation();
+                cart();
+                miniCart();
+                
+            }
+        });
+
+    } // final increment
+
+    function mycartDecrement(rowId){
+        $.ajax({
+            type:'GET',
+            url: "/cart-decrement/"+rowId,
+            dataType:'json',
+            success:function(data){
+                //couponCalculation();
+                cart();
+                miniCart();
+            }
+        });
+    } // final decrement
+
     </script>
 
 
