@@ -9,7 +9,7 @@ use Illuminate\Support\Carbon;
 
 class ShippingController extends Controller
 {
-    // Método View Divisão Envio
+    // Método View Cidade Envio
     public function ShippingDivisionView()
     {
         // Atribuir id da Model Shipping à variável $shipping
@@ -18,16 +18,16 @@ class ShippingController extends Controller
         return view('backend.shipping.division.division_view', compact('divisions'));
     }
 
-    // Método Guardar Divisão Envio
+    // Método Guardar Cidade Envio
     public function ShippingDivisionStore(Request $request)
     {
-        // Validar o nome divisão 
+        // Validar o nome Cidade 
         $request->validate([
             'shipping_division_name' => 'required',
 
         ]);
 
-        // Inserir o nome divisão
+        // Inserir o nome Cidade
         Shipping::insert([
 
             'shipping_division_name' => $request->shipping_division_name,
@@ -35,12 +35,22 @@ class ShippingController extends Controller
 
         ]);
 
-        // Retornar toastr msg após inserção bem sucedida
+        // Retornar toastr msg após inserção Cidade bem sucedida
         $notification = array(
             'message' => 'Division Inserido com Sucesso',
             'alert-type' => 'success'
         );
 
         return redirect()->back()->with($notification);
+    }
+
+    // Método p/ editar Cidade
+    public function ShippingDivisionEdit($id)
+    {
+        // Achar or retornar 404 id shipping division (cidade) e atribuir à variável $divisions
+        $divisions = Shipping::findOrFail($id);
+        // Após a atribuição, retornar a páginaa view editar Cidade
+        return view('backend.shipping.division.division_edit', compact('divisions'));
+
     }
 }
