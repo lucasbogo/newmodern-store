@@ -37,7 +37,7 @@ class ShippingController extends Controller
 
         // Retornar toastr msg após inserção Cidade bem sucedida
         $notification = array(
-            'message' => 'Division Inserido com Sucesso',
+            'message' => 'Cidade Inserido com Sucesso',
             'alert-type' => 'success'
         );
 
@@ -51,6 +51,31 @@ class ShippingController extends Controller
         $divisions = Shipping::findOrFail($id);
         // Após a atribuição, retornar a páginaa view editar Cidade
         return view('backend.shipping.division.division_edit', compact('divisions'));
+    }
 
+    // Método p/ guardar dados Cidade editados (copiei e colei a mesma lógica do Shipp...Store)
+    public function ShippingDivisionUpdate(Request $request)
+    {
+        // Validar o nome Cidade 
+        $request->validate([
+            'shipping_division_name' => 'required',
+
+        ]);
+
+        // Inserir o nome Cidade
+        Shipping::insert([
+
+            'shipping_division_name' => $request->shipping_division_name,
+            'created_at' => Carbon::now(),
+
+        ]);
+
+        // Retornar toastr msg após inserção Cidade bem sucedida
+        $notification = array(
+            'message' => 'Cidade Atualizado com Sucesso',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
     }
 }

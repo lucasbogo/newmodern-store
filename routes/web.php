@@ -370,5 +370,8 @@ Route::prefix('shipping')->group(function () {
     Route::post('/division/store', [ShippingController::class, 'ShippingDivisionStore'])->name('division.store');
 
     // Rota p/ a view Divisão Envio
-    Route::post('/division/edit', [ShippingController::class, 'ShippingDivisionEdit'])->name('division.edit');
+    Route::get('/division/edit/{id}', [ShippingController::class, 'ShippingDivisionEdit'])->name('division.edit');
+
+    // Rota p/ a view Divisão Envio
+    Route::post('/division/update/{id}', [ShippingController::class, 'ShippingDivisionUpdate'])->name('division.update');
 });

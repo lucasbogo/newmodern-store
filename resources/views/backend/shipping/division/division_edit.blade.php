@@ -21,7 +21,7 @@
                             <div class="table-responsive">
 
 
-                                <form method="post" action="{{ route('division.store') }}">
+                                <form method="post" action="{{ route('division.update', $divisions->id) }}">
                                     @csrf
 
 

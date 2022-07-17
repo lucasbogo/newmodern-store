@@ -142,7 +142,7 @@
                           <!--chamar o prefixo Adicionar Produto e deixa-la como ativa ("iluminada") ao clickar, caso contrário, continua nulo ("apagado") -->
                           <!-- Rota para Adicionar Produto: href="product.add" -->
                           <li class="<?php echo e($route == 'division.manage' ? 'active' : ''); ?>"><a
-                                  href="<?php echo e(route('division.manage')); ?>"><i class="ti-more"></i>Divisões</a>
+                                  href="<?php echo e(route('division.manage')); ?>"><i class="ti-more"></i>Cidades</a>
                           </li>
                       </ul>
                   </li>
