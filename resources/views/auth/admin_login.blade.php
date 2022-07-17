@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{{ asset('backend/images/favicon.ico') }}">
+    <link rel="icon" href="{{ asset('backend/images/favicon-32x32.png') }}">
 
     <title>NewModern Admin - Log in </title>
 
@@ -35,7 +35,7 @@
                                     alt="">
                             </div>
                             <h2 class="text-white">NewModern Admin</h2>
-                            <p class="text-white-50">Sign in to start your session</p>
+                            <p class="text-white-50">Entre para começar sua sessão.</p>
                         </div>
                         <div class="p-30 rounded30 box-shadowed b-2 b-dashed">
 
@@ -62,7 +62,7 @@
                                         </div>
                                         <input type="password" id="password" name="password"
                                             class="form-control pl-15 bg-transparent text-white plc-white"
-                                            placeholder="Password">
+                                            placeholder="Senha">
                                     </div>
                                 </div>
                                 <br>
@@ -71,14 +71,14 @@
                                     <div class="col-6">
                                         <div class="checkbox text-white">
                                             <input type="checkbox" id="basic_checkbox_1">
-                                            <label for="basic_checkbox_1">Remember Me</label>
+                                            <label for="basic_checkbox_1">Lembre-me</label>
                                         </div>
                                     </div>
                                     <!-- /.col -->
                                     <div class="col-6">
                                         <div class="fog-pwd text-right">
                                             <a href="{{ route('password.request') }}" class="text-white hover-info"><i
-                                                    class="ion ion-locked"></i> Forgot password?</a><br>
+                                                    class="ion ion-locked"></i> Esqueceu Senha?</a><br>
                                         </div>
                                     </div>
                                     <!-- /.col -->
@@ -90,7 +90,7 @@
                                         <br>
                                         <br>
                                         <br>
-                                        <button type="submit" class="btn btn-info btn-rounded mt-10">SIGN IN</button>
+                                        <button type="submit" class="btn btn-info btn-rounded mt-10">ENTRAR</button>
                                     </div>
                                     <!-- /.col -->
                                 </div>
@@ -113,10 +113,10 @@
                                 </p>
                             </div> --}}
 
-                            <div class="text-center">
+                            {{-- <div class="text-center">
                                 <p class="mt-15 mb-0 text-white">Don't have an account? <a href="auth_register.html"
                                         class="text-info ml-5">Sign Up</a></p>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
