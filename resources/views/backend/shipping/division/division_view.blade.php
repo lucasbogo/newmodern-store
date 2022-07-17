@@ -9,7 +9,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Cidades</h3>
+                            <h3 class="box-title">Bairro</h3>
                         </div>
 
                         <!-- /.box-header -->
@@ -18,7 +18,7 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Cidade</th>
+                                            <th>Bairro</th>
                                             <th>Ação</th>
 
                                         </tr>
@@ -29,7 +29,7 @@
                                                 <td> {{ $item->shipping_division_name }} </td>
 
                                                 <td width="40%">
-                                                    <a href="{{ route('division.edit', $item->id) }}" class="btn btn-info"
+                                                    <a href="{{ route('division.edit', $item->id) }}" class="btn btn-warning"
                                                         title="Edit Data"><i class="fa fa-pencil"></i> </a>
                                                     <a href="{{ route('division.delete', $item->id) }}"
                                                         class="btn btn-danger" title="Delete Data" id="delete">
@@ -58,7 +58,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Adicionar Cidade </h3>
+                            <h3 class="box-title">Adicionar Bairro </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -70,7 +70,7 @@
 
 
                                     <div class="form-group">
-                                        <h5>Nome Cidade <span class="text-danger">*</span></h5>
+                                        <h5>Nome Bairro <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="shipping_division_name" class="form-control">
                                             @error('shipping_division_name')

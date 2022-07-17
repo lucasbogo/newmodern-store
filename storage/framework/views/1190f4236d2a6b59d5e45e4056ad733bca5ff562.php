@@ -1,9 +1,7 @@
-  <!-- a variável $prefix pega todas as rotas definidas em
-    Route::prefix('brand')->group(function(){
-  -->
-  <!-- a variável $route verifica qual usuario está usuando a rota atual
-    (current)
-  -->
+  
+  
+  
+  
   <?php
       $prefix = Request::route()->getPrefix();
       $route = Route::current()->getName();
@@ -32,8 +30,7 @@
               <!-- MENU SIDEBAR-->
               <ul class="sidebar-menu" data-widget="tree">
 
-                  <!-- Condição redirecionamento: quando a rota for igual a 'dashboard'
-                            então, a mesma será 'ativa'( terá cor mais clara), se não, ela será nula -->
+                   
                   <li class="<?php echo e($route == 'dashboard' ? 'active' : ''); ?>">
                       <a href="<?php echo e(url('admin/dashboard')); ?>">
                           <i data-feather="pie-chart"></i>
@@ -41,8 +38,7 @@
                       </a>
                   </li>
 
-                  <!-- Condição redirecionamento: quando o prefixo for igual a 'brand, (marca)'
-                            então, a mesma será 'ativa' (terá cor mais clara), se não, ela será nula -->
+                  
                   <li class="treeview <?php echo e($prefix == '/brand' ? 'active' : ''); ?>">
                       <a href="#">
                           <i data-feather="message-circle"></i>
@@ -111,6 +107,7 @@
                       </ul>
                   </li>
 
+                  <!-- Banner Sliders -->
                   <li class="treeview <?php echo e($prefix == '/slider' ? 'active' : ''); ?>">
                       <a href="#">
                           <i data-feather="file"></i>
@@ -121,14 +118,13 @@
                       </a>
 
                       <ul class="treeview-menu">
-                          <!--chamar o prefixo Adicionar Produto e deixa-la como ativa ("iluminada") ao clickar, caso contrário, continua nulo ("apagado") -->
-                          <!-- Rota para Adicionar Produto: href="product.add" -->
                           <li class="<?php echo e($route == 'all.sliders' ? 'active' : ''); ?>"><a
                                   href="<?php echo e(route('all.sliders')); ?>"><i class="ti-more"></i>Gerenciar Sliders</a>
                           </li>
                       </ul>
                   </li>
 
+                  <!-- Campo Envio/Shipping -->
                   <li class="treeview <?php echo e($prefix == '/shipping' ? 'active' : ''); ?>">
                       <a href="#">
                           <i data-feather="file"></i>
@@ -138,11 +134,17 @@
                           </span>
                       </a>
 
+                      <!-- Sub Envio/shipping Bairro -->
                       <ul class="treeview-menu">
-                          <!--chamar o prefixo Adicionar Produto e deixa-la como ativa ("iluminada") ao clickar, caso contrário, continua nulo ("apagado") -->
-                          <!-- Rota para Adicionar Produto: href="product.add" -->
                           <li class="<?php echo e($route == 'division.manage' ? 'active' : ''); ?>"><a
-                                  href="<?php echo e(route('division.manage')); ?>"><i class="ti-more"></i>Cidades</a>
+                                  href="<?php echo e(route('division.manage')); ?>"><i class="ti-more"></i>Bairros</a>
+                          </li>
+                      </ul>
+
+                      <!-- Sub Envio/shipping Cidade -->
+                      <ul class="treeview-menu">
+                          <li class="<?php echo e($route == 'district.manage' ? 'active' : ''); ?>"><a
+                                  href="<?php echo e(route('district.manage')); ?>"><i class="ti-more"></i>Cidades</a>
                           </li>
                       </ul>
                   </li>

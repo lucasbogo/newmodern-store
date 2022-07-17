@@ -37,7 +37,7 @@ class ShippingController extends Controller
 
         // Retornar toastr msg após inserção Cidade bem sucedida
         $notification = array(
-            'message' => 'Cidade Inserido com Sucesso',
+            'message' => 'Bairro Inserido com Sucesso',
             'alert-type' => 'success'
         );
 
@@ -54,7 +54,7 @@ class ShippingController extends Controller
     }
 
     // Método p/ guardar dados Cidade editados (copiei e colei a mesma lógica do Shipp...Store)
-    public function ShippingDivisionUpdate(Request $request,$id)
+    public function ShippingDivisionUpdate(Request $request, $id)
     {
         // Validar o nome Cidade 
         $request->validate([
@@ -70,12 +70,26 @@ class ShippingController extends Controller
 
         ]);
 
-        // Retornar toastr msg após inserção Cidade bem sucedida
+        // Retornar toastr msg após inserção Bairro bem sucedida
         $notification = array(
-            'message' => 'Cidade Atualizado com Sucesso',
+            'message' => 'Bairro Atualizado com Sucesso',
             'alert-type' => 'success'
         );
 
+        return redirect()->back()->with($notification);
+    }
+
+    // Método p/ excluir Bairro
+    public function ShippingDivisionDelete($id)
+    {
+        // Chamar a model, achar pelo o id e passar a função excluir (delete();)
+        Shipping::findOrFail($id)->delete();
+
+        //Após achar pelo id  e excluir utilzando a função, passar a toastr msg na view Bairro...
+        $notification = array(
+            'message' => 'Bairro excluído com Sucesso',
+            'alert-type' => 'success'
+        );
         return redirect()->back()->with($notification);
     }
 }

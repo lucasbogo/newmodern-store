@@ -361,17 +361,41 @@ Route::get('/cart-decrement/{rowId}', [MyCartController::class, 'CartProductDecr
 
 # ==================================== TODAS AS ROTAS ADMIN SHIPPING/ENVIO ============================== #
 
+// prefixo shipping (envio) toda rota terá esse objeto (ação enviar) no início da URL
 Route::prefix('shipping')->group(function () {
 
-    // Rota p/ a view Divisão Envio
+    # ================ TODAS AS ROTAS ADMIN SHIPPING/ENVIO - BAIRRO ================ #
+
+    // Rota p/ a view Bairro Envio
     Route::get('/division/view', [ShippingController::class, 'ShippingDivisionView'])->name('division.manage');
 
-    // Rota p/ a view Divisão Envio
+    // Rota p/ guardar dados Bairro Envio
     Route::post('/division/store', [ShippingController::class, 'ShippingDivisionStore'])->name('division.store');
 
-    // Rota p/ a view Divisão Envio
+    // Rota p/ editar Bairro Envio
     Route::get('/division/edit/{id}', [ShippingController::class, 'ShippingDivisionEdit'])->name('division.edit');
 
-    // Rota p/ a view Divisão Envio
+    // Rota p/ atualizar Bairro Envio
     Route::post('/division/update/{id}', [ShippingController::class, 'ShippingDivisionUpdate'])->name('division.update');
+
+    // Rota p/ excluir Bairro Envio
+    Route::get('/division/delete/{id}', [ShippingController::class, 'ShippingDivisionDelete'])->name('division.delete');
+
+
+    # ================ TODAS AS ROTAS ADMIN SHIPPING/ENVIO - CIDADE ================ #
+
+    // Rota p/ a view Cidade Envio
+    Route::get('/district/view', [ShippingController::class, 'ShippingDistrictView'])->name('district.manage');
+
+    // Rota p/ guardar dados Cidade Envio
+    Route::post('/disctrict/store', [ShippingController::class, 'ShippingDistrictStore'])->name('district.store');
+
+    // Rota p/ editar Cidade Envio
+    Route::get('/district/edit/{id}', [ShippingController::class, 'ShippingDistrictEdit'])->name('district.edit');
+
+    // Rota p/ atualizar Cidade Envio
+    Route::post('/district/update/{id}', [ShippingController::class, 'ShippingDistrictUpdate'])->name('district.update');
+
+    // Rota p/ excluir Cidade Envio
+    Route::get('/district/delete/{id}', [ShippingController::class, 'ShippingDistrictDelete'])->name('district.delete');
 });
