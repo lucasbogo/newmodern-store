@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Shipping;
 use App\Models\ShippingDistrict;
 use App\Models\ShippingDivision;
 use Illuminate\Http\Request;
@@ -72,7 +71,7 @@ class ShippingController extends Controller
 
         ]);
 
-        // Retornar toastr msg após inserção Bairro bem sucedida
+        // Retornar toastr msg após inserção Bairro bem sucedido
         $notification = array(
             'message' => 'Bairro Atualizado com Sucesso',
             'alert-type' => 'success'

@@ -64,21 +64,21 @@ Route::middleware([
 
     Route::post('admin/login', [AdminController::class, 'store'])->name('admin.login');
 
-    // Rota para logout do mantenedor
+    // Rota para logout do Admin
     Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout')->middleware('auth:admin');
 
-    // Rota para manter perfil mantenedor
+    // Rota para manter perfil Admin
     Route::get('/admin/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile')->middleware('auth:admin');
-    // Rota para entrar em editar perfil mantenedor
+    // Rota para entrar em editar perfil Admin
     Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit')->middleware('auth:admin');
 
     // Rota que aceita os dados anexados no corpo da mensagem de requisição para armazenamento [POST admin.edit.profile]
     Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store')->middleware('auth:admin');
 
-    // Rota para mudar senha mantenedor
+    // Rota para mudar senha Admin
     Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password')->middleware('auth:admin');
 
-    // Rota que aceita as mudanças senha mantenedor
+    // Rota que aceita as mudanças senha Admin
     Route::post('/update/change/password', [AdminProfileController::class, 'AdminUpdateChangePassword'])->name('update.change.password')->middleware('auth:admin');
 });
 
@@ -398,4 +398,22 @@ Route::prefix('shipping')->group(function () {
 
     // Rota p/ excluir Cidade Envio
     Route::get('/district/delete/{id}', [ShippingController::class, 'ShippingDistrictDelete'])->name('district.delete');
+
+
+    # ================ TODAS AS ROTAS ADMIN SHIPPING/ENVIO - ESTADO ================ #
+
+    // Rota p/ a view Cidade Envio
+    Route::get('/state/view', [ShippingController::class, 'ShippingStateView'])->name('state.manage');
+
+    // Rota p/ guardar dados Cidade Envio
+    Route::post('/state/store', [ShippingController::class, 'ShippingStateStore'])->name('state.store');
+
+    // Rota p/ editar Cidade Envio
+    Route::get('/state/edit/{id}', [ShippingController::class, 'ShippingStateEdit'])->name('state.edit');
+
+    // Rota p/ atualizar Cidade Envio
+    Route::post('/state/update/{id}', [ShippingController::class, 'ShippingStateUpdate'])->name('state.update');
+
+    // Rota p/ excluir Cidade Envio
+    Route::get('/state/delete/{id}', [ShippingController::class, 'ShippingStateDelete'])->name('state.delete');
 });

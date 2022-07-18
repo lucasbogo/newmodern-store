@@ -5,9 +5,6 @@
         <section class="content">
             <div class="row">
 
-                {{-- <!-- Copiei e colei a view division (cidade) apaguei o col-md-8 e alterei o col-md-4 
-                    p/ col-md-12 --> --}}
-
                 <!-- ======================== ADICIONAR BAIRRO ========================  -->
 
                 <div class="col-12">
@@ -37,20 +34,17 @@
                                     </div>
 
 
-
                                     <div class="text-xs-right">
                                         <input type="submit" class="btn btn-rounded btn-success mb-5" value="Atualizar">
                                     </div>
+
+
                                 </form>
                             </div>
                         </div>
-                        <!-- /.box-body -->
                     </div>
-                    <!-- /.box -->
                 </div>
             </div>
-            <!-- /.row -->
         </section>
-        <!-- /.content -->
     </div>
 @endsection

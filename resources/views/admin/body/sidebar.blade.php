@@ -138,8 +138,9 @@
                           </span>
                       </a>
 
-                      <!-- Sub Envio/shipping Bairro -->
+
                       <ul class="treeview-menu">
+                          <!-- Sub Envio/shipping Bairro -->
                           <li class="{{ $route == 'division.manage' ? 'active' : '' }}"><a
                                   href="{{ route('division.manage') }}"><i class="ti-more"></i>Bairros</a>
                           </li>
@@ -147,6 +148,11 @@
                           <!-- Sub Envio/shipping Cidade -->
                           <li class="{{ $route == 'district.manage' ? 'active' : '' }}"><a
                                   href="{{ route('district.manage') }}"><i class="ti-more"></i>Cidades</a>
+                          </li>
+
+                          <!-- Sub Envio/shipping Estado -->
+                          <li class="{{ $route == 'state.manage' ? 'active' : '' }}"><a
+                                  href="{{ route(state.manage') }}"><i class="ti-more"></i>Estados</a>
                           </li>
                       </ul>
                   </li>
