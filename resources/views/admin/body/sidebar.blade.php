@@ -152,7 +152,7 @@
 
                           <!-- Sub Envio/shipping Estado -->
                           <li class="{{ $route == 'state.manage' ? 'active' : '' }}"><a
-                                  href="{{ route(state.manage') }}"><i class="ti-more"></i>Estados</a>
+                                  href="{{ route('state.manage') }}"><i class="ti-more"></i>Estados</a>
                           </li>
                       </ul>
                   </li>

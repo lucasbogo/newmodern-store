@@ -26,17 +26,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($states as $item)
+                                        @foreach ($states as $state)
                                             <tr>
-                                                <td> {{ $item->division->shipping_division_name }} </td>
-                                                <td> {{ $item->district->shipping_district_name }} </td>
-                                                <td> {{ $item->shipping_state_name }} </td>
+                                                <td> {{ $state->division->shipping_division_name }} </td>
+                                                <td> {{ $state->district->shipping_district_name }} </td>
+                                                <td> {{ $state->shipping_state_name }} </td>
 
                                                 <td width="40%">
-                                                    <a href="{{ route('state.edit', $item->id) }}" class="btn btn-warning"
+                                                    <a href="{{ route('state.edit', $state->id) }}" class="btn btn-warning"
                                                         title="Edit Data"><i class="fa fa-pencil"></i> </a>
 
-                                                    <a href="{{ route('state.delete', $item->id) }}"
+                                                    <a href="{{ route('state.delete', $state->id) }}"
                                                         class="btn btn-danger" title="Delete Data" id="delete">
                                                         <i class="fa fa-trash"></i></a>
                                                 </td>
@@ -74,8 +74,8 @@
                                             <select name="shipping_division_id" class="form-control">
                                                 <option value="" selected="" disabled="">Selecionar Bairro
                                                 </option>
-                                                @foreach ($divisions as $div)
-                                                    <option value="{{ $div->id }}">{{ $div->shipping_division_name }}
+                                                @foreach ($divisions as $division)
+                                                    <option value="{{ $division->id }}">{{ $division->shipping_division_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -119,9 +119,8 @@
                                     <div class="text-xs-right">
                                         <input type="submit" class="btn btn-rounded btn-success mb-5" value="Adicionar">
                                     </div>
+                                    
                                 </form>
-
-
                             </div>
                         </div>
                     </div>

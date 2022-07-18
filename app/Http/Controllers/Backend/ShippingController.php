@@ -193,7 +193,7 @@ class ShippingController extends Controller
     {
      
         $divisions = ShippingDivision::orderBy('shipping_division_name', 'ASC')->get(); 
-        $districts = ShippingDistrict::orderBy('shipping_division_name', 'ASC')->get();
+        $districts = ShippingDistrict::orderBy('shipping_district_name', 'ASC')->get();
         $states = ShippingState::with('division','district')->orderBy('id', 'DESC')->get();
    
         return view('backend.shipping.state.state_view', compact('districts', 'divisions','states'));
@@ -216,7 +216,7 @@ class ShippingController extends Controller
 
             'shipping_division_id' => $request->shipping_division_id,
             'shipping_district_id' => $request->shipping_district_id,
-            'shipping_state_name'  => $request->shipping_district_name,
+            'shipping_state_name'  => $request->shipping_state_name,
             'created_at' => Carbon::now(),
 
         ]);

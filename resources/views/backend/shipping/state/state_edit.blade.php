@@ -26,33 +26,33 @@
 
 
                                     <div class="form-group">
-                                        <h5> Selecionar Bairro <span class="text-danger">*</span></h5>
+                                        <h5>Selecionar Bairro <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <select name="shipping_division_id" class="form-control">
-                                                <option value="" selected="" disabled=""> Selecionar Bairro
+                                                <option value="" selected="" disabled="">Selececionar Bairro
                                                 </option>
-                                                @foreach ($divisions as $div)
-                                                    <option value="{{ $div->id }}"
-                                                        {{ $div->id == $districts->shipping_division_id ? 'selected' : '' }}>
-                                                        {{ $div->shipping_division_name }}</option>
+                                                @foreach ($divisions as $division)
+                                                    <option value="{{ $division->id }}"
+                                                        {{ $division->id == $states->shipping_division_id ? 'selected' : '' }}>
+                                                        {{ $division->shipping_division_name }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('shipping_division_id')
+                                            @error('division_id')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <h5> Selecionar Cidade <span class="text-danger">*</span></h5>
+                                        <h5>Selecionar Cidade <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <select name="shipping_district_id" class="form-control">
                                                 <option value="" selected="" disabled="">Selecionar Cidade
                                                 </option>
-                                                @foreach ($districts as $district)
-                                                    <option value="{{ $district->id }}">
-                                                        {{ $district->shipping_district_name }}
-                                                    </option>
+                                                @foreach ($districts as $districts)
+                                                    <option value="{{ $districts->id }}"
+                                                        {{ $districts->id == $states->shipping_district_id ? 'selected' : '' }}>
+                                                        {{ $districts->shipping_district_name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('shipping_district_id')
@@ -78,8 +78,6 @@
                                     </div>
 
                                 </form>
-
-
                             </div>
                         </div>
                     </div>

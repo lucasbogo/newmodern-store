@@ -18,6 +18,6 @@ class ShippingState extends Model
 
     public function district()
     {
-        return $this->belongsTo(ShippingDivision::class, 'shipping_district_id', 'id');
+        return $this->belongsTo(ShippingDistrict::class, 'shipping_district_id', 'id');
     }
 }

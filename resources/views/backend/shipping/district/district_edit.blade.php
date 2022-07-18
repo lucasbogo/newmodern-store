@@ -59,9 +59,8 @@
                                     <div class="text-xs-right">
                                         <input type="submit" class="btn btn-rounded btn-success mb-5" value="Update">
                                     </div>
+
                                 </form>
-
-
                             </div>
                         </div>
                     </div>

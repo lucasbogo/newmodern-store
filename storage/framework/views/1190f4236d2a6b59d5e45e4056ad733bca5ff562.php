@@ -134,8 +134,9 @@
                           </span>
                       </a>
 
-                      <!-- Sub Envio/shipping Bairro -->
+
                       <ul class="treeview-menu">
+                          <!-- Sub Envio/shipping Bairro -->
                           <li class="<?php echo e($route == 'division.manage' ? 'active' : ''); ?>"><a
                                   href="<?php echo e(route('division.manage')); ?>"><i class="ti-more"></i>Bairros</a>
                           </li>
@@ -143,6 +144,11 @@
                           <!-- Sub Envio/shipping Cidade -->
                           <li class="<?php echo e($route == 'district.manage' ? 'active' : ''); ?>"><a
                                   href="<?php echo e(route('district.manage')); ?>"><i class="ti-more"></i>Cidades</a>
+                          </li>
+
+                          <!-- Sub Envio/shipping Estado -->
+                          <li class="<?php echo e($route == 'state.manage' ? 'active' : ''); ?>"><a
+                                  href="<?php echo e(route('state.manage')); ?>"><i class="ti-more"></i>Estados</a>
                           </li>
                       </ul>
                   </li>
