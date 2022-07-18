@@ -82,7 +82,7 @@ class ShippingController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect()->back()->with($notification);
+        return redirect()->route('division.manage')->with($notification);
     }
 
     // Método p/ excluir Bairro
@@ -158,18 +158,12 @@ class ShippingController extends Controller
     // Método p/ guardar dados Cidade editados (copiei e colei a mesma lógica do Shipp...Store)
     public function ShippingDistrictUpdate(Request $request, $id)
     {
-        // Validar o nome Cidade 
-        $request->validate([
-            'shipping_district_name' => 'required',
-            'shipping_division_id' => 'required',
-
-        ]);
-
+      
         // Inserir o nome Cidade
         ShippingDistrict::findOrFail($id)->update()([
 
-            'shipping_district_name' => $request->shipping_district_name,
             'shipping_division_id' => $request->shipping_division_id,
+            'shipping_district_name' => $request->shipping_district_name,
             'created_at' => Carbon::now(),
 
         ]);
@@ -180,7 +174,7 @@ class ShippingController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect()->back()->with($notification);
+        return redirect()->route('district.manage')->with($notification);
     }
 
     // Método p/ excluir Bairro

@@ -1,12 +1,12 @@
 @extends('admin.admin_master')
 @section('admin')
-    <!-- Content Wrapper. Contains page content -->
+  
 
     <div class="content-wrapper" style="min-height: 326px;">
-        <!-- Content Header (Page header) -->
+     
 
 
-        <!-- Main content -->
+    
         <section class="content">
             <div class="row">
 
@@ -37,7 +37,7 @@
                                                 <td> {{ $item->shipping_district_name }} </td>
 
                                                 <td width="40%">
-                                                    <a href="{{ route('district.edit', $item->id) }}" class="btn btn-info"
+                                                    <a href="{{ route('district.edit', $item->id) }}" class="btn btn-warning"
                                                         title="Edit Data"><i class="fa fa-pencil"></i> </a>
                                                     <a href="{{ route('district.delete', $item->id) }}"
                                                         class="btn btn-danger" title="Delete Data" id="delete">
@@ -80,7 +80,7 @@
 
 
                                     <div class="form-group">
-                                        <h5>Division Select <span class="text-danger">*</span></h5>
+                                        <h5> Selecionar Bairro <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <select name="shipping_division_id" class="form-control">
                                                 <option value="" selected="" disabled="">Selecionar Bairro
@@ -98,7 +98,7 @@
 
 
                                     <div class="form-group">
-                                        <h5>District Name <span class="text-danger">*</span></h5>
+                                        <h5> Cidade <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="shipping_district_name" class="form-control">
                                             @error('shipping_district_name')
@@ -110,7 +110,7 @@
 
 
                                     <div class="text-xs-right">
-                                        <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add New">
+                                        <input type="submit" class="btn btn-rounded btn-success mb-5" value="Adicionar">
                                     </div>
                                 </form>
 
