@@ -50,6 +50,7 @@ class ShippingController extends Controller
         return redirect()->back()->with($notification);
     }
 
+
     // Método p/ editar Bairro
     public function ShippingDivisionEdit($id)
     {
@@ -59,17 +60,12 @@ class ShippingController extends Controller
         return view('backend.shipping.division.division_edit', compact('divisions'));
     }
 
+
     // Método p/ guardar dados Bairro editados (copiei e colei a mesma lógica do Shipp...Store)
     public function ShippingDivisionUpdate(Request $request, $id)
     {
-        // Validar o nome Bairro
-        $request->validate([
-            'shipping_division_name' => 'required',
 
-        ]);
-
-        // Inserir o nome Bairro
-        ShippingDivision::findOrFail($id)->update()([
+        ShippingDivision::findOrFail($id)->update([
 
             'shipping_division_name' => $request->shipping_division_name,
             'created_at' => Carbon::now(),

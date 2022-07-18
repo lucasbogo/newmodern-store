@@ -29,7 +29,7 @@
                                         <h5>Nome Bairro <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="shipping_division_name" class="form-control"
-                                                value="{{ $divisions->shiping_division_name }}">
+                                                value="{{ $divisions->shipping_division_name }}">
                                             @error('shipping_division_name')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
