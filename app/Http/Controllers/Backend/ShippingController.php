@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\ShippingDistrict;
 use App\Models\ShippingDivision;
+use App\Models\ShippingState;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -186,4 +187,90 @@ class ShippingController extends Controller
 
 
     // ============================= MÉTODOS CRUD ESTADO   ============================= //
+
+
+    public function ShippingStateView()
+    {
+     
+        $divisions = ShippingDivision::orderBy('shipping_division_name', 'ASC')->get(); 
+        $districts = ShippingDistrict::orderBy('shipping_division_name', 'ASC')->get();
+        $states = ShippingState::with('division','district')->orderBy('id', 'DESC')->get();
+   
+        return view('backend.shipping.state.state_view', compact('districts', 'divisions','states'));
+    }
+
+   
+    public function ShippingStateStore(Request $request)
+    {
+         
+        $request->validate([
+
+            'shipping_division_id' => 'required',
+            'shipping_district_id' => 'required',
+            'shipping_state_name'  => 'required',
+
+        ]);
+
+        
+        ShippingState::insert([
+
+            'shipping_division_id' => $request->shipping_division_id,
+            'shipping_district_id' => $request->shipping_district_id,
+            'shipping_state_name'  => $request->shipping_district_name,
+            'created_at' => Carbon::now(),
+
+        ]);
+
+        
+        $notification = array(
+            'message' => 'Estado Inserido com Sucesso',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+
+    public function ShippingStateEdit($id)
+    {
+
+        $divisions = ShippingDivision::orderBy('shipping_division_name', 'ASC')->get();
+        $districts = ShippingDistrict::orderBy('shipping_district_name', 'ASC')->get();
+        $states = ShippingState::findOrFail($id);
+
+        return view('backend.shipping.state.state_edit', compact('divisions', 'districts', 'states'));
+    }
+
+
+    public function ShippingStateUpdate(Request $request, $id)
+    {
+
+        ShippingState::findOrFail($id)->update([
+
+            'shipping_division_id' => $request->shipping_division_id,
+            'shipping_district_id' => $request->shipping_district_id,
+            'shipping_state_name'  => $request->shipping_state_name,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Estado Atualizado com Sucesso',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('state.manage')->with($notification);
+    }
+
+
+    public function ShippingStateDelete($id)
+    {
+ 
+        ShippingState::findOrFail($id)->delete();
+ 
+        $notification = array(
+            'message' => 'Estado excluído com Sucesso',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
 }
