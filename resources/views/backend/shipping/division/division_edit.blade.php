@@ -8,13 +8,13 @@
                 {{-- <!-- Copiei e colei a view division (cidade) apaguei o col-md-8 e alterei o col-md-4 
                     p/ col-md-12 --> --}}
 
-                <!-- ======================== ADICIONAR DIVISÃO ========================  -->
+                <!-- ======================== ADICIONAR BAIRRO ========================  -->
 
                 <div class="col-12">
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Editar Cidade </h3>
+                            <h3 class="box-title">Editar Bairro </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -26,7 +26,7 @@
 
 
                                     <div class="form-group">
-                                        <h5>Nome Cidade <span class="text-danger">*</span></h5>
+                                        <h5>Nome Bairro <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="shipping_division_name" class="form-control"
                                                 value="{{ $divisions->shiping_division_name }}">
@@ -39,7 +39,7 @@
 
 
                                     <div class="text-xs-right">
-                                        <input type="submit" class="btn btn-rounded btn-success mb-5" value="Atualizar Cidade">
+                                        <input type="submit" class="btn btn-rounded btn-success mb-5" value="Atualizar">
                                     </div>
                                 </form>
                             </div>

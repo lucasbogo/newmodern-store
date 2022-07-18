@@ -1,7 +1,7 @@
   
+
   
-  
-  
+
   <?php
       $prefix = Request::route()->getPrefix();
       $route = Route::current()->getName();
@@ -30,7 +30,7 @@
               <!-- MENU SIDEBAR-->
               <ul class="sidebar-menu" data-widget="tree">
 
-                   
+                  
                   <li class="<?php echo e($route == 'dashboard' ? 'active' : ''); ?>">
                       <a href="<?php echo e(url('admin/dashboard')); ?>">
                           <i data-feather="pie-chart"></i>
@@ -139,10 +139,8 @@
                           <li class="<?php echo e($route == 'division.manage' ? 'active' : ''); ?>"><a
                                   href="<?php echo e(route('division.manage')); ?>"><i class="ti-more"></i>Bairros</a>
                           </li>
-                      </ul>
 
-                      <!-- Sub Envio/shipping Cidade -->
-                      <ul class="treeview-menu">
+                          <!-- Sub Envio/shipping Cidade -->
                           <li class="<?php echo e($route == 'district.manage' ? 'active' : ''); ?>"><a
                                   href="<?php echo e(route('district.manage')); ?>"><i class="ti-more"></i>Cidades</a>
                           </li>

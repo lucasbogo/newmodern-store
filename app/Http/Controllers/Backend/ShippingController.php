@@ -4,16 +4,22 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Shipping;
+use App\Models\ShippingDistrict;
+use App\Models\ShippingDivision;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 class ShippingController extends Controller
 {
+
+   // ============================= MÉTODOS CRUD BAIRRO   ============================= //
+
+
     // Método View Cidade Envio
     public function ShippingDivisionView()
     {
         // Atribuir id da Model Shipping à variável $shipping
-        $divisions = Shipping::orderBy('id', 'DESC')->get();
+        $divisions = ShippingDivision::orderBy('id', 'DESC')->get();
         // Após a atribuição... retorna página view
         return view('backend.shipping.division.division_view', compact('divisions'));
     }
@@ -28,7 +34,7 @@ class ShippingController extends Controller
         ]);
 
         // Inserir o nome Cidade
-        Shipping::insert([
+        ShippingDivision::insert([
 
             'shipping_division_name' => $request->shipping_division_name,
             'created_at' => Carbon::now(),
@@ -48,7 +54,7 @@ class ShippingController extends Controller
     public function ShippingDivisionEdit($id)
     {
         // Achar or retornar 404 id shipping division (cidade) e atribuir à variável $divisions
-        $divisions = Shipping::findOrFail($id);
+        $divisions = ShippingDivision::findOrFail($id);
         // Após a atribuição, retornar a páginaa view editar Cidade
         return view('backend.shipping.division.division_edit', compact('divisions'));
     }
@@ -63,7 +69,7 @@ class ShippingController extends Controller
         ]);
 
         // Inserir o nome Cidade
-        Shipping::findOrFail($id)->update()([
+        ShippingDivision::findOrFail($id)->update()([
 
             'shipping_division_name' => $request->shipping_division_name,
             'created_at' => Carbon::now(),
@@ -83,7 +89,7 @@ class ShippingController extends Controller
     public function ShippingDivisionDelete($id)
     {
         // Chamar a model, achar pelo o id e passar a função excluir (delete();)
-        Shipping::findOrFail($id)->delete();
+        ShippingDivision::findOrFail($id)->delete();
 
         //Após achar pelo id  e excluir utilzando a função, passar a toastr msg na view Bairro...
         $notification = array(
@@ -92,4 +98,98 @@ class ShippingController extends Controller
         );
         return redirect()->back()->with($notification);
     }
+
+
+
+    // ============================= MÉTODOS CRUD CIDADE   ============================= //
+
+
+
+    // Método View Cidade Envio
+    public function ShippingDistrictView()
+    {
+        // Atribuir id da Model Shipping à variável $shipping
+        $districts = ShippingDistrict::orderBy('id', 'DESC')->get();
+        // Após a atribuição... retorna página view
+        return view('backend.shipping.district.district_view', compact('districts'));
+    }
+
+    // Método Guardar Cidade Envio
+    public function ShippingDisctrictStore(Request $request)
+    {
+        // Validar o nome Cidade 
+        $request->validate([
+            'shipping_district_name' => 'required',
+
+        ]);
+
+        // Inserir o nome Cidade
+        ShippingDistrict::insert([
+
+            'shipping_district_name' => $request->shipping_division_name,
+            'created_at' => Carbon::now(),
+
+        ]);
+
+        // Retornar toastr msg após inserção Cidade bem sucedida
+        $notification = array(
+            'message' => 'Cidade Inserida com Sucesso',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    // Método p/ editar Cidade
+    public function ShippingDisctrictEdit($id)
+    {
+        // Achar or retornar 404 id shipping division (cidade) e atribuir à variável $divisions
+        $districts = ShippingDistrict::findOrFail($id);
+        // Após a atribuição, retornar a páginaa view editar Cidade
+        return view('backend.shipping.district.district_edit', compact('districts'));
+    }
+
+    // Método p/ guardar dados Cidade editados (copiei e colei a mesma lógica do Shipp...Store)
+    public function ShippingDisctrictUpdate(Request $request, $id)
+    {
+        // Validar o nome Cidade 
+        $request->validate([
+            'shipping_district_name' => 'required',
+
+        ]);
+
+        // Inserir o nome Cidade
+        ShippingDistrict::findOrFail($id)->update()([
+
+            'shipping_district_name' => $request->shipping_district_name,
+            'created_at' => Carbon::now(),
+
+        ]);
+
+        // Retornar toastr msg após inserção Bairro bem sucedida
+        $notification = array(
+            'message' => 'Cidade Atualizada com Sucesso',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    // Método p/ excluir Bairro
+    public function ShippingDisctrictDelete($id)
+    {
+        // Chamar a model, achar pelo o id e passar a função excluir (delete();)
+        ShippingDistrict::findOrFail($id)->delete();
+
+        //Após achar pelo id  e excluir utilzando a função, passar a toastr msg na view Bairro...
+        $notification = array(
+            'message' => 'Cidade excluída com Sucesso',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+
+    
+    // ============================= MÉTODOS CRUD ESTADO   ============================= //
 }

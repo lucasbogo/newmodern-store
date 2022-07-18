@@ -1,9 +1,9 @@
   {{-- a variável $prefix pega todas as rotas definidas em
     Route::prefix('brand')->group(function(){ --}}
-  
+
   {{-- a variável $route verifica qual usuario está usuando a rota atual
     (current) --}}
-  
+
   @php
       $prefix = Request::route()->getPrefix();
       $route = Route::current()->getName();
@@ -32,8 +32,8 @@
               <!-- MENU SIDEBAR-->
               <ul class="sidebar-menu" data-widget="tree">
 
-                   {{-- Condição redirecionamento: quando a rota for igual a 'dashboard'
-                    então, a mesma será 'ativa'( terá cor mais clara), se não, ela será nula  --}}
+                  {{-- Condição redirecionamento: quando a rota for igual a 'dashboard'
+                    então, a mesma será 'ativa'( terá cor mais clara), se não, ela será nula --}}
                   <li class="{{ $route == 'dashboard' ? 'active' : '' }}">
                       <a href="{{ url('admin/dashboard') }}">
                           <i data-feather="pie-chart"></i>
@@ -42,7 +42,7 @@
                   </li>
 
                   {{-- Condição redirecionamento: quando o prefixo for igual a 'brand, (marca)'
-                  então, a mesma será 'ativa' (terá cor mais clara), se não, ela será nula  --}}
+                  então, a mesma será 'ativa' (terá cor mais clara), se não, ela será nula --}}
                   <li class="treeview {{ $prefix == '/brand' ? 'active' : '' }}">
                       <a href="#">
                           <i data-feather="message-circle"></i>
@@ -143,10 +143,8 @@
                           <li class="{{ $route == 'division.manage' ? 'active' : '' }}"><a
                                   href="{{ route('division.manage') }}"><i class="ti-more"></i>Bairros</a>
                           </li>
-                      </ul>
 
-                      <!-- Sub Envio/shipping Cidade -->
-                      <ul class="treeview-menu">
+                          <!-- Sub Envio/shipping Cidade -->
                           <li class="{{ $route == 'district.manage' ? 'active' : '' }}"><a
                                   href="{{ route('district.manage') }}"><i class="ti-more"></i>Cidades</a>
                           </li>
