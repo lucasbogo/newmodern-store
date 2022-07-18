@@ -104,18 +104,17 @@ class ShippingController extends Controller
     // Método View Cidade Envio
     public function ShippingDistrictView()
     {
-        // Atribuir id da Model Shipping à variável $shipping
+       
         $divisions = ShippingDivision::orderBy('shipping_division_name', 'ASC')->get();
-        // Atribuir id da Model Shipping à variável $shipping
         $districts = ShippingDistrict::with('division')->orderBy('id', 'DESC')->get();
-        // Após a atribuição... retorna página view
+      
         return view('backend.shipping.district.district_view', compact('districts', 'divisions'));
     }
 
-    // Método Guardar Cidade Envio
+   
     public function ShippingDistrictStore(Request $request)
     {
-        // Validar o nome Cidade 
+    
         $request->validate([
 
             'shipping_district_name' => 'required',
@@ -123,7 +122,7 @@ class ShippingController extends Controller
 
         ]);
 
-        // Inserir o nome Cidade
+      
         ShippingDistrict::insert([
 
             'shipping_district_name' => $request->shipping_district_name,
@@ -132,7 +131,7 @@ class ShippingController extends Controller
 
         ]);
 
-        // Retornar toastr msg após inserção Cidade bem sucedida
+     
         $notification = array(
             'message' => 'Cidade Inserida com Sucesso',
             'alert-type' => 'success'
@@ -141,7 +140,7 @@ class ShippingController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    // Método p/ editar Cidade
+  
     public function ShippingDistrictEdit($id)
     {
 
@@ -150,7 +149,7 @@ class ShippingController extends Controller
         return view('backend.shipping.district.district_edit', compact('divisions', 'districts'));
     }
 
-    // Método p/ guardar dados Cidade editados (copiei e colei a mesma lógica do Shipp...Store)
+   
     public function ShippingDistrictUpdate(Request $request, $id)
     {
 
@@ -161,7 +160,7 @@ class ShippingController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-        // Retornar toastr msg após inserção Bairro bem sucedida
+       
         $notification = array(
             'message' => 'Cidade Atualizada com Sucesso',
             'alert-type' => 'success'
@@ -170,13 +169,13 @@ class ShippingController extends Controller
         return redirect()->route('district.manage')->with($notification);
     }
 
-    // Método p/ excluir Bairro
+ 
     public function ShippingDistrictDelete($id)
     {
-        // Chamar a model, achar pelo o id e passar a função excluir (delete();)
+    
         ShippingDistrict::findOrFail($id)->delete();
 
-        //Após achar pelo id  e excluir utilzando a função, passar a toastr msg na view Bairro...
+       
         $notification = array(
             'message' => 'Cidade excluída com Sucesso',
             'alert-type' => 'success'

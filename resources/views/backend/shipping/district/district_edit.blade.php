@@ -31,10 +31,10 @@
                                             <select name="shipping_division_id" class="form-control">
                                                 <option value="" selected="" disabled=""> Selecionar Bairro
                                                 </option>
-                                                @foreach ($divisions as $div)
-                                                    <option value="{{ $div->id }}"
-                                                        {{ $div->id == $districts->shipping_division_id ? 'selected' : '' }}>
-                                                        {{ $div->shipping_division_name }}</option>
+                                                @foreach ($divisions as $division)
+                                                    <option value="{{ $division->id }}"
+                                                        {{ $division->id == $districts->shipping_division_id ? 'selected' : '' }}>
+                                                        {{ $division->shipping_division_name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('shipping_division_id')
