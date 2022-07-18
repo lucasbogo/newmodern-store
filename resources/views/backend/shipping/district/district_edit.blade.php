@@ -50,7 +50,7 @@
                                         <h5>Cidade <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="shipping_district_name" class="form-control"
-                                                value="{{ $districts->district_name }}">
+                                                value="{{ $districts->shipping_district_name }}">
                                             @error('shipping_district_name')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror

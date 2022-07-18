@@ -111,7 +111,7 @@ class ShippingController extends Controller
         // Atribuir id da Model Shipping à variável $shipping
         $divisions = ShippingDivision::orderBy('shipping_division_name', 'ASC')->get();
         // Atribuir id da Model Shipping à variável $shipping
-        $districts = ShippingDistrict::orderBy('id', 'DESC')->get();
+        $districts = ShippingDistrict::with('division')->orderBy('id', 'DESC')->get();
         // Após a atribuição... retorna página view
         return view('backend.shipping.district.district_view', compact('districts', 'divisions'));
     }
@@ -121,6 +121,7 @@ class ShippingController extends Controller
     {
         // Validar o nome Cidade 
         $request->validate([
+
             'shipping_district_name' => 'required',
             'shipping_division_id' => 'required',
 
@@ -147,25 +148,21 @@ class ShippingController extends Controller
     // Método p/ editar Cidade
     public function ShippingDistrictEdit($id)
     {
-        // Atribuir id da Model Shipping à variável $shipping
+
         $divisions = ShippingDivision::orderBy('shipping_division_name', 'ASC')->get();
-        // Achar or retornar 404 id shipping division (cidade) e atribuir à variável $divisions
         $districts = ShippingDistrict::findOrFail($id);
-        // Após a atribuição, retornar a páginaa view editar Cidade
-        return view('backend.shipping.district.district_edit', compact('districts', 'divisions'));
+        return view('backend.shipping.district.district_edit', compact('divisions', 'districts'));
     }
 
     // Método p/ guardar dados Cidade editados (copiei e colei a mesma lógica do Shipp...Store)
     public function ShippingDistrictUpdate(Request $request, $id)
     {
-      
-        // Inserir o nome Cidade
-        ShippingDistrict::findOrFail($id)->update()([
+
+        ShippingDistrict::findOrFail($id)->update([
 
             'shipping_division_id' => $request->shipping_division_id,
             'shipping_district_name' => $request->shipping_district_name,
             'created_at' => Carbon::now(),
-
         ]);
 
         // Retornar toastr msg após inserção Bairro bem sucedida

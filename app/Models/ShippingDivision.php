@@ -17,8 +17,5 @@ class ShippingDivision extends Model
      */
     protected $guarded = [];
 
-    public function division()
-    {
-        return $this->belongsTo(ShippingDivision::class, 'shipping_division_id', 'id');
-    }
+    
 }
