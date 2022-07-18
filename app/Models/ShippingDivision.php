@@ -9,11 +9,16 @@ class ShippingDivision extends Model
 {
     use HasFactory;
 
-       /* protected $guarded substitui o fillable, 
+    /* protected $guarded substitui o fillable, 
      * é um alternativa execlente pois assim elimina
      * a necessidade de ter que digitar ou copiar e 
      * colar toda informação declarada na migrations table
      * 
      */
     protected $guarded = [];
+
+    public function division()
+    {
+        return $this->belongsTo(ShippingDivision::class, 'shipping_division_id', 'id');
+    }
 }

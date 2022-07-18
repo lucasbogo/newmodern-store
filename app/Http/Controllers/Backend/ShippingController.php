@@ -12,10 +12,10 @@ use Illuminate\Support\Carbon;
 class ShippingController extends Controller
 {
 
-   // ============================= MÉTODOS CRUD BAIRRO   ============================= //
+    // ============================= MÉTODOS CRUD BAIRRO   ============================= //
 
 
-    // Método View Cidade Envio
+    // Método View Bairro Envio
     public function ShippingDivisionView()
     {
         // Atribuir id da Model Shipping à variável $shipping
@@ -24,7 +24,7 @@ class ShippingController extends Controller
         return view('backend.shipping.division.division_view', compact('divisions'));
     }
 
-    // Método Guardar Cidade Envio
+    // Método Guardar Bairro Envio
     public function ShippingDivisionStore(Request $request)
     {
         // Validar o nome Cidade 
@@ -33,7 +33,7 @@ class ShippingController extends Controller
 
         ]);
 
-        // Inserir o nome Cidade
+        // Inserir o nome Bairro
         ShippingDivision::insert([
 
             'shipping_division_name' => $request->shipping_division_name,
@@ -41,7 +41,7 @@ class ShippingController extends Controller
 
         ]);
 
-        // Retornar toastr msg após inserção Cidade bem sucedida
+        // Retornar toastr msg após inserção Bairro bem sucedida
         $notification = array(
             'message' => 'Bairro Inserido com Sucesso',
             'alert-type' => 'success'
@@ -50,25 +50,25 @@ class ShippingController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    // Método p/ editar Cidade
+    // Método p/ editar Bairro
     public function ShippingDivisionEdit($id)
     {
-        // Achar or retornar 404 id shipping division (cidade) e atribuir à variável $divisions
+        // Achar or retornar 404 id shipping division (bairro) e atribuir à variável $divisions
         $divisions = ShippingDivision::findOrFail($id);
-        // Após a atribuição, retornar a páginaa view editar Cidade
+        // Após a atribuição, retornar a páginaa view editar Bairro
         return view('backend.shipping.division.division_edit', compact('divisions'));
     }
 
-    // Método p/ guardar dados Cidade editados (copiei e colei a mesma lógica do Shipp...Store)
+    // Método p/ guardar dados Bairro editados (copiei e colei a mesma lógica do Shipp...Store)
     public function ShippingDivisionUpdate(Request $request, $id)
     {
-        // Validar o nome Cidade 
+        // Validar o nome Bairro
         $request->validate([
             'shipping_division_name' => 'required',
 
         ]);
 
-        // Inserir o nome Cidade
+        // Inserir o nome Bairro
         ShippingDivision::findOrFail($id)->update()([
 
             'shipping_division_name' => $request->shipping_division_name,
@@ -109,24 +109,28 @@ class ShippingController extends Controller
     public function ShippingDistrictView()
     {
         // Atribuir id da Model Shipping à variável $shipping
+        $divisions = ShippingDivision::orderBy('shipping_division_name', 'ASC')->get();
+        // Atribuir id da Model Shipping à variável $shipping
         $districts = ShippingDistrict::orderBy('id', 'DESC')->get();
         // Após a atribuição... retorna página view
-        return view('backend.shipping.district.district_view', compact('districts'));
+        return view('backend.shipping.district.district_view', compact('districts', 'divisions'));
     }
 
     // Método Guardar Cidade Envio
-    public function ShippingDisctrictStore(Request $request)
+    public function ShippingDistrictStore(Request $request)
     {
         // Validar o nome Cidade 
         $request->validate([
             'shipping_district_name' => 'required',
+            'shipping_division_id' => 'required',
 
         ]);
 
         // Inserir o nome Cidade
         ShippingDistrict::insert([
 
-            'shipping_district_name' => $request->shipping_division_name,
+            'shipping_district_name' => $request->shipping_district_name,
+            'shipping_division_id' => $request->shipping_division_id,
             'created_at' => Carbon::now(),
 
         ]);
@@ -141,20 +145,23 @@ class ShippingController extends Controller
     }
 
     // Método p/ editar Cidade
-    public function ShippingDisctrictEdit($id)
+    public function ShippingDistrictEdit($id)
     {
+        // Atribuir id da Model Shipping à variável $shipping
+        $divisions = ShippingDivision::orderBy('shipping_division_name', 'ASC')->get();
         // Achar or retornar 404 id shipping division (cidade) e atribuir à variável $divisions
         $districts = ShippingDistrict::findOrFail($id);
         // Após a atribuição, retornar a páginaa view editar Cidade
-        return view('backend.shipping.district.district_edit', compact('districts'));
+        return view('backend.shipping.district.district_edit', compact('districts', 'divisions'));
     }
 
     // Método p/ guardar dados Cidade editados (copiei e colei a mesma lógica do Shipp...Store)
-    public function ShippingDisctrictUpdate(Request $request, $id)
+    public function ShippingDistrictUpdate(Request $request, $id)
     {
         // Validar o nome Cidade 
         $request->validate([
             'shipping_district_name' => 'required',
+            'shipping_division_id' => 'required',
 
         ]);
 
@@ -162,6 +169,7 @@ class ShippingController extends Controller
         ShippingDistrict::findOrFail($id)->update()([
 
             'shipping_district_name' => $request->shipping_district_name,
+            'shipping_division_id' => $request->shipping_division_id,
             'created_at' => Carbon::now(),
 
         ]);
@@ -176,7 +184,7 @@ class ShippingController extends Controller
     }
 
     // Método p/ excluir Bairro
-    public function ShippingDisctrictDelete($id)
+    public function ShippingDistrictDelete($id)
     {
         // Chamar a model, achar pelo o id e passar a função excluir (delete();)
         ShippingDistrict::findOrFail($id)->delete();
@@ -190,6 +198,6 @@ class ShippingController extends Controller
     }
 
 
-    
+
     // ============================= MÉTODOS CRUD ESTADO   ============================= //
 }

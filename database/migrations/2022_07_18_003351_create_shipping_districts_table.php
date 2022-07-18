@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('shipping_districts', function (Blueprint $table) {
             $table->id(); // pk_cidade
-            $table->unsignedBigInteger('shipping_divisions_id'); // Fk id_bairro
+            $table->unsignedBigInteger('shipping_division_id'); // Fk id_bairro
             $table->string('shipping_district_name'); 
             $table->timestamps();
         });

@@ -16,7 +16,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">District List</h3>
+                            <h3 class="box-title">Cidades</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -25,7 +25,7 @@
                                     <thead>
                                         <tr>
                                             <th>Bairro</th>
-                                            <th>Cidade /th>
+                                            <th>Cidade </th>
                                             <th>Ação</th>
 
                                         </tr>
@@ -67,7 +67,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Add District </h3>
+                            <h3 class="box-title">Adicionar Cidade </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -82,14 +82,14 @@
                                     <div class="form-group">
                                         <h5>Division Select <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <select name="division_id" class="form-control">
-                                                <option value="" selected="" disabled="">Select Division
+                                            <select name="shipping_division_id" class="form-control">
+                                                <option value="" selected="" disabled="">Selecionar Bairro
                                                 </option>
-                                                @foreach ($division as $div)
-                                                    <option value="{{ $div->id }}">{{ $div->division_name }}</option>
+                                                @foreach ($divisions as $div)
+                                                    <option value="{{ $div->id }}">{{ $div->shipping_division_name }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('division_id')
+                                            @error('shipping_division_id')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -100,8 +100,8 @@
                                     <div class="form-group">
                                         <h5>District Name <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="district_name" class="form-control">
-                                            @error('district_name')
+                                            <input type="text" name="shipping_district_name" class="form-control">
+                                            @error('shipping_district_name')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -115,23 +115,15 @@
                                 </form>
 
 
-
-
-
                             </div>
                         </div>
                         <!-- /.box-body -->
                     </div>
                     <!-- /.box -->
                 </div>
-
-
-
-
             </div>
             <!-- /.row -->
         </section>
         <!-- /.content -->
-
     </div>
 @endsection
