@@ -16,14 +16,13 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">Editar Cidade </h3>
                         </div>
-                        <!-- /.box-header -->
+                      
                         <div class="box-body">
                             <div class="table-responsive">
 
 
                                 <form method="post" action="{{ route('district.update', $districts->id) }}">
                                     @csrf
-
 
 
                                     <div class="form-group">
@@ -45,7 +44,6 @@
                                     </div>
 
 
-
                                     <div class="form-group">
                                         <h5>Cidade <span class="text-danger">*</span></h5>
                                         <div class="controls">
@@ -58,7 +56,6 @@
                                     </div>
 
 
-
                                     <div class="text-xs-right">
                                         <input type="submit" class="btn btn-rounded btn-success mb-5" value="Update">
                                     </div>
@@ -67,13 +64,9 @@
 
                             </div>
                         </div>
-                        <!-- /.box-body -->
                     </div>
-                    <!-- /.box -->
                 </div>
             </div>
-            <!-- /.row -->
         </section>
-        <!-- /.content -->
     </div>
 @endsection
