@@ -379,6 +379,8 @@
         // Final Adicionar Item Carrinho
     </script>
 
+    <!-- ========================  MINI CARRINHO HEADER AJAX ========================  -->
+
     <script type="text/javascript">
         function miniCart() {
             $.ajax({
@@ -455,6 +457,8 @@
         }
         //  Final Remover Item Carrinho
     </script>
+
+    <!-- ======================== LISTA DESEJO AJAX ========================  -->
 
     <!-- JS p/ Adicionar Item Lista de Desejos -->
     <script type="text/javascript">
@@ -576,6 +580,11 @@
         }
         // Final ajax onclick function p/ remover item lista desejo
     </script>
+
+
+
+    <!-- ========================  MEU CARRINHO AJAX ========================  -->
+
 
     <!-- JS Ajax p/  'baixar' Item no Meu Carrinho view page -->
     <script type="text/javascript">
@@ -730,6 +739,24 @@
 
     </script>
 
+    <!-- ========================  VOUCHER AJAX ========================  -->
+    <script type="text/javascript">
+        function applyCoupon(){
+            var coupon_name = $('#coupon_name').val();
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                data: {coupon_name:coupon_name},
+                url: "{{ url('/coupon-apply') }}",
+                success:function(data){
+                    
+                }
+
+            })
+        }
+
+
+    </script>
 
 
 </body>

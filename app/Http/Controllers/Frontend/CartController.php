@@ -105,4 +105,15 @@ class CartController extends Controller
             return response()->json(['error' => 'Efetuar Login antes de Adicionar à sua Lista de Desejos']);
         }
     }
+
+
+
+    // ============================= MÉTODOS  AJAX APLICAR VOUCHER/CUPOM  ============================= //
+
+    // Método aplicar voucher/cupom ajax
+    public function CouponApply(Request $request)
+    {
+
+    }
+
 }

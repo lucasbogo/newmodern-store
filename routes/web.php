@@ -423,21 +423,25 @@ Route::prefix('shipping')->group(function () {
 
 # =============================== TODAS AS ROTAS CUPOM ADMIN ==================================== #
 
-/*** prefix siginica que aparecerá o objeto na url antes da rota chamada: (brand/view ; brand/store; slider/view ...) */
+/*** prefix siginica que aparecerá o objeto na url antes da rota chamada: (coupons/view ; coupons/store...) */
 Route::prefix('coupons')->group(function () {
 
     // Rota p/ visualizar a tabela de Marcas no Painel Admin.
     Route::get('/view', [CouponController::class, 'CouponView'])->name('coupons.manage');
 
-    // Rota p/  
+    // Rota p/ guardar os vouchers/cupons adicionados pelo admin no painel
     Route::post('/store', [CouponController::class, 'CouponStore'])->name('coupon.store');
 
-    // Rota p/ 
+    // Rota p/ editar os dados voucher/cupom
     Route::get('/edit/{id}', [CouponController::class, 'CouponEdit'])->name('coupon.edit');
 
-    // Rota p/ 
+    // Rota p/ guardar os dados editados voucher/cupom
     Route::post('/update/{id}', [CouponController::class, 'CouponUpdate'])->name('coupon.update');
 
-    // Rota p/ 
+    // Rota p/ excluir os vouchers/cupons
     Route::get('/delete/{id}', [CouponController::class, 'CouponDelete'])->name('coupon.delete');
 });
+
+# =============================== TODAS AS ROTAS CUPOM AJAX FRONT-END ================================== #
+
+Route::post('/coupon-apply', [CartController::class, 'CouponApply']);

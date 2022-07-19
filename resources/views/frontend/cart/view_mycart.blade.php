@@ -24,9 +24,9 @@
                     @endif
                 </li>
             </ul>
-        </div><!-- /.breadcrumb-inner -->
-    </div><!-- /.container -->
-</div><!-- /.breadcrumb -->
+        </div>
+    </div>
+</div>
 
 <div class="body-content">
     <div class="container">
@@ -95,6 +95,54 @@
 
                     <!-- ======================== CAMPO CALCULAR VALOR FRETE (FUTURO) ========================  -->
                     <div class="col-md-4 col-sm-12 estimate-ship-tax">
+                        {{-- <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span class="estimate-title">Estimate shipping and tax</span>
+                                        <p>Enter your destination to get shipping and tax.</p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label class="info-title control-label">Country <span>*</span></label>
+                                            <select class="form-control unicase-form-control selectpicker">
+                                                <option>--Select options--</option>
+                                                <option>India</option>
+                                                <option>SriLanka</option>
+                                                <option>united kingdom</option>
+                                                <option>saudi arabia</option>
+                                                <option>united arab emirates</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="info-title control-label">State/Province
+                                                <span>*</span></label>
+                                            <select class="form-control unicase-form-control selectpicker">
+                                                <option>--Select options--</option>
+                                                <option>TamilNadu</option>
+                                                <option>Kerala</option>
+                                                <option>Andhra Pradesh</option>
+                                                <option>Karnataka</option>
+                                                <option>Madhya Pradesh</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="info-title control-label">Zip/Postal Code</label>
+                                            <input type="text" class="form-control unicase-form-control text-input"
+                                                placeholder="">
+                                        </div>
+                                        <div class="pull-right">
+                                            <button type="submit" class="btn-upper btn btn-primary">GET A
+                                                QOUTE</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table> --}}
                     </div>
 
 
@@ -130,7 +178,8 @@
                                                 placeholder="Voucher" id="coupon_name">
                                         </div>
                                         <div class="clearfix pull-right">
-                                            <button type="submit" class="btn-upper btn btn-primary" onclick="applyCoupn()">
+                                            <button type="submit" class="btn-upper btn btn-primary"
+                                                onclick="applyCoupon()">
                                                 @if (session()->get('language') == 'portuguese')
                                                     APLICAR
                                                     CUPOM
