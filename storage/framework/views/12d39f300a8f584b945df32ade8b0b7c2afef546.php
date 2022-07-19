@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="NewModern team" content="">
-    <link rel="icon" href="<?php echo e(asset('backend/images/favicon-32x32.png')); ?>">
+    <link rel="icon" href="<?php echo e(asset('backend/images/favicon-new.ico')); ?>">
 
     <title>NewModern Admin - Dashboard</title>
 
