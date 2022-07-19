@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{{ asset('backend/images/favicon-32x32.png') }}">
+    <link rel="icon" href="{{ asset('backend/images/favicon-new.ico') }}">
 
-    <title>NewModern Admin - Log in </title>
+    <title>NewModern Admin - Entrar </title>
 
     <!-- Vendors Style-->
     <link rel="stylesheet" href="{{ asset('backend/css/vendors_css.css') }}">

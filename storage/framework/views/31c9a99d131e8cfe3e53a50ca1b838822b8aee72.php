@@ -11,7 +11,7 @@
     <meta name="keywords" content="MediaCenter, Template, eCommerce">
     <meta name="robots" content="all">
     <!-- ========================== FAVICON ============================ -->
-    <link rel="icon" href="<?php echo e(asset('backend/images/favicon-32x32.png')); ?>">
+    <link rel="icon" href="<?php echo e(asset('backend/images/favicon-new.ico')); ?>">
     <title><?php echo $__env->yieldContent('title'); ?></title>
 
     <!-- Bootstrap Core CSS -->

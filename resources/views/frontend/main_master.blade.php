@@ -11,7 +11,7 @@
     <meta name="keywords" content="MediaCenter, Template, eCommerce">
     <meta name="robots" content="all">
     <!-- ========================== FAVICON ============================ -->
-    <link rel="icon" href="{{ asset('backend/images/favicon-32x32.png') }}">
+    <link rel="icon" href="{{ asset('backend/images/favicon-new.ico') }}">
     <title>@yield('title')</title>
 
     <!-- Bootstrap Core CSS -->
