@@ -429,5 +429,15 @@ Route::prefix('coupons')->group(function () {
     // Rota p/ visualizar a tabela de Marcas no Painel Admin.
     Route::get('/view', [CouponController::class, 'CouponView'])->name('coupons.manage');
 
-    
+    // Rota p/  
+    Route::post('/store', [CouponController::class, 'CouponStore'])->name('coupon.store');
+
+    // Rota p/ 
+    Route::get('/edit/{id}', [CouponController::class, 'CouponEdit'])->name('coupon.edit');
+
+    // Rota p/ 
+    Route::post('/update/{id}', [CouponController::class, 'CouponUpdate'])->name('coupon.update');
+
+    // Rota p/ 
+    Route::get('/delete/{id}', [CouponController::class, 'CouponDelete'])->name('coupon.delete');
 });

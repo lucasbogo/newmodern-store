@@ -1,7 +1,5 @@
 @extends('admin.admin_master')
 @section('admin')
-
-
     <div class="content-wrapper" style="min-height: 326px;">
 
 
@@ -11,7 +9,7 @@
 
 
                 <!-- ======================== VIEW CUPOM/VOUCHERS ========================  -->
-                
+
                 <div class="col-8">
 
                     <div class="box">
@@ -37,20 +35,24 @@
                                             <tr>
                                                 <td> {{ $coupon->coupon_name }} </td>
                                                 <td> {{ $coupon->coupon_discount }}% </td>
-                                                <td> {{ $coupon->coupon_validity }}</td>
+                                                <td width="25%">
+                                                    {{ Carbon\Carbon::parse($coupon->coupon_validity)->format('D,d F Y') }}
+                                                </td>
+
 
                                                 <td>
-                                                    @if ($coupon->status == 1)
-                                                        <span class="badge badge-pill badge-success"> Ativo </span>
+                                                    @if ($coupon->status >= Carbon\Carbon::now()->format('Y-m-d'))
+                                                        <span class="badge badge-pill badge-success"> Valido </span>
                                                     @else
-                                                        <span class="badge badge-pill badge-danger"> Inativo </span>
+                                                        <span class="badge badge-pill badge-danger"> Invalido </span>
                                                     @endif
 
                                                 </td>
 
-                                                <td>
-                                                    <a href="{{ route('coupon.edit', $coupon->id) }}" class="btn btn-info"
-                                                        title="Edit Data"><i class="fa fa-pencil"></i> </a>
+                                                <td width="25%">
+                                                    <a href="{{ route('coupon.edit', $coupon->id) }}"
+                                                        class="btn btn-warning" title="Edit Data"><i
+                                                            class="fa fa-pencil"></i> </a>
                                                     <a href="{{ route('coupon.delete', $coupon->id) }}"
                                                         class="btn btn-danger" title="Delete Data" id="delete">
                                                         <i class="fa fa-trash"></i></a>
@@ -106,11 +108,12 @@
                                         </div>
                                     </div>
 
-
+                                    <!-- {carbon\} = impedir que validem desconto para datas antes de (now) -->
                                     <div class="form-group">
                                         <h5>Data de Validade <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="date" name="coupon_validity" class="form-control">
+                                            <input type="date" name="coupon_validity" class="form-control"
+                                                min="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
                                             @error('coupon_validity')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -131,3 +134,4 @@
             </div>
         </section>
     </div>
+@endsection
