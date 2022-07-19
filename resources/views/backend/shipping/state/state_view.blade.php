@@ -6,6 +6,8 @@
         <section class="content">
             <div class="row">
 
+                <!-- ======================== VIEW ESTADOS ========================  -->
+
                 <div class="col-8">
 
                     <div class="box">
@@ -33,8 +35,9 @@
                                                 <td> {{ $state->shipping_state_name }} </td>
 
                                                 <td width="40%">
-                                                    <a href="{{ route('state.edit', $state->id) }}" class="btn btn-warning"
-                                                        title="Edit Data"><i class="fa fa-pencil"></i> </a>
+                                                    <a href="{{ route('state.edit', $state->id) }}"
+                                                        class="btn btn-warning" title="Edit Data"><i
+                                                            class="fa fa-pencil"></i> </a>
 
                                                     <a href="{{ route('state.delete', $state->id) }}"
                                                         class="btn btn-danger" title="Delete Data" id="delete">
@@ -75,7 +78,8 @@
                                                 <option value="" selected="" disabled="">Selecionar Bairro
                                                 </option>
                                                 @foreach ($divisions as $division)
-                                                    <option value="{{ $division->id }}">{{ $division->shipping_division_name }}
+                                                    <option value="{{ $division->id }}">
+                                                        {{ $division->shipping_division_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -84,6 +88,7 @@
                                             @enderror
                                         </div>
                                     </div>
+
 
                                     <div class="form-group">
                                         <h5> Selecionar Cidade <span class="text-danger">*</span></h5>
@@ -119,7 +124,7 @@
                                     <div class="text-xs-right">
                                         <input type="submit" class="btn btn-rounded btn-success mb-5" value="Adicionar">
                                     </div>
-                                    
+
                                 </form>
                             </div>
                         </div>

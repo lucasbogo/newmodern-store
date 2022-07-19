@@ -10,9 +10,9 @@
   @endphp
 
 
-  <!-- Left side column. contains the logo and sidebar -->
+
   <aside class="main-sidebar">
-      <!-- sidebar-->
+
       <section class="sidebar" style="height: 307px; overflow: hidden; width: auto;">
 
           <div class="user-profile">
@@ -157,7 +157,26 @@
                       </ul>
                   </li>
 
-              </ul>
+                  <!-- Campo Cupons -->
+                  <li class="treeview {{ $prefix == '/coupons' ? 'active' : '' }}">
+                      <a href="#">
+                          <i data-feather="file"></i>
+                          <span>Cupons</span>
+                          <span class="pull-right-container">
+                              <i class="fa fa-angle-right pull-right"></i>
+                          </span>
+                      </a>
+
+
+                      <ul class="treeview-menu">
+                          <!-- Sub Cupons -->
+                          <li class="{{ $route == 'coupons.manage' ? 'active' : '' }}"><a
+                                  href="{{ route('coupons.manage') }}"><i class="ti-more"></i>Todos</a>
+                          </li>
+
+                      </ul>
+                  </li>
+
       </section>
 
       <div class="sidebar-footer">

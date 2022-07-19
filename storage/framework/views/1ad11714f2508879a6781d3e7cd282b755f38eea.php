@@ -363,7 +363,6 @@
                     </div>
                 </div>
             </section>
-            <!-- /.content -->
         </div>
     <?php $__env->stopSection(); ?>
 

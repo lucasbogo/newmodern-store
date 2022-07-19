@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\ShippingController;
+use App\Http\Controllers\Backend\CouponController;
 
 
 use App\Http\Controllers\Frontend\IndexController;
@@ -416,4 +417,17 @@ Route::prefix('shipping')->group(function () {
 
     // Rota p/ excluir Cidade Envio
     Route::get('/state/delete/{id}', [ShippingController::class, 'ShippingStateDelete'])->name('state.delete');
+});
+
+
+
+# =============================== TODAS AS ROTAS CUPOM ADMIN ==================================== #
+
+/*** prefix siginica que aparecerá o objeto na url antes da rota chamada: (brand/view ; brand/store; slider/view ...) */
+Route::prefix('coupons')->group(function () {
+
+    // Rota p/ visualizar a tabela de Marcas no Painel Admin.
+    Route::get('/view', [CouponController::class, 'CouponView'])->name('coupons.manage');
+
+    
 });
