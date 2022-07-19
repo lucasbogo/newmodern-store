@@ -440,6 +440,12 @@ Route::prefix('coupons')->group(function () {
 
     // Rota p/ excluir os vouchers/cupons
     Route::get('/delete/{id}', [CouponController::class, 'CouponDelete'])->name('coupon.delete');
+
+    // Rota p/ inativar produto no painel admin edit product
+    Route::get('/inactivate/{id}', [CouponController::class, 'InactivateCoupon'])->name('coupon.inactivate');
+
+    // Rota p/ ativar produto no painel admin edit product
+    Route::get('/activate/{id}', [CouponController::class, 'ActivateCoupon'])->name('coupon.activate');
 });
 
 # =============================== TODAS AS ROTAS CUPOM AJAX FRONT-END ================================== #

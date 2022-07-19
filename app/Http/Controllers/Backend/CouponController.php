@@ -83,4 +83,34 @@ class CouponController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    // Método para desativar Produto pelo ID
+    public function InactivateCoupon($id)
+    {
+        // Lógica simples: achar o produto pelo ID, chamar a função update e alterar o status para zero (inativo)
+        Coupon::findOrFail($id)->update(['status' => 0]);
+
+        // Mostrar notificação (toaster message) de desativação bem sucedida.
+        $notification = array(
+            'message' => 'Cupom/Voucher Desativado com Sucesso',
+            'alert-type' => 'success'
+        );
+        // Após exclusão, simplesmente retornar.
+        return redirect()->back()->with($notification);
+    }
+
+    // Método p/ ativar Produto pelo ID
+    public function ActivateCoupon($id)
+    {
+        // Lógica simples: achar o produto pelo ID, chamar a função update e alterar o status para um (ativo)
+        Coupon::findOrFail($id)->update(['status' => 1]);
+
+        // Mostrar notificação (toaster message) de ativação bem sucedida.
+        $notification = array(
+            'message' => 'Cupom/Voucher Ativado com Sucesso',
+            'alert-type' => 'success'
+        );
+        // Após exclusão, simplesmente retornar.
+        return redirect()->back()->with($notification);
+    }
 }

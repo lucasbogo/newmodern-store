@@ -325,12 +325,10 @@
 
                                                                     </ul>
                                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                                <!-- /. SubSubCategory Foreach -->
 
                                                             </div>
-                                                            <!-- /.col -->
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                        <!-- /. SubCategory Foreach -->
+
 
 
                                                         <div class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image">
@@ -338,34 +336,33 @@
                                                                 src="<?php echo e(asset('frontend/assets/images/logo.png')); ?>"
                                                                 alt="">
                                                         </div>
-                                                        <!-- /.yamm-content -->
+
                                                     </div>
                                                 </div>
                                             </li>
                                         </ul>
                                     </li>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> <!-- /.Category Foreach -->
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                                <li class="dropdown  navbar-right special-menu"> <a href="#">Todays
-                                        offer</a>
+                                <li class="dropdown  navbar-right special-menu"> <a href="#">
+                                        <?php if(session()->get('language') == 'portuguese'): ?>
+                                            Oferta do
+                                            dia
+                                        <?php else: ?>
+                                            Todays
+                                            offer
+                                        <?php endif; ?>
+                                    </a>
                                 </li>
                             </ul>
-                            <!-- /.navbar-nav -->
+
                             <div class="clearfix"></div>
                         </div>
-                        <!-- /.nav-outer -->
                     </div>
-                    <!-- /.navbar-collapse -->
-
                 </div>
-                <!-- /.nav-bg-class -->
             </div>
-            <!-- /.navbar-default -->
         </div>
-        <!-- /.container-class -->
-
     </div>
-    <!-- /.header-nav -->
     <!-- ============================================== NAVBAR : END ============================================== -->
 
 </header>
