@@ -341,7 +341,7 @@ e compartilhei com a equipe.
                                                     </div>
                                                 </div>
 
-                                                <!-- INSERIR TAGS INGLÊS -->
+                                                {{-- <!-- INSERIR TAGS INGLÊS IMPLEMENTAR FUTURAMENTE -->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <h5>Tags (EN) <span class="text-info">OPCIONAL</span></h5>
@@ -382,7 +382,7 @@ e compartilhei com a equipe.
 
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
                                                 <!-- TAMANHO PRODUTO INGLÊS -->
                                                 <div class="col-md-4">

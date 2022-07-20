@@ -309,7 +309,7 @@
                                                     </div>
                                                 </div>
 
-                                                <!-- INSERIR TAGS INGLÊS -->
+                                                {{-- <!-- INSERIR TAGS INGLÊS IMPLEMENTAR FUTURAMENTE -->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <h5>Tags (EN) <span class="text-danger">*</span></h5>
@@ -334,7 +334,7 @@
                                             <!-- SEXTA ROW -->
                                             <div class="row">
 
-                                                <!-- INSERIR TAGS PORTUGUÊS-->
+                                                <!-- INSERIR TAGS PORTUGUÊS IMPLEMENTAR FUTURAMENTE-->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <h5>Tags (PTBR) <span class="text-danger">*</span></h5>
@@ -349,7 +349,7 @@
 
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
                                                 <!-- TAMANHO PRODUTO INGLÊS -->
                                                 <div class="col-md-4">

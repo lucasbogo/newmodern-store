@@ -112,13 +112,13 @@
                     <!-- /.sidebar-widget-body -->
                 </div>
                 <!-- /.sidebar-widget -->
-                <!-- ============================================== SPECIAL TERMINA AQUI ============================================== -->
+                <!-- ============================================== SPECIAL TERMINA AQUI ================================================== -->
 
 
 
-                <!-- ============================================== PRODUCT TAGS COMEÇA AQUI ============================================== -->
+                <!-- ====================== PRODUCT TAGS COMEÇA AQUI ARRUMAR BUG E IMPELMENTAR FUTURAMENTE ================================ -->
 
-                @include('frontend.fragments.product_tags')
+                {{-- @include('frontend.fragments.product_tags') --}}
 
                 <!-- ============================================== PRODUCT TAGS TERMINA AQUI ============================================== -->
 
@@ -150,12 +150,12 @@
                                                                     href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
                                                                     <img src="{{ asset($product->product_thumbnail) }}"
                                                                         alt=""> </a> </div>
-                                                            <!-- /.image -->
+
 
                                                         </div>
-                                                        <!-- /.product-image -->
+
                                                     </div>
-                                                    <!-- /.col -->
+
                                                     <div class="col col-xs-7">
                                                         <div class="product-info">
                                                             <h3 class="name"><a
@@ -187,32 +187,21 @@
                                                                                 {{ $product->product_selling_price }}
                                                                             </span>
                                                                         </div>
-                                                                        <!-- /.product_discount_price with discount -->
                                                                     @endif
-                                                                </span> </div>
-                                                            <!-- /.product-price -->
-
+                                                                </span>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <!-- /.col -->
                                                 </div>
-                                                <!-- /.product-micro-row -->
                                             </div>
-                                            <!-- /.product-micro -->
-
                                         </div>
                                     @endforeach
-
-
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
-                    <!-- /.sidebar-widget-body -->
                 </div>
-                <!-- /.sidebar-widget -->
+
                 <!-- ============================================== SPECIAL TERMINA AQUI ============================================== -->
                 <!-- ============================================== NEWSLETTER COMEÇA AQUI============================================== -->
                 <div class="sidebar-widget newsletter wow fadeInUp outer-bottom-small">
@@ -228,9 +217,8 @@
                             <button class="btn btn-primary">Subscribe</button>
                         </form>
                     </div>
-                    <!-- /.sidebar-widget-body -->
                 </div>
-                <!-- /.sidebar-widget -->
+
                 <!-- ============================================== NEWSLETTER TERMINA AQUI ============================================== -->
 
                 <!-- =============================================== AVALIAÇÕES LOJA FRAGMENTAÇÃO ========================================= -->
@@ -245,7 +233,7 @@
                 <div class="home-banner"> <img src="{{ asset('frontend/assets/images/banners/LHS-banner.jpg') }}"
                         alt="Image"> </div>
             </div>
-            <!-- /.sidemenu-holder -->
+
 
 
 
@@ -273,17 +261,13 @@
                                                 Now</a>
                                         </div>
                                     </div>
-                                    <!-- /.caption -->
                                 </div>
-                                <!-- /.container-fluid -->
                             </div>
-                            <!-- /.item -->
                         @endforeach
-                        <!-- /. foreach -->
+
 
 
                     </div>
-                    <!-- /.owl-carousel -->
                 </div>
 
                 <!-- ========================================= SLIDERS END ========================================= -->
@@ -302,7 +286,7 @@
                                     <h6 class="text">30 Days Money Back Guarantee</h6>
                                 </div>
                             </div>
-                            <!-- .col -->
+
 
                             <div class="hidden-md col-sm-4 col-lg-4">
                                 <div class="info-box">
@@ -314,7 +298,7 @@
                                     <h6 class="text">Shipping on orders over $99</h6>
                                 </div>
                             </div>
-                            <!-- .col -->
+
 
                             <div class="col-md-6 col-sm-4 col-lg-4">
                                 <div class="info-box">
@@ -326,14 +310,14 @@
                                     <h6 class="text">Extra $5 off on all items </h6>
                                 </div>
                             </div>
-                            <!-- .col -->
+
                         </div>
-                        <!-- /.row -->
+
                     </div>
-                    <!-- /.info-boxes-inner -->
+
 
                 </div>
-                <!-- /.info-boxes -->
+
                 <!-- =================================== INFO BOXES : END ========================================= -->
 
 
@@ -374,7 +358,7 @@
                                     </a>
                                 </li>
                             @endforeach
-                            <!-- /. final foreach categorias -->
+
 
                         </ul>
                     </div>
@@ -400,7 +384,7 @@
                                                                     alt="">
                                                             </a>
                                                         </div>
-                                                        <!-- /.image -->
+
 
                                                         <!-- Lógica porcentagem -->
                                                         @php
@@ -430,7 +414,7 @@
 
 
                                                     </div>
-                                                    <!-- /.product-image -->
+
 
                                                     <!-- =============== DETALHES DO PRODUTO COMEÇA AQUI" =================== -->
 
@@ -457,7 +441,6 @@
                                                                     {{ $product->product_selling_price }}
                                                                 </span>
                                                             </div>
-                                                            <!-- /.product_selling_price without discount -->
                                                         @else
                                                             <!-- caso contrário, mostrar valor com o desconto -->
                                                             <div class="product-price"> <span class="price">
@@ -466,11 +449,10 @@
                                                                     {{ $product->product_selling_price }}
                                                                 </span>
                                                             </div>
-                                                            <!-- /.product_discount_price with discount -->
                                                         @endif
 
                                                     </div>
-                                                    <!-- /.product-info -->
+
                                                     <div class="cart clearfix animate-effect">
                                                         <div class="action">
                                                             <ul class="list-unstyled">
@@ -493,26 +475,14 @@
                                                                             aria-hidden="true"></i> </a> </li>
                                                             </ul>
                                                         </div>
-                                                        <!-- /.action -->
                                                     </div>
-                                                    <!-- /.cart -->
                                                 </div>
-                                                <!-- /.product -->
-
                                             </div>
-                                            <!-- /.products -->
                                         </div>
-                                        <!-- /.item CAROUSEL IMPORTANTE -->
                                     @endforeach
-                                    <!-- /. final foreach categorias -->
-
-
                                 </div>
-                                <!-- /.home-owl-carousel -->
                             </div>
-                            <!-- /.product-slider -->
                         </div>
-                        <!-- /.tab-pane ALL IMPORTANTE-->
 
                         <!--======================================== /.nav-tabs PRIMEIRO ============================================ -->
 
@@ -546,7 +516,6 @@
                                                                         alt="">
                                                                 </a>
                                                             </div>
-                                                            <!-- /.image -->
 
                                                             <!-- Lógica porcentagem -->
                                                             @php
@@ -576,7 +545,7 @@
 
 
                                                         </div>
-                                                        <!-- /.product-image -->
+
 
                                                         <div class="product-info text-left">
                                                             <h3 class="name">
@@ -602,7 +571,6 @@
                                                                         {{ $product->product_selling_price }}
                                                                     </span>
                                                                 </div>
-                                                                <!-- /.product_selling_price without discount -->
                                                             @else
                                                                 <!-- caso contrário, mostrar valor com o desconto -->
                                                                 <div class="product-price"> <span class="price">
@@ -611,11 +579,10 @@
                                                                         {{ $product->product_selling_price }}
                                                                     </span>
                                                                 </div>
-                                                                <!-- /.product_discount_price with discount -->
                                                             @endif
 
                                                         </div>
-                                                        <!-- /.product-info -->
+
                                                         <div class="cart clearfix animate-effect">
                                                             <div class="action">
                                                                 <ul class="list-unstyled">
@@ -639,16 +606,11 @@
                                                                                 aria-hidden="true"></i> </a> </li>
                                                                 </ul>
                                                             </div>
-                                                            <!-- /.action -->
                                                         </div>
-                                                        <!-- /.cart -->
                                                     </div>
-                                                    <!-- /.product -->
-
                                                 </div>
-                                                <!-- /.products -->
                                             </div>
-                                            <!-- /.item CAROUSEL IMPORTANTE -->
+
 
                                         @empty
                                             <h5 class="text-danger">
@@ -660,22 +622,16 @@
                                                 @endif
                                             </h5>
                                         @endforelse
-                                        <!-- /. final foreach products -->
+
 
 
                                     </div>
-                                    <!-- /.home-owl-carousel -->
                                 </div>
-                                <!-- /.product-slider -->
                             </div>
-                            <!-- /.tab-pane ALL IMPORTANTE-->
                         @endforeach
-                        <!-- /. final foreach categories -->
-
                     </div>
-                    <!-- /.tab-content -->
                 </div>
-                <!-- /.scroll-tabs -->
+
                 <!-- ============================================== SCROLL TABS : END ============================================== -->
                 <!-- ============================================== WIDE PRODUCTS ============================================== -->
                 <div class="wide-banners wow fadeInUp outer-bottom-xs">
@@ -686,22 +642,21 @@
                                         src="{{ asset('frontend/assets/images/banners/home-banner1.jpg') }}"
                                         alt=""> </div>
                             </div>
-                            <!-- /.wide-banner -->
+
                         </div>
-                        <!-- /.col -->
+
                         <div class="col-md-5 col-sm-5">
                             <div class="wide-banner cnt-strip">
                                 <div class="image"> <img class="img-responsive"
                                         src="{{ asset('frontend/assets/images/banners/home-banner2.jpg') }}"
                                         alt=""> </div>
                             </div>
-                            <!-- /.wide-banner -->
+
                         </div>
-                        <!-- /.col -->
+
                     </div>
-                    <!-- /.row -->
                 </div>
-                <!-- /.wide-banners -->
+
 
                 <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
 
@@ -733,7 +688,7 @@
                                                         alt="">
                                                 </a>
                                             </div>
-                                            <!-- /.image -->
+
 
                                             <!-- Lógica porcentagem -->
                                             @php
@@ -763,7 +718,7 @@
 
 
                                         </div>
-                                        <!-- /.product-image -->
+
 
                                         <div class="product-info text-left">
                                             <h3 class="name">
@@ -789,7 +744,6 @@
                                                         {{ $product->product_selling_price }}
                                                     </span>
                                                 </div>
-                                                <!-- /.product_selling_price without discount -->
                                             @else
                                                 <!-- caso contrário, mostrar valor com o desconto -->
                                                 <div class="product-price"> <span class="price">
@@ -798,11 +752,10 @@
                                                         {{ $product->product_selling_price }}
                                                     </span>
                                                 </div>
-                                                <!-- /.product_discount_price with discount -->
                                             @endif
 
                                         </div>
-                                        <!-- /.product-info -->
+
                                         <div class="cart clearfix animate-effect">
                                             <div class="action">
                                                 <ul class="list-unstyled">
@@ -849,22 +802,14 @@
                                                     <!-- ========== /BOTÃO COMPARE ========== -->
                                                 </ul>
                                             </div>
-                                            <!-- /.action -->
                                         </div>
-                                        <!-- /.cart -->
                                     </div>
-                                    <!-- /.product -->
-
                                 </div>
-                                <!-- /.products -->
                             </div>
-                            <!-- /.item CAROUSEL IMPORTANTE -->
                         @endforeach
-
                     </div>
-                    <!-- /.home-owl-carousel -->
                 </section>
-                <!-- /.section -->
+
 
                 <!-- ================================ FEATURED PRODUCTS TERMINA AQUI =========================================== -->
 
@@ -888,16 +833,11 @@
                                 <div class="new-label">
                                     <div class="text">NEW</div>
                                 </div>
-                                <!-- /.new-label -->
                             </div>
-                            <!-- /.wide-banner -->
                         </div>
-                        <!-- /.col -->
-
                     </div>
-                    <!-- /.row -->
                 </div>
-                <!-- /.wide-banners -->
+
                 <!-- ============================================== BANNER FINAL =================================================== -->
 
 
@@ -930,7 +870,7 @@
                                                         alt="">
                                                 </a>
                                             </div>
-                                            <!-- /.image -->
+
 
                                             <!-- Lógica porcentagem -->
                                             @php
@@ -960,7 +900,7 @@
 
 
                                         </div>
-                                        <!-- /.product-image -->
+
 
                                         <div class="product-info text-left">
                                             <h3 class="name">
@@ -986,7 +926,6 @@
                                                         {{ $product->product_selling_price }}
                                                     </span>
                                                 </div>
-                                                <!-- /.product_selling_price without discount -->
                                             @else
                                                 <!-- caso contrário, mostrar valor com o desconto -->
                                                 <div class="product-price"> <span class="price">
@@ -995,11 +934,10 @@
                                                         {{ $product->product_selling_price }}
                                                     </span>
                                                 </div>
-                                                <!-- /.product_discount_price with discount -->
                                             @endif
 
                                         </div>
-                                        <!-- /.product-info -->
+
                                         <div class="cart clearfix animate-effect">
                                             <div class="action">
                                                 <ul class="list-unstyled">
@@ -1021,22 +959,14 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <!-- /.action -->
                                         </div>
-                                        <!-- /.cart -->
                                     </div>
-                                    <!-- /.product -->
-
                                 </div>
-                                <!-- /.products -->
                             </div>
-                            <!-- /.item CAROUSEL IMPORTANTE -->
                         @endforeach
-
                     </div>
-                    <!-- /.home-owl-carousel -->
                 </section>
-                <!-- /.section -->
+
                 <!-- ================================ SKIP CATEGORY 0 PRODUCTS TERMINA AQUI =========================================== -->
 
                 <!-- ================================ SKIP CATEGORY 1 PRODUCTS COMEÇA AQUI =========================================== -->
@@ -1065,7 +995,7 @@
                                                         alt="">
                                                 </a>
                                             </div>
-                                            <!-- /.image -->
+
 
                                             <!-- Lógica porcentagem -->
                                             @php
@@ -1095,7 +1025,7 @@
 
 
                                         </div>
-                                        <!-- /.product-image -->
+
 
                                         <div class="product-info text-left">
                                             <h3 class="name">
@@ -1121,7 +1051,6 @@
                                                         {{ $product->product_selling_price }}
                                                     </span>
                                                 </div>
-                                                <!-- /.product_selling_price without discount -->
                                             @else
                                                 <!-- caso contrário, mostrar valor com o desconto -->
                                                 <div class="product-price"> <span class="price">
@@ -1130,11 +1059,10 @@
                                                         {{ $product->product_selling_price }}
                                                     </span>
                                                 </div>
-                                                <!-- /.product_discount_price with discount -->
                                             @endif
 
                                         </div>
-                                        <!-- /.product-info -->
+
                                         <div class="cart clearfix animate-effect">
                                             <div class="action">
                                                 <ul class="list-unstyled">
@@ -1156,22 +1084,16 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <!-- /.action -->
                                         </div>
-                                        <!-- /.cart -->
                                     </div>
-                                    <!-- /.product -->
-
                                 </div>
-                                <!-- /.products -->
                             </div>
-                            <!-- /.item CAROUSEL IMPORTANTE -->
                         @endforeach
 
                     </div>
-                    <!-- /.home-owl-carousel -->
+
                 </section>
-                <!-- /.section -->
+
                 <!-- ================================ SKIP CATEGORY 1 PRODUCTS TERMINA AQUI =========================================== -->
 
                 <!-- ================================ SKIP BRAND 1 PRODUCTS COMEÇA AQUI =========================================== -->
@@ -1200,7 +1122,7 @@
                                                         alt="">
                                                 </a>
                                             </div>
-                                            <!-- /.image -->
+
 
                                             <!-- Lógica porcentagem -->
                                             @php
@@ -1230,7 +1152,7 @@
 
 
                                         </div>
-                                        <!-- /.product-image -->
+
 
                                         <div class="product-info text-left">
                                             <h3 class="name">
@@ -1256,7 +1178,6 @@
                                                         {{ $product->product_selling_price }}
                                                     </span>
                                                 </div>
-                                                <!-- /.product_selling_price without discount -->
                                             @else
                                                 <!-- caso contrário, mostrar valor com o desconto -->
                                                 <div class="product-price"> <span class="price">
@@ -1265,11 +1186,10 @@
                                                         {{ $product->product_selling_price }}
                                                     </span>
                                                 </div>
-                                                <!-- /.product_discount_price with discount -->
                                             @endif
 
                                         </div>
-                                        <!-- /.product-info -->
+
                                         <div class="cart clearfix animate-effect">
                                             <div class="action">
                                                 <ul class="list-unstyled">
@@ -1291,22 +1211,15 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <!-- /.action -->
                                         </div>
-                                        <!-- /.cart -->
                                     </div>
-                                    <!-- /.product -->
-
                                 </div>
-                                <!-- /.products -->
                             </div>
-                            <!-- /.item CAROUSEL IMPORTANTE -->
                         @endforeach
-
                     </div>
-                    <!-- /.home-owl-carousel -->
+
                 </section>
-                <!-- /.section -->
+
                 <!-- ================================ SKIP BRAND 1 PRODUCTS TERMINA AQUI =========================================== -->
 
                 <!-- ============================================== BEST SELLER ============================================== -->
@@ -1325,12 +1238,12 @@
                                                         <div class="image"> <a href="#"> <img
                                                                     src="assets/images/products/p20.jpg"
                                                                     alt=""> </a> </div>
-                                                        <!-- /.image -->
+
 
                                                     </div>
-                                                    <!-- /.product-image -->
+
                                                 </div>
-                                                <!-- /.col -->
+
                                                 <div class="col2 col-xs-7">
                                                     <div class="product-info">
                                                         <h3 class="name"><a href="#">Floral Print
@@ -1338,15 +1251,14 @@
                                                         <div class="rating rateit-small"></div>
                                                         <div class="product-price"> <span class="price"> $450.99
                                                             </span> </div>
-                                                        <!-- /.product-price -->
+
 
                                                     </div>
                                                 </div>
-                                                <!-- /.col -->
+
                                             </div>
-                                            <!-- /.product-micro-row -->
                                         </div>
-                                        <!-- /.product-micro -->
+
 
                                     </div>
                                     <div class="product">
@@ -1356,33 +1268,32 @@
                                                     <div class="product-image">
                                                         <div class="image"> <a href="#"> <img
                                                                     src="assets/images/products/p21.jpg"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
+                                                                    alt=""> </a>
+                                                        </div>
+
 
                                                     </div>
-                                                    <!-- /.product-image -->
+
                                                 </div>
-                                                <!-- /.col -->
+
                                                 <div class="col2 col-xs-7">
                                                     <div class="product-info">
                                                         <h3 class="name"><a href="#">Floral Print
                                                                 Buttoned</a></h3>
                                                         <div class="rating rateit-small"></div>
                                                         <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
+                                                            </span>
+                                                        </div>
+
 
                                                     </div>
                                                 </div>
-                                                <!-- /.col -->
                                             </div>
-                                            <!-- /.product-micro-row -->
                                         </div>
-                                        <!-- /.product-micro -->
-
                                     </div>
                                 </div>
                             </div>
+
                             <div class="item">
                                 <div class="products best-product">
                                     <div class="product">
@@ -1393,30 +1304,28 @@
                                                         <div class="image"> <a href="#"> <img
                                                                     src="assets/images/products/p22.jpg"
                                                                     alt=""> </a> </div>
-                                                        <!-- /.image -->
+
 
                                                     </div>
-                                                    <!-- /.product-image -->
+
                                                 </div>
-                                                <!-- /.col -->
+
                                                 <div class="col2 col-xs-7">
                                                     <div class="product-info">
                                                         <h3 class="name"><a href="#">Floral Print
                                                                 Buttoned</a></h3>
                                                         <div class="rating rateit-small"></div>
                                                         <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
+                                                            </span>
+                                                        </div>
+
 
                                                     </div>
                                                 </div>
-                                                <!-- /.col -->
                                             </div>
-                                            <!-- /.product-micro-row -->
                                         </div>
-                                        <!-- /.product-micro -->
-
                                     </div>
+
                                     <div class="product">
                                         <div class="product-micro">
                                             <div class="row product-micro-row">
@@ -1424,13 +1333,13 @@
                                                     <div class="product-image">
                                                         <div class="image"> <a href="#"> <img
                                                                     src="assets/images/products/p23.jpg"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
+                                                                    alt=""> </a>
+                                                        </div>
+
 
                                                     </div>
-                                                    <!-- /.product-image -->
                                                 </div>
-                                                <!-- /.col -->
+
                                                 <div class="col2 col-xs-7">
                                                     <div class="product-info">
                                                         <h3 class="name"><a href="#">Floral Print
@@ -1438,19 +1347,18 @@
                                                         <div class="rating rateit-small"></div>
                                                         <div class="product-price"> <span class="price"> $450.99
                                                             </span> </div>
-                                                        <!-- /.product-price -->
+
 
                                                     </div>
                                                 </div>
-                                                <!-- /.col -->
                                             </div>
-                                            <!-- /.product-micro-row -->
                                         </div>
-                                        <!-- /.product-micro -->
+
 
                                     </div>
                                 </div>
                             </div>
+
                             <div class="item">
                                 <div class="products best-product">
                                     <div class="product">
@@ -1460,31 +1368,29 @@
                                                     <div class="product-image">
                                                         <div class="image"> <a href="#"> <img
                                                                     src="assets/images/products/p24.jpg"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
+                                                                    alt=""> </a>
+                                                        </div>
+
 
                                                     </div>
-                                                    <!-- /.product-image -->
                                                 </div>
-                                                <!-- /.col -->
+
                                                 <div class="col2 col-xs-7">
                                                     <div class="product-info">
                                                         <h3 class="name"><a href="#">Floral Print
                                                                 Buttoned</a></h3>
                                                         <div class="rating rateit-small"></div>
                                                         <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
+                                                            </span>
+                                                        </div>
+
 
                                                     </div>
                                                 </div>
-                                                <!-- /.col -->
                                             </div>
-                                            <!-- /.product-micro-row -->
                                         </div>
-                                        <!-- /.product-micro -->
-
                                     </div>
+
                                     <div class="product">
                                         <div class="product-micro">
                                             <div class="row product-micro-row">
@@ -1492,33 +1398,31 @@
                                                     <div class="product-image">
                                                         <div class="image"> <a href="#"> <img
                                                                     src="assets/images/products/p25.jpg"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
+                                                                    alt=""> </a>
+                                                        </div>
+
 
                                                     </div>
-                                                    <!-- /.product-image -->
                                                 </div>
-                                                <!-- /.col -->
+
                                                 <div class="col2 col-xs-7">
                                                     <div class="product-info">
                                                         <h3 class="name"><a href="#">Floral Print
                                                                 Buttoned</a></h3>
                                                         <div class="rating rateit-small"></div>
                                                         <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
+                                                            </span>
+                                                        </div>
+
 
                                                     </div>
                                                 </div>
-                                                <!-- /.col -->
                                             </div>
-                                            <!-- /.product-micro-row -->
                                         </div>
-                                        <!-- /.product-micro -->
-
                                     </div>
                                 </div>
                             </div>
+
                             <div class="item">
                                 <div class="products best-product">
                                     <div class="product">
@@ -1528,31 +1432,30 @@
                                                     <div class="product-image">
                                                         <div class="image"> <a href="#"> <img
                                                                     src="assets/images/products/p26.jpg"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
+                                                                    alt=""> </a>
+                                                        </div>
+
 
                                                     </div>
-                                                    <!-- /.product-image -->
+
                                                 </div>
-                                                <!-- /.col -->
+
                                                 <div class="col2 col-xs-7">
                                                     <div class="product-info">
                                                         <h3 class="name"><a href="#">Floral Print
                                                                 Buttoned</a></h3>
                                                         <div class="rating rateit-small"></div>
                                                         <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
+                                                            </span>
+                                                        </div>
+
 
                                                     </div>
                                                 </div>
-                                                <!-- /.col -->
                                             </div>
-                                            <!-- /.product-micro-row -->
                                         </div>
-                                        <!-- /.product-micro -->
-
                                     </div>
+
                                     <div class="product">
                                         <div class="product-micro">
                                             <div class="row product-micro-row">
@@ -1560,38 +1463,37 @@
                                                     <div class="product-image">
                                                         <div class="image"> <a href="#"> <img
                                                                     src="assets/images/products/p27.jpg"
-                                                                    alt=""> </a> </div>
-                                                        <!-- /.image -->
+                                                                    alt=""> </a>
+                                                        </div>
+
 
                                                     </div>
-                                                    <!-- /.product-image -->
+
                                                 </div>
-                                                <!-- /.col -->
+
                                                 <div class="col2 col-xs-7">
                                                     <div class="product-info">
                                                         <h3 class="name"><a href="#">Floral Print
                                                                 Buttoned</a></h3>
                                                         <div class="rating rateit-small"></div>
                                                         <div class="product-price"> <span class="price"> $450.99
-                                                            </span> </div>
-                                                        <!-- /.product-price -->
+                                                            </span>
+                                                        </div>
+
 
                                                     </div>
                                                 </div>
-                                                <!-- /.col -->
                                             </div>
-                                            <!-- /.product-micro-row -->
                                         </div>
-                                        <!-- /.product-micro -->
+
 
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- /.sidebar-widget-body -->
                 </div>
-                <!-- /.sidebar-widget -->
+
                 <!-- ============================================== BEST SELLER : END ============================================== -->
 
                 <!-- ============================================== BLOG SLIDER ============================================== -->

@@ -1,11 +1,9 @@
-<!-- COPIEI E COLEI A VIEW CATEGORY E EXCLUI O COL MD-4 (ADICONAR CATEGORIA) -->
-
 @extends('admin.admin_master')
 @section('admin')
     <div class="content-wrapper" style="min-height: 326px;">
         <div class="container-full">
 
-            <!-- Main content -->
+
             <section class="content">
                 <div class="row">
 
@@ -17,7 +15,7 @@
                                         {{ count($products) }} </span></h3>
                                 <!-- função para contar quantidade de categorias inseridas pelo admin -->
                             </div>
-                            <!-- /.box-header -->
+
                             <div class="box-body">
                                 <div class="table-responsive">
                                     <table id="example1" class="table table-bordered table-striped">
@@ -45,15 +43,14 @@
                                                     <td>R$ {{ $product->product_selling_price }} </td>
                                                     <td>{{ $product->product_qty }} Unidades</td>
                                                     <td>
-                                                        <!-- LÓGICA: se o valor disconto do produto for nulo, retornar nulo, caso contrário, segue p/ a regra de três para mostrar percentagem do desconto -->
-                                                        <!-- Arrumar BUG do calculo da porcentagem desconto produto -->
-                                                        @if ($product->product_discount_price == null)
+                                                         {{-- LÓGICA: se o valor disconto do produto for nulo, retornar nulo, 
+                                                        caso contrário, segue p/ a regra de três para mostrar percentagem do desconto                                                         @if ($product->product_discount_price == null) --}}
                                                             <span class="badge badge-pill badge-danger"> Sem Desconto</span>
                                                         @else
                                                             <!-- Lógica percentagem desconto -->
                                                             @php
                                                                 $discount = $product->product_selling_price - $product->product_discount_price;
-                                                                $percentage = ( $discount / $product->product_selling_price) * 100;
+                                                                $percentage = ($discount / $product->product_selling_price) * 100;
                                                             @endphp
                                                             <span
                                                                 class="badge badge-pill badge-danger">{{ round($percentage) }}
@@ -105,15 +102,10 @@
                                     </table>
                                 </div>
                             </div>
-                            <!-- /.box-body -->
                         </div>
-                        <!-- /.box -->
                     </div>
-                    <!-- /.col -->
                 </div>
-                <!-- /.row -->
             </section>
-            <!-- /.content -->
         </div>
     </div>
 @endsection
