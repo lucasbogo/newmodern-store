@@ -27,7 +27,15 @@ use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
+
+# ========================================  HOME SEM MIDDLEWARE ========================================= #
+
 Route::get('/', [IndexController::class, 'index'])->name('index');
+
+
+
+# =====================================  ROTAS SEM MIDDLEWARE ADMIN ===================================== #
 
 Route::middleware('admin:admin')->group(function () {
     Route::get('admin/login', [AdminController::class, 'loginForm']);
@@ -35,7 +43,7 @@ Route::middleware('admin:admin')->group(function () {
 });
 
 
-# ======================================== TODAS AS ROTAS ADMIN PROTEGIDAS ========================================= #
+# =================================== TODAS AS ROTAS ADMIN PROTEGIDAS =================================== #
 
 
 Route::middleware([
@@ -45,12 +53,12 @@ Route::middleware([
         return view('admin.index');
     })->name('dashboard')->middleware('auth:admin');
 
-
     // Rota para logout do Admin
     Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 
     // Rota para manter perfil Admin
     Route::get('/admin/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
+
     // Rota para entrar em editar perfil Admin
     Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
 
@@ -67,10 +75,7 @@ Route::middleware([
 
 
 
-
-# ======================================== TODAS AS ROTAS USUARIO PROTEGIDAS COM MIDDLEWARE ======================================= #
-
-
+# ========================== TODAS AS ROTAS USUARIO PROTEGIDAS COM MIDDLEWARE =========================== #
 
 
 // login, registration, email verification, two-factor authentication, session management 
@@ -81,7 +86,6 @@ Route::middleware([
 
         return view('dashboard');
     });
-
     
     // Rota Usuario [LOGOUT] - rota para logout do usuario
     Route::get('/user/logout', [IndexController::class, 'UserLogout'])->name('user.logout');
@@ -429,6 +433,7 @@ Route::prefix('coupons')->group(function () {
     // Rota p/ ativar vouchers/cupons no painel admin edit product
     Route::get('/activate/{id}', [CouponController::class, 'ActivateCoupon'])->name('coupon.activate');
 });
+
 
 # =============================== TODAS AS ROTAS CUPOM AJAX FRONT-END ================================== #
 

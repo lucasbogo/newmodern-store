@@ -34,8 +34,8 @@
                                 <img src="<?php echo e(asset('backend/images/logo/logo.png')); ?>" width="200px" heigh="200px"
                                     alt="">
                             </div>
-                            <h2 class="text-white">NewModern Admin</h2>
-                            <p class="text-white-50">Entre para começar sua sessão.</p>
+                            <h2 class="text-white"> Administração</h2>
+                            <p class="text-black-50">Iniciar Sessão.</p>
                         </div>
                         <div class="p-30 rounded30 box-shadowed b-2 b-dashed">
 

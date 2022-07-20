@@ -135,4 +135,23 @@ class CartController extends Controller
             return response()->json(['error' => 'Cupom Inválido']);
         }
     }
+
+    public function CouponCalculation()
+    {
+        if (Session::has('coupon')) {
+            return response()->json(array(
+                'subtotal' => Cart::total(),
+                'coupon_name' => session()->get('coupon')['coupon_name'],
+                'coupon_discount' => session()->get('coupon')['coupon_discount'],
+                'discount_amout' => session()->get('coupon')['discount_amout'],
+                'total_amout' =>  session()->get('coupon')['total_amout'],
+
+            ));
+        } else {
+            
+            return response()->json(array(
+                'total' => Cart::total(),
+            ));
+        }
+    }
 }
