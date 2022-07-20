@@ -9,10 +9,10 @@
                             ? url('upload/user_images/' . $user->profile_photo_path)
                             : url('upload/no-image.png') }}"
                         style=" width: 100px; height: 100px;"><br><br>
-                    <!-- bootstrap class list-group e list-group-flush -->
+
                     <ul class="list-group list-group-flush">
-                        <!-- botão primário pequeno -->
-                        <a href="{{ route('dashboard') }}" class="btn btn-primary btn-sm btn-block">Home</a>
+
+                        <a href="{{ route('index') }}" class="btn btn-primary btn-sm btn-block">Home</a>
                         <a href="{{ route('user.profile') }}" class="btn btn-primary btn-sm btn-block">
                             <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
                             @if (session()->get('language') == 'portuguese')
@@ -38,16 +38,13 @@
                                 Logout
                             @endif
                         </a>
-
                     </ul>
+                </div>
+
+                <div class="col-md-2"> </div>
 
 
-                </div><!-- /col -->
 
-                <div class="col-md-2">
-
-
-                </div><!-- /col -->
 
                 <div class="col-md-6">
                     <div class="card">
@@ -131,19 +128,15 @@
                                         @endif
                                     </button>
 
-                            </form><!-- end form method post -->
+                            </form>
 
 
 
-                        </div><!-- /div button -->
-
-                    </div><!-- /div class "card-body" -->
-                </div><!-- /div class="card" -->
-
-
-            </div><!-- /col -->
-
-        </div><!-- /row -->
-    </div><!-- /container -->
-    </div><!-- /content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 @endsection

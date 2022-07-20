@@ -80,7 +80,7 @@ class IndexController extends Controller
         auth()->guard('web')->logout();
 
         // Após logout, o usuario é redirecionado para a pagina login
-        return Redirect()->route('dashboard');
+        return Redirect()->route('index');
     }
 
     //  [PROFILE]
@@ -120,7 +120,7 @@ class IndexController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect()->route('dashboard')->with($notification);
+        return redirect()->route('index')->with($notification);
     }
 
     // Método para atualizar senha usuario

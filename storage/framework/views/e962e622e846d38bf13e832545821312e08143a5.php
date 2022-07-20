@@ -110,6 +110,7 @@
     </div>
 
 
+
     <!-- Vendor JS -->
     <script src="<?php echo e(asset('backend/js/vendors.min.js')); ?>"></script>
     <script src="<?php echo e(asset('../assets/icons/feather-icons/feather.min.js')); ?>"></script>

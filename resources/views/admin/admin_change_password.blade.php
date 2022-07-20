@@ -3,8 +3,8 @@
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <!-- Utilizei o a recuperação de senha default do JETSTREAM localizado
-                                     em views/profile/update-passwors-form.blade.php -->
+     {{-- Utilizei o a recuperação de senha default do JETSTREAM localizado
+    em views/profile/update-passwors-form.blade.php  --}}
 
     <div class="content-wrapper" style="min-height: 326px;">
         <div class="container-full">

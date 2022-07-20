@@ -22,8 +22,8 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Nome/Tipo </th>
-                                            <th>Desconto</th>
+                                            <th>Nome </th>
+                                            <th>Desc..</th>
                                             <th>Validade </th>
                                             <th>Status </th>
                                             <th>Action</th>
@@ -39,15 +39,23 @@
                                                     {{ Carbon\Carbon::parse($coupon->coupon_validity)->format('D,d F Y') }}
                                                 </td>
 
-
                                                 <td>
+                                                    @if ($coupon->coupon_validity >= Carbon\Carbon::now()->format('Y-m-d'))
+                                                        <span class="badge badge-pill badge-success"> Valid </span>
+                                                    @else
+                                                        <span class="badge badge-pill badge-danger"> Invalid </span>
+                                                    @endif
+
+                                                </td>
+
+                                                {{-- <td>
                                                     @if ($coupon->status == 1)
                                                         <span class="badge badge-pill badge-success"> Valido </span>
                                                     @else
                                                         <span class="badge badge-pill badge-danger"> Invalido </span>
                                                     @endif
 
-                                                </td>
+                                                </td> --}}
 
                                                 <td width="40%">
                                                     <a href="{{ route('coupon.edit', $coupon->id) }}"
@@ -58,16 +66,16 @@
                                                         class="btn btn-danger" title="Delete Data" id="delete">
                                                         <i class="fa fa-trash"></i></a>
 
-                                                    <!--CONDIÇÃO: Se o cupom/voucher for igual a um, então, mostrar botão decrementar apenas um, caso contrário, mostrar incrementar apenas um  -->
+                                                    {{-- <!--CONDIÇÃO: Se o cupom/voucher for igual a um, então, mostrar botão decrementar apenas um, caso contrário, mostrar incrementar apenas um  -->
                                                     @if ($coupon->status == 1)
                                                         <a href="{{ route('coupon.inactivate', $coupon->id) }}"
-                                                            class="btn btn-dark btn-sm" title="Desativar"><i
+                                                            class="btn btn-dark" title="Desativar"><i
                                                                 class="fa fa-arrow-down"></i> </a>
                                                     @else
                                                         <a href="{{ route('coupon.activate', $coupon->id) }}"
-                                                            class="btn btn-light btn-sm" title="Ativar"><i
+                                                            class="btn btn-light" title="Ativar"><i
                                                                 class="fa fa-arrow-up"></i> </a>
-                                                    @endif
+                                                    @endif --}}
                                                 </td>
 
                                             </tr>

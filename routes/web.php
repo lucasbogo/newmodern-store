@@ -27,31 +27,15 @@ use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', [IndexController::class, 'index'])->name('index');
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-/*
-Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function () {
+Route::middleware('admin:admin')->group(function () {
     Route::get('admin/login', [AdminController::class, 'loginForm']);
     Route::post('admin/login', [AdminController::class, 'store'])->name('admin.login');
 });
-*/
 
 
-
-//Route::middleware('admin:admin')->group(function () {
-
-
-# ======================================== TODAS AS ROTAS ADMIN ========================================= #
+# ======================================== TODAS AS ROTAS ADMIN PROTEGIDAS ========================================= #
 
 
 Route::middleware([
@@ -61,33 +45,33 @@ Route::middleware([
         return view('admin.index');
     })->name('dashboard')->middleware('auth:admin');
 
-    Route::get('admin/login', [AdminController::class, 'loginForm']);
-
-    Route::post('admin/login', [AdminController::class, 'store'])->name('admin.login');
 
     // Rota para logout do Admin
-    Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout')->middleware('auth:admin');
+    Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 
     // Rota para manter perfil Admin
-    Route::get('/admin/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile')->middleware('auth:admin');
+    Route::get('/admin/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
     // Rota para entrar em editar perfil Admin
-    Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit')->middleware('auth:admin');
+    Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
 
     // Rota que aceita os dados anexados no corpo da mensagem de requisição para armazenamento [POST admin.edit.profile]
-    Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store')->middleware('auth:admin');
+    Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
 
     // Rota para mudar senha Admin
-    Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password')->middleware('auth:admin');
+    Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
 
     // Rota que aceita as mudanças senha Admin
-    Route::post('/update/change/password', [AdminProfileController::class, 'AdminUpdateChangePassword'])->name('update.change.password')->middleware('auth:admin');
+    Route::post('/update/change/password', [AdminProfileController::class, 'AdminUpdateChangePassword'])->name('update.change.password');
 });
 
 
 
 
 
-# ======================================== TODAS AS ROTAS USUARIO ======================================= #
+# ======================================== TODAS AS ROTAS USUARIO PROTEGIDAS COM MIDDLEWARE ======================================= #
+
+
+
 
 // login, registration, email verification, two-factor authentication, session management 
 Route::middleware([
@@ -98,9 +82,7 @@ Route::middleware([
         return view('dashboard');
     });
 
-    // Rota Usuario [HOME] - primeira página, serve tanto para visitante como usuário
-    Route::get('/', [IndexController::class, 'index'])->name('index');
-
+    
     // Rota Usuario [LOGOUT] - rota para logout do usuario
     Route::get('/user/logout', [IndexController::class, 'UserLogout'])->name('user.logout');
 
@@ -441,13 +423,15 @@ Route::prefix('coupons')->group(function () {
     // Rota p/ excluir os vouchers/cupons
     Route::get('/delete/{id}', [CouponController::class, 'CouponDelete'])->name('coupon.delete');
 
-    // Rota p/ inativar produto no painel admin edit product
+    // Rota p/ inativar vouchers/cupons no painel admin edit product
     Route::get('/inactivate/{id}', [CouponController::class, 'InactivateCoupon'])->name('coupon.inactivate');
 
-    // Rota p/ ativar produto no painel admin edit product
+    // Rota p/ ativar vouchers/cupons no painel admin edit product
     Route::get('/activate/{id}', [CouponController::class, 'ActivateCoupon'])->name('coupon.activate');
 });
 
 # =============================== TODAS AS ROTAS CUPOM AJAX FRONT-END ================================== #
 
 Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
+
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
