@@ -93,7 +93,7 @@
                         </div>
                     </div>
 
-                    <!-- ======================== CAMPO CALCULAR VALOR FRETE (FUTURO) ========================  -->
+                    <!-- ======================== CAMPO CALCULAR VALOR FRETE (IMPLEMENTAR FUTURAMENTE) ========================  -->
                     <div class="col-md-4 col-sm-12 estimate-ship-tax">
                         {{-- <table class="table">
                             <thead>
@@ -146,14 +146,15 @@
                     </div>
 
 
-
-                    <!-- ======================== ADICIONAR CUPOM/VOUCHERS (FUTURO) ========================  -->
+                    <!-- ======================== ADICIONAR CUPOM/VOUCHERS (IMPLEMENTAR FUTURAMENTE) ========================  -->
                     <div class="col-md-4 col-sm-12 estimate-ship-tax">
+
                         {{-- CONDIÇÃO: após aplicar cupom, esconder o campo (mostrar vazio) p/ aplicar cupom, 
                             evitando que o cliente insira vários em uma compra --}}
-                        @if (Session::has('coupon'))
+
+                        {{-- @if (Session::has('coupon'))
                         @else
-                            <table class="table">
+                            <table class="table" id="couponField">
                                 <thead>
                                     <tr>
                                         <th>
@@ -180,7 +181,7 @@
                                             <div class="form-group">
                                                 <input type="text"
                                                     class="form-control unicase-form-control text-input"
-                                                    placeholder="Voucher" id="coupon_name">
+                                                    placeholder="Insira seu cupom" id="coupon_name">
                                             </div>
                                             <div class="clearfix pull-right">
                                                 <button type="submit" class="btn-upper btn btn-primary"
@@ -198,20 +199,21 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        @endif
+                        @endif --}}
                     </div>
 
                     <!-- ======================== CAMPO SUBTOTAL/TOTAL ========================  -->
                     <div class="col-md-4 col-sm-12 cart-shopping-total">
                         <table class="table">
                             <thead id="couponCalField">
-                                    {{-- INSERT AJAX HERE --}}
+
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>
                                         <div class="cart-checkout-btn pull-right">
-                                            <button type="submit" class="btn btn-primary checkout-btn">
+                                            <a href="{{ route('checkout') }}" type="submit"
+                                                class="btn btn-primary checkout-btn">
                                                 @if (session()->get('language') == 'portuguese')
                                                     FAZER O
                                                     CHECKOUT
@@ -219,27 +221,32 @@
                                                     PROCEED TO
                                                     CHEKOUT
                                                 @endif
-                                            </button>
-                                        </div>
+                                            </a>
+
+                                        </div> 
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+
+
+
+
+
+
+
+
+
+
                 </div>
             </div>
+
+
+
+            <br>
+            @include('frontend.body.brands')
         </div>
-        <br>
 
 
-        @include('frontend.body.brands')
-
-    </div>
-</div>
-
-
-
-
-
-
-@endsection
+    @endsection

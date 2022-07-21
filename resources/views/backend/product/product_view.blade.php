@@ -43,8 +43,10 @@
                                                     <td>R$ {{ $product->product_selling_price }} </td>
                                                     <td>{{ $product->product_qty }} Unidades</td>
                                                     <td>
-                                                         {{-- LÓGICA: se o valor disconto do produto for nulo, retornar nulo, 
-                                                        caso contrário, segue p/ a regra de três para mostrar percentagem do desconto                                                         @if ($product->product_discount_price == null) --}}
+                                                        {{-- <!-- LÓGICA: se o valor disconto do produto for nulo, retornar nulo,
+                                                            caso contrário, segue p/ a regra de três para mostrar percentagem do desconto --> --}}
+
+                                                        @if ($product->product_discount_price == null)
                                                             <span class="badge badge-pill badge-danger"> Sem Desconto</span>
                                                         @else
                                                             <!-- Lógica percentagem desconto -->
@@ -67,7 +69,7 @@
                                                     </td>
 
                                                     <!-- caso necessário, mudar o widht table buttons para caber certinho -->
-                                                    <td width="">
+                                                    <td width="30%">
                                                         <!-- Ver Detalhes Produto(s) -->
                                                         <a href="{{ route('product.manage', $product->id) }}"
                                                             class="btn btn-info" title="Detalhes Produto"><i

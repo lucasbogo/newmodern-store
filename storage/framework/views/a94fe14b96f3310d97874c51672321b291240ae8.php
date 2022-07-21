@@ -408,62 +408,7 @@ unset($__errorArgs, $__bag); ?>
                                                     </div>
                                                 </div>
 
-                                                <!-- INSERIR TAGS INGLÊS -->
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <h5>Tags (EN) <span class="text-info">OPCIONAL</span></h5>
-                                                        <div class="controls">
-                                                            <input type="text" name="product_tags_en"
-                                                                class="form-control" value="" required=""
-                                                                data-role="tagsinput">
-
-                                                            <?php $__errorArgs = ['product_tags_en'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                                                <span class="text-danger"><?php echo e($message); ?></span>
-                                                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-
-
-                                                        </div>
-                                                    </div>
-                                                </div> <!-- /col-md-4 -->
-
-                                            </div><!-- /row -->
-
-                                            <br>
-                                            <br>
-
-                                            <!-- SEXTA ROW -->
-                                            <div class="row">
-
-                                                <!-- INSERIR TAGS PORTUGUÊS-->
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <h5>Tags (PTBR) <span class="text-info">OPCIONAL</span></h5>
-                                                        <div class="controls">
-                                                            <input type="text" name="product_tags_pt"
-                                                                class="form-control" value="" required=""
-                                                                data-role="tagsinput">
-
-                                                            <?php $__errorArgs = ['product_tags_pt'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                                                <span class="text-danger"><?php echo e($message); ?></span>
-                                                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                
 
                                                 <!-- TAMANHO PRODUTO INGLÊS -->
                                                 <div class="col-md-4">

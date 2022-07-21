@@ -86,7 +86,7 @@ Route::middleware([
 
         return view('dashboard');
     });
-    
+
     // Rota Usuario [LOGOUT] - rota para logout do usuario
     Route::get('/user/logout', [IndexController::class, 'UserLogout'])->name('user.logout');
 
@@ -435,8 +435,20 @@ Route::prefix('coupons')->group(function () {
 });
 
 
-# =============================== TODAS AS ROTAS CUPOM AJAX FRONT-END ================================== #
+# =============================== TODAS AS ROTAS CUPOM AJAX FRONT-END (revisar lógica, ids, etc.) ================================== #
 
+// Rota AJAX p/ aplicar cupom
 Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
 
+// Rota AJAX p/ calcular desconto cupom
 Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
+
+// Rota AJAX p/ calcular desconto cupom
+Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
+
+
+
+# =============================== TODAS AS ROTAS CHECKOUT ================================== #
+
+// Rota proceder checkout
+Route::get('/checkout', [CartController::class, 'CouponRemove']);

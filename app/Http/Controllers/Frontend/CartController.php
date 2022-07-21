@@ -17,6 +17,11 @@ class CartController extends Controller
     // Método p/ adicionar Item no Carrinho
     public function AddToCart(Request $request, $id)
     {
+        // Tentativa de aplicar cupom
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+         }
+
         $product = Product::findOrFail($id);
 
         if ($product->product_discount_price == null) {
@@ -54,7 +59,7 @@ class CartController extends Controller
         }
     }
 
-    // Método para adicionar Carrinho Temporário
+    // Método para adicionar Carrinho header
     public function AddMiniCart()
     {
         // bumbummen99/shoppingcart  
@@ -116,6 +121,7 @@ class CartController extends Controller
     {
         // Relação db cupom com o field name ajax econtrada na main_master
         $coupon = Coupon::where('coupon_name', $request->coupon_name)->where('coupon_validity', '>=', Carbon::now()->format('Y-m-d'))->first();
+
         // Condição: se existe cupom, e o mesmo está nos conformes, 'colocar' cupom na sessão usuário
         // Mostrar nome, disconto, calcular o descconto e valor total após desconto.
         if ($coupon) {
@@ -136,6 +142,7 @@ class CartController extends Controller
         }
     }
 
+    // Método p/ calcular desconto do valor total dos produtos com cupom utilizando funções do parte bumbummen
     public function CouponCalculation()
     {
         if (Session::has('coupon')) {
@@ -148,10 +155,18 @@ class CartController extends Controller
 
             ));
         } else {
-            
+
             return response()->json(array(
                 'total' => Cart::total(),
             ));
         }
+    }
+
+    // Método p/ remover cupom
+    public function CouponRemove()
+    {
+        // lógica simples: apenas esquecer o cupom inserido na Sessão usuário ou visitante.
+        Session::forget('coupon');
+        return response()->json(['success' => 'Cupom Removido com Sucesso']);
     }
 }
