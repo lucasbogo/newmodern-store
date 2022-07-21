@@ -23,9 +23,9 @@
                     @endif
                 </li>
             </ul>
-        </div><!-- /.breadcrumb-inner -->
-    </div><!-- /.container -->
-</div><!-- /.breadcrumb -->
+        </div>
+    </div>
+</div>
 
 <div class="body-content">
     <div class="container">
@@ -45,6 +45,7 @@
                                     </th>
                                 </tr>
                             </thead>
+
                             <!-- Chamei, pelo Id, o Ajax wishlist codificado na main_master -->
                             <tbody id="wishlist">
 
@@ -53,8 +54,8 @@
                         </table>
                     </div>
                 </div>
-            </div><!-- /.row -->
-        </div><!-- /.sigin-in-->
+            </div>
+        </div>
         <br>
 
 

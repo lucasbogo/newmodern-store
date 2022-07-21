@@ -20,7 +20,7 @@ class CartController extends Controller
         // Tentativa de aplicar cupom
         if (Session::has('coupon')) {
             Session::forget('coupon');
-         }
+        }
 
         $product = Product::findOrFail($id);
 
@@ -117,6 +117,7 @@ class CartController extends Controller
     // ============================= MÉTODOS  AJAX APLICAR VOUCHER/CUPOM  ============================= //
 
     // Método aplicar voucher/cupom ajax
+    // Não precisa focar muito, será implmentado futuramente
     public function CouponApply(Request $request)
     {
         // Relação db cupom com o field name ajax econtrada na main_master
@@ -143,6 +144,7 @@ class CartController extends Controller
     }
 
     // Método p/ calcular desconto do valor total dos produtos com cupom utilizando funções do parte bumbummen
+    // Não precisa focar muito, será implmentado futuramente
     public function CouponCalculation()
     {
         if (Session::has('coupon')) {
@@ -169,4 +171,41 @@ class CartController extends Controller
         Session::forget('coupon');
         return response()->json(['success' => 'Cupom Removido com Sucesso']);
     }
+
+    // Método para redirecionar usuário à página checkout
+    public function Checkout()
+    {
+        // Para prosseguir p/ o checkout, o usuário deve estar autenticado. Se estiver td certo, prosseguir,
+        // Caso contrário, notificar e redirecionar para login
+        if (Auth::check()) {
+            // Se o carrrinho for maior que 0, proceder p/ a página checkout
+            if (Cart::total() > 0) {
+
+                $carts = Cart::content();
+                $cartQty = Cart::count();
+                $cartTotal = Cart::total();
+
+
+                return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal'));
+                // Se o carrinho estiver vazio e o usuário clickar em 'proceder c/ o checkout'
+                // Então, notificar e redirecionar para a home.
+            } else {
+                
+                $notification = array(
+                    'message' => 'Adicionar pelo menos um produto',
+                    'alert-type' => 'error'
+                );
+
+                return redirect()->to('/')->with($notification);
+            }
+        } else {
+
+            $notification = array(
+                'message' => 'Voce precisa efetuar Login primeiro',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->route('login')->with($notification);
+        }
+    }  
 }

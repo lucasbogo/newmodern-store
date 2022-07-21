@@ -451,4 +451,4 @@ Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 # =============================== TODAS AS ROTAS CHECKOUT ================================== #
 
 // Rota proceder checkout
-Route::get('/checkout', [CartController::class, 'CouponRemove']);
+Route::get('/checkout', [CartController::class, 'Checkout'])->name('checkout');
