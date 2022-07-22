@@ -14,10 +14,8 @@
                     @endif
                 </li>
             </ul>
-        </div><!-- /.breadcrumb-inner -->
-    </div><!-- /.container -->
-
-
+        </div>
+    </div>
     <div class="container">
         <div class="sign-in-page">
             <div class="row">
@@ -40,17 +38,17 @@
                         @endif
                     </p>
 
-                    <!-- LOGIN VIA REDES SOCIAIS
-                <div class="social-sign-in outer-top-xs">
-                <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
-                <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
-                </div>
-                -->
+                    <!-- LOGIN VIA REDES SOCIAIS (IMPLEMENTAR FUTURAMENTE) -->
+                    {{-- <div class="social-sign-in outer-top-xs">
+                        <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
+                        <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
+                    </div> --}}
+
 
                     <!-- IMPORTANTE: formulario de LOGIN usuario-->
 
-                    <!--isset($guard) pega o 'guard' admin + /login (admin/login)
-                            caso contrário, pega o login comum | serve como Multi Auth admin - user -->
+                    {{-- isset($guard) pega o 'guard' admin + /login (admin/login)
+                    caso contrário, pega o login comum | serve como Multi Auth admin - user --}}
 
                     <form method="POST" action="{{ isset($guard) ? url($guard . '/login') : route('login') }}">
                         @csrf
@@ -200,78 +198,73 @@
                             <input type="text" id="phone" name="phone"
                                 class="form-control unicase-form-control text-input">
 
-                            <!-- toaster, mensagem erro PREENCHIMENTO OBRIGATÓRIO. Deixar RED -->
+                            <!-- toaster, mensagem erro PREENCHIMENTO OBRIGATÓRIO -->
                             @error('phone')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
 
-                        <!-- SENHA -->
-                        <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">
+
+                            <!-- SENHA -->
+                            <div class="form-group">
+                                <label class="info-title" for="exampleInputEmail1">
+                                    <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                    @if (session()->get('language') == 'portuguese')
+                                        Senha
+                                    @else
+                                        Password
+                                    @endif
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="password" id="password" name="password"
+                                    class="form-control unicase-form-control text-input">
+
+                                <!-- toaster, mensagem erro PREENCHIMENTO OBRIGATÓRIO -->
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+
+                            <!-- CONFIRMAÇÃO DE SENHA -->
+                            <div class="form-group">
+                                <label class="info-title" for="exampleInputEmail1">
+                                    <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                    @if (session()->get('language') == 'portuguese')
+                                        Confirmar Senha
+                                    @else
+                                        Confirm Password
+                                    @endif
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="password" id="password_confirmation" name="password_confirmation"
+                                    class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+
+                                <!-- toaster, mensagem erro PREENCHIMENTO OBRIGATÓRIO. Deixar RED -->
+                                @error('password_confirmation')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <button type="submit" class="btn-upper btn btn-primary checkout-page-button">
                                 <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
                                 @if (session()->get('language') == 'portuguese')
-                                    Senha
+                                    Registrar
                                 @else
-                                    Password
+                                    Sign Up
                                 @endif
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="password" id="password" name="password"
-                                class="form-control unicase-form-control text-input">
+                            </button>
 
-                            <!-- toaster, mensagem erro PREENCHIMENTO OBRIGATÓRIO. Deixar RED -->
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-
-                        <!-- CONFIRMAÇÃO DE SENHA -->
-                        <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">
-                                <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
-                                @if (session()->get('language') == 'portuguese')
-                                    Confirmar Senha
-                                @else
-                                    Confirm Password
-                                @endif
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="password" id="password_confirmation" name="password_confirmation"
-                                class="form-control unicase-form-control text-input" id="exampleInputEmail1">
-
-                            <!-- toaster, mensagem erro PREENCHIMENTO OBRIGATÓRIO. Deixar RED -->
-                            @error('password_confirmation')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-
-
-                        <button type="submit" class="btn-upper btn btn-primary checkout-page-button">
-                            <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
-                            @if (session()->get('language') == 'portuguese')
-                                Registrar
-                            @else
-                                Sign Up
-                            @endif
-                        </button>
                     </form>
-
                 </div>
             </div>
-
-
-            <!--FINAL create a new account -->
-        </div><!-- /.row -->
-    </div><!-- FINAL sigin-in-->
+        </div>
+    </div>
 
     <!-- INCLUSÃO DAS LOGOMARCAS -->
     @include('frontend.body.brands')

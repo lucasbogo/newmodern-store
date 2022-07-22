@@ -1,12 +1,16 @@
 @extends('frontend.main_master')
 @section('content')
     <!-- Query Builder -->
+    {{-- Desenvolvido à partir do Database Access Objects, o query builder permite que você construa 
+    uma instrução SQL em um programático e independente de banco de dados. Comparado a escrever 
+    instruções SQL à mão, usar query builder lhe ajudará a escrever um código SQL relacional mais 
+    legível e gerar declarações SQL mais seguras.  --}}
     @php
     $user = DB::table('users')
         ->where('id', Auth::user()->id)
         ->first();
     @endphp
-    <!-- /query builder -->
+    
 
 
     <div class="body-content">
@@ -18,9 +22,9 @@
                             ? url('upload/user_images/' . $user->profile_photo_path)
                             : url('upload/no-image.png') }}"
                         style=" width: 100px; height: 100px;"><br><br>
-                    <!-- bootstrap class list-group e list-group-flush -->
+                   
                     <ul class="list-group list-group-flush">
-                        <!-- botão primário pequeno -->
+                        
                         <a href="{{ route('dashboard') }}" class="btn btn-primary btn-sm btn-block">Home</a>
                         <a href="{{ route('user.profile') }}" class="btn btn-primary btn-sm btn-block">
                             <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
@@ -51,12 +55,11 @@
                     </ul>
 
 
-                </div><!-- /col -->
+                </div>
 
                 <div class="col-md-2">
-
-
-                </div><!-- /col -->
+                    <!-- PLACEHOLDER: se tirar, bagunça o layout -->
+                </div>
 
                 <div class="col-md-6">
                     <div class="card">
@@ -126,16 +129,12 @@
                                         @endif
                                     </button>
 
-                                </div><!-- /div button -->
-                            </form><!-- end form method post -->
-
-                        </div><!-- /div class "card-body" -->
-                    </div><!-- /div class="card" -->
-
-
-                </div><!-- /col -->
-
-            </div><!-- /row -->
-        </div><!-- /container -->
-    </div><!-- /content -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

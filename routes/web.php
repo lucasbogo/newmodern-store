@@ -321,7 +321,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     // Rota p/ acessar a página view Lista de Desejos
     Route::get('/wishlist', [WishListController::class, 'ViewWishList'])->name('wishlist');
 
-    // Rota declarada na url Ajax, p/ pegar o produto adicionado la lista de desejos e mostrar na view lista desejos
+    // Rota AJAX, p/ pegar o produto adicionado la lista de desejos e mostrar na view lista desejos
     Route::get('/get-wishlist-product', [WishListController::class, 'GetWishListProduct']);
 
     // ROTA AJAX Remover dados lista des. - como usei url, não é necessário nomear a rota
@@ -334,16 +334,16 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
 // Rota Meu Carrinho View Page.
 Route::get('/mycart', [MyCartController::class, 'MyCart'])->name('mycart');
 
-// Rota Ajax adicionar Itens na view Meu Carrinho. URL
+// Rota AJAX adicionar Itens na view Meu Carrinho. URL
 Route::get('/user/get-cart-product', [MyCartController::class, 'GetCartProduct']);
 
-// Rota Ajax excluir Itens na view Meu Carrinho. URL
+// Rota AJAX excluir Itens na view Meu Carrinho. URL
 Route::get('/user/cart-remove/{rowId}', [MyCartController::class, 'RemoveCartProduct']);
 
-// Rota Ajax incrementar Itens na view Meu Carrinho. URL
+// Rota AJAX incrementar Itens na view Meu Carrinho. URL
 Route::get('/cart-increment/{rowId}', [MyCartController::class, 'CartProductIncrement']);
 
-// Rota Ajax decrementar Itens na view Meu Carrinho. URL
+// Rota AJAX decrementar Itens na view Meu Carrinho. URL
 Route::get('/cart-decrement/{rowId}', [MyCartController::class, 'CartProductDecrement']);
 
 # ==================================== TODAS AS ROTAS ADMIN SHIPPING/ENVIO ============================== #

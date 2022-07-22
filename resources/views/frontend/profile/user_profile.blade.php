@@ -59,9 +59,11 @@
                                 {{ Auth::user()->name }}</strong>
                             <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
                             @if (session()->get('language') == 'portuguese')
-                                Você pode editar o seu perfil aqui.
+                                Você pode editar
+                                o seu perfil aqui.
                             @else
-                                You can edit your profile here.
+                                You can edit
+                                your profile here.
                             @endif
                         </h3>
 

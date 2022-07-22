@@ -14,11 +14,9 @@
                     <?php endif; ?>
                 </li>
             </ul>
-        </div><!-- /.breadcrumb-inner -->
-    </div><!-- /.container -->
-
-
-    <div class="container">
+        </div>
+    </div>
+    < <div class="container">
         <div class="sign-in-page">
             <div class="row">
                 <!-- Sign-in -->
@@ -41,16 +39,16 @@
                     </p>
 
                     <!-- LOGIN VIA REDES SOCIAIS
-                <div class="social-sign-in outer-top-xs">
-                <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
-                <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
-                </div>
-                -->
+                            <div class="social-sign-in outer-top-xs">
+                            <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
+                            <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
+                            </div>
+                            -->
 
                     <!-- IMPORTANTE: formulario de LOGIN usuario-->
 
                     <!--isset($guard) pega o 'guard' admin + /login (admin/login)
-                            caso contrário, pega o login comum | serve como Multi Auth admin - user -->
+                                        caso contrário, pega o login comum | serve como Multi Auth admin - user -->
 
                     <form method="POST" action="<?php echo e(isset($guard) ? url($guard . '/login') : route('login')); ?>">
                         <?php echo csrf_field(); ?>
@@ -214,7 +212,7 @@ unset($__errorArgs, $__bag); ?>
                             <input type="text" id="phone" name="phone"
                                 class="form-control unicase-form-control text-input">
 
-                            <!-- toaster, mensagem erro PREENCHIMENTO OBRIGATÓRIO. Deixar RED -->
+                            <!-- toaster, mensagem erro PREENCHIMENTO OBRIGATÓRIO -->
                             <?php $__errorArgs = ['phone'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -227,89 +225,84 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                        </div>
 
-                        <!-- SENHA -->
-                        <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">
-                                <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
-                                <?php if(session()->get('language') == 'portuguese'): ?>
-                                    Senha
-                                <?php else: ?>
-                                    Password
-                                <?php endif; ?>
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="password" id="password" name="password"
-                                class="form-control unicase-form-control text-input">
 
-                            <!-- toaster, mensagem erro PREENCHIMENTO OBRIGATÓRIO. Deixar RED -->
-                            <?php $__errorArgs = ['password'];
+                            <!-- SENHA -->
+                            <div class="form-group">
+                                <label class="info-title" for="exampleInputEmail1">
+                                    <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                    <?php if(session()->get('language') == 'portuguese'): ?>
+                                        Senha
+                                    <?php else: ?>
+                                        Password
+                                    <?php endif; ?>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="password" id="password" name="password"
+                                    class="form-control unicase-form-control text-input">
+
+                                <!-- toaster, mensagem erro PREENCHIMENTO OBRIGATÓRIO -->
+                                <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                <span class="invalid-feedback" role="alert">
-                                    <strong><?php echo e($message); ?></strong>
-                                </span>
-                            <?php unset($message);
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong><?php echo e($message); ?></strong>
+                                    </span>
+                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                        </div>
+                            </div>
 
 
-                        <!-- CONFIRMAÇÃO DE SENHA -->
-                        <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">
-                                <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
-                                <?php if(session()->get('language') == 'portuguese'): ?>
-                                    Confirmar Senha
-                                <?php else: ?>
-                                    Confirm Password
-                                <?php endif; ?>
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="password" id="password_confirmation" name="password_confirmation"
-                                class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                            <!-- CONFIRMAÇÃO DE SENHA -->
+                            <div class="form-group">
+                                <label class="info-title" for="exampleInputEmail1">
+                                    <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                    <?php if(session()->get('language') == 'portuguese'): ?>
+                                        Confirmar Senha
+                                    <?php else: ?>
+                                        Confirm Password
+                                    <?php endif; ?>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="password" id="password_confirmation" name="password_confirmation"
+                                    class="form-control unicase-form-control text-input" id="exampleInputEmail1">
 
-                            <!-- toaster, mensagem erro PREENCHIMENTO OBRIGATÓRIO. Deixar RED -->
-                            <?php $__errorArgs = ['password_confirmation'];
+                                <!-- toaster, mensagem erro PREENCHIMENTO OBRIGATÓRIO. Deixar RED -->
+                                <?php $__errorArgs = ['password_confirmation'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                <span class="invalid-feedback" role="alert">
-                                    <strong><?php echo e($message); ?></strong>
-                                </span>
-                            <?php unset($message);
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong><?php echo e($message); ?></strong>
+                                    </span>
+                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                        </div>
+                            </div>
 
+                            <button type="submit" class="btn-upper btn btn-primary checkout-page-button">
+                                <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                <?php if(session()->get('language') == 'portuguese'): ?>
+                                    Registrar
+                                <?php else: ?>
+                                    Sign Up
+                                <?php endif; ?>
+                            </button>
 
-
-                        <button type="submit" class="btn-upper btn btn-primary checkout-page-button">
-                            <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
-                            <?php if(session()->get('language') == 'portuguese'): ?>
-                                Registrar
-                            <?php else: ?>
-                                Sign Up
-                            <?php endif; ?>
-                        </button>
                     </form>
-
                 </div>
             </div>
+        </div>
+        </div>
 
-
-            <!--FINAL create a new account -->
-        </div><!-- /.row -->
-    </div><!-- FINAL sigin-in-->
-
-    <!-- INCLUSÃO DAS LOGOMARCAS -->
-    <?php echo $__env->make('frontend.body.brands', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<?php $__env->stopSection(); ?>
+        <!-- INCLUSÃO DAS LOGOMARCAS -->
+        <?php echo $__env->make('frontend.body.brands', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('frontend.main_master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/lucas/newmodern-store/resources/views/auth/login.blade.php ENDPATH**/ ?>
