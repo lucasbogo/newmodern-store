@@ -2,9 +2,9 @@
 @section('content')
 @section('title')
     @if (session()->get('language') == 'portuguese')
-        Sub Categoria NewModern
+        NewModern |Sub Categoria
     @else
-        NewModern Sub Category
+        NewModern | Sub Category
     @endif
 @endsection
 

@@ -3,9 +3,9 @@
 
 @section('title')
     @if (session()->get('language') == 'portuguese')
-        Lista de Desejos
+        NewModern | Lista de Desejos
     @else
-        Wish List
+        NewModern |Wish List
     @endif
 @endsection
 

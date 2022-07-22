@@ -8,10 +8,10 @@
                             ? url('upload/user_images/' . $user->profile_photo_path)
                             : url('upload/no-image.png')); ?>"
                         style=" width: 100px; height: 100px;"><br><br>
-                    <!-- bootstrap class list-group e list-group-flush -->
+
                     <ul class="list-group list-group-flush">
-                        <!-- botão primário pequeno -->
-                        <a href="<?php echo e(route('dashboard')); ?>" class="btn btn-primary btn-sm btn-block">Home</a>
+
+                        <a href="<?php echo e(route('index')); ?>" class="btn btn-primary btn-sm btn-block">Home</a>
                         <a href="<?php echo e(route('user.profile')); ?>" class="btn btn-primary btn-sm btn-block">
                             <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
                             <?php if(session()->get('language') == 'portuguese'): ?>
@@ -37,16 +37,13 @@
                                 Logout
                             <?php endif; ?>
                         </a>
-
                     </ul>
+                </div>
+
+                <div class="col-md-2"> </div>
 
 
-                </div><!-- /col -->
 
-                <div class="col-md-2">
-
-
-                </div><!-- /col -->
 
                 <div class="col-md-6">
                     <div class="card">
@@ -130,21 +127,17 @@
                                         <?php endif; ?>
                                     </button>
 
-                            </form><!-- end form method post -->
+                            </form>
 
 
 
-                        </div><!-- /div button -->
-
-                    </div><!-- /div class "card-body" -->
-                </div><!-- /div class="card" -->
-
-
-            </div><!-- /col -->
-
-        </div><!-- /row -->
-    </div><!-- /container -->
-    </div><!-- /content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('frontend.main_master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/lucas/newmodern-store/resources/views/frontend/profile/user_profile.blade.php ENDPATH**/ ?>

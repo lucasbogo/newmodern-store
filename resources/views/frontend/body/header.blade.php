@@ -31,10 +31,10 @@
                                 @endif
                             </a>
                         </li>
-                        <li><a href="#"><i class="icon fa fa-check"></i>
+                        <li><a href="{{ route('checkout') }}"><i class="icon fa fa-check"></i>
                                 <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
                                 @if (session()->get('language') == 'portuguese')
-                                    Conferir Compras
+                                    Checkout
                                 @else
                                     Checkout
                                 @endif

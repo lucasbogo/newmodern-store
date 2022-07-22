@@ -2,7 +2,7 @@
 @section('content')
 
 @section('title')
-    NewModern Home
+    NewModern | Home
 @endsection
 <div class="body-content outer-top-xs" id="top-banner-and-menu">
     <div class="container">

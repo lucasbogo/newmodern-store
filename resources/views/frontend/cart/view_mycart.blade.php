@@ -3,9 +3,9 @@
 
 @section('title')
     @if (session()->get('language') == 'portuguese')
-        Meu Carrinho
+        NewModern | Meu Carrinho
     @else
-        My Cart
+        NewModern | My Cart
     @endif
 @endsection
 
@@ -223,7 +223,7 @@
                                                 @endif
                                             </a>
 
-                                        </div> 
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>

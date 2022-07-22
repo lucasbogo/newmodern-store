@@ -1,7 +1,7 @@
 <?php $__env->startSection('content'); ?>
 
 <?php $__env->startSection('title'); ?>
-    NewModern Home
+    NewModern | Home
 <?php $__env->stopSection(); ?>
 <div class="body-content outer-top-xs" id="top-banner-and-menu">
     <div class="container">

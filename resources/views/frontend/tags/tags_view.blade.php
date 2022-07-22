@@ -3,9 +3,9 @@
 @section('title')
     <!-- Lógica internacionalização simples tradução da tag new -->
     @if (session()->get('language') == 'portuguese')
-        Sub-Categoria
+        NewModern |Sub-Categoria
     @else
-        Sub Category
+        NewModern |Sub Category
     @endif
 @endsection
 

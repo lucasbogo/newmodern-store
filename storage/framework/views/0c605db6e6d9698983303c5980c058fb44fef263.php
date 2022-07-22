@@ -31,10 +31,10 @@
                                 <?php endif; ?>
                             </a>
                         </li>
-                        <li><a href="#"><i class="icon fa fa-check"></i>
+                        <li><a href="<?php echo e(route('checkout')); ?>"><i class="icon fa fa-check"></i>
                                 <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
                                 <?php if(session()->get('language') == 'portuguese'): ?>
-                                    Conferir Compras
+                                    Checkout
                                 <?php else: ?>
                                     Checkout
                                 <?php endif; ?>
