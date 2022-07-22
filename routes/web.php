@@ -43,7 +43,7 @@ Route::middleware('admin:admin')->group(function () {
 });
 
 
-# =================================== TODAS AS ROTAS ADMIN PROTEGIDAS =================================== #
+# ============================ TODAS AS ROTAS ADMIN PROTEGIDAS C/ MIDDLEWARE ============================ #
 
 
 Route::middleware([
@@ -75,7 +75,7 @@ Route::middleware([
 
 
 
-# ========================== TODAS AS ROTAS USUARIO PROTEGIDAS COM MIDDLEWARE =========================== #
+# =========================== TODAS AS ROTAS USUARIO PROTEGIDAS C/ MIDDLEWARE =========================== #
 
 
 // login, registration, email verification, two-factor authentication, session management 
@@ -169,7 +169,6 @@ Route::prefix('category')->group(function () {
 
 
 
-
     # ============================ TODAS AS ROTAS SUBSUBCATEGORIA PAINEL ADMIN ========================== #
 
     // Rota p/ visualizar a tabela de SubCategorias no Painel Admin.
@@ -234,7 +233,6 @@ Route::prefix('product')->group(function () {
     // Rota p/ deletar produto no painel admin edit product
     Route::get('/delete/{id}', [ProductController::class, 'DeleteProduct'])->name('product.delete');
 });
-
 
 
 
@@ -314,6 +312,7 @@ Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMi
 Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishList']);
 
 
+
 # ================================= PROTEGER A PÁGINA VIEW WISHLIST COM MIDDLEWARE ====================== #
 
 Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function () {
@@ -328,8 +327,9 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/wishlist-remove/{id}', [WishListController::class, 'RemoveWishListProduct']);
 });
 
-# ====================================== TODAS AS ROTAS MEU CARRINHO ==================================== #
 
+
+# ====================================== TODAS AS ROTAS MEU CARRINHO ==================================== #
 
 // Rota Meu Carrinho View Page.
 Route::get('/mycart', [MyCartController::class, 'MyCart'])->name('mycart');
@@ -345,6 +345,8 @@ Route::get('/cart-increment/{rowId}', [MyCartController::class, 'CartProductIncr
 
 // Rota AJAX decrementar Itens na view Meu Carrinho. URL
 Route::get('/cart-decrement/{rowId}', [MyCartController::class, 'CartProductDecrement']);
+
+
 
 # ==================================== TODAS AS ROTAS ADMIN SHIPPING/ENVIO ============================== #
 
@@ -435,7 +437,8 @@ Route::prefix('coupons')->group(function () {
 });
 
 
-# =============================== TODAS AS ROTAS CUPOM AJAX FRONT-END (revisar lógica, ids, etc.) ================================== #
+
+# ============== (FUTURO) TODAS AS ROTAS CUPOM AJAX FRONT-END (revisar lógica, ids, etc.) =============== #
 
 // Rota AJAX p/ aplicar cupom
 Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
@@ -448,7 +451,7 @@ Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 
 
 
-# =============================== TODAS AS ROTAS CHECKOUT ================================== #
+# ======================================= TODAS AS ROTAS CHECKOUT ======================================= #
 
 // Rota proceder checkout
 Route::get('/checkout', [CartController::class, 'Checkout'])->name('checkout');

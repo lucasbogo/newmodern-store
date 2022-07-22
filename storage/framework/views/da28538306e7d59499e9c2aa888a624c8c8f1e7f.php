@@ -2,13 +2,15 @@
     <div class="body-content">
         <div class="container">
             <div class="row">
-                <div class="col-md-2"><br><br>
-                    <img class="card-img-top" style="border-radius: 50%"
+                <div class="col-md-2">
+                    <br>
+                    <img class="card-img-top" style="border-radius: 50%; width:100%"
                         src="<?php echo e(!empty($user->profile_photo_path)
                             ? url('upload/user_images/' . $user->profile_photo_path)
                             : url('upload/no-image.png')); ?>"
-                        style=" width: 100px; height: 100px;"><br><br>
-
+                        style=" width: 100px; height: 100px;">
+                    <br>
+                    <br>
                     <ul class="list-group list-group-flush">
 
                         <a href="<?php echo e(route('index')); ?>" class="btn btn-primary btn-sm btn-block">Home</a>
@@ -40,7 +42,9 @@
                     </ul>
                 </div>
 
-                <div class="col-md-2"> </div>
+                <div class="col-md-2">
+                    
+                </div>
 
 
 
@@ -58,9 +62,11 @@
                                 <?php echo e(Auth::user()->name); ?></strong>
                             <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
                             <?php if(session()->get('language') == 'portuguese'): ?>
-                                Você pode editar o seu perfil aqui.
+                                Você pode editar
+                                o seu perfil aqui.
                             <?php else: ?>
-                                You can edit your profile here.
+                                You can edit
+                                your profile here.
                             <?php endif; ?>
                         </h3>
 
@@ -126,17 +132,14 @@
                                             Update
                                         <?php endif; ?>
                                     </button>
+                                </div>
 
                             </form>
-
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 <?php $__env->stopSection(); ?>
 

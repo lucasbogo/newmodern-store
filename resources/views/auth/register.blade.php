@@ -1,4 +1,3 @@
-<!-- Extender main_master localizado em views/frontend (fragmentação frontend) -->
 @extends('frontend.main_master')
 @section('content')
     <div class="container">
@@ -45,7 +44,7 @@
                     <form method="POST" action="{{ isset($guard) ? url($guard . '/login') : route('login') }}">
                         @csrf
 
-                        <!--Alterei name, type e id  para funcionar com BD-->
+                        <!--Alterar name, type e id  para funcionar com BD-->
                         <div class="form-group">
                             <label class="info-title" for="exampleInputemail1">
                                 @if (session()->get('language') == 'portuguese')

@@ -1,4 +1,3 @@
-<!-- Extender main_master localizado em views/frontend (fragmentação frontend) -->
 @extends('frontend.main_master')
 @section('content')
     <div class="container">
@@ -16,6 +15,8 @@
             </ul>
         </div>
     </div>
+
+
     <div class="container">
         <div class="sign-in-page">
             <div class="row">
@@ -204,7 +205,6 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-
 
                             <!-- SENHA -->
                             <div class="form-group">

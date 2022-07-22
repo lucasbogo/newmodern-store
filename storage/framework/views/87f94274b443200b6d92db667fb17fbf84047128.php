@@ -1,5 +1,3 @@
-<!-- Extender main_master localizado em views/frontend (fragmentação frontend) -->
-
 <?php $__env->startSection('content'); ?>
     <div class="container">
         <div class="breadcrumb-inner">
@@ -16,7 +14,9 @@
             </ul>
         </div>
     </div>
-    < <div class="container">
+
+
+    <div class="container">
         <div class="sign-in-page">
             <div class="row">
                 <!-- Sign-in -->
@@ -38,17 +38,13 @@
                         <?php endif; ?>
                     </p>
 
-                    <!-- LOGIN VIA REDES SOCIAIS
-                            <div class="social-sign-in outer-top-xs">
-                            <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
-                            <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
-                            </div>
-                            -->
+                    <!-- LOGIN VIA REDES SOCIAIS (IMPLEMENTAR FUTURAMENTE) -->
+                    
+
 
                     <!-- IMPORTANTE: formulario de LOGIN usuario-->
 
-                    <!--isset($guard) pega o 'guard' admin + /login (admin/login)
-                                        caso contrário, pega o login comum | serve como Multi Auth admin - user -->
+                    
 
                     <form method="POST" action="<?php echo e(isset($guard) ? url($guard . '/login') : route('login')); ?>">
                         <?php echo csrf_field(); ?>
@@ -198,34 +194,7 @@ unset($__errorArgs, $__bag); ?>
 
                         </div>
 
-                        <!-- TELEFONE -->
-                        <div class="form-group">
-                            <label class="info-title" for="exampleInputEmail1">
-                                <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
-                                <?php if(session()->get('language') == 'portuguese'): ?>
-                                    Telefone
-                                <?php else: ?>
-                                    Phone Number
-                                <?php endif; ?>
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="text" id="phone" name="phone"
-                                class="form-control unicase-form-control text-input">
-
-                            <!-- toaster, mensagem erro PREENCHIMENTO OBRIGATÓRIO -->
-                            <?php $__errorArgs = ['phone'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                <span class="invalid-feedback" role="alert">
-                                    <strong><?php echo e($message); ?></strong>
-                                </span>
-                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-
+                        
 
                             <!-- SENHA -->
                             <div class="form-group">
@@ -299,10 +268,10 @@ unset($__errorArgs, $__bag); ?>
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 
-        <!-- INCLUSÃO DAS LOGOMARCAS -->
-        <?php echo $__env->make('frontend.body.brands', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <?php $__env->stopSection(); ?>
+    <!-- INCLUSÃO DAS LOGOMARCAS -->
+    <?php echo $__env->make('frontend.body.brands', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('frontend.main_master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/lucas/newmodern-store/resources/views/auth/login.blade.php ENDPATH**/ ?>

@@ -188,7 +188,7 @@ class IndexController extends Controller
         return view('frontend.product.product_details', compact('product', 'images', 'product_color_en', 'product_color_pt', 'product_size_en', 'product_size_pt', 'related'));
     }
 
-    // Método Tags Dinâmicos Produto
+    // Método Tags Dinâmicos Produto IMPLEMENTAR FUTURAMENTE
     public function ProductTags($tag)
     {
         // 'Pegar' 'Baixar' (verificar) o produto ativo
@@ -231,7 +231,7 @@ class IndexController extends Controller
     public function ProductViewAjax($id)
     {
         // Achar o produto pelo o ID
-        $product = Product::with('category','brand')->findOrFail($id);
+        $product = Product::with('category', 'brand')->findOrFail($id);
 
         $color = $product->product_color_en;
         $product_color = explode(',', $color);
