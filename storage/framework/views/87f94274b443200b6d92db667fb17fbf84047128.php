@@ -194,7 +194,33 @@ unset($__errorArgs, $__bag); ?>
 
                         </div>
 
-                        
+                        <!-- TELEFONE -->
+                        <div class="form-group">
+                            <label class="info-title" for="exampleInputEmail1">
+                                <!-- CONDIÇÃO: verificar a sessão do usuário, se for portugues, mostrar a opção inglês, se for inglês, mostrar opção português -->
+                                <?php if(session()->get('language') == 'portuguese'): ?>
+                                    Telefone
+                                <?php else: ?>
+                                    Phone Number
+                                <?php endif; ?>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" id="phone" name="phone"
+                                class="form-control unicase-form-control text-input">
+
+                            <!-- toaster, mensagem erro PREENCHIMENTO OBRIGATÓRIO -->
+                            <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong><?php echo e($message); ?></strong>
+                                </span>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                             <!-- SENHA -->
                             <div class="form-group">

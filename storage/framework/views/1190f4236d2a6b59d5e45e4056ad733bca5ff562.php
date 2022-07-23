@@ -111,7 +111,7 @@
                   <li class="treeview <?php echo e($prefix == '/slider' ? 'active' : ''); ?>">
                       <a href="#">
                           <i data-feather="file"></i>
-                          <span>Sliders</span>
+                          <span>Banners</span>
                           <span class="pull-right-container">
                               <i class="fa fa-angle-right pull-right"></i>
                           </span>
@@ -119,7 +119,7 @@
 
                       <ul class="treeview-menu">
                           <li class="<?php echo e($route == 'all.sliders' ? 'active' : ''); ?>"><a
-                                  href="<?php echo e(route('all.sliders')); ?>"><i class="ti-more"></i>Gerenciar Sliders</a>
+                                  href="<?php echo e(route('all.sliders')); ?>"><i class="ti-more"></i>Gerenciar Banners</a>
                           </li>
                       </ul>
                   </li>

@@ -3,7 +3,13 @@ $categories = App\Models\Category::orderBy('category_name_en', 'ASC')->get();
 @endphp
 
 <div class="side-menu animate-dropdown outer-bottom-xs">
-    <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Categories</div>
+    <div class="head"><i class="icon fa fa-align-justify fa-fw"></i>
+        @if (session()->get('language') == 'portuguese')
+            Categorias
+        @else
+            Categories
+        @endif
+    </div>
     <nav class="yamm megamenu-horizontal">
         <ul class="nav">
 
@@ -33,7 +39,8 @@ $categories = App\Models\Category::orderBy('category_name_en', 'ASC')->get();
                                         {{-- <!-- Url redirecionamento para descrição produto: declare a url, 
                                             depois passe a id subcategoria concatenada(.) com o nome produto 
                                             user friendly (slug) --> --}}
-                                        <a href="{{ url('subcategory/product/'.$subcategory->id.'/'.$subcategory->subcategory_slug_en) }}">
+                                        <a
+                                            href="{{ url('subcategory/product/' . $subcategory->id . '/' . $subcategory->subcategory_slug_en) }}">
                                             <h2 class="title">
                                                 <!-- CONDIÇÃO IF ELSE: se a sessão for em ptbr, mostrar nome ptbr caso contrário, mostrar inglês -->
                                                 @if (session()->get('language') == 'portuguese')
@@ -54,7 +61,8 @@ $categories = App\Models\Category::orderBy('category_name_en', 'ASC')->get();
                                         @foreach ($subsubcategories as $subsubcategory)
                                             <ul class="links list-unstyled">
                                                 <li>
-                                                    <a href="{{ url('subsubcategory/product/'.$subsubcategory->id.'/'.$subsubcategory->subsubcategory_slug_en) }}">
+                                                    <a
+                                                        href="{{ url('subsubcategory/product/' . $subsubcategory->id . '/' . $subsubcategory->subsubcategory_slug_en) }}">
                                                         @if (session()->get('language') == 'portuguese')
                                                             {{ $subsubcategory->subsubcategory_name_pt }}
                                                         @else
@@ -65,28 +73,13 @@ $categories = App\Models\Category::orderBy('category_name_en', 'ASC')->get();
 
                                             </ul>
                                         @endforeach
-                                        <!-- /. final subsubcategoria -->
                                     </div>
                                 @endforeach
-                                <!-- /. final subcategoria -->
                             </div>
-                            <!-- /.row -->
-
                         </li>
-                        <!-- /.yamm-content -->
                     </ul>
-                    <!-- /.dropdown-menu -->
                 </li>
-                <!-- /.menu-item -->
             @endforeach
-            <!-- /. category foreach -->
-            <!-- HERE ! -->
-
-
-
         </ul>
-        <!-- /.nav -->
     </nav>
-    <!-- /.megamenu-horizontal -->
 </div>
-<!-- /.side-menu -->
