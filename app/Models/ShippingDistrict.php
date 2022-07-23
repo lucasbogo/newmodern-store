@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ShippingDistrict extends Model
 {
     use HasFactory;
-
     protected $guarded = [];
 
     public function division()

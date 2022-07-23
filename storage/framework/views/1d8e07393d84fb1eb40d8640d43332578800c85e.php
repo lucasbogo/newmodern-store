@@ -23,6 +23,8 @@
 
                 <!-- ============================================== SPECIAL OFFER COMEÇA AQUI ============================================== -->
 
+
+
                 <div class="sidebar-widget outer-bottom-small wow fadeInUp">
                     <h3 class="section-title">
                         <!-- Lógica internacionalização simples tradução da tag new -->
@@ -204,6 +206,8 @@
                 </div>
 
                 <!-- ============================================== SPECIAL TERMINA AQUI ============================================== -->
+
+
                 <!-- ============================================== NEWSLETTER COMEÇA AQUI============================================== -->
                 <div class="sidebar-widget newsletter wow fadeInUp outer-bottom-small">
                     <h3 class="section-title">Newsletters</h3>
@@ -222,6 +226,7 @@
 
                 <!-- ============================================== NEWSLETTER TERMINA AQUI ============================================== -->
 
+
                 <!-- =============================================== AVALIAÇÕES LOJA FRAGMENTAÇÃO ========================================= -->
 
                 <?php echo $__env->make('frontend.fragments.store_reviews', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -237,8 +242,6 @@
 
 
 
-
-            <!-- ============================================== SIDEBAR : END ============================================== -->
 
             <!-- ============================================== CONTENT ============================================== -->
             <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
@@ -503,10 +506,7 @@
                                                                 <!-- ========== /BOTÃO WISHLIST ======== -->
 
 
-                                                                <li class="lnk"> <a data-toggle="tooltip"
-                                                                        class="add-to-cart" href="detail.html"
-                                                                        title="Compare"> <i class="fa fa-signal"
-                                                                            aria-hidden="true"></i> </a> </li>
+
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -627,25 +627,25 @@
                                                                 <ul class="list-unstyled">
                                                                     <li class="add-cart-button btn-group">
 
-                                                                        <<!-- Modal Bootstrap Button -->
-                                                                            <button class="btn btn-primary icon"
-                                                                                type="button" title="Add Cart"
-                                                                                data-toggle="modal"
-                                                                                data-target="#exampleModal"
-                                                                                id="<?php echo e($product->id); ?>"
-                                                                                onclick="productView(this.id)"> <i
-                                                                                    class="fa fa-shopping-cart"></i>
-                                                                            </button>
+                                                                        <!-- Modal Bootstrap Button -->
+                                                                        <button class="btn btn-primary icon"
+                                                                            type="button" title="Add Cart"
+                                                                            data-toggle="modal"
+                                                                            data-target="#exampleModal"
+                                                                            id="<?php echo e($product->id); ?>"
+                                                                            onclick="productView(this.id)"> <i
+                                                                                class="fa fa-shopping-cart"></i>
+                                                                        </button>
 
-                                                                            <button class="btn btn-primary cart-btn"
-                                                                                type="button">
-                                                                                <!-- Lógica internacionalização simples tradução da tag new -->
-                                                                                <?php if(session()->get('language') == 'portuguese'): ?>
-                                                                                    Adicionar
-                                                                                <?php else: ?>
-                                                                                    Add to Cart
-                                                                                <?php endif; ?>
-                                                                            </button>
+                                                                        <button class="btn btn-primary cart-btn"
+                                                                            type="button">
+                                                                            <!-- Lógica internacionalização simples tradução da tag new -->
+                                                                            <?php if(session()->get('language') == 'portuguese'): ?>
+                                                                                Adicionar
+                                                                            <?php else: ?>
+                                                                                Add to Cart
+                                                                            <?php endif; ?>
+                                                                        </button>
                                                                     </li>
                                                                     <!-- ========== /BOTÃO ADICIONAR AO CARRINHO ======= -->
 
@@ -663,18 +663,12 @@
 
                                                                     <!-- ========== /BOTÃO WISHLIST ======== -->
 
-
-                                                                    <li class="lnk"> <a data-toggle="tooltip"
-                                                                            class="add-to-cart" href="detail.html"
-                                                                            title="Compare"> <i class="fa fa-signal"
-                                                                                aria-hidden="true"></i> </a> </li>
                                                                 </ul>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
 
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                             <h5 class="text-danger">
@@ -704,20 +698,19 @@
                             <div class="wide-banner cnt-strip">
                                 <div class="image"> <img class="img-responsive"
                                         src="<?php echo e(asset('frontend/assets/images/banners/home-banner1.jpg')); ?>"
-                                        alt=""> </div>
+                                        alt="">
+                                </div>
                             </div>
-
                         </div>
 
                         <div class="col-md-5 col-sm-5">
                             <div class="wide-banner cnt-strip">
                                 <div class="image"> <img class="img-responsive"
                                         src="<?php echo e(asset('frontend/assets/images/banners/home-banner2.jpg')); ?>"
-                                        alt=""> </div>
+                                        alt="">
+                                </div>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
 
@@ -862,13 +855,7 @@
 
                                                     <!-- ========== /BOTÃO WISHLIST ======== -->
 
-                                                    <!-- ========== BOTÃO COMPARE ========== -->
-                                                    <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart"
-                                                            href="detail.html" title="Compare"> <i
-                                                                class="fa fa-signal" aria-hidden="true"></i> </a>
-                                                    </li>
 
-                                                    <!-- ========== /BOTÃO COMPARE ========== -->
                                                 </ul>
                                             </div>
                                         </div>
@@ -964,9 +951,6 @@
                                                     </div>
                                                 <?php endif; ?>
                                             </div>
-
-
-
                                         </div>
 
 
@@ -1045,11 +1029,6 @@
 
                                                     <!-- ========== /BOTÃO WISHLIST ======== -->
 
-
-                                                    <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart"
-                                                            href="detail.html" title="Compare"> <i
-                                                                class="fa fa-signal" aria-hidden="true"></i> </a>
-                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -1200,11 +1179,6 @@
 
                                                     <!-- ========== /BOTÃO WISHLIST ======== -->
 
-
-                                                    <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart"
-                                                            href="detail.html" title="Compare"> <i
-                                                                class="fa fa-signal" aria-hidden="true"></i> </a>
-                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -1356,12 +1330,6 @@
 
 
                                                     <!-- ========== /BOTÃO WISHLIST ======== -->
-
-
-                                                    <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart"
-                                                            href="detail.html" title="Compare"> <i
-                                                                class="fa fa-signal" aria-hidden="true"></i> </a>
-                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -1497,22 +1465,13 @@
                                         <a href="#" class="lnk btn btn-primary">Read more</a>
                                     </div>
 
-
                                 </div>
-
                             </div>
-
-
                         </div>
-
                     </div>
-
                 </section>
 
                 <!-- ============================================== BLOG SLIDER : END ============================================== -->
-
-
-
             </div>
 
             <!-- ============================================== CONTENT : END ============================================== -->

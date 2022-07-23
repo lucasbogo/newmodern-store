@@ -259,12 +259,13 @@
                                     Sign Up
                                 @endif
                             </button>
-
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
 
     <!-- INCLUSÃO DAS LOGOMARCAS -->
     @include('frontend.body.brands')

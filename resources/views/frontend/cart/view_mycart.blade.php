@@ -229,24 +229,12 @@
                             </tbody>
                         </table>
                     </div>
-
-
-
-
-
-
-
-
-
-
                 </div>
             </div>
-
-
-
-            <br>
-            @include('frontend.body.brands')
         </div>
+        <br>
+        @include('frontend.body.brands')
+    </div>
 
 
-    @endsection
+@endsection

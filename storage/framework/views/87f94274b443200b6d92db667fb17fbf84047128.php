@@ -289,12 +289,13 @@ unset($__errorArgs, $__bag); ?>
                                     Sign Up
                                 <?php endif; ?>
                             </button>
-
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
 
     <!-- INCLUSÃO DAS LOGOMARCAS -->
     <?php echo $__env->make('frontend.body.brands', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

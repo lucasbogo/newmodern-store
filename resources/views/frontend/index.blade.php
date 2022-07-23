@@ -24,6 +24,8 @@
 
                 <!-- ============================================== SPECIAL OFFER COMEÇA AQUI ============================================== -->
 
+
+
                 <div class="sidebar-widget outer-bottom-small wow fadeInUp">
                     <h3 class="section-title">
                         <!-- Lógica internacionalização simples tradução da tag new -->
@@ -195,6 +197,8 @@
                 </div>
 
                 <!-- ============================================== SPECIAL TERMINA AQUI ============================================== -->
+
+
                 <!-- ============================================== NEWSLETTER COMEÇA AQUI============================================== -->
                 <div class="sidebar-widget newsletter wow fadeInUp outer-bottom-small">
                     <h3 class="section-title">Newsletters</h3>
@@ -213,6 +217,7 @@
 
                 <!-- ============================================== NEWSLETTER TERMINA AQUI ============================================== -->
 
+
                 <!-- =============================================== AVALIAÇÕES LOJA FRAGMENTAÇÃO ========================================= -->
 
                 @include('frontend.fragments.store_reviews')
@@ -228,8 +233,6 @@
 
 
 
-
-            <!-- ============================================== SIDEBAR : END ============================================== -->
 
             <!-- ============================================== CONTENT ============================================== -->
             <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
@@ -603,25 +606,25 @@
                                                                 <ul class="list-unstyled">
                                                                     <li class="add-cart-button btn-group">
 
-                                                                        <<!-- Modal Bootstrap Button -->
-                                                                            <button class="btn btn-primary icon"
-                                                                                type="button" title="Add Cart"
-                                                                                data-toggle="modal"
-                                                                                data-target="#exampleModal"
-                                                                                id="{{ $product->id }}"
-                                                                                onclick="productView(this.id)"> <i
-                                                                                    class="fa fa-shopping-cart"></i>
-                                                                            </button>
+                                                                        <!-- Modal Bootstrap Button -->
+                                                                        <button class="btn btn-primary icon"
+                                                                            type="button" title="Add Cart"
+                                                                            data-toggle="modal"
+                                                                            data-target="#exampleModal"
+                                                                            id="{{ $product->id }}"
+                                                                            onclick="productView(this.id)"> <i
+                                                                                class="fa fa-shopping-cart"></i>
+                                                                        </button>
 
-                                                                            <button class="btn btn-primary cart-btn"
-                                                                                type="button">
-                                                                                <!-- Lógica internacionalização simples tradução da tag new -->
-                                                                                @if (session()->get('language') == 'portuguese')
-                                                                                    Adicionar
-                                                                                @else
-                                                                                    Add to Cart
-                                                                                @endif
-                                                                            </button>
+                                                                        <button class="btn btn-primary cart-btn"
+                                                                            type="button">
+                                                                            <!-- Lógica internacionalização simples tradução da tag new -->
+                                                                            @if (session()->get('language') == 'portuguese')
+                                                                                Adicionar
+                                                                            @else
+                                                                                Add to Cart
+                                                                            @endif
+                                                                        </button>
                                                                     </li>
                                                                     <!-- ========== /BOTÃO ADICIONAR AO CARRINHO ======= -->
 

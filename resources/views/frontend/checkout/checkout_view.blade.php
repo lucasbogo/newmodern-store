@@ -1,6 +1,6 @@
 @extends('frontend.main_master')
 @section('content')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 @section('title')
     @if (session()->get('language') == 'portuguese')
@@ -41,19 +41,19 @@
 
 
                             <!--===================== CABEÇALHO DO PAINEL(ESTÉTICA OPCIONAL) ===================== -->
-                            {{-- <div class="panel-heading">
+                            <div class="panel-heading">
                                 <h4 class="unicase-checkout-title">
                                     <a data-toggle="collapse" class="" data-parent="#accordion"
                                         href="#collapseOne">
-                                        <span>1</span>
+                                        <span><i class="fa fa-ship"></i></span>
                                         @if (session()->get('language') == 'portuguese')
-                                            Método de Checkout
+                                            Informações de Envio
                                         @else
-                                            Checkout Method
+                                            Shipping Information
                                         @endif
                                     </a>
                                 </h4>
-                            </div> --}}
+                            </div>
                             <!--===================== /CABEÇALHO DO PAINEL (ESTÉTICA OPCIONAL) ===================== -->
 
                             <div id="collapseOne" class="panel-collapse collapse in">
@@ -61,8 +61,6 @@
 
                                 <div class="panel-body">
                                     <div class="row">
-
-
                                         <div class="col-md-6 col-sm-6 already-registered-login">
                                             <h4 class="checkout-subtitle"><b>
                                                     @if (session()->get('language') == 'portuguese')
@@ -73,7 +71,10 @@
 
                                             </h4><br>
 
-                                            <form class="register-form" role="form">
+                                            <form class="register-form" action="{{ route('checkout.store') }}"
+                                                method="POST">
+                                                @csrf
+
                                                 <div class="form-group">
                                                     <label class="info-title" for="exampleInputEmail1">
                                                         @if (session()->get('language') == 'portuguese')
@@ -85,7 +86,7 @@
                                                     </label>
                                                     <input type="text" name="shipping_name"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="exampleInputEmail1" placeholder="" 
+                                                        id="exampleInputEmail1" placeholder=""
                                                         value="{{ Auth::user()->name }}" required="">
                                                 </div>
 
@@ -130,44 +131,162 @@
                                                     </label>
                                                     <input type="text" name="postal_code"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="exampleInputEmail1" placeholder="xxxx-xx" required="">
+                                                        id="exampleInputEmail1" placeholder="xxxxx-xxx" required="">
 
                                                 </div>
 
-                                            </form>
-
-                                        </div>
-
-
-
-                                        <div class="col-md-6 col-sm-6 already-registered-login">
-                                            <h4 class="checkout-subtitle">Already registered?</h4>
-                                            <p class="text title-tag-line">Please log in below:</p>
-                                            <form class="register-form" role="form">
                                                 <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1">Email Address
+                                                    <label class="info-title" for="exampleInputEmail1">
+                                                        @if (session()->get('language') == 'portuguese')
+                                                            Rua
+                                                        @else
+                                                            Street Name
+                                                        @endif
                                                         <span>*</span>
                                                     </label>
-                                                    <input type="email"
+                                                    <input type="text" name="shipping_street"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="exampleInputEmail1" placeholder="">
+                                                        id="exampleInputEmail1" placeholder="" required="">
+
                                                 </div>
+
                                                 <div class="form-group">
-                                                    <label class="info-title" for="exampleInputPassword1">Password
+                                                    <label class="info-title" for="exampleInputEmail1">
+                                                        @if (session()->get('language') == 'portuguese')
+                                                            Numero
+                                                        @else
+                                                            House Number
+                                                        @endif
                                                         <span>*</span>
                                                     </label>
-                                                    <input type="password"
+                                                    <input type="text" name="shipping_number"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="exampleInputPassword1" placeholder="">
-                                                    <a href="#" class="forgot-password">Forgot your Password?</a>
+                                                        id="exampleInputEmail1" placeholder="" required="">
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">
+                                                        @if (session()->get('language') == 'portuguese')
+                                                            Bairro
+                                                        @else
+                                                            District
+                                                        @endif
+                                                        <span>*</span>
+                                                    </label>
+                                                    <input type="text" name="shipping_hood"
+                                                        class="form-control unicase-form-control text-input"
+                                                        id="exampleInputEmail1" placeholder="" required="">
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">
+                                                        @if (session()->get('language') == 'portuguese')
+                                                            Cidade
+                                                        @else
+                                                            City
+                                                        @endif
+                                                        <span>*</span>
+                                                    </label>
+                                                    <input type="text" name="shipping_city"
+                                                        class="form-control unicase-form-control text-input"
+                                                        id="exampleInputEmail1" placeholder="" required="">
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">
+                                                        @if (session()->get('language') == 'portuguese')
+                                                            Estado
+                                                        @else
+                                                            State
+                                                        @endif
+                                                        <span>*</span>
+                                                    </label>
+                                                    <input type="text" name="shipping_state"
+                                                        class="form-control unicase-form-control text-input"
+                                                        id="exampleInputEmail1" placeholder="" required="">
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Notes
+                                                        <span>*</span></label>
+                                                    <textarea class="form-control" cols="30" rows="5" placeholder="obervações" name="notes"></textarea>
                                                 </div>
 
                                                 <button type="submit"
-                                                    class="btn-upper btn btn-primary checkout-page-button">Login
+                                                    class="btn-upper btn btn-primary checkout-page-button">
+                                                    @if (session()->get('language') == 'portuguese')
+                                                        Enviar
+                                                    @else
+                                                        Submit
+                                                    @endif
                                                 </button>
                                             </form>
 
+                                            </form>
                                         </div>
+
+                                        <!--===================== TENTATIVA, LÓGICA CORREIO ===================== -->
+
+                                        {{-- <div class="col-md-6 col-sm-6 already-registered-login">
+                                            <div class="form-group">
+                                                <h5><b>Division Select </b> <span class="text-danger">*</span></h5>
+                                                <div class="controls">
+                                                    <select name="division_id" class="form-control" required="">
+                                                        <option value="" selected="" disabled="">Select
+                                                            Division</option>
+                                                        @foreach ($divisions as $item)
+                                                            <option value="{{ $item->id }}">
+                                                                {{ $item->division_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('division_id')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div> <!-- // end form group -->
+
+
+                                            <div class="form-group">
+                                                <h5><b>District Select</b> <span class="text-danger">*</span></h5>
+                                                <div class="controls">
+                                                    <select name="district_id" class="form-control" required="">
+                                                        <option value="" selected="" disabled="">Select
+                                                            District</option>
+
+                                                    </select>
+                                                    @error('district_id')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div> <!-- // end form group -->
+
+
+                                            <div class="form-group">
+                                                <h5><b>State Select</b> <span class="text-danger">*</span></h5>
+                                                <div class="controls">
+                                                    <select name="state_id" class="form-control" required="">
+                                                        <option value="" selected="" disabled="">
+                                                            Select
+                                                            State
+                                                        </option>
+
+                                                    </select>
+                                                    @error('state_id')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div> <!-- // end form group -->
+
+                                            <button type="submit"
+                                                class="btn-upper btn btn-primary checkout-page-button">Login
+                                            </button>
+                                            </form>
+
+                                        </div> --}}
 
 
                                     </div>
@@ -192,10 +311,6 @@
                                     </h4>
                                 </div>
                                 <div class="">
-
-
-
-
 
                                     <ul class="nav nav-checkout-progress list-unstyled">
                                         <!-- ==== BLOCO FOR EACH: chamar itens carrinho (página dinâmica) ==== -->
@@ -256,7 +371,7 @@
                                             </li>
                                             <hr>
                                         @endforeach
-                                        <hr>
+
 
                                         <li>
                                             {{-- CONDIÇÃO (FUTURO): se cupom foi tilizado,autenticar pela sessão e mostrar a lógica valor final
@@ -306,23 +421,23 @@
                                             @else
                                                 <strong>
                                                     @if (session()->get('language') == 'portuguese')
-                                                        Total:
+                                                        Subtotal:
                                                     @else
-                                                        Total:
+                                                        Subtotal:
                                                     @endif
                                                 </strong>
                                                 {{ $cartTotal }}
+                                                <br>
 
                                                 <!-- OPCIONAL: MOSTRAR TOTAL. APÓS SUBTOTAL (SÓ DESCOMENTAR) -->
-                                                {{-- <strong>
+                                                <strong>
                                                     @if (session()->get('language') == 'portuguese')
                                                         Total:
                                                     @else
                                                         Total:
                                                     @endif
                                                 </strong>
-                                                {{ $cartTotal }} --}}
-                                                <hr>
+                                                {{ $cartTotal }}
                                             @endif
 
                                         </li>

@@ -15,7 +15,7 @@ class ShippingController extends Controller
     // ============================= MÉTODOS CRUD BAIRRO   ============================= //
 
 
-    // Método View Bairro Envio
+    // Método View Estado Envio
     public function ShippingDivisionView()
     {
         // Atribuir id da Model Shipping à variável $shipping
@@ -24,16 +24,16 @@ class ShippingController extends Controller
         return view('backend.shipping.division.division_view', compact('divisions'));
     }
 
-    // Método Guardar Bairro Envio
+    // Método Guardar Estado Envio
     public function ShippingDivisionStore(Request $request)
     {
-        // Validar o nome Cidade 
+        // Validar o nome Estado 
         $request->validate([
             'shipping_division_name' => 'required',
 
         ]);
 
-        // Inserir o nome Bairro
+        // Inserir o nome Estado
         ShippingDivision::insert([
 
             'shipping_division_name' => $request->shipping_division_name,
@@ -43,7 +43,7 @@ class ShippingController extends Controller
 
         // Retornar toastr msg após inserção Bairro bem sucedida
         $notification = array(
-            'message' => 'Bairro Inserido com Sucesso',
+            'message' => 'Estado Inserido com Sucesso',
             'alert-type' => 'success'
         );
 
@@ -74,14 +74,14 @@ class ShippingController extends Controller
 
         // Retornar toastr msg após inserção Bairro bem sucedido
         $notification = array(
-            'message' => 'Bairro Atualizado com Sucesso',
+            'message' => 'Estado Atualizado com Sucesso',
             'alert-type' => 'success'
         );
 
         return redirect()->route('division.manage')->with($notification);
     }
 
-    // Método p/ excluir Bairro
+    // Método p/ excluir Estado
     public function ShippingDivisionDelete($id)
     {
         // Chamar a model, achar pelo o id e passar a função excluir (delete();)
@@ -89,7 +89,7 @@ class ShippingController extends Controller
 
         //Após achar pelo id  e excluir utilzando a função, passar a toastr msg na view Bairro...
         $notification = array(
-            'message' => 'Bairro excluído com Sucesso',
+            'message' => 'Estado excluído com Sucesso',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
@@ -185,91 +185,91 @@ class ShippingController extends Controller
 
 
 
-    // ============================= MÉTODOS CRUD ESTADO   ============================= //
+    // =========== MÉTODOS CRUD BAIRRO (MUITO TRABALHO, INTEGGRAÇÃO CORREIOS CUIDARÁ DISSO)  =========== //
 
 
-    public function ShippingStateView()
-    {
+    // public function ShippingStateView()
+    // {
      
-        $divisions = ShippingDivision::orderBy('shipping_division_name', 'ASC')->get(); 
-        $districts = ShippingDistrict::orderBy('shipping_district_name', 'ASC')->get();
-        $states = ShippingState::with('division','district')->orderBy('id', 'DESC')->get();
+    //     $divisions = ShippingDivision::orderBy('shipping_division_name', 'ASC')->get(); 
+    //     $districts = ShippingDistrict::orderBy('shipping_district_name', 'ASC')->get();
+    //     $states = ShippingState::with('division','district')->orderBy('id', 'DESC')->get();
    
-        return view('backend.shipping.state.state_view', compact('districts', 'divisions','states'));
-    }
+    //     return view('backend.shipping.state.state_view', compact('districts', 'divisions','states'));
+    // }
 
    
-    public function ShippingStateStore(Request $request)
-    {
+    // public function ShippingStateStore(Request $request)
+    // {
          
-        $request->validate([
+    //     $request->validate([
 
-            'shipping_division_id' => 'required',
-            'shipping_district_id' => 'required',
-            'shipping_state_name'  => 'required',
+    //         'shipping_division_id' => 'required',
+    //         'shipping_district_id' => 'required',
+    //         'shipping_state_name'  => 'required',
 
-        ]);
-
-        
-        ShippingState::insert([
-
-            'shipping_division_id' => $request->shipping_division_id,
-            'shipping_district_id' => $request->shipping_district_id,
-            'shipping_state_name'  => $request->shipping_state_name,
-            'created_at' => Carbon::now(),
-
-        ]);
+    //     ]);
 
         
-        $notification = array(
-            'message' => 'Estado Inserido com Sucesso',
-            'alert-type' => 'success'
-        );
+    //     ShippingState::insert([
 
-        return redirect()->back()->with($notification);
-    }
+    //         'shipping_division_id' => $request->shipping_division_id,
+    //         'shipping_district_id' => $request->shipping_district_id,
+    //         'shipping_state_name'  => $request->shipping_state_name,
+    //         'created_at' => Carbon::now(),
 
+    //     ]);
 
-    public function ShippingStateEdit($id)
-    {
+        
+    //     $notification = array(
+    //         'message' => 'Estado Inserido com Sucesso',
+    //         'alert-type' => 'success'
+    //     );
 
-        $divisions = ShippingDivision::orderBy('shipping_division_name', 'ASC')->get();
-        $districts = ShippingDistrict::orderBy('shipping_district_name', 'ASC')->get();
-        $states = ShippingState::findOrFail($id);
-
-        return view('backend.shipping.state.state_edit', compact('divisions', 'districts', 'states'));
-    }
-
-
-    public function ShippingStateUpdate(Request $request, $id)
-    {
-
-        ShippingState::findOrFail($id)->update([
-
-            'shipping_division_id' => $request->shipping_division_id,
-            'shipping_district_id' => $request->shipping_district_id,
-            'shipping_state_name'  => $request->shipping_state_name,
-            'created_at' => Carbon::now(),
-        ]);
-
-        $notification = array(
-            'message' => 'Estado Atualizado com Sucesso',
-            'alert-type' => 'success'
-        );
-
-        return redirect()->route('state.manage')->with($notification);
-    }
+    //     return redirect()->back()->with($notification);
+    // }
 
 
-    public function ShippingStateDelete($id)
-    {
+    // public function ShippingStateEdit($id)
+    // {
+
+    //     $divisions = ShippingDivision::orderBy('shipping_division_name', 'ASC')->get();
+    //     $districts = ShippingDistrict::orderBy('shipping_district_name', 'ASC')->get();
+    //     $states = ShippingState::findOrFail($id);
+
+    //     return view('backend.shipping.state.state_edit', compact('divisions', 'districts', 'states'));
+    // }
+
+
+    // public function ShippingStateUpdate(Request $request, $id)
+    // {
+
+    //     ShippingState::findOrFail($id)->update([
+
+    //         'shipping_division_id' => $request->shipping_division_id,
+    //         'shipping_district_id' => $request->shipping_district_id,
+    //         'shipping_state_name'  => $request->shipping_state_name,
+    //         'created_at' => Carbon::now(),
+    //     ]);
+
+    //     $notification = array(
+    //         'message' => 'Estado Atualizado com Sucesso',
+    //         'alert-type' => 'success'
+    //     );
+
+    //     return redirect()->route('state.manage')->with($notification);
+    // }
+
+
+    // public function ShippingStateDelete($id)
+    // {
  
-        ShippingState::findOrFail($id)->delete();
+    //     ShippingState::findOrFail($id)->delete();
  
-        $notification = array(
-            'message' => 'Estado excluído com Sucesso',
-            'alert-type' => 'success'
-        );
-        return redirect()->back()->with($notification);
-    }
+    //     $notification = array(
+    //         'message' => 'Estado excluído com Sucesso',
+    //         'alert-type' => 'success'
+    //     );
+    //     return redirect()->back()->with($notification);
+    // }
 }

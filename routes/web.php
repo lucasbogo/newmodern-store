@@ -353,7 +353,7 @@ Route::get('/cart-decrement/{rowId}', [MyCartController::class, 'CartProductDecr
 // prefixo shipping (envio) toda rota terá esse objeto (ação enviar) no início da URL
 Route::prefix('shipping')->group(function () {
 
-    # ================ TODAS AS ROTAS ADMIN SHIPPING/ENVIO - BAIRRO ================ #
+    # ================ TODAS AS ROTAS ADMIN SHIPPING/ENVIO - ESTADO ================ #
 
     // Rota p/ a view Bairro Envio
     Route::get('/division/view', [ShippingController::class, 'ShippingDivisionView'])->name('division.manage');
@@ -389,22 +389,22 @@ Route::prefix('shipping')->group(function () {
     Route::get('/district/delete/{id}', [ShippingController::class, 'ShippingDistrictDelete'])->name('district.delete');
 
 
-    # ================ TODAS AS ROTAS ADMIN SHIPPING/ENVIO - ESTADO ================ #
+    // # ================ TODAS AS ROTAS ADMIN SHIPPING/ENVIO - ESTADO ================ #
 
-    // Rota p/ a view Cidade Envio
-    Route::get('/state/view', [ShippingController::class, 'ShippingStateView'])->name('state.manage');
+    // // Rota p/ a view Cidade Envio
+    // Route::get('/state/view', [ShippingController::class, 'ShippingStateView'])->name('state.manage');
 
-    // Rota p/ guardar dados Cidade Envio
-    Route::post('/state/store', [ShippingController::class, 'ShippingStateStore'])->name('state.store');
+    // // Rota p/ guardar dados Cidade Envio
+    // Route::post('/state/store', [ShippingController::class, 'ShippingStateStore'])->name('state.store');
 
-    // Rota p/ editar Cidade Envio
-    Route::get('/state/edit/{id}', [ShippingController::class, 'ShippingStateEdit'])->name('state.edit');
+    // // Rota p/ editar Cidade Envio
+    // Route::get('/state/edit/{id}', [ShippingController::class, 'ShippingStateEdit'])->name('state.edit');
 
-    // Rota p/ atualizar Cidade Envio
-    Route::post('/state/update/{id}', [ShippingController::class, 'ShippingStateUpdate'])->name('state.update');
+    // // Rota p/ atualizar Cidade Envio
+    // Route::post('/state/update/{id}', [ShippingController::class, 'ShippingStateUpdate'])->name('state.update');
 
-    // Rota p/ excluir Cidade Envio
-    Route::get('/state/delete/{id}', [ShippingController::class, 'ShippingStateDelete'])->name('state.delete');
+    // // Rota p/ excluir Cidade Envio
+    // Route::get('/state/delete/{id}', [ShippingController::class, 'ShippingStateDelete'])->name('state.delete');
 });
 
 
@@ -455,3 +455,6 @@ Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 
 // Rota proceder checkout
 Route::get('/checkout', [CartController::class, 'Checkout'])->name('checkout');
+
+// Rota p/ guardar dados formulário endereço
+Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store');

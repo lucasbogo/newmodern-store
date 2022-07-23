@@ -55,7 +55,6 @@ return array(
     'App\\Models\\Shipping' => $baseDir . '/app/Models/Shipping.php',
     'App\\Models\\ShippingDistrict' => $baseDir . '/app/Models/ShippingDistrict.php',
     'App\\Models\\ShippingDivision' => $baseDir . '/app/Models/ShippingDivision.php',
-    'App\\Models\\ShippingState' => $baseDir . '/app/Models/ShippingState.php',
     'App\\Models\\Slider' => $baseDir . '/app/Models/Slider.php',
     'App\\Models\\SubCategory' => $baseDir . '/app/Models/SubCategory.php',
     'App\\Models\\SubSubCategory' => $baseDir . '/app/Models/SubSubCategory.php',
