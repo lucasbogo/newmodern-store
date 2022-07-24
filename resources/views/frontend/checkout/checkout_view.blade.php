@@ -56,6 +56,8 @@
                             </div>
                             <!--===================== /CABEÇALHO DO PAINEL (ESTÉTICA OPCIONAL) ===================== -->
 
+
+                            <!--===================== DADOS CLIENTE ===================== -->
                             <div id="collapseOne" class="panel-collapse collapse in">
 
 
@@ -120,175 +122,123 @@
                                                         value="{{ Auth::user()->phone }}" required="">
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1">
+
+                                                <!--===================== LÓGICA CORREIO ===================== -->
+
+                                                <div class="col-md-6 col-sm-6 already-registered-login">
+                                                    <div class="form-group">
+
+                                                        <div class="form-group">
+                                                            <label class="info-title" for="exampleInputEmail1">
+                                                                @if (session()->get('language') == 'portuguese')
+                                                                    Rua
+                                                                @else
+                                                                    Street Name
+                                                                @endif
+                                                                <span>*</span>
+                                                            </label>
+                                                            <input type="text" name="shipping_street"
+                                                                class="form-control unicase-form-control text-input"
+                                                                id="exampleInputEmail1" placeholder="" required="">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="info-title" for="exampleInputEmail1">
+                                                                @if (session()->get('language') == 'portuguese')
+                                                                    Numero
+                                                                @else
+                                                                    House Number
+                                                                @endif
+                                                                <span>*</span>
+                                                            </label>
+                                                            <input type="text" name="shipping_number"
+                                                                class="form-control unicase-form-control text-input"
+                                                                id="exampleInputEmail1" placeholder="" required="">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="info-title" for="exampleInputEmail1">
+                                                                @if (session()->get('language') == 'portuguese')
+                                                                    Bairro
+                                                                @else
+                                                                    District
+                                                                @endif
+                                                                <span>*</span>
+                                                            </label>
+                                                            <input type="text" name="shipping_hood"
+                                                                class="form-control unicase-form-control text-input"
+                                                                id="exampleInputEmail1" placeholder="" required="">
+                                                        </div>
+
+                                                        <h5><b>Division Select </b> <span class="text-danger">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <select name="division_id" class="form-control"
+                                                                required="">
+                                                                <option value="" selected="" disabled="">
+                                                                    Select
+                                                                    Division</option>
+                                                                @foreach ($divisions as $item)
+                                                                    <option value="{{ $item->id }}">
+                                                                        {{ $item->division_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('division_id')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <h5><b>District Select</b> <span class="text-danger">*</span>
+                                                        </h5>
+                                                        <div class="controls">
+                                                            <select name="district_id" class="form-control"
+                                                                required="">
+                                                                <option value="" selected="" disabled="">
+                                                                    Select
+                                                                    District</option>
+
+                                                            </select>
+                                                            @error('district_id')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="info-title" for="exampleInputEmail1">
+                                                            @if (session()->get('language') == 'portuguese')
+                                                                CEP
+                                                            @else
+                                                                Postal Code
+                                                            @endif
+                                                            <span>*</span>
+                                                        </label>
+                                                        <input type="text" name="postal_code"
+                                                            class="form-control unicase-form-control text-input"
+                                                            id="exampleInputEmail1" placeholder=""
+                                                            required="">
+
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="info-title" for="exampleInputEmail1">Notes
+                                                            <span>*</span></label>
+                                                        <textarea class="form-control" cols="30" rows="5" placeholder="obervações" name="notes"></textarea>
+                                                    </div>
+
+
+                                                    <button type="submit"
+                                                        class="btn-upper btn btn-primary checkout-page-button">
                                                         @if (session()->get('language') == 'portuguese')
-                                                            CEP
+                                                            Enviar
                                                         @else
-                                                            Postal Code
+                                                            Submit
                                                         @endif
-                                                        <span>*</span>
-                                                    </label>
-                                                    <input type="text" name="postal_code"
-                                                        class="form-control unicase-form-control text-input"
-                                                        id="exampleInputEmail1" placeholder="xxxxx-xxx" required="">
-
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1">
-                                                        @if (session()->get('language') == 'portuguese')
-                                                            Rua
-                                                        @else
-                                                            Street Name
-                                                        @endif
-                                                        <span>*</span>
-                                                    </label>
-                                                    <input type="text" name="shipping_street"
-                                                        class="form-control unicase-form-control text-input"
-                                                        id="exampleInputEmail1" placeholder="" required="">
-
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1">
-                                                        @if (session()->get('language') == 'portuguese')
-                                                            Numero
-                                                        @else
-                                                            House Number
-                                                        @endif
-                                                        <span>*</span>
-                                                    </label>
-                                                    <input type="text" name="shipping_number"
-                                                        class="form-control unicase-form-control text-input"
-                                                        id="exampleInputEmail1" placeholder="" required="">
-
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1">
-                                                        @if (session()->get('language') == 'portuguese')
-                                                            Bairro
-                                                        @else
-                                                            District
-                                                        @endif
-                                                        <span>*</span>
-                                                    </label>
-                                                    <input type="text" name="shipping_hood"
-                                                        class="form-control unicase-form-control text-input"
-                                                        id="exampleInputEmail1" placeholder="" required="">
-
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1">
-                                                        @if (session()->get('language') == 'portuguese')
-                                                            Cidade
-                                                        @else
-                                                            City
-                                                        @endif
-                                                        <span>*</span>
-                                                    </label>
-                                                    <input type="text" name="shipping_city"
-                                                        class="form-control unicase-form-control text-input"
-                                                        id="exampleInputEmail1" placeholder="" required="">
-
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1">
-                                                        @if (session()->get('language') == 'portuguese')
-                                                            Estado
-                                                        @else
-                                                            State
-                                                        @endif
-                                                        <span>*</span>
-                                                    </label>
-                                                    <input type="text" name="shipping_state"
-                                                        class="form-control unicase-form-control text-input"
-                                                        id="exampleInputEmail1" placeholder="" required="">
-
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1">Notes
-                                                        <span>*</span></label>
-                                                    <textarea class="form-control" cols="30" rows="5" placeholder="obervações" name="notes"></textarea>
-                                                </div>
-
-                                                <button type="submit"
-                                                    class="btn-upper btn btn-primary checkout-page-button">
-                                                    @if (session()->get('language') == 'portuguese')
-                                                        Enviar
-                                                    @else
-                                                        Submit
-                                                    @endif
-                                                </button>
-                                            </form>
-
+                                                    </button>
                                             </form>
                                         </div>
-
-                                        <!--===================== TENTATIVA, LÓGICA CORREIO ===================== -->
-
-                                        {{-- <div class="col-md-6 col-sm-6 already-registered-login">
-                                            <div class="form-group">
-                                                <h5><b>Division Select </b> <span class="text-danger">*</span></h5>
-                                                <div class="controls">
-                                                    <select name="division_id" class="form-control" required="">
-                                                        <option value="" selected="" disabled="">Select
-                                                            Division</option>
-                                                        @foreach ($divisions as $item)
-                                                            <option value="{{ $item->id }}">
-                                                                {{ $item->division_name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('division_id')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                            </div> <!-- // end form group -->
-
-
-                                            <div class="form-group">
-                                                <h5><b>District Select</b> <span class="text-danger">*</span></h5>
-                                                <div class="controls">
-                                                    <select name="district_id" class="form-control" required="">
-                                                        <option value="" selected="" disabled="">Select
-                                                            District</option>
-
-                                                    </select>
-                                                    @error('district_id')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                            </div> <!-- // end form group -->
-
-
-                                            <div class="form-group">
-                                                <h5><b>State Select</b> <span class="text-danger">*</span></h5>
-                                                <div class="controls">
-                                                    <select name="state_id" class="form-control" required="">
-                                                        <option value="" selected="" disabled="">
-                                                            Select
-                                                            State
-                                                        </option>
-
-                                                    </select>
-                                                    @error('state_id')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                            </div> <!-- // end form group -->
-
-                                            <button type="submit"
-                                                class="btn-upper btn btn-primary checkout-page-button">Login
-                                            </button>
-                                            </form>
-
-                                        </div> --}}
-
-
                                     </div>
                                 </div>
                             </div>

@@ -12,7 +12,7 @@ use Illuminate\Support\Carbon;
 class ShippingController extends Controller
 {
 
-    // ============================= MÉTODOS CRUD BAIRRO   ============================= //
+    // ============================= MÉTODOS CRUD ESTADO   ============================= //
 
 
     // Método View Estado Envio
@@ -185,7 +185,7 @@ class ShippingController extends Controller
 
 
 
-    // =========== MÉTODOS CRUD BAIRRO (MUITO TRABALHO, INTEGGRAÇÃO CORREIOS CUIDARÁ DISSO)  =========== //
+    // =========== MÉTODOS CRUD BAIRRO (MUITO TRABALHO, INTEGRAÇÃO CORREIOS CUIDARÁ DISSO)  =========== //
 
 
     // public function ShippingStateView()

@@ -5,25 +5,23 @@
         <section class="content">
             <div class="row">
 
-                <!-- ======================== ADICIONAR BAIRRO ========================  -->
+                <!-- ======================== EDITAR ESTADO ========================  -->
 
                 <div class="col-12">
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Editar Bairro </h3>
+                            <h3 class="box-title">Editar Estado </h3>
                         </div>
-                        <!-- /.box-header -->
+
                         <div class="box-body">
                             <div class="table-responsive">
-
 
                                 <form method="post" action="{{ route('division.update', $divisions->id) }}">
                                     @csrf
 
-
                                     <div class="form-group">
-                                        <h5>Nome Bairro <span class="text-danger">*</span></h5>
+                                        <h5>Nome Estado <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="shipping_division_name" class="form-control"
                                                 value="{{ $divisions->shipping_division_name }}">
@@ -33,11 +31,9 @@
                                         </div>
                                     </div>
 
-
                                     <div class="text-xs-right">
                                         <input type="submit" class="btn btn-rounded btn-success mb-5" value="Atualizar">
                                     </div>
-
 
                                 </form>
                             </div>

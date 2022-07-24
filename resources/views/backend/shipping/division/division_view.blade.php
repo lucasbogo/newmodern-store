@@ -9,16 +9,15 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Bairro</h3>
+                            <h3 class="box-title">Estado</h3>
                         </div>
 
-                        <!-- /.box-header -->
                         <div class="box-body">
                             <div class="table-responsive">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Bairro</th>
+                                            <th>Estado</th>
                                             <th>Ação</th>
 
                                         </tr>
@@ -29,8 +28,9 @@
                                                 <td> {{ $item->shipping_division_name }} </td>
 
                                                 <td width="40%">
-                                                    <a href="{{ route('division.edit', $item->id) }}" class="btn btn-warning"
-                                                        title="Edit Data"><i class="fa fa-pencil"></i> </a>
+                                                    <a href="{{ route('division.edit', $item->id) }}"
+                                                        class="btn btn-warning" title="Edit Data"><i
+                                                            class="fa fa-pencil"></i> </a>
                                                     <a href="{{ route('division.delete', $item->id) }}"
                                                         class="btn btn-danger" title="Delete Data" id="delete">
                                                         <i class="fa fa-trash"></i></a>
@@ -39,38 +39,29 @@
                                             </tr>
                                         @endforeach
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>
-                        <!-- /.box-body -->
                     </div>
-                    <!-- /.box -->
-
-
                 </div>
-                <!-- /.col -->
 
-
-                <!-- ======================== ADICIONAR BAIRRO ========================  -->
+                <!-- ======================== ADICIONAR ESTADO ========================  -->
 
                 <div class="col-4">
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Adicionar Bairro </h3>
+                            <h3 class="box-title">Adicionar Estado </h3>
                         </div>
-                        <!-- /.box-header -->
+
                         <div class="box-body">
                             <div class="table-responsive">
-
 
                                 <form method="post" action="{{ route('division.store') }}">
                                     @csrf
 
-
                                     <div class="form-group">
-                                        <h5>Nome Bairro <span class="text-danger">*</span></h5>
+                                        <h5>Estado<span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="shipping_division_name" class="form-control">
                                             @error('shipping_division_name')
@@ -79,21 +70,16 @@
                                         </div>
                                     </div>
 
-
-
                                     <div class="text-xs-right">
                                         <input type="submit" class="btn btn-rounded btn-success mb-5" value="Adicionar">
                                     </div>
+
                                 </form>
                             </div>
                         </div>
-                        <!-- /.box-body -->
                     </div>
-                    <!-- /.box -->
                 </div>
             </div>
-            <!-- /.row -->
         </section>
-        <!-- /.content -->
     </div>
 @endsection

@@ -389,9 +389,9 @@ Route::prefix('shipping')->group(function () {
     Route::get('/district/delete/{id}', [ShippingController::class, 'ShippingDistrictDelete'])->name('district.delete');
 
 
-    // # ================ TODAS AS ROTAS ADMIN SHIPPING/ENVIO - ESTADO ================ #
+    // # ================ TODAS AS ROTAS ADMIN SHIPPING/ENVIO - BAIROO ================ #
 
-    // // Rota p/ a view Cidade Envio
+    // // Rota p/ a view Bairro Envio
     // Route::get('/state/view', [ShippingController::class, 'ShippingStateView'])->name('state.manage');
 
     // // Rota p/ guardar dados Cidade Envio
