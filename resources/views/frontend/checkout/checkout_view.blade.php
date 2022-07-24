@@ -1,5 +1,7 @@
 @extends('frontend.main_master')
 @section('content')
+
+    <!-- JQuery CDN p/ trabalhar com JS Ajax (mostrar estado e Cidade dinamicamente no select field) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 @section('title')
@@ -54,8 +56,7 @@
                                     </a>
                                 </h4>
                             </div>
-                            <!--===================== /CABEÇALHO DO PAINEL (ESTÉTICA OPCIONAL) ===================== -->
-
+                            <hr>
 
                             <!--===================== DADOS CLIENTE ===================== -->
                             <div id="collapseOne" class="panel-collapse collapse in">
@@ -66,7 +67,7 @@
                                         <div class="col-md-6 col-sm-6 already-registered-login">
                                             <h4 class="checkout-subtitle"><b>
                                                     @if (session()->get('language') == 'portuguese')
-                                                        SEUS DADOS DE ENTREGA
+                                                        SEUS DADOS
                                                     @else
                                                         YOUR SHIPPING DATA
                                                     @endif
@@ -121,129 +122,243 @@
                                                         id="exampleInputEmail1" placeholder=""
                                                         value="{{ Auth::user()->phone }}" required="">
                                                 </div>
+                                        </div>
+
+                                        <!--===================== LÓGICA CORREIO ===================== -->
+                                        <div class="col-md-6 col-sm-6 already-registered-login">
+                                            <h4 class="checkout-subtitle"><b>ENDEREÇO</b></h4>
 
 
-                                                <!--===================== LÓGICA CORREIO ===================== -->
 
-                                                <div class="col-md-6 col-sm-6 already-registered-login">
-                                                    <div class="form-group">
-
-                                                        <div class="form-group">
-                                                            <label class="info-title" for="exampleInputEmail1">
-                                                                @if (session()->get('language') == 'portuguese')
-                                                                    Rua
-                                                                @else
-                                                                    Street Name
-                                                                @endif
-                                                                <span>*</span>
-                                                            </label>
-                                                            <input type="text" name="shipping_street"
-                                                                class="form-control unicase-form-control text-input"
-                                                                id="exampleInputEmail1" placeholder="" required="">
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label class="info-title" for="exampleInputEmail1">
-                                                                @if (session()->get('language') == 'portuguese')
-                                                                    Numero
-                                                                @else
-                                                                    House Number
-                                                                @endif
-                                                                <span>*</span>
-                                                            </label>
-                                                            <input type="text" name="shipping_number"
-                                                                class="form-control unicase-form-control text-input"
-                                                                id="exampleInputEmail1" placeholder="" required="">
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label class="info-title" for="exampleInputEmail1">
-                                                                @if (session()->get('language') == 'portuguese')
-                                                                    Bairro
-                                                                @else
-                                                                    District
-                                                                @endif
-                                                                <span>*</span>
-                                                            </label>
-                                                            <input type="text" name="shipping_hood"
-                                                                class="form-control unicase-form-control text-input"
-                                                                id="exampleInputEmail1" placeholder="" required="">
-                                                        </div>
-
-                                                        <h5><b>Division Select </b> <span class="text-danger">*</span>
-                                                        </h5>
-                                                        <div class="controls">
-                                                            <select name="division_id" class="form-control"
-                                                                required="">
-                                                                <option value="" selected="" disabled="">
-                                                                    Select
-                                                                    Division</option>
-                                                                @foreach ($divisions as $item)
-                                                                    <option value="{{ $item->id }}">
-                                                                        {{ $item->division_name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            @error('division_id')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <h5><b>District Select</b> <span class="text-danger">*</span>
-                                                        </h5>
-                                                        <div class="controls">
-                                                            <select name="district_id" class="form-control"
-                                                                required="">
-                                                                <option value="" selected="" disabled="">
-                                                                    Select
-                                                                    District</option>
-
-                                                            </select>
-                                                            @error('district_id')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label class="info-title" for="exampleInputEmail1">
-                                                            @if (session()->get('language') == 'portuguese')
-                                                                CEP
-                                                            @else
-                                                                Postal Code
-                                                            @endif
-                                                            <span>*</span>
-                                                        </label>
-                                                        <input type="text" name="postal_code"
-                                                            class="form-control unicase-form-control text-input"
-                                                            id="exampleInputEmail1" placeholder=""
-                                                            required="">
-
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label class="info-title" for="exampleInputEmail1">Notes
-                                                            <span>*</span></label>
-                                                        <textarea class="form-control" cols="30" rows="5" placeholder="obervações" name="notes"></textarea>
-                                                    </div>
-
-
-                                                    <button type="submit"
-                                                        class="btn-upper btn btn-primary checkout-page-button">
-                                                        @if (session()->get('language') == 'portuguese')
-                                                            Enviar
+                                            <div class="form-group">
+                                                <h5><b>
+                                                        {{-- @if (session()->get('language') == 'portuguese')
+                                                            Selecionar Estado
                                                         @else
-                                                            Submit
-                                                        @endif
-                                                    </button>
-                                            </form>
+                                                            Select State
+                                                        @endif --}}
+                                                        {{-- </b> <span class="text-danger">*</span> --}}
+                                                </h5>
+                                                <div class="controls">
+                                                    <select name="shipping_division_id" class="form-control"
+                                                        required="">
+                                                        <option value="" selected="" disabled="">
+                                                            @if (session()->get('language') == 'portuguese')
+                                                                Estado
+                                                            @else
+                                                                State
+                                                            @endif
+                                                        </option>
+                                                        @foreach ($divisions as $item)
+                                                            <option value="{{ $item->id }}">
+                                                                {{ $item->shipping_division_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('shipping_division_id')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <h5><b>
+                                                        {{-- @if (session()->get('language') == 'portuguese')
+                                                            Selecionar Cidade
+                                                        @else
+                                                            Select City
+                                                        @endif --}}
+                                                        {{-- </b> <span class="text-danger">*</span> --}}
+                                                </h5>
+                                                <div class="controls">
+                                                    <select name="shipping_district_id" class="form-control"
+                                                        required="">
+                                                        <option value="" selected="" disabled="">
+                                                            @if (session()->get('language') == 'portuguese')
+                                                                Cidade
+                                                            @else
+                                                                City
+                                                            @endif
+                                                        </option>
+
+                                                    </select>
+                                                    @error('shipping_district_id')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="info-title" for="exampleInputEmail1">
+                                                    @if (session()->get('language') == 'portuguese')
+                                                        Rua
+                                                    @else
+                                                        Street Name
+                                                    @endif
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="text" name="shipping_street"
+                                                    class="form-control unicase-form-control text-input"
+                                                    id="exampleInputEmail1" placeholder="" required="">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="info-title" for="exampleInputEmail1">
+                                                    @if (session()->get('language') == 'portuguese')
+                                                        Numero
+                                                    @else
+                                                        House Number
+                                                    @endif
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="text" name="shipping_number"
+                                                    class="form-control unicase-form-control text-input"
+                                                    id="exampleInputEmail1" placeholder="" required="">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="info-title" for="exampleInputEmail1">
+                                                    @if (session()->get('language') == 'portuguese')
+                                                        Bairro
+                                                    @else
+                                                        District
+                                                    @endif
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="text" name="shipping_hood"
+                                                    class="form-control unicase-form-control text-input"
+                                                    id="exampleInputEmail1" placeholder="" required="">
+                                            </div>
+
+
+
+                                            <div class="form-group">
+                                                <label class="info-title" for="exampleInputEmail1">
+                                                    @if (session()->get('language') == 'portuguese')
+                                                        CEP
+                                                    @else
+                                                        Postal Code
+                                                    @endif
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="text" name="postal_code"
+                                                    class="form-control unicase-form-control text-input"
+                                                    id="exampleInputEmail1" placeholder="" required="">
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="info-title" for="exampleInputEmail1">
+                                                    @if (session()->get('language') == 'portuguese')
+                                                        Observações
+                                                    @else
+                                                        Observations
+                                                    @endif
+                                                    <span class="text-info">(Opcional)</span>
+                                                </label>
+                                                <textarea class="form-control" cols="30" rows="5" placeholder="..." name="notes"></textarea>
+                                            </div>
+
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="panel panel-default checkout-step-02">
+                            <div class="panel-heading">
+                                <h4 class="unicase-checkout-title">
+                                    <a data-toggle="collapse" class="collapsed" data-parent="#accordion"
+                                        href="#collapseTwo">
+                                        <span><i class="fa fa-credit-card"></i></span>
+                                        @if (session()->get('language') == 'portuguese')
+                                            Método de Pagamento
+                                        @else
+                                            Payment Method
+                                        @endif
+                                    </a>
+                                </h4>
+                            </div>
+                            <hr>
+
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Explicar condições, tempo de entrega, condições de retorno,
+                                    Tipos de pagamento, etc...
+                                    Inserir Imagens de cartões...
+                                    Tentar deixar essa parte mais atraente
+
+                                </div>
+                                <br>
+
+                                <div class="row">
+                                    <!--=================== PAGAMENTO STRIPE (CC) =================== -->
+                                    <div class="col-md-10">
+                                        <input type="radio" name="payment_method" value="stripe">
+                                        <label for="">
+                                            @if (session()->get('language') == 'portuguese')
+                                                Stripe teste
+                                            @else
+                                                Stripe testing
+                                            @endif
+                                        </label>
+                                        {{-- <img src="{{ asset('frontend/assets/images/payments/4.png') }}">
+                                        <img src="{{ asset('frontend/assets/images/payments/3.png') }}">
+                                       <img src="{{ asset('frontend/assets/images/payments/2.png') }}"> --}}
+                                    </div>
+                                    <br>
+
+                                    <!--=================== PAGAMENTO CARTÃO =================== -->
+                                    <div class="col-md-10">
+                                        <input type="radio" name="payment_method" value="card">
+                                        <label for="">
+                                            @if (session()->get('language') == 'portuguese')
+                                                Cartão
+                                            @else
+                                                Card
+                                            @endif
+                                        </label>
+                                    </div>
+
+                                    <!--=================== PAGAMENTO PAYPAL =================== -->
+                                    {{-- <div class="col-md-10">
+                                        <input type="radio" name="payment_method" value="paypal">
+                                        <label for="">
+                                            PayPal
+                                        </label>
+
+                                      <img src="{{ asset('frontend/assets/images/payments/1.png') }}"> 
+                                    </div> --}}
+
+                                    <!--=================== PAGAMENTO PAYPAL =================== -->
+                                    <div class="col-md-10">
+                                        <input type="radio" name="payment_method" value="card">
+                                        <label for="">
+                                            @if (session()->get('language') == 'portuguese')
+                                                Espécie
+                                            @else
+                                                Cash
+                                            @endif
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <br>
+                            <br>
+
+                            <button type="submit" class="btn-upper btn btn-primary checkout-page-button">
+                                @if (session()->get('language') == 'portuguese')
+                                    Enviar
+                                @else
+                                    Submit
+                                @endif
+                            </button>
+                            </form>
+                        </div>
+
                     </div>
+
                 </div>
 
                 <!--=================== CHECKOUT SIDEBAR (PROGRESSO) =================== -->
@@ -397,10 +512,125 @@
                         </div>
                     </div>
                 </div>
+
+                <!--=================== CHECKOUT SIDEBAR ESTÉTICA(PAGAMENTO) =================== -->
+                {{-- <div class="col-md-8">
+                    <div class="checkout-progress-sidebar ">
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="unicase-checkout-title">
+                                        @if (session()->get('language') == 'portuguese')
+                                            Método de Pagamento
+                                        @else
+                                            Payment Method
+                                        @endif
+                                    </h4>
+                                </div>
+
+
+                                <div class="row">
+                                    <!--=================== PAGAMENTO STRIPE (CC) =================== -->
+                                    <div class="col-md-6">
+                                        <label for="">
+                                            @if (session()->get('language') == 'portuguese')
+                                                Cartão de Crédito
+                                            @else
+                                                Credit Card
+                                            @endif
+                                        </label>
+                                        <input type="radio" name="payment_method" value="stripe">
+
+                                        <img src="{{ asset('frontend/assets/images/payments/4.png') }}">
+                                        <img src="{{ asset('frontend/assets/images/payments/3.png') }}">
+                                        <img src="{{ asset('frontend/assets/images/payments/2.png') }}">
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <br>
+
+                                    <!--=================== PAGAMENTO CARTÃO =================== -->
+                                    {{-- <div class="col-md-6">
+                                        <label for="">
+                                            @if (session()->get('language') == 'portuguese')
+                                                Cartão
+                                            @else
+                                                Card
+                                            @endif
+                                        </label>
+                                        <input type="radio" name="payment_method" value="card">
+                                    </div> --}}
+
+                {{-- <!--=================== PAGAMENTO DINHEIRO =================== -->
+                                        <div class="col-md-6">
+                                            <label for="">
+                                                @if (session()->get('language') == 'portuguese')
+                                                    Espécie
+                                                @else
+                                                    Cash
+                                                @endif
+                                            </label>
+                                            <input type="radio" name="payment_method" value="card">
+                                        </div> --}}
+
+                <!--=================== PAGAMENTO DINHEIRO =================== -->
+                {{-- <div class="col-md-6">
+                                        <label for="">
+                                            PayPal
+                                        </label>
+                                        <input type="radio" name="payment_method" value="paypal">
+                                        <img src="{{ asset('frontend/assets/images/payments/1.png') }}">
+                                    </div>
+                                    <br>
+
+                                    <button type="submit" class="btn-upper btn btn-primary checkout-page-button">
+                                        @if (session()->get('language') == 'portuguese')
+                                            Enviar
+                                        @else
+                                            Submit
+                                        @endif
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
+
+
             </div>
         </div>
 
         @include('frontend.body.brands')
     </div>
+</div>
+
+{{-- Código JS Ajax para Estado e Cidade dinamicamente eu simplesmente 
+    copiei a mesma lógica do categoria produtos --}}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('select[name="shipping_division_id"]').on('change', function() {
+            var shipping_division_id = $(this).val();
+            if (shipping_division_id) {
+                $.ajax({
+                    url: "{{ url('/district-get/ajax') }}/" + shipping_division_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        var d = $('select[name="shipping_district_id"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="shipping_district_id"]').append(
+                                '<option value="' + value.id + '">' + value
+                                .shipping_district_name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+
+    });
+</script>
 
 @endsection

@@ -1,30 +1,25 @@
-<!--
-Eu utilizei o template "forms_validation.html"
+{{-- Eu utilizei o template "forms_validation.html"
 como referencia para essa view adicionar produto.
 Está disponível no pacote template que eu comprei
-e compartilhei com a equipe.
--->
+e compartilhei com a equipe. --}}
+
 
 @extends('admin.admin_master')
 @section('admin')
-    <!-- JQuery CDN p/ trabalhar com JS (mostrar nome subcategoria dinamicamente no select field) -->
+    <!-- JQuery CDN p/ trabalhar com JS Ajax (mostrar nome subcategoria dinamicamente no select field) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <div class="container-full">
 
-
-            <!-- Main content -->
             <section class="content">
 
-                <!-- Basic Forms -->
                 <div class="box">
                     <div class="box-header with-border">
                         <h4 class="box-title"> Adicionar Produtos</h4>
 
                     </div>
-                    <!-- /.box-header -->
+
                     <div class="box-body">
                         <div class="row">
                             <div class="col">
@@ -36,11 +31,8 @@ e compartilhei com a equipe.
                                     <div class="row">
                                         <div class="col-12">
 
-
-                                            <!-- PRIMEIRO ROW -->
                                             <div class="row">
 
-                                                <!-- SELECT FIELD MARCA -->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <h5>Selecionar Marca <span class="text-danger">*</span></h5>
@@ -62,7 +54,7 @@ e compartilhei com a equipe.
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                </div> <!-- /col-md-4 -->
+                                                </div>
 
                                                 <!-- SELECT FIELD CATEGORIA -->
                                                 <div class="col-md-4">
@@ -76,11 +68,10 @@ e compartilhei com a equipe.
 
                                                                 <!-- Mostrar os dados da variável $categories na condição foreach (nome categoria em inglês) -->
                                                                 @foreach ($categories as $category)
-
-                                                                    {{-- <!--CONDIÇÃO p/ mostrar os dados, passa-se a coluna category e o id da mesma:
+                                                                    {{-- CONDIÇÃO p/ mostrar os dados, passa-se a coluna category e o id da mesma:
                                                                     quando os IDs combinarem, a fk_id category com a id subcategory, então
-                                                                    retorna os valores solicitados, caso contrário, retorna nulo --> --}}
-                                                                                                
+                                                                    retorna os valores solicitados, caso contrário, retorna nulo --}}
+
                                                                     <option value="{{ $category->id }}">
                                                                         {{ $category->category_name_en }}</option>
                                                                 @endforeach
@@ -91,7 +82,7 @@ e compartilhei com a equipe.
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                </div> <!-- /col-md-4 -->
+                                                </div>
 
                                                 <!-- SELECT FIELD SUB CATEGORIA -->
                                                 <div class="col-md-4">
@@ -105,12 +96,12 @@ e compartilhei com a equipe.
                                                                     Categoria
                                                                 </option>
 
-                                                                {{-- <!--AQUI FOI USADO JAVASCRIPT PARA SELECIONAR
+                                                                {{-- AQUI FOI USADO JAVASCRIPT PARA SELECIONAR
                                                                      NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
                                                                     AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
                                                                     APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
-                                                                    DE ACORDO COM O RELACIONAMENTO BD --> --}}
-                                                                       
+                                                                    DE ACORDO COM O RELACIONAMENTO BD --}}
+
 
                                                             </select>
                                                             @error('subcategory_id')
@@ -118,11 +109,9 @@ e compartilhei com a equipe.
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                </div> <!-- /col-md-4 -->
+                                                </div>
+                                            </div>
 
-                                            </div><!-- /row -->
-
-                                            <!-- SEGUNDO ROW -->
                                             <div class="row">
 
                                                 <!-- SELECT FIELD SUB-SUB-CATEGORIA -->
@@ -137,12 +126,12 @@ e compartilhei com a equipe.
                                                                     Selecionar Sub Sub Categoria
                                                                 </option>
 
-                                                                {{-- <!--AQUI FOI USADO JAVASCRIPT PARA SELECIONAR
+                                                                {{-- AQUI FOI USADO JAVASCRIPT PARA SELECIONAR
                                                                     NOME SUBCATEGORIA DINAMICAMENTE: OU SEJA,
                                                                     AO SELECIONAR CATEGORIA, AUTOMATICAMENTE,
                                                                     APARECERÁ A SUBCATEGORIA E A SUB SUB CATEGORIA,
-                                                                    DE ACORDO COM O RELACIONAMENTO BD --> --}}
-                                                                        
+                                                                    DE ACORDO COM O RELACIONAMENTO BD --}}
+
 
                                                             </select>
                                                             @error('subsubcategory_id')
@@ -150,7 +139,7 @@ e compartilhei com a equipe.
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                </div> <!-- /col-md-4 -->
+                                                </div>
 
                                                 <!-- INPUT FIELD NOME PRODUTO INGLÊS -->
                                                 <div class="col-md-4">
@@ -166,7 +155,7 @@ e compartilhei com a equipe.
 
                                                         </div>
                                                     </div>
-                                                </div> <!-- /col-md-4 -->
+                                                </div>
 
                                                 <!-- INPUT FIELD NOME PRODUTO PORTUGUÊS -->
                                                 <div class="col-md-4">
@@ -182,11 +171,10 @@ e compartilhei com a equipe.
 
                                                         </div>
                                                     </div>
-                                                </div> <!-- /col-md-4 -->
+                                                </div>
 
-                                            </div><!-- /row -->
+                                            </div>
 
-                                            <!-- TERCEIRO ROW -->
                                             <div class="row">
 
                                                 <!-- INPUT FIELD CÓDIGO DO PRODUTO-->
@@ -203,7 +191,7 @@ e compartilhei com a equipe.
 
                                                         </div>
                                                     </div>
-                                                </div> <!-- /col-md-4 -->
+                                                </div>
 
                                                 <!-- INPUT FIELD QUANTIDADE PRODUTO-->
                                                 <div class="col-md-4">
@@ -220,7 +208,7 @@ e compartilhei com a equipe.
                                                         </div>
                                                     </div>
 
-                                                </div> <!-- /col-md-4 -->
+                                                </div>
 
                                                 <!-- INPUT FIELD VALOR VENDA -->
                                                 <div class="col-md-4">
@@ -236,12 +224,9 @@ e compartilhei com a equipe.
 
                                                         </div>
                                                     </div>
-                                                </div> <!-- /col-md-4 -->
+                                                </div>
+                                            </div>
 
-                                            </div><!-- /row -->
-
-
-                                            <!-- QUARTA ROW -->
                                             <div class="row">
 
                                                 <!-- INPUT FIELD INSERIR VALOR DESCONTO-->
@@ -252,8 +237,6 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <input type="text" name="product_discount_price"
                                                                 class="form-control">
-
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -296,19 +279,14 @@ e compartilhei com a equipe.
                                                             @enderror
                                                             <div class="row" id="preview_images"></div>
 
-
-
-
                                                         </div>
                                                     </div>
-                                                </div> <!-- /col-md-4 -->
-
-                                            </div><!-- /row -->
+                                                </div>
+                                            </div>
 
                                             <br>
                                             <br>
 
-                                            <!-- QUINTA ROW -->
                                             <div class="row">
 
                                                 <!-- INSERIR COR INGLÊS-->
@@ -319,9 +297,6 @@ e compartilhei com a equipe.
                                                             <input type="text" name="product_color_en"
                                                                 class="form-control" value=""
                                                                 data-role="tagsinput">
-
-
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -334,9 +309,6 @@ e compartilhei com a equipe.
                                                             <input type="text" name="product_color_pt"
                                                                 class="form-control" value=""
                                                                 data-role="tagsinput">
-
-
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -354,12 +326,11 @@ e compartilhei com a equipe.
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
 
-
                                                         </div>
-                                                    </div>
-                                                </div> <!-- /col-md-4 -->
+                                                   </div>
+                                                </div> 
 
-                                            </div><!-- /row -->
+                                            </div>
 
                                             <br>
                                             <br>
@@ -392,9 +363,6 @@ e compartilhei com a equipe.
                                                             <input type="text" name="product_size_en"
                                                                 class="form-control" value=""
                                                                 data-role="tagsinput">
-
-
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -407,19 +375,14 @@ e compartilhei com a equipe.
                                                             <input type="text" name="product_size_pt"
                                                                 class="form-control" value=""
                                                                 data-role="tagsinput">
-
-
-
                                                         </div>
                                                     </div>
-                                                </div> <!-- /col-md-4 -->
-
-                                            </div><!-- /row -->
+                                                </div>
+                                            </div>
 
                                             <br>
                                             <br>
 
-                                            <!-- SÉTIMO ROW -->
                                             <div class="row">
 
                                                 <!-- TEXT-AREA DESCRIÇÃO CURTA EN -->
@@ -429,12 +392,9 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <textarea name="product_short_description_en" id="product_short_description_en" class="form-control" required
                                                                 placeholder="Insert Product's Short Description"></textarea>
-
-
-
                                                         </div>
                                                     </div>
-                                                </div> <!-- /col-md-6 -->
+                                                </div>
 
                                                 <!-- TEXT-AREA DESCRIÇÃO CURTA PTBR -->
                                                 <div class="col-md-6">
@@ -443,18 +403,14 @@ e compartilhei com a equipe.
                                                         <div class="controls">
                                                             <textarea name="product_short_description_pt" id="product_short_description_pt" class="form-control" required
                                                                 placeholder="Insira a Descrição Curta do Produto"></textarea>
-
-
-
                                                         </div>
                                                     </div>
-                                                </div> <!-- /col-md-6 -->
-                                            </div><!-- /row -->
+                                                </div>
+                                            </div>
 
                                             <br>
                                             <br>
 
-                                            <!-- OITAVO ROW -->
                                             <div class="row">
 
                                                 <!-- TEXT-AREA DESCRIÇÃO LONGA EN -->
@@ -469,7 +425,7 @@ e compartilhei com a equipe.
                                                             </textarea>
                                                         </div>
                                                     </div>
-                                                </div> <!-- /col-md-6 -->
+                                                </div>
 
 
                                                 <!-- TEXT-AREA DESCRIÇÃO LONGA PTBR -->
@@ -484,12 +440,9 @@ e compartilhei com a equipe.
                                                             </textarea>
                                                         </div>
                                                     </div>
-                                                </div> <!-- /col-md-6 -->
-                                            </div><!-- /row -->
-
-
-                                            <br><!-- quebra temática em uma página HTML -->
-
+                                                </div>
+                                            </div>
+                                            <br>
 
                                             <div class="row">
                                                 <!-- CHECKBOX 1 -->
@@ -498,8 +451,8 @@ e compartilhei com a equipe.
                                                         <h5> PROMOÇÕES (OPCIONAL) </h5>
                                                         <div class="controls">
                                                             <fieldset>
-                                                                {{-- <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
-                                                                    e aparecerá no campo específico no frontend cliente --> --}}
+                                                                {{-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
+                                                                    e aparecerá no campo específico no frontend cliente --}}
                                                                 <input type="checkbox" id="checkbox_2"
                                                                     name="product_hot_deals" value="1">
                                                                 <label for="checkbox_2">Hot Deals</label>
@@ -519,8 +472,8 @@ e compartilhei com a equipe.
                                                         <h5>PROMOÇÕES (OPCIONAL) </h5>
                                                         <div class="controls">
                                                             <fieldset>
-                                                                {{-- <!-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
-                                                                e aparecerá no campo específico no frontend cliente --> --}}
+                                                                {{-- Valor 1 significa que ao selecinar esse checkbox, o produto terá essa oferta
+                                                                e aparecerá no campo específico no frontend cliente --}}
                                                                 <input type="checkbox" id="checkbox_4"
                                                                     name="product_special_offer" value="1">
                                                                 <label for="checkbox_4">Especial Offer</label>
@@ -541,21 +494,14 @@ e compartilhei com a equipe.
                                                     value="Adicionar">
                                             </div>
                                 </form>
-
                             </div>
-                            <!-- /.col -->
                         </div>
-                        <!-- /.row -->
                     </div>
-                    <!-- /.box-body -->
                 </div>
-                <!-- /.box -->
-
             </section>
-            <!-- /.content -->
         </div>
     </div>
-    <!-- /.content-wrapper -->
+
 
     <!-- Código JS para mostrar nome subcategoria dinamicamente -->
     <script type="text/javascript">
@@ -612,7 +558,7 @@ e compartilhei com a equipe.
 
     {{-- <!--Código JS p/ mostrar imagem Thumbnail pela função JS onChange
     Pega somente um index, ou seja, apenas uma imagem --> --}}
-                                
+
     <script type="text/javascript">
         // Chamar a função declarada na div thumbnail e passar o input
         function thumbnailURL(input) {
@@ -661,7 +607,7 @@ e compartilhei com a equipe.
                     });
 
                 } else {
-                    alert("Your browser doesn't support File API!"); //if File API is absent
+                    alert(" O seu navegador não suporta este formato!"); //if File API is absent
                 }
             });
         });

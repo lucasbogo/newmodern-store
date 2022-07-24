@@ -21,6 +21,7 @@ use App\Http\Controllers\Frontend\CartController;
 
 use App\Http\Controllers\User\WishListController;
 use App\Http\Controllers\User\MyCartController;
+use App\Http\Controllers\User\CheckoutController;
 
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
@@ -455,6 +456,9 @@ Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 
 // Rota proceder checkout
 Route::get('/checkout', [CartController::class, 'Checkout'])->name('checkout');
+
+// Rota Ajax p/ pegar dinamicamente os dados Cidade relacionados aos estados
+Route::get('/district-get/ajax/{shipping_division_id}', [CheckoutController::class, 'DistrictGetAjax']);
 
 // Rota p/ guardar dados formulário endereço
 Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store');

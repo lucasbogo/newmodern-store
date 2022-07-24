@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Wishlist;
 use App\Models\Coupon;
+use App\Models\Shipping;
+use App\Models\ShippingDistrict;
+use App\Models\ShippingDivision;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
@@ -185,8 +188,10 @@ class CartController extends Controller
                 $cartQty = Cart::count();
                 $cartTotal = Cart::total();
 
+                // Models dos Estados. Necessário para manter endereço cliente
+                $divisions = ShippingDivision::orderBy('shipping_division_name', 'ASC')->get();
 
-                return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal'));
+                return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal', 'divisions'));
                 // Se o carrinho estiver vazio e o usuário clickar em 'proceder c/ o checkout'
                 // Então, notificar e redirecionar para a home.
             } else {

@@ -14,18 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('shippings', function (Blueprint $table) {
-            $table->id(); // pk checkout_shippipng
+            $table->id();
             $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('shipping_division_id'); // fk_shipping... Tentei seguir lógica correios sem integração
-            $table->unsignedBigInteger('shipping_district_id'); // fk_shipping... tentei seguir lógica correios sem integração
-            $table->string('shipping_name');
+            $table->unsignedBigInteger('shipping_division_id');
+            $table->unsignedBigInteger('shipping_district_id');
             $table->string('shipping_email');
             $table->string('shipping_phone');
             $table->string('shipping_street');
             $table->string('shipping_number');
-            $table->string('shipping_hood'); // Bairro em gíria americana (estilo sútil meu)
-            //$table->string('shipping_city');
-            //$table->string('shipping_state');
+            $table->string('shipping_hood');
             $table->integer('postal_code');
             $table->text('notes');
             $table->timestamps();
